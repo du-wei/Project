@@ -1,0 +1,9 @@
+mem.*
+*.class
+# Package Files #
+*.war
+*.ear
+*.project
+*.classpath
+.settings
+target
