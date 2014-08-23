@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE students SYSTEM "dtd.dtd"[
+<!ENTITY name "hello">
+
+]>
+
+<!-- 内部
+<!DOCTYPE students[
+	<!ENTITY name "name">
+	<!ENTITY nick "nick">
+]>
+-->
+ 
+<!-- 
+	xml eXtensible Markup Language
+	dtd Document Type Definition
+	schema 注释 
+
+<students>
+	<![CDATA[
+		hello world
+	]]>
+	<student>
+		<name>&name;</name>
+		<nick>11</nick>
+		<gender/>
+	</student>
+</students>-->

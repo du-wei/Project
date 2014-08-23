@@ -1,0 +1,8 @@
+<!--  指定项目路径配置项目
+<Context path="" docBase="/samples" debug="0" reloadable="true"> </Context>
+-->
+Context.xml
+<Context reloadable="true">  
+
+<!-- tomcat配置comet 服务器推送 还需在content.xml里配置<Loader delegate='true' />防止重复加载tomcat默认包-->
+<Connector port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol"  connectionTimeout="20000"  redirectPort="8443" />

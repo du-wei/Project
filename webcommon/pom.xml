@@ -1,0 +1,398 @@
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.webapp</groupId>
+	<artifactId>webcommon</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>webcommon</name>
+
+	<modules>
+		<module>../webapps</module>
+		<module>../webdao</module>
+		<module>../webstruts</module>
+		<module>../webspring</module>
+		<module>../webquartz</module>
+		<module>../webactivemq</module>
+		<module>../webhadoop</module>
+		<module>../webclient</module>
+		<module>../webservice</module>
+		<module>../weblucene</module>
+		<module>../websolr</module>
+		<module>../webutils</module>
+		<module>../webnosql</module>
+		<module>../webmybatis</module>
+		<module>../webtest</module>
+		<module>../webtemplate</module>
+	</modules>
+
+	<properties>
+		<jdk_version>1.8</jdk_version>
+		<log4j_version>1.2.14</log4j_version>
+		<junit_version>4.10</junit_version>
+		<hamcrest_version>1.3</hamcrest_version>
+		<fastjson_version>1.1.40</fastjson_version>
+		<json-lib_version>2.4</json-lib_version>
+		<encoding>UTF-8</encoding>
+		<!--
+			${env.PATH}
+			${project.PATH}
+			${setting.PATH}
+			${java.PATH}
+		-->
+	</properties>
+
+	<dependencies>
+		<!--log4j-->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j_version}</version>
+		</dependency>
+		<!--junit-->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit_version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>${hamcrest_version}</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson_version}</version>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib</artifactId>
+				<version>${json-lib_version}</version>
+				<classifier>jdk15</classifier>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<outputDirectory>target/classes</outputDirectory>
+		<testOutputDirectory>target/test-classes</testOutputDirectory>
+		<directory>${basedir}/target</directory>
+		<pluginManagement>
+			<plugins>
+				<!-- Project JDK Compile Version -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<extensions>false</extensions>
+	        		<inherited>true</inherited>
+					<version>2.5</version>
+					<configuration>
+						<source>${jdk_version}</source>
+						<target>${jdk_version}</target>
+						<encoding>${encoding}</encoding>
+					</configuration>
+				</plugin>
+
+				<!-- war插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<webappDirectory>target/webapp</webappDirectory>
+						<warSourceDirectory>webapp</warSourceDirectory>
+						<warSourceExcludes></warSourceExcludes>
+						<warSourceIncludes></warSourceIncludes>
+						<webResources>
+				            <!-- 移动指定文件夹到指定位置
+							<resource>
+				                <directory>webapp/WEB-INF</directory>
+				                <targetPath>WEB-INF</targetPath>
+				                <filtering>true</filtering>
+				                <includes>
+				                    <include>**/*.jsp</include>
+				                </includes>
+				                <excludes>
+				                	<exclude>**/*.xml</exclude>
+				                </excludes>
+				            </resource>
+				            -->
+				        </webResources>
+					</configuration>
+				</plugin>
+
+				<!-- 测试插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.12</version>
+					<configuration>
+						<skip>true</skip>
+						<!--
+						<parallel>methods</parallel>
+				        <threadCount>10</threadCount>
+				        <argLine>-Dfile.encoding=UTF-8</argLine>
+				        <testFailureIgnore>true</testFailureIgnore>
+				        -->
+					</configuration>
+				</plugin>
+
+				<!-- 资源管理插件  -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+					<executions>
+						<execution>
+	                        <phase>compile</phase>
+	                        <goals>
+	                            <goal>resources</goal>
+	                        </goals>
+	                    </execution>
+
+						<!--
+						<configuration>
+			                <outputDirectory>${server_home}/webapps/${project.build.finalName}</outputDirectory>
+			                <resources>
+			                    <resource>
+			                        <directory>${project.build.directory}/${project.build.finalName}</directory>
+			                    </resource>
+			                </resources>
+			            </configuration>
+					 	-->
+					</executions>
+					<configuration>
+						<encoding>${encoding}</encoding>
+					</configuration>
+				</plugin>
+
+				<!-- javadoc插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.7</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- 源代码打包插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-source-plugin</artifactId>
+				    <version>2.2.1</version>
+				    <configuration>
+				        <attach>true</attach>
+				        <encoding>${encoding}</encoding>
+				    </configuration>
+				    <executions>
+				        <execution>
+				            <phase>compile</phase>
+				            <goals>
+				                <goal>jar</goal>
+				            </goals>
+				        </execution>
+				    </executions>
+				</plugin>
+
+				<!-- 检测报告插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>3.0.1</version>
+					<configuration>
+			          <targetJdk>${jdk_version}</targetJdk>
+			        </configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>check</goal>
+								<goal>cpd-check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-help-plugin</artifactId>
+					<version>2.1.1</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+	</build>
+
+	<!-- 发布到私服 -->
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>pub releases</name>
+			<url></url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot</id>
+			<name>pub snapshot</name>
+			<url></url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!-- 远程仓库配置 -->
+	<repositories>
+		<repository>
+		    <id>central</id>
+		    <url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+		    <id>apache-central</id>
+		    <url>https://repository.apache.org/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>apache-snapshots</id>
+			<name>Apache SNAPSHOT Repository</name>
+			<!--
+			<url>http://repository.sonatype.org/content/groups/public/</url>
+			 -->
+			 <url>http://repository.apache.org/snapshots/</url>
+			
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>codehausSnapshots</id>
+			<name>Codehaus Snapshots</name>
+			<url>http://snapshots.maven.codehaus.org/maven2</url>
+			<layout>default</layout>
+		</repository>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+	        <id>java</id>
+	        <name>java official repository</name>
+	        <url>http://download.java.net/maven/2/</url>
+	    </repository>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+	        <id>junitperf</id>
+	        <name>juniterf</name>
+	        <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-uploads</url>
+	    </repository>
+	    <repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+	        <id>opensymphony-releases</id>
+	        <name>Opensymphony Releases</name>
+	        <url>https://oss.sonatype.org/content/repositories/opensymphony-releases</url>
+	    </repository>
+	    <repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+	        <id>hibernate-releases</id>
+	        <name>hibernate Releases</name>
+	        <url>http://repo1.maven.org/maven2/org/hibernate/hibernate-core</url>
+	    </repository>
+        <repository>
+            <id>mvn-repo</id>
+            <url>http://maven.ansj.org/</url>
+        </repository>
+	</repositories>
+
+	<!--https://repository.apache.org/content/
+		<url>http://repo1.maven.org/maven2/</url>							nexus
+		<url>http://repository.apache.org/snapshots/</url>					nexus
+		<url>http://repository.sonatype.org/content/groups/public/</url>
+		<url>http://nexus.codehaus.org/snapshots/</url>						nuxus
+		<url>http://snapshots.maven.codehaus.org/maven2</url>
+		<url>http://maven.net.cn/content/groups/public/</url>
+		<url>http://download.java.net/maven/2/</url>
+	 -->
+
+	<!-- 远程插件仓库仓库配置 -->
+	<pluginRepositories>
+		<pluginRepository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>codehausSnapshots</id>
+			<name>Codehaus Snapshots</name>
+			<url>http://snapshots.maven.codehaus.org/maven2</url> 
+			<!-- 
+			<url>http://repo1.maven.org/maven2</url>
+			-->
+			<layout>default</layout>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>

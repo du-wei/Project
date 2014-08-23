@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+
+<configuration>  
+  <properties fileName="app.properties"/>  
+  <xml fileName="app.xml"/>  
+  <xml fileName="root.xml"/>  
+</configuration>

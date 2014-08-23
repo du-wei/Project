@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>FancyBox - jQuery image zooming plugin</title>
+	<link rel="stylesheet" type="text/css" href="../../jqueryui/js/themes/default/easyui.css" />
+<script type="text/javascript" src="../../common/jquery-1.6.min.js"></script>
+<script type="text/javascript" src="../../common/jquery.easyui.min.js"></script>
+
+<script type=text/javascript>
+	
+function show(){
+	con = 20;
+	var cont = 30;
+	this.age = 10;
+	this.name = "hello";
+	
+	this.fun = function(){
+		alert("fun");
+	}
+}
+alert(cont);
+var temp = new show();
+	//alert(temp.age);
+	
+	jQuery.noConflict();
+	(function($){
+		$(function(){
+			$(document.form).bind("submit");
+		});
+	})(jQuery);
+	
+</script>
+</head>
+<body>
+<p>ok</p>
+<div id="demo" name="demo">
+	hello world
+</div>
+<form name="form" id="" action="demo.html">
+	<input type="text" value="hello world"/>
+	<input type="submit" value="submit"/>
+	<input type="button" value="ok"/>
+	<button type="reset">helllo</button>
+	<a href="#" class="easyui-linkbutton">ok world</a>
+</form>
+
+</body>
+</html>

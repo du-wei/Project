@@ -1,0 +1,216 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<!--
+<link type="text/css" rel="stylesheet" href="../jquery/js/easyui.css" />
+<link rel="stylesheet" type="text/css" href="../jquery/js/themes/icon.css" />
+<link type="text/css" rel="stylesheet" href="jquery-ui-1.8.16.custom.css" />
+
+<script type="text/javascript" src="jquery-ui-1.8.16.custom.min.js"></script>
+
+<script type="text/javascript" src="../jquery/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../jquery/js/jquery-1.6.min.js"></script>
+-->
+<script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="formValidator-4.1.1.js"></script>
+<script type="text/javascript" src="formValidatorRegex.js"></script>
+<script type="text/javascript" src="DateTimeMask.js"></script>
+<script type="text/javascript" src="datepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	$.formValidator.initConfig({
+//		validatorGroup:1,
+//		errorFocus:true,
+//		forceValid:true,
+//		mode:"FixTip",	//FixTip AutoTip SingleTip AlertTip
+//		debug:true,
+//		submitOnce:false,
+//		ajaxForm:{
+//			type : "GET",
+//	      	url : "",
+//	      	dataType : "html",
+//	      	timeout : 100000,
+//	      	data : null,
+//	      	async : true,
+//	      	cache : false,
+//	      	buttons : null,
+//	      	beforeSend : function(){return true;},
+//	      	success : function(){return true;},
+//	      	complete : $.noop,
+//	      	processData : true,
+//	     	 error : $.noop
+//		},
+		AjaxPrompt:"当前有数据正在进行服务器端校验，请稍候",
+		theme:"Default",	//SolidBox ArrowSolidBox 126 Default
+		onSuccess:function(){alert("success")},
+		onError:function(msg, obj, errorlist){
+			alert(msg + "helllo");
+		},
+		formID:"form"
+	});
+	$("#name").formValidator({
+		//onShowText:"username",
+		onShowTextColor:{mouseOnColor:"#FF6699",mouseOutColor:"#000000"},
+		onShowFixText:"onShowFixText 8-90",
+//		autoModify:true,
+//		tipID:"nameTip",
+//		tipCss:{left:10,top:-4,height:20,width:280},	//AutoTip
+//		forceValid:false,
+//		ajax:true,
+//		triggerEvent:"change",	//blur change
+//		leftTrim:false,
+//		rightTrim:false,
+		fixTipID:"fix",
+		defaultValue:"hello",
+		onEmpty:"输入内容为空",
+		onFocus:"input number",
+		onShow:"请输入内容",
+		onCorrect:"输入正确",
+		empty:false
+	}).inputValidator({
+		type:"number", 	//size number string date datetime
+		min:10,
+		max:1000000,
+		empty:{leftEmpty:false,rightEmpty:false,emptyError:"realy empty"},
+		onError:"你输入的用户名非法,请确认",
+		onErrorMin:"The Number is too small",
+		onErrorMax:"The Number is too big"
+	}).defaultPassed();
+	
+	$("#pwd").formValidator({
+		onEmpty:"输入内容为空",
+		empty:false
+	}).regexValidator({
+		regExp:"pwd",
+		param:"i",	//i g m
+		compareType:"||",	//|| &&
+		dataType:"string",	//string enum
+		onError:"regex error"
+	}).functionValidator({
+		fun:function(val, object){
+			if(val == "pwd") alert("hello");
+			return true;		//true false string none
+		},
+		onError:"function validator"
+	});
+	$("#pwd2").formValidator({
+		onEmpty:"输入内容为空",
+		empty:false
+	}).compareValidator({
+		desID:"pwd",
+		operateor:"=",
+		dataType:"string",	//string number datetime date
+		onError:"different"
+	});
+	$("#pwd3").formValidator({
+		onEmpty:"输入内容为空",
+		empty:false
+	}).passwordValidator({
+		compareID:"name"
+		//onErrorCompareSame:"comparesame",
+		//continueChar:false,
+		//onErrorContinueChar:"continue",
+		//sameChar:false,
+		//onErrorSameChar:"same"
+	});
+	$("#date").focus(function(){
+		WdatePicker({
+			skin:'whyGreen',
+	        //position: {},
+	        //lang: "zh-cn",
+	        dateFmt: "yyyy-MM-dd",
+	        //realDateFmt: "yyyy-MM-dd",
+	        //realTimeFmt: "HH:mm:ss",
+	        //realFullFmt: "%Date %Time",
+	        //minDate: "1900-01-01 00:00:00",
+	        //maxDate: "2099-12-31 23:59:59",
+	        //startDate: "",
+	        yearOffset: 1911,
+	        //isShowWeek: false,
+	        highLineWeekDay: true,
+	        isShowClear: true,
+	        isShowToday: true,
+	        isShowOthers: false,
+	        readOnly: false,
+	        //errDealMode: 0,
+	        //autoPickDate: null,
+	        //qsEnabled: true,
+	        
+	        //disabledDates: null,
+	        //disabledDays: null,
+	        //opposite: false,
+	        onpicking:null,
+			onpicked:function(){$(this).blur();},
+	        onclearing:null,
+			oncleared:null,
+	        //eCont:null,
+	        //vel: null,
+	        //errMsg: "",
+	        //quickSel: [],
+	        //has: {}
+		});	
+	});
+	//.defaultPassed();
+
+})
+
+
+</script>
+<style type="text/css">
+* {
+	margin:auto;
+}
+</style>
+</head>
+<body>
+
+<form action="" method="post" id="form" name="form" accept-charset="utf-8">
+	<table width="500" border="0" >
+	    <tr>
+	        <td>username</td>
+	        <td><input type="text" id="name" name="name" value="" /></td>
+	        <td width="250"><div id="nameTip"></div></td>
+	    </tr>
+		<tr>
+			<td></td>
+			<td colspan="2"><div id="fix"></div></td>
+		</tr>
+	    <tr>
+	        <td>password</td>
+	        <td><input type="text" id="pwd" name="pwd" value="" /></td>
+	        <td><div id="pwdTip"></div></td>
+	    </tr>
+	    <tr>
+	        <td>password2</td>
+	        <td><input type="password" id="pwd2" name="pwd2" value="" /></td>
+	        <td><div id="pwd2Tip"></div></td>
+	    </tr>
+	    <tr>
+	        <td>password3</td>
+	        <td><input type="password" id="pwd3" name="pwd3" value="" /></td>
+	        <td><div id="pwd3Tip"></div></td>
+	    </tr>
+	    <tr>
+	        <td><input type="text" id="date2" /></td>
+	        <td><input type="submit" id="submit" name="name" value="submit" /></td>
+	        <td><input type="text" id="date" /></td>
+	    </tr>
+	</table>
+</form>
+
+<fieldset id="set" style="width:400px;">
+	<legend align="left"><span style="font:blod 12px;">First</span></legend>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+</fieldset>
+
+</body>
+</html>

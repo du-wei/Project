@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws" 
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+
+    <bean id="httpServiceReq" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean" >  
+        <property name="serviceUrl" value="http://localhost:8080/webservice/https/httpServiceReq" />  
+        <property name="serviceInterface" value="com.webapp.remoting.service.http.spring.IHttp"/>  
+        <!-- <property name="httpInvokerRequestExecutor">
+		    <bean class="org.springframework.remoting.httpinvoker.CommonsHttpInvokerRequestExecutor"/>
+		</property>  --> 
+    </bean> 
+    
+
+</beans>

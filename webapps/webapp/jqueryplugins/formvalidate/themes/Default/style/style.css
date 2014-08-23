@@ -1,0 +1,144 @@
+.onShow {
+    background: url(../images/onShow.gif) no-repeat;
+    padding-left: 25px;
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 22px;
+    vertical-align: middle;
+}
+.onFocus {
+    background: #E9F0FF url(../images/onFocus.gif) no-repeat;
+    padding-left: 25px;
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 22px;
+    vertical-align: middle;
+}
+.onError {
+    background: #FFF2E9 url(../images/onError.gif) no-repeat;
+    padding-left: 25px;
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 22px;
+    vertical-align: middle;
+}
+.onCorrect {
+    background: #E9FFEB url(../images/onCorrect.gif) no-repeat;
+    padding-left: 25px;
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 22px;
+    vertical-align: middle;
+}
+.onLoad {
+    background: #E9FFEB url(../images/onLoad.gif) no-repeat 3px 3px;
+    padding-left: 25px;
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 22px;
+    vertical-align: middle;
+}
+.inputOnShow {
+    color: #999999
+}
+
+.onShowClass, .onCorrectClass {
+	text-align:left;
+	vertical-align:middle;
+	margin:0px;
+	border: 1px solid #C1C1C1;
+	padding:4px;
+	background:#fbfbfb;
+	font: 12px/normal Verdana, arial, sans-serif;
+	color:#444444;
+	ime-mode:disabled;
+}
+
+.onFocusClass {
+    margin:0px;
+    border: 1px solid #c6c69e;
+	padding: 4px;
+    background:#ffc;
+    font: 12px/normal Verdana,arial,sans-serif;
+    color: #444444;
+    text-align: left;
+    vertical-align:middle; 
+}
+
+.onErrorClass {
+	text-align:left;
+	vertical-align:middle;
+	margin:0px;
+	background:#fbe2e2;
+	border: 1px solid #C1C1C1;
+	border-color:#d28c8c;
+	padding:4px;
+	font: 12px/normal Verdana,arial,sans-serif;
+	color:#a63b3b;
+}
+
+.txt-info-mouseon {
+    font: 12px/166.6% Verdana, arial, sans-serif;;
+    text-align: left;
+    margin-top: -4px;
+    color: #ffa200;
+}
+
+.txt-info-mouseout {
+    font: 12px/166.6% Verdana, arial, sans-serif;;
+    text-align: left;
+    margin-top: -4px;
+    color: #999;
+}
+
+.pswState {
+    color: #000;
+    text-align: left;
+    font: 12px/166.6% Verdana, arial, sans-serif;;
+    border: 0px;
+    margin: 0px;
+	padding:0px;
+    vertical-align: middle;
+    margin-left: 10px;
+    overflow: visible;
+} 
+.st1 {
+    line-height: 166.6%;
+    font-family: Verdana, arial, sans-serif;
+    text-align: left;
+    text-decoration: none;
+    color: #f00;
+	font:12px normal;
+} 
+.st2 {
+    line-height: 166.6%;
+    font-family: Verdana, arial, sans-serif;
+    text-align: left;
+    text-decoration: none;
+    color: #13a821;
+	font:12px normal;
+} 
+.progressImage {
+    color: #000;
+	font: 12px/166.6% Verdana, arial, sans-serif;;
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle;
+    background: url(../images/progress1.png) no-repeat;
+    margin: 0px 8px;
+    width: 147px;
+    height: 19px;
+	padding:2px 0px;
+} 
+.prog0 {
+    background: url(../images/progress1.png) no-repeat;
+} 
+.prog1 {
+    background: url(../images/progress2.png) no-repeat;
+} 
+.prog2 {
+    background: url(../images/progress3.png) no-repeat;
+} 
+.prog3 {
+    background: url(../images/progress4.png) no-repeat;
+}

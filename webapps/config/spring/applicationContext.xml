@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- 启用aop annotation配置 -->
+	<aop:aspectj-autoproxy/>
+
+	<!-- 代表annotation配置 -->
+	<context:annotation-config />
+
+	<!-- 到指定的包内扫描组件 -->
+	<context:component-scan base-package="com.webapp" />
+	
+	<!-- 启动时加载属性配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<!-- hibernate3.x的相关配置 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/test" />
+		<property name="username" value="root" />
+		<property name="password" value="123" />
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan">
+			<list>
+				<value>com.accp.model</value>
+			</list>
+		</property> 
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/webapp/hbm</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<aop:config>
+		<aop:pointcut id="biz" expression="execution(public * com.accp.service..*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="biz"/>
+	</aop:config>
+	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="add*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 
+	<tx:annotation-driven transaction-manager="txManager"/>
+	 -->
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- hibernate4.x的相关配置 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 扫描指定包的实体映射 -->
+		<property name="packagesToScan">
+			<list>
+				<value>com.webapp.entity</value>
+			</list>
+		</property>
+		<!-- 扫描指定包下的所有文件映射 -->
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/webapp/hbm</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>  
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<aop:config>
+		<aop:pointcut id="biz" expression="execution(public * com.accp.service..*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="biz"/>
+	</aop:config>
+	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="add*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+</beans>

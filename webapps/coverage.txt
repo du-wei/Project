@@ -1,0 +1,20 @@
+[CodePro v6.1 report, generated Wed Oct 23 15:07:41 CST 2013]
+-------------------------------------------------------------------------------
+OVERALL COVERAGE SUMMARY:
+
+[class, %]	[method, %]	[block, %]	[line, %]	[name]
+0%   (0/1)!	0%   (0/13)!	0%   (0/173)!	0%   (0/39)!	all classes
+
+OVERALL STATS SUMMARY:
+
+total packages:	1
+total classes:	1
+total methods:	13
+total executable files:	1
+total executable lines:	39
+
+COVERAGE BREAKDOWN BY PACKAGE:
+
+[class, %]	[method, %]	[block, %]	[line, %]	[name]
+0%   (0/1)!	0%   (0/13)!	0%   (0/173)!	0%   (0/39)!	com.webapp.utils
+-------------------------------------------------------------------------------

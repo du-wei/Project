@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- 开启mvc annotation注解 -->
+	<mvc:annotation-driven />
+	
+	<!-- <mvc:interceptors>
+		<bean class="com.webapp.interceptor.SpringMvcInterceptor" />
+	</mvc:interceptors> -->
+
+	<bean id="interViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="prefix" value="/"></property>
+       <property name="suffix" value=".jsp"></property>
+       <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+	</bean>
+	
+    <mvc:resources mapping="/js/**" location="/js/" cache-period="31556926"/>
+    <mvc:resources mapping="/css/**" location="/css/" />
+    <mvc:resources mapping="/images/**" location="/images/" />
+    
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="ignoreAcceptHeader" value="true" />
+        <property name="defaultContentType" value="text/html" /> 
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html" />
+                <entry key="json" value="application/json" />
+                <entry key="xml" value="application/xml" />
+            </map>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <!-- 输出为JSON数据
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />-->
+                <bean class="com.webapp.bug.MappingJacksonJsonViews" />
+
+                <!-- 输出为xml数据 -->
+                <bean id="marshallingView" class="org.springframework.web.servlet.view.xml.MarshallingView">
+                	<property name="modelKey" value="result"></property>
+                    <property name="marshaller">
+                        <bean id="xStreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller" >                          
+                            <property name="autodetectAnnotations" value="true"/>
+                        </bean>
+                    </property>
+                    <property name="contentType" value="application/xml" />                    
+                </bean>                 
+            </list>
+        </property>
+    </bean>
+    
+</beans>

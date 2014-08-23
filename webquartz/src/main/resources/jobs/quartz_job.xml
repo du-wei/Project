@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job-scheduling-data version="2.0"
+	xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData 
+		http://www.quartz-scheduler.org/xml/job_scheduling_data_2_1.xsd">
+	
+	<pre-processing-commands>
+        <delete-jobs-in-group>*</delete-jobs-in-group>  <!-- clear all jobs in scheduler -->
+        <delete-triggers-in-group>*</delete-triggers-in-group> <!-- clear all triggers in scheduler -->
+    </pre-processing-commands>
+	
+	<processing-directives>
+		<overwrite-existing-data>true</overwrite-existing-data>
+		<ignore-duplicates>false</ignore-duplicates>
+	</processing-directives>
+	
+	<schedule>
+		<job>
+			<name>Quartz_Job_Name</name>
+			<group>Quartz_Group</group>
+			<description>Quartz_Example</description>
+			<job-class>com.webapp.scheduled.Quartz</job-class>
+			<durability>false</durability>
+			<recover>true</recover>
+			<job-data-map>
+				<entry>
+					<key>plat</key>
+					<value>1</value>
+				</entry>
+			</job-data-map>
+		</job>
+		<trigger>
+			<cron>
+				<name>Quartz_Trigger_name</name>
+				<group>Quartz_Group</group>
+				<job-name>Quartz_Job_Name</job-name>
+				<job-group>Quartz_Group</job-group>
+				<cron-expression>* * * * * ?</cron-expression>
+			</cron>
+		</trigger>
+	</schedule>
+</job-scheduling-data>

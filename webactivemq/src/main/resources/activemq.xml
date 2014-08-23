@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<activemq>
+	<sender name="queue_server_01"  
+		url="failover:(tcp://192.168.8.241:61616?wireFormat.maxInactivityDuration=10000)&amp;maxReconnectDelay=10000" 
+		user_name="coweibomq_user"	
+		pass_word="coweibo@user.1qaz.2wsx">
+		<queue name="sina_mention" transacted="false" ack_mode="1" delivery_mode="1" />
+	</sender>
+	
+</activemq>

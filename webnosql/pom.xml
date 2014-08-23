@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+	    <artifactId>webcommon</artifactId>
+	    <groupId>com.webapp</groupId>
+	    <version>0.0.1-SNAPSHOT</version>
+		<relativePath>../webcommon/pom.xml</relativePath>
+	</parent>
+	<artifactId>webnosql</artifactId>
+	<packaging>jar</packaging>
+	
+	
+	<build>
+		<finalName>webnosql</finalName>
+		<outputDirectory>target/classes</outputDirectory>
+		<defaultGoal>install</defaultGoal>
+		<directory>${basedir}/target</directory>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.xmemcached</groupId>
+			<artifactId>xmemcached</artifactId>
+			<version>1.4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>1.2.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.webapp</groupId>
+			<artifactId>webutils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	
+</project>

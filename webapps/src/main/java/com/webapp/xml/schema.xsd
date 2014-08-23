@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xsd:element name="students">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs="unbounded">
+				<xsd:element name="student" type="studentType" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="studentType">
+		<!-- <xsd:all /> 规定子元素能够以任意顺序出现，每个子元素可出现零次或一次-->
+		<xsd:annotation>
+			<xsd:appinfo>describe info</xsd:appinfo>
+			<xsd:documentation>describe info</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element ref="name" />
+			<xsd:element ref="nick" />
+			<xsd:element ref="age" />
+			<xsd:element ref="sex" />
+			<xsd:element ref="birthday" />
+			<xsd:element ref="teachers" />
+			<xsd:element ref="tel" />
+			<xsd:element ref="province" />
+			<xsd:element ref="city" />
+			<xsd:element ref="card" />
+			<xsd:element ref="address" />
+			<xsd:element ref="grade" />
+			<xsd:element ref="class" />
+			<xsd:element ref="profession" />
+			<xsd:element ref="desc" />
+		</xsd:choice>
+		<xsd:attribute name="type" type="xsd:string" />
+	</xsd:complexType>
+
+	<xsd:element name="name" type="xsd:string" />
+	<xsd:element name="nick" type="xsd:string" />
+	<xsd:element name="sex">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="female" />
+				<xsd:enumeration value="male" />
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="birthday">
+		<xsd:simpleType>
+			<xsd:union><!-- 合并多个简单类型， birthday必须符合其中的一种约束 -->
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:date">
+						<xsd:enumeration value="2014-01-01" />
+						<xsd:enumeration value="2014-02-02" />
+					</xsd:restriction>
+				</xsd:simpleType>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="2014年01月01日" />
+						<xsd:enumeration value="2014年02月02日" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:union>
+		
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="age" type="ageType" />
+	<xsd:element name="tel" type="xsd:int" />
+	<xsd:element name="teachers" >
+		<xsd:simpleType>
+			<xsd:list itemType="xsd:string" /><!-- 可以是string类型的任意个值 -->
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="province" type="xsd:string" />
+	<xsd:element name="city" type="xsd:string" />
+	<xsd:element name="address" type="addressComplex" />
+	<xsd:element name="grade" type="xsd:int" />
+	<xsd:element name="class" type="xsd:int" />
+	<xsd:element name="card">
+		<xsd:complexType>
+			<xsd:simpleContent><!-- 表示应用的元素不能有子元素，所以可以直接对内容和属性进行限制 -->
+				<xsd:extension base="xsd:integer"><!-- 元素card内容的类型 -->
+					<xsd:attribute name="type" use="optional"><!-- 元素card的属性限制 -->
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="card1" />
+								<xsd:enumeration value="card2" />
+								<xsd:enumeration value="card3" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="profession" type="xsd:string" />
+	<xsd:element name="desc">
+		<xsd:complexType>
+			<xsd:group ref="descGroup" />
+			<xsd:attributeGroup ref="baseAttrGroup" />
+			<xsd:attribute name="interest" type="xsd:string" use="optional" default="interest" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:simpleType name="ageType">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="15" /><!-- 大于或等于 -->
+			<xsd:maxExclusive value="40" /><!-- 必须小于 -->
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="addressComplex">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element ref="province" />
+			<xsd:element ref="city" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:attributeGroup name="baseAttrGroup">
+		<xsd:attribute name="id" use="optional" />
+		<xsd:attribute name="name" use="required" />
+	</xsd:attributeGroup>
+	
+	<xsd:group name="descGroup">
+		<xsd:sequence>
+			<xsd:element ref="name" />
+			<xsd:element ref="address" />
+			<xsd:element name="content" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:group>
+	
+	<!-- 复合类型中既有子元素又有属性 -->
+	<xsd:complexType name="type1"><!-- 符合类型 -->
+		<xsd:sequence>
+			<xsd:element name="ss1" type="xsd:string" /><!-- 简单类型子元素 -->
+			<xsd:element name="ss2"><!-- 带有限制的简单类型子元素 -->
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="ss" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+		
+		<xsd:attribute name="name1" type="xsd:string"/><!-- 属性 -->
+		<xsd:attribute name="name2"><!-- 限制属性 -->
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="ok" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<!-- 复合类型中没有子元素有属性 -->
+	<xsd:complexType name="type2">
+		<xsd:simpleContent><!-- 表示应用的元素不能有子元素，所以可以直接对内容和属性进行限制 -->
+			<xsd:extension base="xsd:integer"><!-- 元素card内容的类型 -->
+				<xsd:attribute name="type" use="optional"><!-- 元素card的属性限制 -->
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="card1" />
+							<xsd:enumeration value="card2" />
+							<xsd:enumeration value="card3" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	
+	<!-- 复合类型中只能选择部分子元素 -->
+	<xsd:complexType name="type3">
+		<xsd:choice maxOccurs="unbounded" minOccurs="0"><!-- 只能选择一个子元素 -->
+			<xsd:element name="ss1" type="xsd:string" />
+			<xsd:element name="ss2" type="xsd:string" />
+			<xsd:element name="ss3" type="xsd:string" />
+		</xsd:choice>
+	</xsd:complexType>
+	
+	
+	<!-- 复合类型对其它复合类型进行扩展 -->
+	<xsd:complexType name="type4">
+		<xsd:complexContent>
+			<xsd:extension base="type3">
+				<xsd:sequence>
+					<xsd:element name="ss4" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<!-- 复合类型bookName唯一，并且book中type必须为bookName中存在的 -->
+	<xsd:element name="bookinfo">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="bookName" type="xsd:string" />
+				<xsd:element name="book" type="bookType" />
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:key name="key">
+			<xsd:selector xpath="bookName"></xsd:selector>
+			<xsd:field xpath="."></xsd:field>
+		</xsd:key>
+		<xsd:keyref name="keyref" refer="key">
+			<xsd:selector xpath="book"></xsd:selector>
+			<xsd:field xpath="@type"></xsd:field>
+		</xsd:keyref>
+		<xsd:unique name="unique">
+			<xsd:selector xpath="book"></xsd:selector>
+			<xsd:field xpath="name"></xsd:field>
+		</xsd:unique>
+	</xsd:element>
+	<xsd:complexType name="bookType">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="quantity" type="xsd:integer"/>
+            <xsd:element name="price" type="xsd:decimal"/>
+        </xsd:sequence>    
+        <xsd:attribute name="type" type="xsd:string"/>
+    </xsd:complexType>
+	
+	
+</xsd:schema>

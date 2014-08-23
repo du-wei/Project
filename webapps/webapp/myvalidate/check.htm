@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>必联</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="formValidator-4.1.1.js"></script>
+	<script type="text/javascript" src="formcheck.js"></script>
+	
+<script type="text/javascript">
+$(function(){
+	
+	$.formValidator.initConfig({formID:"forma",theme:"Default"});
+	$("#jjj").formValidator({
+		onShow:"请输入密码",
+		onFocus:"至少1个长度",
+		onEmpty : "输入内容为空onEmpty",
+		triggerEvent : "blur",
+		//empty : false,
+		//defaultValue : "chenglong",
+		onShowText : "hello",
+		onCorrect:"密码合法"
+	}).inputValidator({
+		min:2,
+		max:5,
+		empty:{leftEmpty:false,rightEmpty:false,emptyError:"密码两边不能有空符号"},
+		onError:"密码不能为空,请确认"
+	});
+	$(":radio[name='aiguo']").formValidator({tipID:"aiguoTip",onFocus:"你得认真思考哦",defaultValue:["4"]}).inputValidator({min:1,max:1,onError:"难道你不爱国？你给我选！！！！"}).defaultPassed();
+	
+	
+	//自动构建提示层
+	$.validate.init({
+		formId : "form",
+		onSuccess : function(){alert("success");}
+		
+	});
+	$("#name").formValid({
+		//tipId : 'tip',
+		onShow : "请输入内容onShow",
+        onFocus : "请输入内容onFocus",
+        onCorrect : "输入正确onCorrect",
+		empty : false,
+		onEmpty : "输入内容为空onEmpty",
+        //defaultVal : "chenglong",
+		tipCss : {color : "red"},
+		onShowText : "提示",
+		onShowTextColor:{mouseOnColor:"#000000",mouseOutColor:"#999999"},
+		//fixTipID : null,
+		onShowFixText:"成龙",
+		
+		triggerEvent : "blur",
+		ajax : false,
+        tipSelector : null,
+		forceValid : false,
+		leftTrim : false,
+		rightTrim : false
+	}).inputValid({
+		min:2,
+		max:8,
+		onErrorMax : "太大了errorMax",
+        onErrorMin : "太小了errorMin"
+	}).ajaxValid({
+		async : false,
+		url : "http://localhost:8080/webapps/testAction!temp"
+	});
+	
+	$("#name1").formValid({
+        onFocus : "请输入内容onFocus",
+        onCorrect : "输入正确onCorrect",
+		onShowText : "提示",
+		triggerEvent : "blur"
+	}).inputValid({
+		onError : "粗了",
+		min:2,
+		max:8
+	}).compValid({
+		desId 		: "name",
+		operateor 	: "=",
+		onError		: "密码不一致"
+	});
+	
+	$("#sele").formValid({
+		
+	}).inputValid({
+		min:1
+	});
+	
+	$(":radio[name='radio']").formValid({
+		tipId : "radioTip",
+		defaultVal : ["4"]
+	}).inputValid({
+		min:1
+	});
+	
+	$(":checkbox[name='check']").formValid({
+		tipId : "checkTip",
+		defaultVal : ["4"]
+	}).inputValid({
+		min:1,
+		max:2
+	});
+	
+	$("#pwd").formValid({
+	}).inputValid({
+		min:1,
+		max:2
+	});
+	
+	$("#textarea").formValid({
+	}).inputValid({
+		min:1,
+		max:5
+	}).funValid({
+		fun : function(v, elem){
+			return "king";
+		},
+		onError : "fun error"
+	});
+	
+	$("#regex").formValid({
+	}).regexValid({
+		regExp:"^\\w{2,4}$"
+	});
+	
+	/*
+	$("#ajaxBtn").formValid({
+	}).ajaxValid({
+		button : $("#btn"),
+		url : "http://localhost:8080/webapps/testAction!temp"
+	});
+	*/
+	
+	
+});
+</script>
+</head>
+<body>
+<div id="ok" style="padding-left:80px;">
+	<form id="forma" action="check.htm">
+		<div id="jjjxx"></div>
+		<input type="text" id="jjj" /><span id="jjjTip"></span><input type="button" value="xx" id="xx"/>
+		<input type="radio" name="aiguo" value="1" id="bb1"  />
+        <input type="radio" name="aiguo" id="bb2" value="2" />
+        <input type="radio" name="aiguo" id="nn3" value="3" />
+        <input type="radio" name="aiguo" id="nn4" value="4" />
+        <br>
+        <input type="submit" value="submit"/>
+	</form>
+	
+	<form id="form" action="check.htm">
+		<input type="text" id="name" /><span id="nameTip"></span>
+		<div id="nameFixTip"></div>
+		
+		<br>
+		<div><input type="text" id="name1" /><span id="name1Tip"></span></div>
+		
+		<br>
+		<select id="sele" style="width:80px;"><br>
+			<option value="0">请选择</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+		</select>
+		<span id="seleTip"></span>
+		
+		<br>
+		<br>
+		radio1<input type="radio" name="radio" id="r1" value="1" />
+        radio2<input type="radio" name="radio" id="r2" value="2" />
+        radio3<input type="radio" name="radio" id="r3" value="3" />
+        radio4<input type="radio" name="radio" id="r4" value="4" />
+        <span id="radioTip"></span>
+        <br>
+        <br>
+        check1<input type="checkbox" name="check" id="c1" value="1" />
+        check2<input type="checkbox" name="check" id="c2" value="2" />
+        check3<input type="checkbox" name="check" id="c3" value="3" />
+        check4<input type="checkbox" name="check" id="c4" value="4" />
+        <span id="checkTip"></span>
+        <br>
+        <br>
+        <input type="password" id="pwd" /><span id="pwdTip"></span>
+        <br>
+        <br>
+        <textarea id="textarea" rows="2" cols="30"></textarea><span id="textareaTip"></span>
+        <br>
+        <br>
+        
+        <input type="text" id="regex" /><span id="regexTip"></span>
+        
+        <br>
+        <br>
+        
+        <input type="text" id="ajaxBtn" /><span id="ajaxBtnTip"></span>
+        <input type="button" id="btn" value="btn">
+        <br>
+        <br>
+		<!-- 
+		<input type="button">
+		<input type="file">
+		<input type="hidden">
+		 -->
+		<input type="submit" value="submit"/>
+	</form>
+</div>
+</body>
+</html>

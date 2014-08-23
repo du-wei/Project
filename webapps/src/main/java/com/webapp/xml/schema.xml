@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<students xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">  
+	<!-- comment -->  
+	<student type="info"> 
+		<age>15</age>  
+		<sex>male</sex>  
+		<birthday>2014年01月01日</birthday>  
+		<teachers>king</teachers>  
+		<card type="card2">8888888</card>  
+		<city>kings</city> 
+	</student>  
+	<student type="hello"> 
+		<age>20</age>  
+		<sex>female</sex>  
+		<birthday>2014-02-02</birthday>  
+		<teachers>king</teachers>  
+		<card type="card2">3333</card> 
+	</student> 
+</students>

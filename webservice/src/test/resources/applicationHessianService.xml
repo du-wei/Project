@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws" 
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+
+	<bean id="myRemoteImpl" class="com.webapp.remote.service.rmi.spring.MyRemoteImpl" />
+
+    <bean id="hessianService" name="/hessianService" class="org.springframework.remoting.caucho.HessianServiceExporter" >  
+        <property name="service" ref="myRemoteImpl" />  
+        <property name="serviceInterface" value="com.webapp.remote.service.rmi.spring.MyRemote"/>    
+    </bean> 
+
+</beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws" 
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+
+	<bean id="rmiSpringService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean" >  
+        <property name="serviceUrl" value="rmi://localhost:1099/rmiSpringService" />  
+        <property name="serviceInterface" value="com.webapp.remoting.service.rmi.spring.MyRemote"/>  
+    </bean> 
+    
+	
+</beans>

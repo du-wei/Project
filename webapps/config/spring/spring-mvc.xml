@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util-4.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+	<!-- 代表annotation配置 -->
+	<context:annotation-config />
+
+	<!-- 到指定的包内扫描组件 -->
+	<context:component-scan base-package="com.webapp" />
+	
+	<!-- 开启mvc annotation注解 
+	<mvc:annotation-driven />-->
+
+	<!-- 拦截器
+	<mvc:interceptors>  静态资源也会被拦截
+        <bean class="com.core.mvc.MyInteceptor" />  
+    </mvc:interceptors>   
+    <mvc:interceptors > 静态资源也会被拦截   
+  		<mvc:interceptor>    
+        	<mvc:mapping path="/user/*" /> 
+        	<bean class="com.mvc.MyInteceptor"></bean>    
+    	</mvc:interceptor>    
+	</mvc:interceptors> 
+	
+	静态资源就不会被拦截
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">       
+	 	<property name="interceptors">       
+	     	<list>       
+	         	<bean class="com.mvc.MyInteceptor"></bean>      
+	     	</list>       
+	 	</property>       
+	</bean>  
+    -->     
+      
+    <!-- 对静态资源文件的访问  方案一 （二选一）
+    <mvc:default-servlet-handler/>  --> 
+	
+	<!--不拦截静态文件 方案二
+    <mvc:resources mapping="/js/**" location="/js/" cache-period="31556926"/>
+    <mvc:resources mapping="/css/**" location="/css/" />
+    <mvc:resources mapping="/images/**" location="/images/" />--> 
+    
+    <!-- 视图解析器  -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="prefix" value="/WEB-INF/"></property>
+       <property name="suffix" value=".jsp"></property>
+       <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+	</bean>
+    
+    <!-- 方法名解析器 -->
+    <bean id="InternalPathMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.InternalPathMethodNameResolver" />
+    <bean id="ParameterMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver" >
+    	<property name="paramName" value="method"/>
+    	<property name="defaultMethodName" value="execute"/>
+    </bean>
+    <bean id="PropertiesMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver" >
+    	<!-- <value>
+    				/*/index?.html=index
+    	        </value> -->
+    </bean>
+
+	<!-- BeanNameUrlHandlerMapping形式的映射处理器 -->
+	<bean id="beanNameUrlMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+	<bean name="/index" class="com.webapps.index"></bean>
+	
+	<!-- SimpleUrlHandlerMapping形式的映射处理器 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/index">index</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="index" class="com.webapps.index">
+    	<property name="methodNameResolver" ref="InternalResolver" />
+    </bean>
+
+	<bean class="org.springframework.web.serlvet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+			</list>
+		</property>
+	</bean>
+	<!-- 
+	<bean class="org.springframework.web.serlvet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters" ref="messageConverters" />
+	</bean>
+	<util:list id="messageConverters">
+		<bean class="org.springframework.http.converter.BufferImageHttpMessageConverter"/>
+		<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+		<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+		<bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+		<bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter"/>
+		<bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
+		<bean class="org.springframework.http.converter.SourceHttpMessageConverter"/>
+		<bean class="org.springframework.http.converter.MarshallingHttpMessageConverter"/>
+		<bean class="org.springframework.http.converter.Jaxb2RootElementHttpMessageConverter"/>
+		<bean class="org.springframework.http.converter.MappingJacksonHttpMessageConverter"/>
+	</util:list>
+	 -->
+
+
+</beans>

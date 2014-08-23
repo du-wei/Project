@@ -1,0 +1,166 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.webapp</groupId>
+		<artifactId>webcommon</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../webcommon/pom.xml</relativePath>
+	</parent>
+	<artifactId>webtest</artifactId>
+	<packaging>jar</packaging>
+	<name>webtest</name>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>17.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.javatuples</groupId>
+			<artifactId>javatuples</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.12.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<classifier>jdk15</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+				
+	
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.webapp</groupId>
+			<artifactId>webutils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-core</artifactId>
+			<version>3.3</version>
+		</dependency>
+		<!-- 
+		unitils-easymock
+		unitils-mock
+		unitils-inject
+		unitils-test
+		unitils-dbunit
+		unitils-dbmaintainer 
+		unitils-database
+		unitils-orm
+		unitils-testng
+		unitils-spring
+		unitils-io
+		 -->
+		
+		<!-- 压力测试首选 -->
+		<dependency>
+			<!-- http://sourceforge.net/projects/contiperf/files/ -->
+			<groupId>org.databene</groupId>
+			<artifactId>contiperf</artifactId>
+			<version>2.2.0</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>junitperf</groupId>
+			<artifactId>junitperf</artifactId>
+			<version>1.8</version>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- 负载测试首选
+		<dependency>
+			<groupId>net.sf.grinder</groupId>
+			<artifactId>grinder-core</artifactId>
+			<version>3.11</version>
+		</dependency> 
+	    <dependency>
+			<groupId>net.sourceforge.groboutils</groupId>
+			<artifactId>groboutils-core</artifactId>
+			<version>5</version>
+	    </dependency> -->
+		
+		<!-- web测试首选 -->
+		<dependency>
+			<groupId>org.httpunit</groupId>
+			<artifactId>httpunit</artifactId>
+			<version>1.7.2</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jwebunit</groupId>
+			<artifactId>jwebunit-core</artifactId>
+			<version>3.1</version>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- mock测试首选 -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<optional>true</optional>
+	    </dependency>
+		
+		<!-- 数据库测试首选 -->
+		<dependency>
+			<groupId>net.sf.dbmonster</groupId>
+			<artifactId>dbmonster-core</artifactId>
+			<version>1.0.4</version>
+			<optional>true</optional>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+				
+	</dependencies>
+  
+  	<build>
+		<finalName>webtest</finalName>
+		<outputDirectory>target/classes</outputDirectory>
+		<defaultGoal>install</defaultGoal>
+		<directory>${basedir}/target</directory>
+	</build>
+  
+</project>

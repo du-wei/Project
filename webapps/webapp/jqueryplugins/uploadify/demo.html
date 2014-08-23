@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="uploadify.css"/>
+<script type="text/javascript" src="../../common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="jquery.uploadify.min.js"></script>
+<style type="text/css">
+.upload {color:red;}
+</style>
+<script type="text/javascript">
+$(function(){
+	$("#upload").uploadify({
+		queueID		:'queueId',
+        fileObjName	:'Filedata',
+		
+		auto		: false,
+		debug		: false,
+		width		: 80,
+		height		: 30,
+		buttonClass	: "upload",
+		buttonCursor: "hand",
+		buttonImage : null,
+		buttonText	: "upload",
+		method		: "post",
+		multi		: false,
+		formData	: {data : "name"},
+		//overrideEvents : ['onSelect'],
+		successTimeout : 5,
+		fileTypeDesc: "all",
+		fileTypeExts: "*.*",
+		fileSizeLimit: "3MB",
+		queueSizeLimit: 2,
+		swf			: "uploadify.swf",
+		uploader	: "uploadify.php",
+		//onSelect 	: function(file){
+		//	alert("onselect");
+		//},
+		//onInit 	: function(instance){
+		//	alert("onInit");
+		//},
+		onFallback : function(instance){
+			alert("onFallback");
+		},
+		onSelectError 	: function(file, errorCode, errorMsg){
+			alert("onSelectError");
+		},
+		onUploadStart 	: function(file){
+			alert("onUploadStart");
+		},
+		onUploadError 	: function(file, errorCode, errorMsg, errorString){
+			alert("onUploadError");
+		},
+		//onUploadProgress 	: function(file, bytesUploaded, bytesTotal, totalBytesUploaded, totalBytesTotal){
+		//	alert("onUploadError");
+		//},
+		onUploadComplete 	: function(file){
+			alert("onUploadComplete");
+		},
+		onQueueComplete 	: function(queueData){
+			//uploadsSuccessful, uploadsErrored
+			alert("onQueueComplete");
+		},
+		onClearQueue 	: function(queueItemCount){
+			alert("onClearQueue");
+		},
+		//onSWFReady 	: function(){
+		//	alert("onSWFReady");
+		//},
+		onUploadSuccess 	: function(file, data, resp){
+			alert("onUploadSuccess");
+		},
+		//onDialogOpen : function(){
+		//	alert("onDialogOpen");
+		//},
+		onDialogClose : function(queueData){
+			//filesSelected,filesQueued,filesReplaced,filesCancelled,filesErrored
+			alert("onDialogClose");
+		},
+		onDestroy 	: function(){
+			alert("onDestroy");
+		}
+	});
+	//$("#upload").uploadify("cancel", "*");
+	//$("#upload").uploadify('destroy');
+	//$("#upload").uploadify("disable", true);
+	//$("#upload").uploadify("stop");
+	//$("#upload").uploadify("upload", "*");
+	//$("#upload").uploadify('settings','buttonText','BROWSE');
+});
+</script>
+</head>
+<body>
+<input type="text" id="upload"/>
+<div id="queueId">s</div>
+</body>
+</html>

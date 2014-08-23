@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>index.html</title>
+<script type="text/javascript" src="common/jquery-1.6.min.js"></script>
+<script type="text/javascript" src="common/jquery.easing.1.3.js"></script>
+<script type="text/javascript">
+$(function(){
+	var i = 0;
+	var count = [
+		"jswing", "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic",
+		"easeOutCubic", "easeInOutCubic", "easeInQuart", "easeOutQuart", "easeInOutQuart",
+		"easeInQuint", "easeOutQuint", "easeInOutQuint", "easeInSine", "easeOutSine",
+		"easeInOutSine", "easeInExpo", "easeOutExpo", "easeInOutExpo", "easeInCirc",
+		"easeOutCirc", "easeInOutCirc", "easeInElastic", "easeOutElastic",
+		"easeInOutElastic", "easeInBack", "easeOutBack","easeInOutBack",
+		"easeInBounce", "easeOutBounce", "easeInOutBounce", "linear", "swing"
+	];
+	$("#div").html(count[i]);
+	$("#btn").val(count[i]);
+	
+	$("#btn").click(function(){
+		//$("div").width(function(index,value){
+	    //	alert(index + " " + value);
+	    //});
+		var t = l = w = h = "=40";
+		var str = i%2==0? "-":"+";
+		t = str + t;
+		l = str + l;
+		w = str + w;
+		h = str + h;
+		
+		if(i >= count.length){
+			alert("last");
+		}
+		
+		console.debug("this is a debug");
+		console.info("%sthis is a info",t);
+		console.warn("this is a warn");
+		console.error("this is a error");
+		
+		$("#div").animate({
+			//top: 20 -20 "-20" "20%" "-20%" "-=20%" "20px" "-20px" "-=20px" postion
+			top:t,
+			left:l,
+			width:w,
+			height:h
+			//opacity:"toggle"
+		},{
+			duration:500,
+			easing:count[i++],
+			complete:function(){}
+		});	
+		
+		
+		$("#div").html(count[i]);
+		$("#btn").val(count[i]);
+	});
+});
+</script>
+<style type="text/css">
+div {
+	border:1px solid red;
+}
+#div{
+	position:relative;
+	width:300px;
+	height:300px;
+	background:#eeeeee;
+}
+#out {
+	position:relative;
+	margin:auto;
+	width:500px;
+	height:400px;
+	padding:50px;
+}
+</style>
+</head>
+<body>
+<div>
+	<div id="out">
+		<div id="div">hello world</div>
+	</div>
+	<input type="button" value="hello" id="btn"/>
+</div>
+</body>
+</html>

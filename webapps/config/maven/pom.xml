@@ -1,0 +1,236 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.webapp</groupId>
+		<artifactId>webapps-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.webapp</groupId>
+	<artifactId>webapps-sun</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>my com.webapp</name>
+	<!-- <url>http://www.baidu.com/banseon</url> <description>A maven project 
+		to study maven.</description> -->
+
+	<build>
+		<finalName>webapps</finalName>
+		<outputDirectory>target/classes</outputDirectory>
+		<plugins>
+			<!-- Project JDK Compile Version -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<extensions>false</extensions>  
+        		<inherited>true</inherited>
+				<version>2.5</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>utf-8</encoding>
+				</configuration>
+			</plugin>
+			
+			<!-- jar -->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<appendAssemblyId>false</appendAssemblyId>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>com.webapp.Jar</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>assembly</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- 更改maven默认的打包目录 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<webappDirectory>target/webapp</webappDirectory>
+					<warSourceDirectory>webapp</warSourceDirectory>
+					<warSourceExcludes></warSourceExcludes>
+					<warSourceIncludes></warSourceIncludes>
+					<webResources>  
+			            <!-- 移动指定文件夹到指定位置
+						<resource>  
+			                <directory>webapp/WEB-INF</directory>
+			                <targetPath>WEB-INF</targetPath>
+			                <filtering>true</filtering>  
+			                <includes>  
+			                    <include>**/*.jsp</include>  
+			                </includes>  
+			                <excludes>
+			                	<exclude>**/*.xml</exclude>
+			                </excludes>
+			            </resource>
+			            -->  
+			        </webResources>
+				</configuration>
+			</plugin>
+			
+			<!-- 测试插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<configuration>
+					<skip>true</skip>
+					<!-- 
+					<parallel>methods</parallel>  
+			        <threadCount>10</threadCount>  
+			        <argLine>-Dfile.encoding=UTF-8</argLine>  
+			        <testFailureIgnore>true</testFailureIgnore> 
+			        --> 
+				</configuration>
+			</plugin>
+			
+			<!-- 测试报告插件  -->
+			<plugin>  
+			    <groupId>maven</groupId>  
+			    <artifactId>maven-clover-plugin</artifactId>  
+			    <version>2.4.2</version>  
+			    <configuration>  
+			        <encoding>${project.build.sourceEncoding}</encoding>  
+			    </configuration>  
+			</plugin>
+
+			<!-- 资源管理插件  -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>utf-8</encoding>
+				</configuration>
+			</plugin>
+	
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration></configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.5</version>
+				<configuration></configuration>
+			</plugin>
+
+			<!-- Project Main Runable -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.maven.webapp</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
+
+	<!-- local private nexus repositories -->
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>local private nexus</name>
+			<url>http://l27.0.0.1:8081/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>nexus-snapshots</id>
+			<name>local private nexus</name>
+			<url>http://l27.0.0.1:8081/nexus/content/groups/public-snapshots
+			</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<!-- local private nexus pluginRepositories -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>local private nexus</name>
+			<url>http://l27.0.0.1:8081/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>nexus-snapshots</id>
+			<name>local private nexus</name>
+			<url>http://l27.0.0.1:8081/nexus/content/groups/public-snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!--项目开发者列表 -->
+	<developers>
+		<developer>
+			<id>king team</id>
+			<name>kingadmin</name>
+			<email>kingadmin@163.com</email>
+			<url>http://www.kingadmin.com</url>
+			<roles>
+				<role>Project Manager</role>
+				<role>Architect</role>
+			</roles>
+			<organization>demo</organization>
+			<organizationUrl>http://hi.baidu.com/banseon</organizationUrl>
+			<properties>
+				<dept>No</dept>
+			</properties>
+			<timezone>+8</timezone>
+		</developer>
+	</developers>
+</project>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- () | + * ? , -->
+<!-- EMPTY ANY (#PCDATA) -->
+
+<!ELEMENT students (student+)>
+<!ELEMENT student (name+, nick*, age?, gender*)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT nick (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT gender EMPTY>
+
+<!ENTITY name "hello">
+
+
+<!-- CDATA ID IDREF IDREFS -->
+<!-- #REQUIRED #IMPLIED #FIXED-->
+
+<!ATTLIST gender value CDATA #REQUIRED><!--属性值是必须的-->
+<!ATTLIST name value ID #IMPLIED><!--属性值不是必须的-->
+<!ATTLIST nick value IDREF #IMPLIED>
+<!ATTLIST age value (1|2|3) #REQUIRED>
+
+<!--
+	<!ATTLIST gender value CDATA #FIXED "value">指定值
+	<!ATTLIST gender value CDATA "value">默认值
+-->
+
+

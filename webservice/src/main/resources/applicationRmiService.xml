@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws" 
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+
+    <bean id="registry" class="org.springframework.remoting.rmi.RmiRegistryFactoryBean">
+       <property name="port" value="1099"/>
+    </bean>
+    
+	<bean id="rmiServiceImpl" class="com.webapp.remoting.service.rmi.spring.MyRemoteImpl" />  
+    
+    <bean id="rmiExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">  
+        <property name="serviceName"        value="rmiSpringService" />  
+        <property name="service"            ref="rmiServiceImpl" />  
+        <property name="serviceInterface"   value="com.webapp.remoting.service.rmi.spring.MyRemote" />  
+        <property name="registry"        	ref="registry" />
+        <!-- <property name="registryPort"        value="1099"/>  -->
+        <!-- <property name="registry"        	ref="registry" />  -->
+        <!-- <property name="registryHost"        value="192.168.1.105"/>  --> 
+    </bean> 
+    
+
+</beans>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+<meta HTTP-EQUIV="Page-Enter" CONTENT="revealtrans(duration=6.0, transition=23)">
+<meta HTTP-EQUIV="Page-Exit" CONTENT="revealtrans(duration=6.0, transition=23)">
+-->
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+//~count = count - 1
+//count << x  = 2^x * count          1
+//count >> x  = (count - 2^0...2^(x-1)) / 2^x
+                  //     if  count / 2 = .5  - 2^0
+                  //     if  count / 2 /2 = .5 -2^1
+                    //            /x
+
+function test(){
+	var temp = 0;
+	temp = true ? "true" : "false";
+	document.writeln(" true ? true : false ====" + temp );
+	document.write("<br> '10' == 10 ====");
+	document.writeln("10" == 10);
+	document.write("<br> '10' === 10 ====");
+	document.writeln("10" === 10);
+	document.writeln("<br> typeof true ====  " + typeof true);
+	document.writeln("<br> delete myArray[3]  ");
+	
+	var show={
+	  name:"lisa",
+	  age:20
+	}
+	delete show.name;
+	//alert(show.name);
+	var array = ["lisa","hello"];
+	delete array[1];
+	//alert(array[1]);
+	
+	var hello;
+	//alert(hello);                           //is undefined
+	//alert(typeof dontExist);                //is undefined
+	//alert(typeof undefined);                //is undefined
+	//alert(typeof true);                     //is boolean
+	//alert(typeof new Date());               //is object
+	//alert(typeof null);                     //is object
+	
+	//alert(typeof 62);                       //is number
+	//alert(typeof window.length);            //is number
+	//alert(typeof Math.LN2);                 //is number
+	//alert(typeof 'Hello world');            //is string
+	//alert(typeof document.lastModified);    //is string
+	
+	//alert(typeof new Function("5+2"));      //is function
+	//alert(typeof blur);                     //is function
+	//alert(typeof eval);                     //is function
+	//alert(typeof Date);                     //is function
+	//alert(typeof Math);                     //is function
+	//alert(typeof Option);                   //is function
+	//alert(typeof String);                   //is function
+	//alert(typeof parseInt);                 //is function
+	//alert(typeof Function);                 //is function
+}
+test();
+function killErrors() {
+	return true;
+}
+window.onerror = killErrors;
+</script>
+</head>
+<body>
+
+
+</body>
+</html>

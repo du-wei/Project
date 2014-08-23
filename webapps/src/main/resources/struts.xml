@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.locale" value="zh_CN" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.convention.classes.reload" value="true" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+
+	<package name="admin" namespace="/" extends="struts-default">
+
+		<action name="jsonAction" class="com.webapp.action.JsonAction">
+		</action>
+		
+		<action name="testAction" class="com.webapp.action.JsonAction">
+			<result>/index.jsp</result>
+		</action>
+
+		<action name="upload" class="com.webapp.module.UploadAction">
+			<result name="success">/jspsmart/upload.jsp</result>
+		</action>
+
+		<action name="download" class="com.webapp.module.DownloadAction">
+			<result type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+
+		<action name="imageCheckCode" class="com.webapp.module.PictureCheckCode">
+			<result></result>
+		</action>
+
+		<action name="ckEditorAction" class="com.webapp.module.CkEditorAction">
+			<result>/ckdome/ckEditor.jsp</result>
+		</action>
+
+		<action name="xx">
+			<result type="chain">
+				<param name="actionName"></param>
+				<param name="namespace"></param>
+				<param name="method"></param>
+				<param name="skipActions"></param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>

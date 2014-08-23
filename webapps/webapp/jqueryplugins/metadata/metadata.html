@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="../../common/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="jquery.metadata.js"></script>
+<script type="text/javascript" src="jquery.bgiframe-2.1.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	//$.metadata.setType("class");
+	//alert($("#meta").metadata("class").name);
+	//$.metadata.setType("attr","data");
+	//alert($("#meta").metadata({type:"attr",name:"data"}).data);
+	
+	$("#meta").bgiframe({
+		top:"50px",
+		left:"50px",
+		width:"100%",
+		height:"100%",
+		opacity:false,
+		src:"../lavalamp/demo.html"
+	});
+	
+});
+</script>
+</head>
+<body>
+<div id="meta" class="meta {age:1, name:'name'}" data="{data:'data'}">hello world</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	//object operation and statement	new delete and with(){} for(var i in object){}
+	//javascript create object 1
+	function show(){
+		document.writeln("<br> this.name = " + this.name);
+		document.writeln("<br> this.age = " + this.age);
+	}
+	function People(name, age){	//this stand for current object
+		this.name = name;	// instance variable public
+		var email = "name";// instance variable private
+		this.getEmail = function(){
+			return email;
+		}
+		
+		this.age = age;
+		this.show = show;	// instance method
+		
+	}
+	People.world = "world";				// member variable
+	People.prototype.hello = "hello";	// instance variable
+	People.sayWorld = function(){		// member method
+		return "world";		
+	}
+	People.prototype.sayHello = function(){// instance method
+		return "hello";
+	}
+	
+	var people = new People("Tom", 12);
+	//people.show();
+	//document.writeln("<br> this.age = " + people.age);
+	
+	//2
+	var obj1 = new Object();
+	obj1.ID = 1;
+	obj1.Name = "johnson";
+	obj1.showMessage = function(){
+	    alert("ID: " + this.ID + ", Name: " + this.Name);
+	}
+	//删除属性与方法
+	obj1.Name = undefined;
+	obj1.showMessage = undefined;
+	
+	//delete obj1.Name;
+	
+	//3
+	var json = {
+		name:"hello",
+		showName:function(){
+			
+		}
+	}
+	
+	//call apply bind
+	function print(text){  
+	    document.write(this.value + ' - ' + text+ '<br>');  
+	}  
+	   
+	var a = {value: 10, print : print};  
+	var b = {value: 20, print : print};
+	
+	a.print('a');// this => a, output "10 - a"
+	print.call(a, 'a'); // this => a, output "10 - a"  
+	print.apply(a, ['a']); // this => a, output "10 - a"
+	
+	var p = print.bind(a);  
+    p('a');             // this => a, output "10 - a"  
+    p.call(b, 'b');     // this => a, output "10 - b"  
+    p.apply(b, ['b']);  // this => a, output "10 - b" 
+    
+	
+	Object.prototype.get = function(key, val){
+		if(this[key]){
+			return this[key];
+		}
+		if(this[val]){
+			return this[val];
+		}
+	}
+	
+	var cat = function(){
+		var kiss = "hello wrold";
+		return {
+			init:function(){
+				alert("init");
+			},
+			method:function(){
+				alert("method");
+				alert(kiss);
+			}
+		}
+	}
+	
+	//稳妥的构造方法
+	function ok(name){
+		var o = new Object();
+		//不给成员赋值
+		o.sayName = function(){
+			alert(name);//不用this
+		}
+	}
+	var k = ok('hello');//不用new
+	
+	(function(){
+		var name = 4;
+
+		Person = function(value){
+			name = value
+		}
+
+		Person.prototype.getName= function(){
+			return name;
+		}
+	})();
+	var person = new Person();
+	alert(person.getName());
+	
+</script>
+</head>
+<body>
+
+
+</body>
+</html>
