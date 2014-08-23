@@ -12,6 +12,7 @@ import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.server.TThreadedSelectorServer;
+import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TNonblockingServerSocket;
 import org.apache.thrift.transport.TNonblockingServerTransport;
 import org.apache.thrift.transport.TServerSocket;
@@ -28,7 +29,7 @@ public class ThriftServerUtils {
 	enum TServerTrans{
 		TServerSocket, TNonblockingServerSocket;
 	}
-	enum TProtocol{
+	enum TProtocols{
 		TBinary, TCompact, TJSON, TSimpleJSON;
 	}
 	enum TServers{
@@ -51,13 +52,13 @@ public class ThriftServerUtils {
 	}
 
     //TProtocolFactory
-	public static TProtocolFactory getProtFty(TProtocol tProtocol) {
+	public static TProtocolFactory getProtFty(TProtocols tProtocol) {
 		TProtocolFactory tProtFty = null;
-		if (tProtocol == TProtocol.TCompact) {
+		if (tProtocol == TProtocols.TCompact) {
 			tProtFty = new TCompactProtocol.Factory();
-		}else if (tProtocol == TProtocol.TJSON) {
+		}else if (tProtocol == TProtocols.TJSON) {
 			tProtFty = new TJSONProtocol.Factory();
-		}else if (tProtocol == TProtocol.TSimpleJSON) {
+		}else if (tProtocol == TProtocols.TSimpleJSON) {
 			tProtFty = new TSimpleJSONProtocol.Factory();
 		}else{
 			tProtFty = new TBinaryProtocol.Factory(true, true);
@@ -68,7 +69,7 @@ public class ThriftServerUtils {
 
     //Server
 	//单线程服务器端使用标准的阻塞式 I/O
-	public static TServer getServer4TSimple(TProcessor processor, TServerTrans tServerTrans, int port, TProtocol tProtocol) {
+	public static TServer getServer4TSimple(TProcessor processor, TServerTrans tServerTrans, int port, TProtocols tProtocol) {
 	    TServerTransport serverSocket = getTServerTrans(port, tServerTrans);
 	    TSimpleServer.Args opts = new TSimpleServer.Args(serverSocket);
 	    opts.processorFactory(new TProcessorFactory(processor));
@@ -79,7 +80,7 @@ public class ThriftServerUtils {
 	}
 
 	//多线程服务器端使用标准的阻塞式 I/O
-	public static TServer getServer4TThreadPool(TProcessor processor, TServerTrans tServerTrans, int port, TProtocol tProtocol) {
+	public static TServer getServer4TThreadPool(TProcessor processor, TServerTrans tServerTrans, int port, TProtocols tProtocol) {
 		TServerTransport serverSocket = getTServerTrans(port, tServerTrans);
 	    TThreadPoolServer.Args opts = new TThreadPoolServer.Args(serverSocket);
 	    opts.maxWorkerThreads(200);
@@ -94,26 +95,26 @@ public class ThriftServerUtils {
 	}
 
 	//多线程服务器端使用非阻塞式 I/O
-	public static TServer getServer4TThreadedSelector(TProcessor processor, int port, TProtocol tProtocol) {
+	public static TServer getServer4TThreadedSelector(TProcessor processor, int port, TProtocols tProtocol) {
 		TServerTransport serverSocket = getTServerTrans(port, TServerTrans.TNonblockingServerSocket);
 	    TThreadedSelectorServer.Args opts = new TThreadedSelectorServer.Args((TNonblockingServerTransport) serverSocket);
 
 	    opts.processorFactory(new TProcessorFactory(processor));
 	    opts.protocolFactory(getProtFty(tProtocol));
-	    opts.transportFactory(new TTransportFactory());
+	    opts.transportFactory(new TFramedTransport.Factory());
 
 	    TServer server = new TThreadedSelectorServer(opts);
 	    return server;
 	}
 
 	//多线程服务器端使用非阻塞式 I/O
-	public static TServer getServer4TTNonblocking(TProcessor processor, int port, TProtocol tProtocol) {
+	public static TServer getServer4TTNonblocking(TProcessor processor, int port, TProtocols tProtocol) {
 		TServerTransport serverSocket = getTServerTrans(port, TServerTrans.TNonblockingServerSocket);
 		TNonblockingServer.Args opts = new TNonblockingServer.Args((TNonblockingServerTransport) serverSocket);
 
 	    opts.processorFactory(new TProcessorFactory(processor));
 	    opts.protocolFactory(getProtFty(tProtocol));
-	    opts.transportFactory(new TTransportFactory());
+	    opts.transportFactory(new TFramedTransport.Factory());
 
 	    TServer server = new TNonblockingServer(opts);
 	    return server;
