@@ -38,14 +38,16 @@ import org.slf4j.LoggerFactory;
 public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields>, java.io.Serializable, Cloneable, Comparable<ParaDto> {
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("ParaDto");
 
-  private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.I32, (short)1);
-  private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)2);
-  private static final org.apache.thrift.protocol.TField GENDER_FIELD_DESC = new org.apache.thrift.protocol.TField("gender", org.apache.thrift.protocol.TType.BOOL, (short)3);
-  private static final org.apache.thrift.protocol.TField BYTES_FIELD_DESC = new org.apache.thrift.protocol.TField("bytes", org.apache.thrift.protocol.TType.BYTE, (short)4);
-  private static final org.apache.thrift.protocol.TField MONEY_FIELD_DESC = new org.apache.thrift.protocol.TField("money", org.apache.thrift.protocol.TType.DOUBLE, (short)5);
-  private static final org.apache.thrift.protocol.TField INTEREST_FIELD_DESC = new org.apache.thrift.protocol.TField("interest", org.apache.thrift.protocol.TType.LIST, (short)6);
-  private static final org.apache.thrift.protocol.TField MAPS_FIELD_DESC = new org.apache.thrift.protocol.TField("maps", org.apache.thrift.protocol.TType.MAP, (short)7);
-  private static final org.apache.thrift.protocol.TField SETS_FIELD_DESC = new org.apache.thrift.protocol.TField("sets", org.apache.thrift.protocol.TType.SET, (short)8);
+  private static final org.apache.thrift.protocol.TField BYTES_FIELD_DESC = new org.apache.thrift.protocol.TField("bytes", org.apache.thrift.protocol.TType.BYTE, (short)1);
+  private static final org.apache.thrift.protocol.TField GENDER_FIELD_DESC = new org.apache.thrift.protocol.TField("gender", org.apache.thrift.protocol.TType.BOOL, (short)2);
+  private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.I16, (short)3);
+  private static final org.apache.thrift.protocol.TField LIST_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("listId", org.apache.thrift.protocol.TType.I32, (short)4);
+  private static final org.apache.thrift.protocol.TField LONG_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("longId", org.apache.thrift.protocol.TType.I64, (short)5);
+  private static final org.apache.thrift.protocol.TField MONEY_FIELD_DESC = new org.apache.thrift.protocol.TField("money", org.apache.thrift.protocol.TType.DOUBLE, (short)6);
+  private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)7);
+  private static final org.apache.thrift.protocol.TField INTEREST_FIELD_DESC = new org.apache.thrift.protocol.TField("interest", org.apache.thrift.protocol.TType.LIST, (short)8);
+  private static final org.apache.thrift.protocol.TField MAPS_FIELD_DESC = new org.apache.thrift.protocol.TField("maps", org.apache.thrift.protocol.TType.MAP, (short)9);
+  private static final org.apache.thrift.protocol.TField SETS_FIELD_DESC = new org.apache.thrift.protocol.TField("sets", org.apache.thrift.protocol.TType.SET, (short)10);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
@@ -53,25 +55,29 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
     schemes.put(TupleScheme.class, new ParaDtoTupleSchemeFactory());
   }
 
-  public int id; // required
-  public String name; // required
-  public boolean gender; // required
   public byte bytes; // required
+  public boolean gender; // required
+  public short id; // required
+  public int listId; // required
+  public long longId; // required
   public double money; // required
+  public String name; // required
   public List<String> interest; // required
   public Map<Integer,String> maps; // required
   public Set<String> sets; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    ID((short)1, "id"),
-    NAME((short)2, "name"),
-    GENDER((short)3, "gender"),
-    BYTES((short)4, "bytes"),
-    MONEY((short)5, "money"),
-    INTEREST((short)6, "interest"),
-    MAPS((short)7, "maps"),
-    SETS((short)8, "sets");
+    BYTES((short)1, "bytes"),
+    GENDER((short)2, "gender"),
+    ID((short)3, "id"),
+    LIST_ID((short)4, "listId"),
+    LONG_ID((short)5, "longId"),
+    MONEY((short)6, "money"),
+    NAME((short)7, "name"),
+    INTEREST((short)8, "interest"),
+    MAPS((short)9, "maps"),
+    SETS((short)10, "sets");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -86,21 +92,25 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
      */
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // ID
-          return ID;
-        case 2: // NAME
-          return NAME;
-        case 3: // GENDER
-          return GENDER;
-        case 4: // BYTES
+        case 1: // BYTES
           return BYTES;
-        case 5: // MONEY
+        case 2: // GENDER
+          return GENDER;
+        case 3: // ID
+          return ID;
+        case 4: // LIST_ID
+          return LIST_ID;
+        case 5: // LONG_ID
+          return LONG_ID;
+        case 6: // MONEY
           return MONEY;
-        case 6: // INTEREST
+        case 7: // NAME
+          return NAME;
+        case 8: // INTEREST
           return INTEREST;
-        case 7: // MAPS
+        case 9: // MAPS
           return MAPS;
-        case 8: // SETS
+        case 10: // SETS
           return SETS;
         default:
           return null;
@@ -142,24 +152,30 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
   }
 
   // isset id assignments
-  private static final int __ID_ISSET_ID = 0;
+  private static final int __BYTES_ISSET_ID = 0;
   private static final int __GENDER_ISSET_ID = 1;
-  private static final int __BYTES_ISSET_ID = 2;
-  private static final int __MONEY_ISSET_ID = 3;
+  private static final int __ID_ISSET_ID = 2;
+  private static final int __LISTID_ISSET_ID = 3;
+  private static final int __LONGID_ISSET_ID = 4;
+  private static final int __MONEY_ISSET_ID = 5;
   private byte __isset_bitfield = 0;
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
-    tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.GENDER, new org.apache.thrift.meta_data.FieldMetaData("gender", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
     tmpMap.put(_Fields.BYTES, new org.apache.thrift.meta_data.FieldMetaData("bytes", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
+    tmpMap.put(_Fields.GENDER, new org.apache.thrift.meta_data.FieldMetaData("gender", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
+    tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I16)));
+    tmpMap.put(_Fields.LIST_ID, new org.apache.thrift.meta_data.FieldMetaData("listId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+    tmpMap.put(_Fields.LONG_ID, new org.apache.thrift.meta_data.FieldMetaData("longId", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     tmpMap.put(_Fields.MONEY, new org.apache.thrift.meta_data.FieldMetaData("money", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE)));
+    tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.INTEREST, new org.apache.thrift.meta_data.FieldMetaData("interest", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
             new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING))));
@@ -178,25 +194,31 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
   }
 
   public ParaDto(
-    int id,
-    String name,
-    boolean gender,
     byte bytes,
+    boolean gender,
+    short id,
+    int listId,
+    long longId,
     double money,
+    String name,
     List<String> interest,
     Map<Integer,String> maps,
     Set<String> sets)
   {
     this();
-    this.id = id;
-    setIdIsSet(true);
-    this.name = name;
-    this.gender = gender;
-    setGenderIsSet(true);
     this.bytes = bytes;
     setBytesIsSet(true);
+    this.gender = gender;
+    setGenderIsSet(true);
+    this.id = id;
+    setIdIsSet(true);
+    this.listId = listId;
+    setListIdIsSet(true);
+    this.longId = longId;
+    setLongIdIsSet(true);
     this.money = money;
     setMoneyIsSet(true);
+    this.name = name;
     this.interest = interest;
     this.maps = maps;
     this.sets = sets;
@@ -207,13 +229,15 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
    */
   public ParaDto(ParaDto other) {
     __isset_bitfield = other.__isset_bitfield;
+    this.bytes = other.bytes;
+    this.gender = other.gender;
     this.id = other.id;
+    this.listId = other.listId;
+    this.longId = other.longId;
+    this.money = other.money;
     if (other.isSetName()) {
       this.name = other.name;
     }
-    this.gender = other.gender;
-    this.bytes = other.bytes;
-    this.money = other.money;
     if (other.isSetInterest()) {
       List<String> __this__interest = new ArrayList<String>(other.interest);
       this.interest = __this__interest;
@@ -234,88 +258,22 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
 
   @Override
   public void clear() {
-    setIdIsSet(false);
-    this.id = 0;
-    this.name = null;
-    setGenderIsSet(false);
-    this.gender = false;
     setBytesIsSet(false);
     this.bytes = 0;
+    setGenderIsSet(false);
+    this.gender = false;
+    setIdIsSet(false);
+    this.id = 0;
+    setListIdIsSet(false);
+    this.listId = 0;
+    setLongIdIsSet(false);
+    this.longId = 0;
     setMoneyIsSet(false);
     this.money = 0.0;
+    this.name = null;
     this.interest = null;
     this.maps = null;
     this.sets = null;
-  }
-
-  public int getId() {
-    return this.id;
-  }
-
-  public ParaDto setId(int id) {
-    this.id = id;
-    setIdIsSet(true);
-    return this;
-  }
-
-  public void unsetId() {
-    __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __ID_ISSET_ID);
-  }
-
-  /** Returns true if field id is set (has been assigned a value) and false otherwise */
-  public boolean isSetId() {
-    return EncodingUtils.testBit(__isset_bitfield, __ID_ISSET_ID);
-  }
-
-  public void setIdIsSet(boolean value) {
-    __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __ID_ISSET_ID, value);
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public ParaDto setName(String name) {
-    this.name = name;
-    return this;
-  }
-
-  public void unsetName() {
-    this.name = null;
-  }
-
-  /** Returns true if field name is set (has been assigned a value) and false otherwise */
-  public boolean isSetName() {
-    return this.name != null;
-  }
-
-  public void setNameIsSet(boolean value) {
-    if (!value) {
-      this.name = null;
-    }
-  }
-
-  public boolean isGender() {
-    return this.gender;
-  }
-
-  public ParaDto setGender(boolean gender) {
-    this.gender = gender;
-    setGenderIsSet(true);
-    return this;
-  }
-
-  public void unsetGender() {
-    __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __GENDER_ISSET_ID);
-  }
-
-  /** Returns true if field gender is set (has been assigned a value) and false otherwise */
-  public boolean isSetGender() {
-    return EncodingUtils.testBit(__isset_bitfield, __GENDER_ISSET_ID);
-  }
-
-  public void setGenderIsSet(boolean value) {
-    __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __GENDER_ISSET_ID, value);
   }
 
   public byte getBytes() {
@@ -341,6 +299,98 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
     __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __BYTES_ISSET_ID, value);
   }
 
+  public boolean isGender() {
+    return this.gender;
+  }
+
+  public ParaDto setGender(boolean gender) {
+    this.gender = gender;
+    setGenderIsSet(true);
+    return this;
+  }
+
+  public void unsetGender() {
+    __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __GENDER_ISSET_ID);
+  }
+
+  /** Returns true if field gender is set (has been assigned a value) and false otherwise */
+  public boolean isSetGender() {
+    return EncodingUtils.testBit(__isset_bitfield, __GENDER_ISSET_ID);
+  }
+
+  public void setGenderIsSet(boolean value) {
+    __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __GENDER_ISSET_ID, value);
+  }
+
+  public short getId() {
+    return this.id;
+  }
+
+  public ParaDto setId(short id) {
+    this.id = id;
+    setIdIsSet(true);
+    return this;
+  }
+
+  public void unsetId() {
+    __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __ID_ISSET_ID);
+  }
+
+  /** Returns true if field id is set (has been assigned a value) and false otherwise */
+  public boolean isSetId() {
+    return EncodingUtils.testBit(__isset_bitfield, __ID_ISSET_ID);
+  }
+
+  public void setIdIsSet(boolean value) {
+    __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __ID_ISSET_ID, value);
+  }
+
+  public int getListId() {
+    return this.listId;
+  }
+
+  public ParaDto setListId(int listId) {
+    this.listId = listId;
+    setListIdIsSet(true);
+    return this;
+  }
+
+  public void unsetListId() {
+    __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __LISTID_ISSET_ID);
+  }
+
+  /** Returns true if field listId is set (has been assigned a value) and false otherwise */
+  public boolean isSetListId() {
+    return EncodingUtils.testBit(__isset_bitfield, __LISTID_ISSET_ID);
+  }
+
+  public void setListIdIsSet(boolean value) {
+    __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __LISTID_ISSET_ID, value);
+  }
+
+  public long getLongId() {
+    return this.longId;
+  }
+
+  public ParaDto setLongId(long longId) {
+    this.longId = longId;
+    setLongIdIsSet(true);
+    return this;
+  }
+
+  public void unsetLongId() {
+    __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __LONGID_ISSET_ID);
+  }
+
+  /** Returns true if field longId is set (has been assigned a value) and false otherwise */
+  public boolean isSetLongId() {
+    return EncodingUtils.testBit(__isset_bitfield, __LONGID_ISSET_ID);
+  }
+
+  public void setLongIdIsSet(boolean value) {
+    __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __LONGID_ISSET_ID, value);
+  }
+
   public double getMoney() {
     return this.money;
   }
@@ -362,6 +412,30 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
 
   public void setMoneyIsSet(boolean value) {
     __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __MONEY_ISSET_ID, value);
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public ParaDto setName(String name) {
+    this.name = name;
+    return this;
+  }
+
+  public void unsetName() {
+    this.name = null;
+  }
+
+  /** Returns true if field name is set (has been assigned a value) and false otherwise */
+  public boolean isSetName() {
+    return this.name != null;
+  }
+
+  public void setNameIsSet(boolean value) {
+    if (!value) {
+      this.name = null;
+    }
   }
 
   public int getInterestSize() {
@@ -479,19 +553,11 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
 
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
-    case ID:
+    case BYTES:
       if (value == null) {
-        unsetId();
+        unsetBytes();
       } else {
-        setId((Integer)value);
-      }
-      break;
-
-    case NAME:
-      if (value == null) {
-        unsetName();
-      } else {
-        setName((String)value);
+        setBytes((Byte)value);
       }
       break;
 
@@ -503,11 +569,27 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
       }
       break;
 
-    case BYTES:
+    case ID:
       if (value == null) {
-        unsetBytes();
+        unsetId();
       } else {
-        setBytes((Byte)value);
+        setId((Short)value);
+      }
+      break;
+
+    case LIST_ID:
+      if (value == null) {
+        unsetListId();
+      } else {
+        setListId((Integer)value);
+      }
+      break;
+
+    case LONG_ID:
+      if (value == null) {
+        unsetLongId();
+      } else {
+        setLongId((Long)value);
       }
       break;
 
@@ -516,6 +598,14 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
         unsetMoney();
       } else {
         setMoney((Double)value);
+      }
+      break;
+
+    case NAME:
+      if (value == null) {
+        unsetName();
+      } else {
+        setName((String)value);
       }
       break;
 
@@ -548,20 +638,26 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
 
   public Object getFieldValue(_Fields field) {
     switch (field) {
-    case ID:
-      return Integer.valueOf(getId());
-
-    case NAME:
-      return getName();
+    case BYTES:
+      return Byte.valueOf(getBytes());
 
     case GENDER:
       return Boolean.valueOf(isGender());
 
-    case BYTES:
-      return Byte.valueOf(getBytes());
+    case ID:
+      return Short.valueOf(getId());
+
+    case LIST_ID:
+      return Integer.valueOf(getListId());
+
+    case LONG_ID:
+      return Long.valueOf(getLongId());
 
     case MONEY:
       return Double.valueOf(getMoney());
+
+    case NAME:
+      return getName();
 
     case INTEREST:
       return getInterest();
@@ -583,16 +679,20 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
     }
 
     switch (field) {
-    case ID:
-      return isSetId();
-    case NAME:
-      return isSetName();
-    case GENDER:
-      return isSetGender();
     case BYTES:
       return isSetBytes();
+    case GENDER:
+      return isSetGender();
+    case ID:
+      return isSetId();
+    case LIST_ID:
+      return isSetListId();
+    case LONG_ID:
+      return isSetLongId();
     case MONEY:
       return isSetMoney();
+    case NAME:
+      return isSetName();
     case INTEREST:
       return isSetInterest();
     case MAPS:
@@ -616,21 +716,12 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
     if (that == null)
       return false;
 
-    boolean this_present_id = true;
-    boolean that_present_id = true;
-    if (this_present_id || that_present_id) {
-      if (!(this_present_id && that_present_id))
+    boolean this_present_bytes = true;
+    boolean that_present_bytes = true;
+    if (this_present_bytes || that_present_bytes) {
+      if (!(this_present_bytes && that_present_bytes))
         return false;
-      if (this.id != that.id)
-        return false;
-    }
-
-    boolean this_present_name = true && this.isSetName();
-    boolean that_present_name = true && that.isSetName();
-    if (this_present_name || that_present_name) {
-      if (!(this_present_name && that_present_name))
-        return false;
-      if (!this.name.equals(that.name))
+      if (this.bytes != that.bytes)
         return false;
     }
 
@@ -643,12 +734,30 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
         return false;
     }
 
-    boolean this_present_bytes = true;
-    boolean that_present_bytes = true;
-    if (this_present_bytes || that_present_bytes) {
-      if (!(this_present_bytes && that_present_bytes))
+    boolean this_present_id = true;
+    boolean that_present_id = true;
+    if (this_present_id || that_present_id) {
+      if (!(this_present_id && that_present_id))
         return false;
-      if (this.bytes != that.bytes)
+      if (this.id != that.id)
+        return false;
+    }
+
+    boolean this_present_listId = true;
+    boolean that_present_listId = true;
+    if (this_present_listId || that_present_listId) {
+      if (!(this_present_listId && that_present_listId))
+        return false;
+      if (this.listId != that.listId)
+        return false;
+    }
+
+    boolean this_present_longId = true;
+    boolean that_present_longId = true;
+    if (this_present_longId || that_present_longId) {
+      if (!(this_present_longId && that_present_longId))
+        return false;
+      if (this.longId != that.longId)
         return false;
     }
 
@@ -658,6 +767,15 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
       if (!(this_present_money && that_present_money))
         return false;
       if (this.money != that.money)
+        return false;
+    }
+
+    boolean this_present_name = true && this.isSetName();
+    boolean that_present_name = true && that.isSetName();
+    if (this_present_name || that_present_name) {
+      if (!(this_present_name && that_present_name))
+        return false;
+      if (!this.name.equals(that.name))
         return false;
     }
 
@@ -704,22 +822,12 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
 
     int lastComparison = 0;
 
-    lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+    lastComparison = Boolean.valueOf(isSetBytes()).compareTo(other.isSetBytes());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetId()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, other.id);
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-    }
-    lastComparison = Boolean.valueOf(isSetName()).compareTo(other.isSetName());
-    if (lastComparison != 0) {
-      return lastComparison;
-    }
-    if (isSetName()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, other.name);
+    if (isSetBytes()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.bytes, other.bytes);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -734,12 +842,32 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
         return lastComparison;
       }
     }
-    lastComparison = Boolean.valueOf(isSetBytes()).compareTo(other.isSetBytes());
+    lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetBytes()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.bytes, other.bytes);
+    if (isSetId()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, other.id);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetListId()).compareTo(other.isSetListId());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetListId()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.listId, other.listId);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetLongId()).compareTo(other.isSetLongId());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetLongId()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.longId, other.longId);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -750,6 +878,16 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
     }
     if (isSetMoney()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.money, other.money);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetName()).compareTo(other.isSetName());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetName()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, other.name);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -804,8 +942,28 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
     StringBuilder sb = new StringBuilder("ParaDto(");
     boolean first = true;
 
+    sb.append("bytes:");
+    sb.append(this.bytes);
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("gender:");
+    sb.append(this.gender);
+    first = false;
+    if (!first) sb.append(", ");
     sb.append("id:");
     sb.append(this.id);
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("listId:");
+    sb.append(this.listId);
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("longId:");
+    sb.append(this.longId);
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("money:");
+    sb.append(this.money);
     first = false;
     if (!first) sb.append(", ");
     sb.append("name:");
@@ -814,18 +972,6 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
     } else {
       sb.append(this.name);
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("gender:");
-    sb.append(this.gender);
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("bytes:");
-    sb.append(this.bytes);
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("money:");
-    sb.append(this.money);
     first = false;
     if (!first) sb.append(", ");
     sb.append("interest:");
@@ -896,31 +1042,7 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
           break;
         }
         switch (schemeField.id) {
-          case 1: // ID
-            if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-              struct.id = iprot.readI32();
-              struct.setIdIsSet(true);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-            }
-            break;
-          case 2: // NAME
-            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.name = iprot.readString();
-              struct.setNameIsSet(true);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-            }
-            break;
-          case 3: // GENDER
-            if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
-              struct.gender = iprot.readBool();
-              struct.setGenderIsSet(true);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-            }
-            break;
-          case 4: // BYTES
+          case 1: // BYTES
             if (schemeField.type == org.apache.thrift.protocol.TType.BYTE) {
               struct.bytes = iprot.readByte();
               struct.setBytesIsSet(true);
@@ -928,7 +1050,39 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 5: // MONEY
+          case 2: // GENDER
+            if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
+              struct.gender = iprot.readBool();
+              struct.setGenderIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 3: // ID
+            if (schemeField.type == org.apache.thrift.protocol.TType.I16) {
+              struct.id = iprot.readI16();
+              struct.setIdIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 4: // LIST_ID
+            if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+              struct.listId = iprot.readI32();
+              struct.setListIdIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 5: // LONG_ID
+            if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+              struct.longId = iprot.readI64();
+              struct.setLongIdIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 6: // MONEY
             if (schemeField.type == org.apache.thrift.protocol.TType.DOUBLE) {
               struct.money = iprot.readDouble();
               struct.setMoneyIsSet(true);
@@ -936,7 +1090,15 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 6: // INTEREST
+          case 7: // NAME
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.name = iprot.readString();
+              struct.setNameIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 8: // INTEREST
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
                 org.apache.thrift.protocol.TList _list0 = iprot.readListBegin();
@@ -954,7 +1116,7 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 7: // MAPS
+          case 9: // MAPS
             if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
               {
                 org.apache.thrift.protocol.TMap _map3 = iprot.readMapBegin();
@@ -974,7 +1136,7 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 8: // SETS
+          case 10: // SETS
             if (schemeField.type == org.apache.thrift.protocol.TType.SET) {
               {
                 org.apache.thrift.protocol.TSet _set7 = iprot.readSetBegin();
@@ -1007,23 +1169,29 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
       struct.validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
+      oprot.writeFieldBegin(BYTES_FIELD_DESC);
+      oprot.writeByte(struct.bytes);
+      oprot.writeFieldEnd();
+      oprot.writeFieldBegin(GENDER_FIELD_DESC);
+      oprot.writeBool(struct.gender);
+      oprot.writeFieldEnd();
       oprot.writeFieldBegin(ID_FIELD_DESC);
-      oprot.writeI32(struct.id);
+      oprot.writeI16(struct.id);
+      oprot.writeFieldEnd();
+      oprot.writeFieldBegin(LIST_ID_FIELD_DESC);
+      oprot.writeI32(struct.listId);
+      oprot.writeFieldEnd();
+      oprot.writeFieldBegin(LONG_ID_FIELD_DESC);
+      oprot.writeI64(struct.longId);
+      oprot.writeFieldEnd();
+      oprot.writeFieldBegin(MONEY_FIELD_DESC);
+      oprot.writeDouble(struct.money);
       oprot.writeFieldEnd();
       if (struct.name != null) {
         oprot.writeFieldBegin(NAME_FIELD_DESC);
         oprot.writeString(struct.name);
         oprot.writeFieldEnd();
       }
-      oprot.writeFieldBegin(GENDER_FIELD_DESC);
-      oprot.writeBool(struct.gender);
-      oprot.writeFieldEnd();
-      oprot.writeFieldBegin(BYTES_FIELD_DESC);
-      oprot.writeByte(struct.bytes);
-      oprot.writeFieldEnd();
-      oprot.writeFieldBegin(MONEY_FIELD_DESC);
-      oprot.writeDouble(struct.money);
-      oprot.writeFieldEnd();
       if (struct.interest != null) {
         oprot.writeFieldBegin(INTEREST_FIELD_DESC);
         {
@@ -1079,45 +1247,57 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
     public void write(org.apache.thrift.protocol.TProtocol prot, ParaDto struct) throws org.apache.thrift.TException {
       TTupleProtocol oprot = (TTupleProtocol) prot;
       BitSet optionals = new BitSet();
-      if (struct.isSetId()) {
+      if (struct.isSetBytes()) {
         optionals.set(0);
       }
-      if (struct.isSetName()) {
+      if (struct.isSetGender()) {
         optionals.set(1);
       }
-      if (struct.isSetGender()) {
+      if (struct.isSetId()) {
         optionals.set(2);
       }
-      if (struct.isSetBytes()) {
+      if (struct.isSetListId()) {
         optionals.set(3);
       }
-      if (struct.isSetMoney()) {
+      if (struct.isSetLongId()) {
         optionals.set(4);
       }
-      if (struct.isSetInterest()) {
+      if (struct.isSetMoney()) {
         optionals.set(5);
       }
-      if (struct.isSetMaps()) {
+      if (struct.isSetName()) {
         optionals.set(6);
       }
-      if (struct.isSetSets()) {
+      if (struct.isSetInterest()) {
         optionals.set(7);
       }
-      oprot.writeBitSet(optionals, 8);
-      if (struct.isSetId()) {
-        oprot.writeI32(struct.id);
+      if (struct.isSetMaps()) {
+        optionals.set(8);
       }
-      if (struct.isSetName()) {
-        oprot.writeString(struct.name);
+      if (struct.isSetSets()) {
+        optionals.set(9);
+      }
+      oprot.writeBitSet(optionals, 10);
+      if (struct.isSetBytes()) {
+        oprot.writeByte(struct.bytes);
       }
       if (struct.isSetGender()) {
         oprot.writeBool(struct.gender);
       }
-      if (struct.isSetBytes()) {
-        oprot.writeByte(struct.bytes);
+      if (struct.isSetId()) {
+        oprot.writeI16(struct.id);
+      }
+      if (struct.isSetListId()) {
+        oprot.writeI32(struct.listId);
+      }
+      if (struct.isSetLongId()) {
+        oprot.writeI64(struct.longId);
       }
       if (struct.isSetMoney()) {
         oprot.writeDouble(struct.money);
+      }
+      if (struct.isSetName()) {
+        oprot.writeString(struct.name);
       }
       if (struct.isSetInterest()) {
         {
@@ -1152,28 +1332,36 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, ParaDto struct) throws org.apache.thrift.TException {
       TTupleProtocol iprot = (TTupleProtocol) prot;
-      BitSet incoming = iprot.readBitSet(8);
+      BitSet incoming = iprot.readBitSet(10);
       if (incoming.get(0)) {
-        struct.id = iprot.readI32();
-        struct.setIdIsSet(true);
-      }
-      if (incoming.get(1)) {
-        struct.name = iprot.readString();
-        struct.setNameIsSet(true);
-      }
-      if (incoming.get(2)) {
-        struct.gender = iprot.readBool();
-        struct.setGenderIsSet(true);
-      }
-      if (incoming.get(3)) {
         struct.bytes = iprot.readByte();
         struct.setBytesIsSet(true);
       }
+      if (incoming.get(1)) {
+        struct.gender = iprot.readBool();
+        struct.setGenderIsSet(true);
+      }
+      if (incoming.get(2)) {
+        struct.id = iprot.readI16();
+        struct.setIdIsSet(true);
+      }
+      if (incoming.get(3)) {
+        struct.listId = iprot.readI32();
+        struct.setListIdIsSet(true);
+      }
       if (incoming.get(4)) {
+        struct.longId = iprot.readI64();
+        struct.setLongIdIsSet(true);
+      }
+      if (incoming.get(5)) {
         struct.money = iprot.readDouble();
         struct.setMoneyIsSet(true);
       }
-      if (incoming.get(5)) {
+      if (incoming.get(6)) {
+        struct.name = iprot.readString();
+        struct.setNameIsSet(true);
+      }
+      if (incoming.get(7)) {
         {
           org.apache.thrift.protocol.TList _list16 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
           struct.interest = new ArrayList<String>(_list16.size);
@@ -1186,7 +1374,7 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
         }
         struct.setInterestIsSet(true);
       }
-      if (incoming.get(6)) {
+      if (incoming.get(8)) {
         {
           org.apache.thrift.protocol.TMap _map19 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.I32, org.apache.thrift.protocol.TType.STRING, iprot.readI32());
           struct.maps = new HashMap<Integer,String>(2*_map19.size);
@@ -1201,7 +1389,7 @@ public class ParaDto implements org.apache.thrift.TBase<ParaDto, ParaDto._Fields
         }
         struct.setMapsIsSet(true);
       }
-      if (incoming.get(7)) {
+      if (incoming.get(9)) {
         {
           org.apache.thrift.protocol.TSet _set23 = new org.apache.thrift.protocol.TSet(org.apache.thrift.protocol.TType.STRING, iprot.readI32());
           struct.sets = new HashSet<String>(2*_set23.size);
