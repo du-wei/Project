@@ -1,10 +1,10 @@
-/**   
- * @Title: LoadJobPlugins.java 
- * @Package com.webapp.scheduled 
+/**
+ * @Title: LoadJobPlugins.java
+ * @Package com.webapp.scheduled
  * @Description: TODO 描述
- * @author king chenglong@coweibo.cn 
- * @date 2013-2-27 下午5:53:10 
- * @version V1.0   
+ * @author king chenglong@coweibo.cn
+ * @date 2013-2-27 下午5:53:10
+ * @version V1.0
  */
 package com.webapp.quartz;
 
@@ -55,17 +55,17 @@ public class LoadJobsPlugin implements SchedulerPlugin {
 		processJobs();
 	}
 
-	@Override
-	public void initialize(String name, Scheduler scheduler)
-			throws SchedulerException {
-		this.scheduler = scheduler;
-		logger.info("启动插件:" + name);
-		try {
-			loadJobs(name);
-		} catch (Exception e) {
-			throw new SchedulerConfigException("未找到任务配置目录：" + jobsDir);
-		}
-	}
+//	@Override
+//	public void initialize(String name, Scheduler scheduler)
+//			throws SchedulerException {
+//		this.scheduler = scheduler;
+//		logger.info("启动插件:" + name);
+//		try {
+//			loadJobs(name);
+//		} catch (Exception e) {
+//			throw new SchedulerConfigException("未找到任务配置目录：" + jobsDir);
+//		}
+//	}
 
 	@Override
 	public void shutdown() {
@@ -107,6 +107,13 @@ public class LoadJobsPlugin implements SchedulerPlugin {
 		} catch (Exception ex) {
 			logger.error("加载任务配置文件失败: " + fileName, ex);
 		}
+
+	}
+
+	@Override
+	public void initialize(String arg0, Scheduler arg1, ClassLoadHelper arg2)
+			throws SchedulerException {
+		// TODO Auto-generated method stub
 
 	}
 

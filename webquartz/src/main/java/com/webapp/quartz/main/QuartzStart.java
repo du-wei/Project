@@ -1,20 +1,22 @@
-/**   
- * @Title: QuartzStart.java 
- * @Package com.webapp.scheduled.main 
+/**
+ * @Title: QuartzStart.java
+ * @Package com.webapp.scheduled.main
  * @Description: TODO 描述
- * @author king chenglong@coweibo.cn 
- * @date 2013-3-1 下午3:24:29 
- * @version V1.0   
+ * @author king chenglong@coweibo.cn
+ * @date 2013-3-1 下午3:24:29
+ * @version V1.0
  */
 package com.webapp.quartz.main;
 
 import org.apache.log4j.Logger;
+import org.junit.Test;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerFactory;
 import org.quartz.SchedulerMetaData;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 
 /**
  * @ClassName: QuartzStart.java
@@ -38,14 +40,16 @@ public class QuartzStart {
 		// "group").withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(1).withRepeatCount(2)).build();
 		// scheduler.scheduleJob(jobDetail, trigger);
 		// scheduler.start();
-
-		startSpring();
-	}
-
-	private static void startSpring() {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(
 				"classpath*:applicationContext.xml");
 
+//		MethodInvokingJobDetailFactoryBean
+	}
+
+	@Test
+	public void start(){
+		ApplicationContext ctx = new ClassPathXmlApplicationContext(
+				"classpath*:applicationContext.xml");
 	}
 
 	private static void startScheduler() {
