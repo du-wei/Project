@@ -1,4 +1,4 @@
-package com.webapp.thread;
+package com.webapp.utils.thread;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import jodd.util.ConcurrentUtil;
-
-import org.apache.commons.lang3.concurrent.ConcurrentUtils;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
