@@ -5,12 +5,13 @@ import javax.servlet.ServletContextAttributeListener;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class WebContextListener implements ServletContextListener,
 		ServletContextAttributeListener {
 
-	private Logger logger = Logger.getLogger(WebContextListener.class);
+	private Logger logger = LogManager.getLogger(WebContextListener.class);
 
 	// 当应用启动时将执行此方法
 	public void contextInitialized(ServletContextEvent event) {

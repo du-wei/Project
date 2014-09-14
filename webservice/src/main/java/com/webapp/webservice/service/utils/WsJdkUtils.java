@@ -1,10 +1,10 @@
-/**   
- * @Title: JDKUtils.java 
- * @Package com.webapp.cxf 
+/**
+ * @Title: JDKUtils.java
+ * @Package com.webapp.cxf
  * @Description: TODO 描述
- * @author king chenglong@coweibo.cn 
- * @date 2013-3-19 下午5:31:12 
- * @version V1.0   
+ * @author king chenglong@coweibo.cn
+ * @date 2013-3-19 下午5:31:12
+ * @version V1.0
  */
 package com.webapp.webservice.service.utils;
 
@@ -15,7 +15,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @ClassName: JDKUtils.java
@@ -35,7 +36,7 @@ public class WsJdkUtils {
 	 * 保存Java文件 -d:生成客户端执行类的class文件的存放目录 　　 * -s:生成客户端执行类的源文件的存放目录 　　 *
 	 * -p:定义生成类的包名
 	 */
-	public static Logger logger = Logger.getLogger(WsJdkUtils.class);
+	public static Logger logger = LogManager.getLogger(WsJdkUtils.class);
 	public static final String dir_web = "src";
 	public static final String dir_maven = "src/main/java";
 

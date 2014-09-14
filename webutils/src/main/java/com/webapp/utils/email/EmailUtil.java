@@ -14,7 +14,8 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.MultiPartEmail;
 import org.apache.commons.mail.SimpleEmail;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @ClassName: EmailUtil.java
@@ -26,7 +27,7 @@ import org.apache.log4j.Logger;
  */
 public class EmailUtil {
 
-	private static Logger log = Logger.getLogger(EmailUtil.class.getName());
+	private static Logger log = LogManager.getLogger(EmailUtil.class.getName());
 	public static final String TEXT_PLAIN = "1";
 	public static final String TEXT_HTML = "2";
 	public static final String ATTACHMENT_PLAIN = "3";

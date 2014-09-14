@@ -1,6 +1,7 @@
 package com.webapp.xml;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class XmlAllUtils {
 
@@ -18,7 +19,7 @@ public class XmlAllUtils {
 	// SAAJ： -> SOAP with Attachments API for Java
 	// JAXR： -> Java API for XML Registries
 
-	private static Logger logger = Logger.getLogger(XmlAllUtils.class);
+	private static Logger logger = LogManager.getLogger(XmlAllUtils.class);
 
 	public static void main(String[] args) throws Exception {
 

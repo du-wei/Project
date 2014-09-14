@@ -18,12 +18,10 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hdfs.DistributedFileSystem;
-import org.apache.hadoop.hdfs.HdfsConfiguration;
 import org.apache.hadoop.hdfs.protocol.DatanodeInfo;
 import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
@@ -31,8 +29,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 import org.apache.hadoop.util.Progressable;
-import org.apache.hadoop.yarn.conf.YarnConfiguration;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.webapp.hadoop.mapreduce.CombineClass;
 import com.webapp.hadoop.mapreduce.MapperClass;
@@ -40,7 +38,7 @@ import com.webapp.hadoop.mapreduce.ReducerClass;
 
 public class HadoopUtils {
 
-	private static Logger logger = Logger.getLogger(HadoopUtils.class);
+	private static Logger logger = LogManager.getLogger(HadoopUtils.class);
 	private static Configuration cfg = null;
 
 	public static Map<String, String> viewConf() throws Exception {

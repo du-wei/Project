@@ -16,12 +16,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 public class ThreadPoolUtils {
 
-	private static Logger logger = Logger.getLogger(ThreadPoolUtils.class);
+	private static Logger logger = LogManager.getLogger(ThreadPoolUtils.class);
 
 	@Test
 	public void testName() throws Exception {

@@ -8,7 +8,8 @@
  */
 package com.webapp.quartz.main;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerFactory;
@@ -16,7 +17,6 @@ import org.quartz.SchedulerMetaData;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 
 /**
  * @ClassName: QuartzStart.java
@@ -28,7 +28,7 @@ import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
  */
 public class QuartzStart {
 
-	private static Logger logger = Logger.getLogger(QuartzStart.class);
+	private static Logger logger = LogManager.getLogger(QuartzStart.class);
 
 	public static void main(String[] args) throws Exception {
 		// Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();

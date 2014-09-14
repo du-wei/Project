@@ -1,20 +1,20 @@
-/**   
- * @Title: CxfJavaToWsdl.java 
- * @Package com.webapp.cxf 
+/**
+ * @Title: CxfJavaToWsdl.java
+ * @Package com.webapp.cxf
  * @Description: TODO 描述
- * @author king chenglong@coweibo.cn 
- * @date 2013-3-13 下午6:00:44 
- * @version V1.0   
+ * @author king chenglong@coweibo.cn
+ * @date 2013-3-13 下午6:00:44
+ * @version V1.0
  */
 package com.webapp.webservice.service.utils;
 
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.cxf.tools.java2ws.JavaToWS;
 import org.apache.cxf.tools.wsdlto.WSDLToJava;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @ClassName: CxfJavaToWsdl.java
@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  */
 public class WsCxfUtils {
 
-	public static Logger logger = Logger.getLogger(WsJdkUtils.class);
+	public static Logger logger = LogManager.getLogger(WsJdkUtils.class);
 	public static final String type_client = "-client";
 	public static final String type_server = "-server";
 	public static final String type_impl = "-impl";

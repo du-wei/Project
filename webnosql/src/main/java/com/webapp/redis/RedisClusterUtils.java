@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.configuration.Configuration;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import redis.clients.jedis.JedisShardInfo;
 import redis.clients.jedis.ShardedJedis;
@@ -16,7 +17,7 @@ import com.webapp.utils.config.ConfigUtils;
 
 public class RedisClusterUtils {
 
-	private static Logger logger = Logger.getLogger(RedisClusterUtils.class);
+	private static Logger logger = LogManager.getLogger(RedisClusterUtils.class);
 	private static String redisCfg = "redis.properties";
 	private final static Configuration config = ConfigUtils.addConfig(redisCfg);
 	private static ShardedJedisPool shardedJedisPool;

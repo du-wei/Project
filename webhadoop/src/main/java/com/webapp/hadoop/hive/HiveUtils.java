@@ -12,7 +12,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class HiveUtils {
 
@@ -23,14 +24,14 @@ public class HiveUtils {
 
 	}
 
-	private static Logger logger = Logger.getLogger(HiveUtils.class);
+	private static Logger logger = LogManager.getLogger(HiveUtils.class);
 	private static String driverClass = "org.apache.hadoop.hive.jdbc.HiveDriver";
 	private static String url = "jdbc:hive://192.168.88.10:10000/default";
 	private Connection conn = null;
 
 	/**
 	 * 获取hive连接
-	 * 
+	 *
 	 * @return
 	 */
 	public Connection getConnection() {
@@ -47,7 +48,7 @@ public class HiveUtils {
 
 	/**
 	 * 列出当前数据库的所有表
-	 * 
+	 *
 	 * @return
 	 */
 	public List<String> listTables() {
@@ -56,7 +57,7 @@ public class HiveUtils {
 
 	/**
 	 * 列出dataBaseName的所有表
-	 * 
+	 *
 	 * @param dataBaseName
 	 * @return
 	 */
@@ -88,7 +89,7 @@ public class HiveUtils {
 
 	/**
 	 * 执行非查询的sql语句，比如创建表，加载数据等等
-	 * 
+	 *
 	 * @param sql
 	 * @return
 	 */
@@ -109,7 +110,7 @@ public class HiveUtils {
 
 	/**
 	 * 使用Statement查询数据，返回ResultSet
-	 * 
+	 *
 	 * @param sql
 	 * @return
 	 */
@@ -129,7 +130,7 @@ public class HiveUtils {
 
 	/**
 	 * 使用PreparedStatement查询数据，返回ResultSet
-	 * 
+	 *
 	 * @param sql
 	 * @param values
 	 * @return
@@ -151,7 +152,7 @@ public class HiveUtils {
 
 	/**
 	 * 使用Statement查询数据，返回List集合，数据量比较小的时候用
-	 * 
+	 *
 	 * @param sql
 	 * @return
 	 */
@@ -184,7 +185,7 @@ public class HiveUtils {
 
 	/**
 	 * 使用PreparedStatement查询数据，返回List集合，数据量比较小的时候用
-	 * 
+	 *
 	 * @param sql
 	 * @param values
 	 * @return
@@ -245,7 +246,7 @@ public class HiveUtils {
 
 	/**
 	 * 关闭Statement
-	 * 
+	 *
 	 * @param stmt
 	 */
 	public void close(Statement stmt) {
@@ -260,7 +261,7 @@ public class HiveUtils {
 
 	/**
 	 * 关闭PreparedStatement
-	 * 
+	 *
 	 * @param pst
 	 */
 	public void close(PreparedStatement pst) {
@@ -275,7 +276,7 @@ public class HiveUtils {
 
 	/**
 	 * 关闭ResultSet
-	 * 
+	 *
 	 * @param rs
 	 */
 	public void close(ResultSet rs) {

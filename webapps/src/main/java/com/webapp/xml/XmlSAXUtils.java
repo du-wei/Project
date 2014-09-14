@@ -5,7 +5,8 @@ import java.io.File;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -16,7 +17,7 @@ public class XmlSAXUtils {
 
 	// sax
 
-	private static Logger logger = Logger.getLogger(XmlSAXUtils.class);
+	private static Logger logger = LogManager.getLogger(XmlSAXUtils.class);
 
 	public static void main(String[] args) throws Exception {
 		SAXParserFactory spf = SAXParserFactory.newInstance();

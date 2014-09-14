@@ -11,8 +11,8 @@ package com.webapp.quartz.spring;
 import java.util.Date;
 
 import org.apache.commons.lang.time.DateFormatUtils;
-import org.apache.commons.lang.time.DateUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @ClassName: SpringJob.java
@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
  */
 public class SpringJob {
 
-	private static Logger logger = Logger.getLogger(SpringJob.class);
+	private static Logger logger = LogManager.getLogger(SpringJob.class);
 
 	public void execute() {
 

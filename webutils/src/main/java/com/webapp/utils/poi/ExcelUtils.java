@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
@@ -23,7 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtils {
 
-	private static Logger logger = Logger.getLogger(ExcelUtils.class);
+	private static Logger logger = LogManager.getLogger(ExcelUtils.class);
 
 	public static void createExcel(String outPath, List<?> objs, Class<?> clz,
 			boolean isXssf) {

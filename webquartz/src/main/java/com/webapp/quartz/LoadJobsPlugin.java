@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.configuration.ConfigurationUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.quartz.Scheduler;
-import org.quartz.SchedulerConfigException;
 import org.quartz.SchedulerException;
 import org.quartz.simpl.CascadingClassLoadHelper;
 import org.quartz.spi.ClassLoadHelper;
@@ -36,7 +36,7 @@ import org.quartz.xml.XMLSchedulingDataProcessor;
  */
 public class LoadJobsPlugin implements SchedulerPlugin {
 
-	private static Logger logger = Logger.getLogger(LoadJobsPlugin.class);
+	private static Logger logger = LogManager.getLogger(LoadJobsPlugin.class);
 
 	private Scheduler scheduler;
 	private String jobsDir;

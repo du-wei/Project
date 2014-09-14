@@ -4,11 +4,12 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ReentrantLockUtils<T> {
 
-	private static Logger log = Logger.getLogger(ReentrantLockUtils.class.getName());
+	private static Logger log = LogManager.getLogger(ReentrantLockUtils.class.getName());
 
 	// 独占锁
 	Lock lock = new ReentrantLock();

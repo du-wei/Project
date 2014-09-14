@@ -1,12 +1,13 @@
 package com.webapp.remoting.service.http.spring;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean;
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 
 public class HttpSpringUtils {
 
-	public static Logger logger = Logger.getLogger(HttpSpringUtils.class);
+	public static Logger logger = LogManager.getLogger(HttpSpringUtils.class);
 	private static String host;
 	private static int port;
 	private static String appName;

@@ -1,14 +1,15 @@
-/**   
- * @Title: MongodbApp.java 
- * @Package com.webapp.mongodb 
+/**
+ * @Title: MongodbApp.java
+ * @Package com.webapp.mongodb
  * @Description: TODO 描述
- * @author king chenglong@coweibo.cn 
- * @date 2013-4-15 下午2:11:55 
- * @version V1.0   
+ * @author king chenglong@coweibo.cn
+ * @date 2013-4-15 下午2:11:55
+ * @version V1.0
  */
 package com.webapp.mongodb;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,7 +34,7 @@ public class MongodbApp {
 
 	private static MongoClient client;
 	private static DB db;
-	private static Logger logger = Logger.getLogger(MongodbApp.class);
+	private static Logger logger = LogManager.getLogger(MongodbApp.class);
 
 	@Before
 	public void before() throws Exception {

@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.ansj.lucene4.AnsjAnalysis;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queries.BoostingQuery;
@@ -46,7 +47,7 @@ import com.chenlb.mmseg4j.analysis.MMSegAnalyzer;
  * @version V1.0 */
 public class SearcherUtils {
 
-	private static Logger logger = Logger.getLogger(SearcherUtils.class);
+	private static Logger logger = LogManager.getLogger(SearcherUtils.class);
 	public static SearcherManager sm = null;
 	static {
 		try {
@@ -167,21 +168,21 @@ public class SearcherUtils {
 		BoostingQuery query = new BoostingQuery(new TermQuery(new Term("title", "中国")), new TermQuery(new Term("title", "电视台")), 2f);
 		TopDocs topDocs = searcher.search(query, 10);
     }
-	
+
 	public static void searchByCustomScore() throws Exception{
 		IndexSearcher searcher = IndexUtils.getIndexSearcher();
 		TermQuery subQuery = new TermQuery(new Term("title", "中国"));
 		CustomScoreQuery query = new CustomScoreQuery(subQuery);
 		TopDocs topDocs = searcher.search(query, 10);
-		
+
 	}
-	
+
 	public static void searchByMoreLikeThis() throws Exception {
 		IndexSearcher searcher = IndexUtils.getIndexSearcher();
 	    MoreLikeThisQuery query = new MoreLikeThisQuery("中", new String[]{"title"}, new AnsjAnalysis(), "title");
 		TopDocs topDocs = searcher.search(query, 10);
     }
-	
+
 	// 短语查询
 	public static void searchByPhrase(String field, String value, int num) throws Exception {
 		IndexSearcher searcher = IndexUtils.getIndexSearcher();
@@ -192,16 +193,16 @@ public class SearcherUtils {
 		TopDocs topDocs = searcher.search(termQuery, num);
 //		MultiPhraseQuery query = new MultiPhraseQuery();
 	}
-	
+
 	public static void searchBySpan() throws Exception {
 		IndexSearcher searcher = IndexUtils.getIndexSearcher();
 	    SpanQuery query = new SpanFirstQuery(new SpanTermQuery(new Term("title", "国")), 3);
-	    
+
 	    TopDocs topDocs = searcher.search(query, 10);
     }
 
-	
-	
+
+
 	// 模糊查询
 	public static TopDocs searchByFuzzy(String field, String value, int num) throws Exception {
 		IndexSearcher searcher = IndexUtils.getIndexSearcher();
@@ -210,6 +211,6 @@ public class SearcherUtils {
 		return topDocs;
 	}
 
-	
+
 
 }

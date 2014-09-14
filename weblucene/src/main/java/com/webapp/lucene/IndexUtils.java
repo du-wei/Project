@@ -1,13 +1,13 @@
 package com.webapp.lucene;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import opensource.jpinyin.PinyinFormat;
 import opensource.jpinyin.PinyinHelper;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field.Store;
@@ -21,8 +21,6 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.spell.Dictionary;
 import org.apache.lucene.search.spell.LuceneDictionary;
 import org.apache.lucene.search.suggest.InputIterator;
-import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.CharsRef;
 import org.apache.lucene.util.UnicodeUtil;
@@ -30,26 +28,26 @@ import org.apache.lucene.util.Version;
 
 public class IndexUtils {
 
-	private static Logger logger = Logger.getLogger(IndexUtils.class);
+	private static Logger logger = LogManager.getLogger(IndexUtils.class);
 
 	public static String paths = "./index";
-	
+
 	private static IndexReader indexReader;
 	private static IndexSearcher indexSearcher;
-	
+
 //	static {
 //		indexReader = getIndexReader(paths);
 //		indexSearcher = getIndexSearcher(paths);
 //	}
-	
+
 	public static IndexReader getIndexReader(){
 		return getIndexReader(paths);
 	}
-	
+
 	public static IndexSearcher getIndexSearcher(){
 		return getIndexSearcher(paths);
 	}
-	
+
 	public static void index(String path, List<Document> docs) {
 		IndexWriterConfig config = LuceneUtils.getWriterConfig(AnalyzerUtils.getAnsjAnalysis());
 
@@ -119,7 +117,7 @@ public class IndexUtils {
 			LuceneUtils.closeIndexWrite(writer);
 		}
 	}
-	
+
 	public static void delDoc() {
 //		IndexWriter.deleteDocuments(term);
     }
@@ -144,7 +142,7 @@ public class IndexUtils {
 		}
 		return indexReader;
 	}
-	
+
 	private static IndexSearcher getIndexSearcher(String indexDir) {
 	    IndexSearcher searcher = new IndexSearcher(getIndexReader(indexDir));
 	    return searcher;

@@ -8,7 +8,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -18,14 +19,13 @@ import org.dom4j.Node;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
-import org.eclipse.jdt.core.dom.ThisExpression;
 import org.junit.Test;
 
 import com.webapp.utils.config.ConfigUtils;
 
 public class XmlDom4jUtils {
 
-	private static Logger logger = Logger.getLogger(XmlDom4jUtils.class);
+	private static Logger logger = LogManager.getLogger(XmlDom4jUtils.class);
 	private static XmlDom4jUtils instance = null;
 	private Document doc = null;
 	private File file = null;

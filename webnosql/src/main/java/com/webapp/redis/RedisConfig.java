@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.configuration.Configuration;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -21,7 +22,7 @@ import com.webapp.utils.config.ConfigUtils;
  */
 public class RedisConfig {
 
-	private static Logger logger = Logger.getLogger(RedisConfig.class);
+	private static Logger logger = LogManager.getLogger(RedisConfig.class);
 
 	/**
 	 * @Title: getJedisPoolConfig

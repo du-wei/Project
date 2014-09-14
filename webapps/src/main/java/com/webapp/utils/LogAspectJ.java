@@ -1,9 +1,16 @@
 package com.webapp.utils;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /** 日志切面 */
@@ -11,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LogAspectJ {
 	// 取得日志记录器Logger
-	public Logger logger = Logger.getLogger(LogAspectJ.class);
+	public Logger logger = LogManager.getLogger(LogAspectJ.class);
 
 	/**
 	 * 使用@Pointcut注解定义一个切入点,切入点的名字为anyMethod(), 切入点正则表达式execution(*

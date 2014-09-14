@@ -1,12 +1,13 @@
 package com.webapp.remoting.service.hessian.spring;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.remoting.caucho.HessianProxyFactoryBean;
 import org.springframework.remoting.caucho.HessianServiceExporter;
 
 public class HessianSpringUtils {
 
-	public static Logger logger = Logger.getLogger(HessianSpringUtils.class);
+	public static Logger logger = LogManager.getLogger(HessianSpringUtils.class);
 	private static String host;
 	private static int port;
 	private static String appName;

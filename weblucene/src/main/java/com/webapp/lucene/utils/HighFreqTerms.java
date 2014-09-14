@@ -4,7 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.Fields;
 import org.apache.lucene.index.IndexReader;
@@ -19,19 +20,19 @@ import org.apache.lucene.util.Bits;
 import org.apache.lucene.util.BytesRef;
 
 public class HighFreqTerms {
-	
-	
-	private static Logger logger = Logger.getLogger(HighFreqTerms.class);
-    
+
+
+	private static Logger logger = LogManager.getLogger(HighFreqTerms.class);
+
     public static void main(String[] args) throws Exception {
-	    
+
     	RAMDirectory ram = new RAMDirectory(FSDirectory.open(new File("./index")) ,IOContext.DEFAULT);
     	IndexReader indexReader = DirectoryReader.open(ram);
-    			
-    	Fields fields = MultiFields.getFields(indexReader);		
+
+    	Fields fields = MultiFields.getFields(indexReader);
     	Terms terms = fields.terms("title");
     	if(terms == null) return;
-    	
+
     	TermsEnum termsEnum = terms.iterator(null);
         while (true) {
             BytesRef term = termsEnum.next();
@@ -54,7 +55,7 @@ public class HighFreqTerms {
         for (String field : fieldNames) {
         	Terms terms = fields.terms(field);
         	if(terms == null) return null;
-        	
+
         	TermsEnum termsEnum = terms.iterator(null);
             while (true) {
                 BytesRef term = termsEnum.next();

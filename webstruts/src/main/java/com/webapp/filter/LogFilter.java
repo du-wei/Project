@@ -1,10 +1,10 @@
-/**   
- * @Title: LogFilter.java 
- * @Package com.webapp.filter 
+/**
+ * @Title: LogFilter.java
+ * @Package com.webapp.filter
  * @Description: TODO 描述
- * @author king chenglong@coweibo.cn 
- * @date 2013-2-25 下午6:12:45 
- * @version V1.0   
+ * @author king chenglong@coweibo.cn
+ * @date 2013-2-25 下午6:12:45
+ * @version V1.0
  */
 package com.webapp.filter;
 
@@ -17,7 +17,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter;
 
 /**
@@ -31,7 +32,7 @@ import org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter;
 @WebFilter(filterName = "lgoFilter", urlPatterns = "/*")
 public class LogFilter extends StrutsPrepareAndExecuteFilter {
 
-	private Logger logger = Logger.getLogger(LogFilter.class);
+	private Logger logger = LogManager.getLogger(LogFilter.class);
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {

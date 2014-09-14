@@ -10,11 +10,12 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class RmiUtils {
 
-	public static Logger logger = Logger.getLogger(RmiUtils.class);
+	public static Logger logger = LogManager.getLogger(RmiUtils.class);
 	private static RmiUtils instance = null;
 	private int curPort = 1099;
 	private String curHost;

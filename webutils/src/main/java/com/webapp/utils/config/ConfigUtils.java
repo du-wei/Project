@@ -27,11 +27,13 @@ import org.apache.commons.configuration.SystemConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.configuration.plist.PropertyListConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ConfigUtils {
 
-	private static Logger logger = Logger.getLogger(ConfigUtils.class);
+	private static Logger logger = LogManager.getLogger(ConfigUtils.class);
+
 	private static CompositeConfiguration composite;
 
 	// 1。使用java.util.Properties类的load()方法
