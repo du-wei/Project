@@ -1,6 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 		http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   	<modelVersion>4.0.0</modelVersion>
@@ -13,14 +13,14 @@
 	<artifactId>webtemplate</artifactId>
 	<packaging>jar</packaging>
 	<name>webtemplate</name>
-  
+
   	<build>
 		<finalName>webutils</finalName>
 		<outputDirectory>target/classes</outputDirectory>
 		<defaultGoal>install</defaultGoal>
 		<directory>${basedir}/target</directory>
 	</build>
-  	
+
   	<dependencies>
 		<dependency>
 			<groupId>org.freemarker</groupId>
@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>com.googlecode.rapid-framework</groupId>
 			<artifactId>rapid-generator-template</artifactId>
-			<version>4.0.6</version>        
+			<version>4.0.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -65,12 +65,12 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.1</version>
+			<version>${commons_lang3}</version>
 		</dependency>
-		            
-		            		            
-		
+
+
+
 	</dependencies>
-  
-  
+
+
 </project>
