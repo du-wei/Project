@@ -14,7 +14,8 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<servlet_version>3.1-b06</servlet_version>
+		<solr_version>4.2.0</solr_version>
+		<mmseg4j_version>1.9.0</mmseg4j_version>
 	</properties>
 
 	<build>
@@ -28,12 +29,12 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
-			<version>1.7.3</version>
+			<version>${slf4j_version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.3</version>
+			<version>${slf4j_version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -43,22 +44,22 @@
         <dependency>
 			<groupId>org.apache.solr</groupId>
 			<artifactId>solr-solrj</artifactId>
-			<version>4.2.0</version>
+			<version>${solr_version}</version>
 		</dependency>
         <dependency>
 			<groupId>org.apache.solr</groupId>
 			<artifactId>solr-core</artifactId>
-			<version>4.2.0</version>
+			<version>${solr_version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.chenlb.mmseg4j</groupId>
 			<artifactId>mmseg4j-core</artifactId>
-			<version>1.9.0</version>
+			<version>${mmseg4j_version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.chenlb.mmseg4j</groupId>
 			<artifactId>mmseg4j-solr</artifactId>
-			<version>1.9.0</version>
+			<version>${mmseg4j_version}</version>
 		</dependency>
 	</dependencies>
 

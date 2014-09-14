@@ -15,9 +15,7 @@
 	<name>webdao</name>
 
 	<properties>
-		<mysql_version>5.1.20</mysql_version>
 		<hibernate_version>4.2.1.Final</hibernate_version>
-
 	</properties>
 
 	<dependencies>
@@ -54,7 +52,7 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.7.1</version>
+			<version>${aspectj_version}</version>
 		</dependency>
 	    <dependency>
 			<groupId>org.hibernate</groupId>
@@ -70,7 +68,7 @@
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
+			<version>${commons_dbcp}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -80,7 +78,7 @@
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
-			<version>2.1.0</version>
+			<version>${jedis_version}</version>
 		</dependency>
 	</dependencies>
 

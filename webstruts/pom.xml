@@ -14,7 +14,7 @@
 	<name>webstruts</name>
 
 	<properties>
-		<struts_version>2.3.4</struts_version>
+		<sitemesh_version>2.4.2</sitemesh_version>
 	</properties>
 
 	<build>
@@ -75,13 +75,13 @@
 		<dependency>
 			<groupId>opensymphony</groupId>
 			<artifactId>sitemesh</artifactId>
-			<version>2.4.2</version>
+			<version>${sitemesh_version}</version>
 		</dependency>
 
 		<dependency>
 		  <groupId>org.freemarker</groupId>
 		  <artifactId>freemarker-gae</artifactId>
-		  <version>2.3.20</version>
+		  <version>${freemarker_version}</version>
 		</dependency>
 
 	</dependencies>
