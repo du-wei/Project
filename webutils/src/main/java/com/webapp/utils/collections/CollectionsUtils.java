@@ -22,24 +22,23 @@ import java.util.concurrent.Delayed;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
-import com.webapp.utils.random.RandomUtils;
+import com.webapp.utils.random.RndUtils;
 
 public class CollectionsUtils {
 
 	// list
 	@Test
 	public void testArrayList() {
-		List<String> list = RandomUtils.arrayList(10);
+		List<String> list = RndUtils.arrayList(10);
 		viewList(list);
 	}
 
 	@Test
 	public void testLinkedList() {
-		List<String> list = RandomUtils.linkedList(10);
+		List<String> list = RndUtils.linkedList(10);
 		viewList(list);
 	}
 
@@ -51,7 +50,7 @@ public class CollectionsUtils {
 	// set
 	@Test
 	public void testHashSet() {
-		Set<String> set = RandomUtils.hashSet(10);
+		Set<String> set = RndUtils.hashSet(10);
 		viewSet(set);
 	}
 
@@ -62,13 +61,13 @@ public class CollectionsUtils {
 
 	@Test
 	public void testTreeSet() {
-		TreeSet<String> set = RandomUtils.treeSet(10);
+		TreeSet<String> set = RndUtils.treeSet(10);
 		viewSet(set);
 	}
 
 	@Test
 	public void testConcurrentSkipListSet() {
-		ConcurrentSkipListSet<String> set = RandomUtils
+		ConcurrentSkipListSet<String> set = RndUtils
 				.concurrentSkipListSet(10);
 
 		viewSet(set);
@@ -77,7 +76,7 @@ public class CollectionsUtils {
 	// map
 	@Test
 	public void testTreeMap() {
-		SortedMap<Integer, String> map = RandomUtils.treeMap(10);
+		SortedMap<Integer, String> map = RndUtils.treeMap(10);
 		viewMapKey(map);
 		viewMapVal(map);
 		viewMapKeyVal(map);
@@ -85,7 +84,7 @@ public class CollectionsUtils {
 
 	@Test
 	public void testConcurrentSkipListMap() {
-		ConcurrentSkipListMap<Integer, String> map = RandomUtils
+		ConcurrentSkipListMap<Integer, String> map = RndUtils
 				.concurrentSkipListMap(10);
 
 		viewMapKey(map);
@@ -95,7 +94,7 @@ public class CollectionsUtils {
 
 	@Test
 	public void testHashMap() {
-		Map<Integer, String> map = RandomUtils.hashMap(5);
+		Map<Integer, String> map = RndUtils.hashMap(5);
 
 		viewMapKey(map);
 		viewMapVal(map);
@@ -104,7 +103,7 @@ public class CollectionsUtils {
 
 	@Test
 	public void testConcurrentHashMap() {
-		ConcurrentHashMap<Integer, String> map = RandomUtils
+		ConcurrentHashMap<Integer, String> map = RndUtils
 				.concurrentHashMap(10);
 
 		viewMapKey(map);
@@ -115,7 +114,7 @@ public class CollectionsUtils {
 	// queue
 	@Test
 	public void test2ArrayList() {
-		List<String> list = RandomUtils.arrayList(10);
+		List<String> list = RndUtils.arrayList(10);
 		viewList(list);
 	}
 
@@ -150,7 +149,7 @@ public class CollectionsUtils {
 	// deque
 	@Test
 	public void test1ArrayList() {
-		List<String> list = RandomUtils.arrayList(10);
+		List<String> list = RndUtils.arrayList(10);
 		viewList(list);
 	}
 

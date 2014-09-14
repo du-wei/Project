@@ -15,7 +15,7 @@
 	<name>webutils</name>
 
 	<properties>
-		<commons-configuration_version>1.8</commons-configuration_version>
+		<commons-configuration_version>1.10</commons-configuration_version>
 	</properties>
 
 	<dependencies>
@@ -28,7 +28,19 @@
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
 			<version>${commons-configuration_version}</version>
+			<!-- <exclusions>
+				<exclusion>
+					<groupId>commons-lang</groupId>
+             		<artifactId>commons-lang</artifactId>
+				</exclusion>
+			</exclusions> -->
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.3</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-pool2</artifactId>
@@ -37,8 +49,14 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.1</version>
+			<version>${commons_lang3}</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
@@ -60,11 +78,6 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<classifier>jdk15</classifier>
 		</dependency>
 		<dependency>
 			<groupId>dom4j</groupId>

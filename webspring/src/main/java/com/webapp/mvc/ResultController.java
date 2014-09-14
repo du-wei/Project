@@ -9,8 +9,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
@@ -24,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.support.ServletContextResource;
 
+import com.alibaba.fastjson.JSONObject;
 import com.webapp.utils.ReqConst;
 import com.webapp.utils.model.ModelUtils;
 import com.webapp.utils.model.Student;
@@ -76,8 +75,8 @@ public class ResultController {
 
 	@RequestMapping(ReqConst.BODY)
 	public JSONObject body() {
-		JSONObject object = JSONObject.fromObject(ModelUtils.getStu());
-		return object;
+//		JSONObject object = JSONObject.fromObject(ModelUtils.getStu());
+		return null;
 	}
 
 	@Test
@@ -90,7 +89,7 @@ public class ResultController {
 		Resource r2 = new FileSystemResource("F:/ok.jpg");
 		FileCopyUtils.copy(resp, r2.getFile());
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/image2")
 	// 输出的二进制流

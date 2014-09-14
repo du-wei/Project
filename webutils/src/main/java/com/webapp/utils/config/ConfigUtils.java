@@ -182,9 +182,9 @@ public class ConfigUtils {
 		return builder;
 	}
 
-	public static Configuration configConverter(Properties props) {
-		return ConfigurationConverter.getConfiguration(props);
-	}
+//	public static Configuration configConverter(Properties props) {
+//		return ConfigurationConverter.getConfiguration(props);
+//	}
 
 	public static Properties configConverter(Configuration config) {
 		return ConfigurationConverter.getProperties(config);

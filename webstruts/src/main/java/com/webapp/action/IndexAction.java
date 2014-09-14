@@ -1,20 +1,18 @@
-/**   
- * @Title: IndexAction.java 
- * @Package com.webapp.action 
+/**
+ * @Title: IndexAction.java
+ * @Package com.webapp.action
  * @Description: TODO 描述
- * @author king chenglong@coweibo.cn 
- * @date 2013-2-25 下午4:30:16 
- * @version V1.0   
+ * @author king chenglong@coweibo.cn
+ * @date 2013-2-25 下午4:30:16
+ * @version V1.0
  */
 package com.webapp.action;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-
-import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.alibaba.fastjson.JSONObject;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**

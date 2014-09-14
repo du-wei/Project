@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class MathUtils {
 
+	@Deprecated
 	public static double random() {
 		return Math.floor(Math.random() * 11);
 	}
@@ -12,8 +13,8 @@ public class MathUtils {
 		return ThreadLocalRandom.current().nextInt();
 	}
 
-	public static int nextInt(int n) {
-		return ThreadLocalRandom.current().nextInt(n);
+	public static int nextInt(int bound) {
+		return ThreadLocalRandom.current().nextInt(bound);
 	}
 
 	public static int nextInt(int least, int bound) {
@@ -24,8 +25,8 @@ public class MathUtils {
 		return ThreadLocalRandom.current().nextDouble();
 	}
 
-	public static double nextDouble(double n) {
-		return ThreadLocalRandom.current().nextDouble(n);
+	public static double nextDouble(double bound) {
+		return ThreadLocalRandom.current().nextDouble(bound);
 	}
 
 	public static double nextDouble(double least, double bound) {
@@ -36,8 +37,8 @@ public class MathUtils {
 		return ThreadLocalRandom.current().nextLong();
 	}
 
-	public static long nextLong(long n) {
-		return ThreadLocalRandom.current().nextLong(n);
+	public static long nextLong(long bound) {
+		return ThreadLocalRandom.current().nextLong(bound);
 	}
 
 	public static long nextLong(long least, long bound) {
@@ -46,6 +47,10 @@ public class MathUtils {
 
 	public static float nextFloat() {
 		return ThreadLocalRandom.current().nextFloat();
+	}
+
+	public static boolean nextBoolean() {
+		return ThreadLocalRandom.current().nextBoolean();
 	}
 
 	public static void nextBytes(byte[] bytes) {

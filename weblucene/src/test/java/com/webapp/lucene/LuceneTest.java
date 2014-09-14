@@ -45,8 +45,8 @@ public class LuceneTest {
 //	jMock
 //	AssertJ
 	//EclEmma
-	
-	
+
+
 	private String strs = "长久以来，一颗流浪的心忽然间找到了一个可以安歇的去处。坐在窗前，我在试问我自己：你有多久没有好好看看这蓝蓝的天，"+
 			"闻一闻这芬芳的花香，听一听那鸟儿的鸣唱？有多久没有回家看看，听听家人的倾诉？有多久没和他们一起吃饭了，听听那年老的欢笑？有多久没与他们谈心，"+
 			"听听他门的烦恼、他们的心声呢？是不是因为一路风风雨雨， 而忘了天边的彩虹？是不是因为行色匆匆的脚步，而忽视了沿路的风景？除了一颗疲惫的心，"+
@@ -110,11 +110,11 @@ public class LuceneTest {
 
 	@Test
 	public void testIndex() throws Exception {
-		
+
 		File file = new File(ConfigUtils.getPathStr("word.txt"));
 		FileReader fileReader = new FileReader(file);
 		BufferedReader reader = new BufferedReader(fileReader);
-		
+
 		List<Document> list = new ArrayList<>();
 
 		String str = "";
@@ -133,25 +133,25 @@ public class LuceneTest {
 		// AnalyzerUtils.showToken(str, jcseg);
 //		IndexUtils.delete("./index");
 		IndexUtils.index("./index", list);
-		
+
 		IndexSearcher indexSearcher = IndexUtils.getIndexSearcher();
 		Query query = new TermQuery(new Term("title", "梦想"));
 		query.setBoost(1.2f);
 		Sort sort = new Sort(new SortField("title", Type.STRING, true));
 //		TopDocs topDocs = indexSearcher.search(query, null, 10, sort, true, true);
 		TopDocs topDocs = indexSearcher.search(query, 10);
-		
+
 		for (ScoreDoc doc : topDocs.scoreDocs) {
 			Document d = indexSearcher.doc(doc.doc);
-			
+
 			Explanation exp = indexSearcher.explain(query, doc.doc);
-			
+
 			System.out.println(doc.score + "---" + d.get("title"));
 			System.out.println(exp.toString());
 		}
-		
+
 //		LuceneUtils.listDoc(indexSearcher, topDocs);;
-		
+
 		reader.close();
 	}
 
@@ -211,7 +211,7 @@ public class LuceneTest {
 	public void testsearchByFuzzy() throws Exception {
 		SearcherUtils.searchByFuzzy("title", "小", 10);
 	}
-	
+
 	@Test
 	public void testsearchBySpan() throws Exception{
 		SearcherUtils.searchBySpan();

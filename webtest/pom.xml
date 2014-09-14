@@ -1,6 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 		http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   	<modelVersion>4.0.0</modelVersion>
@@ -13,7 +13,7 @@
 	<artifactId>webtest</artifactId>
 	<packaging>jar</packaging>
 	<name>webtest</name>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -41,11 +41,6 @@
 			<version>20140107</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<classifier>jdk15</classifier>
-		</dependency>
-		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.13</version>
@@ -60,8 +55,8 @@
 			<artifactId>assertj-core</artifactId>
 			<version>1.6.0</version>
 		</dependency>
-				
-	
+
+
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
@@ -77,20 +72,20 @@
 			<artifactId>unitils-core</artifactId>
 			<version>3.3</version>
 		</dependency>
-		<!-- 
+		<!--
 		unitils-easymock
 		unitils-mock
 		unitils-inject
 		unitils-test
 		unitils-dbunit
-		unitils-dbmaintainer 
+		unitils-dbmaintainer
 		unitils-database
 		unitils-orm
 		unitils-testng
 		unitils-spring
 		unitils-io
 		 -->
-		
+
 		<!-- 压力测试首选 -->
 		<dependency>
 			<!-- http://sourceforge.net/projects/contiperf/files/ -->
@@ -105,19 +100,19 @@
 			<version>1.8</version>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<!-- 负载测试首选
 		<dependency>
 			<groupId>net.sf.grinder</groupId>
 			<artifactId>grinder-core</artifactId>
 			<version>3.11</version>
-		</dependency> 
+		</dependency>
 	    <dependency>
 			<groupId>net.sourceforge.groboutils</groupId>
 			<artifactId>groboutils-core</artifactId>
 			<version>5</version>
 	    </dependency> -->
-		
+
 		<!-- web测试首选 -->
 		<dependency>
 			<groupId>org.httpunit</groupId>
@@ -131,7 +126,7 @@
 			<version>3.1</version>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<!-- mock测试首选 -->
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -139,7 +134,7 @@
 			<version>1.9.5</version>
 			<optional>true</optional>
 	    </dependency>
-		
+
 		<!-- 数据库测试首选 -->
 		<dependency>
 			<groupId>net.sf.dbmonster</groupId>
@@ -147,20 +142,20 @@
 			<version>1.0.4</version>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.dbunit</groupId>
 			<artifactId>dbunit</artifactId>
 			<version>2.5.0</version>
 		</dependency>
-				
+
 	</dependencies>
-  
+
   	<build>
 		<finalName>webtest</finalName>
 		<outputDirectory>target/classes</outputDirectory>
 		<defaultGoal>install</defaultGoal>
 		<directory>${basedir}/target</directory>
 	</build>
-  
+
 </project>

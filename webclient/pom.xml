@@ -1,6 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 		http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   	<modelVersion>4.0.0</modelVersion>
@@ -12,19 +12,17 @@
 	</parent>
 	<artifactId>webclient</artifactId>
 	<packaging>war</packaging>
-	
+
 	<properties>
-		<hamcrest_version>1.3</hamcrest_version>
-		<spring_version>4.0.0.RELEASE</spring_version>
 	</properties>
-	
+
 	<build>
 		<finalName>webclient</finalName>
 		<outputDirectory>target/classes</outputDirectory>
 		<defaultGoal>install</defaultGoal>
 		<directory>${basedir}/target</directory>
 	</build>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
@@ -60,7 +58,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>${spring_version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -77,7 +75,7 @@
 			<artifactId>webservice</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		            
+
 	</dependencies>
-	
+
 </project>

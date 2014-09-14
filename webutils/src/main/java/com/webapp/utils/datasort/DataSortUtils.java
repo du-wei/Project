@@ -8,13 +8,13 @@ import java.util.ListIterator;
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
-import com.webapp.utils.random.RandomUtils;
+import com.webapp.utils.random.RndUtils;
 
 public class DataSortUtils {
 
 	@Test
 	public void testName() throws Exception {
-		Integer[] target = RandomUtils.intArray(100, 1000);
+		Integer[] target = RndUtils.intArray(100, 1000);
 
 		List<Integer> top = Arrays.asList(Arrays.copyOf(target, 10));
 
