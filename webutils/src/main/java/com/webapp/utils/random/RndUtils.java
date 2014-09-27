@@ -10,9 +10,7 @@ import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.concurrent.ThreadLocalRandom;
 
-import org.apache.commons.lang.math.RandomUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import com.webapp.utils.math.MathUtils;
@@ -20,32 +18,6 @@ import com.webapp.utils.math.MathUtils;
 public class RndUtils {
 
 	private static String[] fixStrs = fixStr();
-
-	@SuppressWarnings("unchecked")
-	public static <T> T rnd(Class<T> clz){
-		Object t = null;
-		if(clz.getSimpleName().equals(Integer.class.getSimpleName())){
-			t = MathUtils.nextInt();
-		}else if (clz.getSimpleName().equals(Long.class.getSimpleName())) {
-			t = MathUtils.nextLong();
-		}else if (clz.getSimpleName().equals(Short.class.getSimpleName())) {
-//			t = ThreadLocalRandom.current().
-		}else if (clz.getSimpleName().equals(Float.class.getSimpleName())) {
-			t = MathUtils.nextFloat();
-		}else if (clz.getSimpleName().equals(Double.class.getSimpleName())) {
-			t = MathUtils.nextDouble();
-		}else if (clz.getSimpleName().equals(Character.class.getSimpleName())) {
-
-		}else if (clz.getSimpleName().equals(Byte.class.getSimpleName())) {
-
-		}else if (clz.getSimpleName().equals(Boolean.class.getSimpleName())) {
-			t = MathUtils.nextBoolean();
-		}else if (clz.getSimpleName().equals(String.class.getSimpleName())) {
-			t = rndStr(10);
-		}
-
-		return (T) t;
-	}
 
 	public static ArrayList<String> arrayList(int size) {
 		ArrayList<String> list = new ArrayList<>();

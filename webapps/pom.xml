@@ -199,11 +199,11 @@
 			<artifactId>poi</artifactId>
 			<version>3.9</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>5.6.1</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>xerces</groupId>
 			<artifactId>xercesImpl</artifactId>

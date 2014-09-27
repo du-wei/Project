@@ -1,4 +1,4 @@
-package com.webapp.utils.t;
+package com.webapp.utils.test;
 
 import static org.junit.Assert.*;
 

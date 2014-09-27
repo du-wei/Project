@@ -1,4 +1,4 @@
-package com.webapp.utils.t;
+package com.webapp.utils.test;
 
 import java.util.Optional;
 import java.util.function.BiFunction;

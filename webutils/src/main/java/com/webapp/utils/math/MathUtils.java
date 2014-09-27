@@ -4,11 +4,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class MathUtils {
 
-	@Deprecated
-	public static double random() {
-		return Math.floor(Math.random() * 11);
-	}
-
 	public static int nextInt() {
 		return ThreadLocalRandom.current().nextInt();
 	}
