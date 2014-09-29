@@ -1,6 +1,6 @@
 package com.webapp.utils.codec;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -34,12 +34,7 @@ public class KeysUtils {
 	 * @return Decrypt string
 	 */
 	public static String decode(byte[] data) {
-		try {
-			return StringUtils.toString(Base64.decodeBase64(data), "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return StringUtils.toEncodedString(Base64.decodeBase64(data), Charset.forName("utf-8"));
 	}
 
 	/**

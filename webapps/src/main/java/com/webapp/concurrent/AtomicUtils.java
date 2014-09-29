@@ -11,17 +11,28 @@ public class AtomicUtils implements Runnable {
 	private static AtomicInteger atomic = new AtomicInteger();
 
 	public static int getNextInt() {
-		return atomic.incrementAndGet();
+//		atomic.decrementAndGet();
+		return 1;
 	}
 
 	@Test
 	public void main() {
-		ThreadUtils.testThread(() -> new AtomicUtils(), 50, true);
+		ThreadUtils.testSimpleCase(new AtomicUtils(), 50);
+	}
+
+	public static void main(String[] args) {
+		ThreadUtils.testSimpleCase(new AtomicUtils(), 50);
 	}
 
 	@Override
 	public void run() {
-		System.out.println(getNextInt());
+		atomic.incrementAndGet();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println(atomic.decrementAndGet());
 	}
 
 }
