@@ -1,7 +1,5 @@
 package com.webapp.JavaTXml;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 public class XmlObject {
 
 	private int id;

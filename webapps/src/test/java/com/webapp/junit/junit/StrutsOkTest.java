@@ -16,7 +16,6 @@ import org.apache.struts2.StrutsTestCase;
 import org.apache.struts2.dispatcher.mapper.ActionMapping;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

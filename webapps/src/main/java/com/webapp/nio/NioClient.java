@@ -30,6 +30,7 @@ public class NioClient {
 	}
 
 	private class ClientThread extends Thread {
+		@Override
 		public void run() {
 			try {
 				while (selector.select() > 0) {

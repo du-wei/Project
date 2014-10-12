@@ -15,6 +15,7 @@ public class CkEditorAction extends ActionSupport {
 		this.editor = editor;
 	}
 
+	@Override
 	public String execute() {
 		System.out.println(editor);
 		return SUCCESS;

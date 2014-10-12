@@ -313,6 +313,7 @@ public class FilesUtils {
 
 	public static void cleaner(final Object buffer) throws Exception {
 		AccessController.doPrivileged(new PrivilegedAction<Object>() {
+			@Override
 			public Object run() {
 				try {
 					Method getCleanerMethod = buffer.getClass().getMethod(

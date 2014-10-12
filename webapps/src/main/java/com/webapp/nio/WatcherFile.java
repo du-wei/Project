@@ -82,6 +82,7 @@ public class WatcherFile {
 
 	private void registerAll(Path start) throws IOException {
 		Files.walkFileTree(start, new SimpleFileVisitor<Path>() {
+			@Override
 			public FileVisitResult preVisitDirectory(Path dir,
 					BasicFileAttributes attrs) {
 				register(dir);

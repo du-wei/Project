@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 public class Jdk8Utils<T, R> {
 
 	public static void main(String[] args) {
@@ -65,6 +63,7 @@ public class Jdk8Utils<T, R> {
 		return Stream.of(objArr).anyMatch(t->t.equals(valToFind));
 	}
 
+	@Override
 	public String toString(){
 		List<T> asList = Arrays.asList(objArr);
 		System.out.println(asList);

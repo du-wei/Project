@@ -7,8 +7,8 @@ import java.util.Date;
  *	学生表
  */
 public class Student {
-	
-	public int id;
+
+	private int id;
 	private String stuNo;
 	private String name;
 	private String card;
@@ -21,7 +21,7 @@ public class Student {
 	private String politic;
 	//专业
 	private String specialty;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -88,5 +88,5 @@ public class Student {
 	public void setSpecialty(String specialty) {
 		this.specialty = specialty;
 	}
-	
+
 }

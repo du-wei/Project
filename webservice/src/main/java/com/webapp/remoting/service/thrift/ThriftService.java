@@ -12,23 +12,15 @@ import org.apache.thrift.scheme.StandardScheme;
 
 import org.apache.thrift.scheme.TupleScheme;
 import org.apache.thrift.protocol.TTupleProtocol;
-import org.apache.thrift.protocol.TProtocolException;
-import org.apache.thrift.EncodingUtils;
 import org.apache.thrift.TException;
 import org.apache.thrift.async.AsyncMethodCallback;
 import org.apache.thrift.server.AbstractNonblockingServer.*;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.EnumMap;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.EnumSet;
 import java.util.Collections;
 import java.util.BitSet;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,10 +44,12 @@ public class ThriftService {
   public static class Client extends org.apache.thrift.TServiceClient implements Iface {
     public static class Factory implements org.apache.thrift.TServiceClientFactory<Client> {
       public Factory() {}
-      public Client getClient(org.apache.thrift.protocol.TProtocol prot) {
+      @Override
+	public Client getClient(org.apache.thrift.protocol.TProtocol prot) {
         return new Client(prot);
       }
-      public Client getClient(org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) {
+      @Override
+	public Client getClient(org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) {
         return new Client(iprot, oprot);
       }
     }
@@ -69,7 +63,8 @@ public class ThriftService {
       super(iprot, oprot);
     }
 
-    public String getAll(String para) throws org.apache.thrift.TException
+    @Override
+	public String getAll(String para) throws org.apache.thrift.TException
     {
       send_getAll(para);
       return recv_getAll();
@@ -101,7 +96,8 @@ public class ThriftService {
         this.clientManager = clientManager;
         this.protocolFactory = protocolFactory;
       }
-      public AsyncClient getAsyncClient(org.apache.thrift.transport.TNonblockingTransport transport) {
+      @Override
+	public AsyncClient getAsyncClient(org.apache.thrift.transport.TNonblockingTransport transport) {
         return new AsyncClient(protocolFactory, clientManager, transport);
       }
     }
@@ -110,7 +106,8 @@ public class ThriftService {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void getAll(String para, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+    @Override
+	public void getAll(String para, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
       getAll_call method_call = new getAll_call(para, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -124,7 +121,8 @@ public class ThriftService {
         this.para = para;
       }
 
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+      @Override
+	public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
         prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getAll", org.apache.thrift.protocol.TMessageType.CALL, 0));
         getAll_args args = new getAll_args();
         args.setPara(para);
@@ -164,15 +162,18 @@ public class ThriftService {
         super("getAll");
       }
 
-      public getAll_args getEmptyArgsInstance() {
+      @Override
+	public getAll_args getEmptyArgsInstance() {
         return new getAll_args();
       }
 
-      protected boolean isOneway() {
+      @Override
+	protected boolean isOneway() {
         return false;
       }
 
-      public getAll_result getResult(I iface, getAll_args args) throws org.apache.thrift.TException {
+      @Override
+	public getAll_result getResult(I iface, getAll_args args) throws org.apache.thrift.TException {
         getAll_result result = new getAll_result();
         result.success = iface.getAll(args.para);
         return result;
@@ -201,14 +202,17 @@ public class ThriftService {
         super("getAll");
       }
 
-      public getAll_args getEmptyArgsInstance() {
+      @Override
+	public getAll_args getEmptyArgsInstance() {
         return new getAll_args();
       }
 
-      public AsyncMethodCallback<String> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
+      @Override
+	public AsyncMethodCallback<String> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
         return new AsyncMethodCallback<String>() { 
-          public void onComplete(String o) {
+          @Override
+		public void onComplete(String o) {
             getAll_result result = new getAll_result();
             result.success = o;
             try {
@@ -219,7 +223,8 @@ public class ThriftService {
             }
             fb.close();
           }
-          public void onError(Exception e) {
+          @Override
+		public void onError(Exception e) {
             byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
             org.apache.thrift.TBase msg;
             getAll_result result = new getAll_result();
@@ -238,11 +243,13 @@ public class ThriftService {
         };
       }
 
-      protected boolean isOneway() {
+      @Override
+	protected boolean isOneway() {
         return false;
       }
 
-      public void start(I iface, getAll_args args, org.apache.thrift.async.AsyncMethodCallback<String> resultHandler) throws TException {
+      @Override
+	public void start(I iface, getAll_args args, org.apache.thrift.async.AsyncMethodCallback<String> resultHandler) throws TException {
         iface.getAll(args.para,resultHandler);
       }
     }
@@ -311,11 +318,13 @@ public class ThriftService {
         _fieldName = fieldName;
       }
 
-      public short getThriftFieldId() {
+      @Override
+	public short getThriftFieldId() {
         return _thriftId;
       }
 
-      public String getFieldName() {
+      @Override
+	public String getFieldName() {
         return _fieldName;
       }
     }
@@ -349,7 +358,8 @@ public class ThriftService {
       }
     }
 
-    public getAll_args deepCopy() {
+    @Override
+	public getAll_args deepCopy() {
       return new getAll_args(this);
     }
 
@@ -382,7 +392,8 @@ public class ThriftService {
       }
     }
 
-    public void setFieldValue(_Fields field, Object value) {
+    @Override
+	public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PARA:
         if (value == null) {
@@ -395,7 +406,8 @@ public class ThriftService {
       }
     }
 
-    public Object getFieldValue(_Fields field) {
+    @Override
+	public Object getFieldValue(_Fields field) {
       switch (field) {
       case PARA:
         return getPara();
@@ -405,7 +417,8 @@ public class ThriftService {
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
+    @Override
+	public boolean isSet(_Fields field) {
       if (field == null) {
         throw new IllegalArgumentException();
       }
@@ -468,15 +481,18 @@ public class ThriftService {
       return 0;
     }
 
-    public _Fields fieldForId(int fieldId) {
+    @Override
+	public _Fields fieldForId(int fieldId) {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+    @Override
+	public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
       schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    @Override
+	public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
       schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
     }
 
@@ -518,14 +534,16 @@ public class ThriftService {
     }
 
     private static class getAll_argsStandardSchemeFactory implements SchemeFactory {
-      public getAll_argsStandardScheme getScheme() {
+      @Override
+	public getAll_argsStandardScheme getScheme() {
         return new getAll_argsStandardScheme();
       }
     }
 
     private static class getAll_argsStandardScheme extends StandardScheme<getAll_args> {
 
-      public void read(org.apache.thrift.protocol.TProtocol iprot, getAll_args struct) throws org.apache.thrift.TException {
+      @Override
+	public void read(org.apache.thrift.protocol.TProtocol iprot, getAll_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TField schemeField;
         iprot.readStructBegin();
         while (true)
@@ -554,7 +572,8 @@ public class ThriftService {
         struct.validate();
       }
 
-      public void write(org.apache.thrift.protocol.TProtocol oprot, getAll_args struct) throws org.apache.thrift.TException {
+      @Override
+	public void write(org.apache.thrift.protocol.TProtocol oprot, getAll_args struct) throws org.apache.thrift.TException {
         struct.validate();
 
         oprot.writeStructBegin(STRUCT_DESC);
@@ -570,7 +589,8 @@ public class ThriftService {
     }
 
     private static class getAll_argsTupleSchemeFactory implements SchemeFactory {
-      public getAll_argsTupleScheme getScheme() {
+      @Override
+	public getAll_argsTupleScheme getScheme() {
         return new getAll_argsTupleScheme();
       }
     }
@@ -665,11 +685,13 @@ public class ThriftService {
         _fieldName = fieldName;
       }
 
-      public short getThriftFieldId() {
+      @Override
+	public short getThriftFieldId() {
         return _thriftId;
       }
 
-      public String getFieldName() {
+      @Override
+	public String getFieldName() {
         return _fieldName;
       }
     }
@@ -703,7 +725,8 @@ public class ThriftService {
       }
     }
 
-    public getAll_result deepCopy() {
+    @Override
+	public getAll_result deepCopy() {
       return new getAll_result(this);
     }
 
@@ -736,7 +759,8 @@ public class ThriftService {
       }
     }
 
-    public void setFieldValue(_Fields field, Object value) {
+    @Override
+	public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case SUCCESS:
         if (value == null) {
@@ -749,7 +773,8 @@ public class ThriftService {
       }
     }
 
-    public Object getFieldValue(_Fields field) {
+    @Override
+	public Object getFieldValue(_Fields field) {
       switch (field) {
       case SUCCESS:
         return getSuccess();
@@ -759,7 +784,8 @@ public class ThriftService {
     }
 
     /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
+    @Override
+	public boolean isSet(_Fields field) {
       if (field == null) {
         throw new IllegalArgumentException();
       }
@@ -822,15 +848,18 @@ public class ThriftService {
       return 0;
     }
 
-    public _Fields fieldForId(int fieldId) {
+    @Override
+	public _Fields fieldForId(int fieldId) {
       return _Fields.findByThriftId(fieldId);
     }
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+    @Override
+	public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
       schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+    @Override
+	public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
       schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
       }
 
@@ -872,14 +901,16 @@ public class ThriftService {
     }
 
     private static class getAll_resultStandardSchemeFactory implements SchemeFactory {
-      public getAll_resultStandardScheme getScheme() {
+      @Override
+	public getAll_resultStandardScheme getScheme() {
         return new getAll_resultStandardScheme();
       }
     }
 
     private static class getAll_resultStandardScheme extends StandardScheme<getAll_result> {
 
-      public void read(org.apache.thrift.protocol.TProtocol iprot, getAll_result struct) throws org.apache.thrift.TException {
+      @Override
+	public void read(org.apache.thrift.protocol.TProtocol iprot, getAll_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TField schemeField;
         iprot.readStructBegin();
         while (true)
@@ -908,7 +939,8 @@ public class ThriftService {
         struct.validate();
       }
 
-      public void write(org.apache.thrift.protocol.TProtocol oprot, getAll_result struct) throws org.apache.thrift.TException {
+      @Override
+	public void write(org.apache.thrift.protocol.TProtocol oprot, getAll_result struct) throws org.apache.thrift.TException {
         struct.validate();
 
         oprot.writeStructBegin(STRUCT_DESC);
@@ -924,7 +956,8 @@ public class ThriftService {
     }
 
     private static class getAll_resultTupleSchemeFactory implements SchemeFactory {
-      public getAll_resultTupleScheme getScheme() {
+      @Override
+	public getAll_resultTupleScheme getScheme() {
         return new getAll_resultTupleScheme();
       }
     }

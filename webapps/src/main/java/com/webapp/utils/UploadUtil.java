@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import org.apache.struts2.ServletActionContext;
-
 public class UploadUtil {
 
 	public static String uploadImage(String fileName, String folder) {

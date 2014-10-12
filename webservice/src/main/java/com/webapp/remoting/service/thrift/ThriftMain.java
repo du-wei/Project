@@ -1,22 +1,9 @@
 package com.webapp.remoting.service.thrift;
 
 import org.apache.thrift.TProcessor;
-import org.apache.thrift.async.AsyncMethodCallback;
-import org.apache.thrift.async.TAsyncClientManager;
-import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.protocol.TCompactProtocol;
-import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.server.TServer;
-import org.apache.thrift.transport.TFramedTransport;
-import org.apache.thrift.transport.TNonblockingSocket;
-import org.apache.thrift.transport.TNonblockingTransport;
-import org.apache.thrift.transport.TSocket;
-import org.apache.thrift.transport.TTransport;
-import org.junit.Test;
-
 import com.webapp.remoting.service.thrift.ThriftServerUtils.TProtocols;
 import com.webapp.remoting.service.thrift.ThriftServerUtils.TServerTrans;
-import com.webapp.remoting.service.thrift.ThriftService.AsyncClient.getAll_call;
 import com.webapp.remoting.service.thrift.ThriftService.Iface;
 import com.webapp.remoting.service.thrift.ThriftService.Processor;
 

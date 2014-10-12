@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 
 public class ServletFilter implements Filter {
 
+	@Override
 	public void destroy() {
 		System.out.println("servletFilter destroy");
 	}
 
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -26,6 +28,7 @@ public class ServletFilter implements Filter {
 		// chain.doFilter(request, response);
 	}
 
+	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		System.out
 				.println("servletfilter init=================" + filterConfig);

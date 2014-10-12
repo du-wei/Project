@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URL;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.namespace.QName;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPBody;
@@ -18,7 +17,6 @@ import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.stax.StAXSource;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.ws.Dispatch;
 import javax.xml.ws.Service;
@@ -26,7 +24,6 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
-import org.hamcrest.generator.HamcrestFactoryWriter;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 

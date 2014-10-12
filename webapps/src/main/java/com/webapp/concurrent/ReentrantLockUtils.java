@@ -3,16 +3,19 @@ package com.webapp.concurrent;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ReentrantLockUtils<T> {
 
+	//StampedLock jj;
+//	http://developer.51cto.com/art/201405/439149.htm
+
 	private static Logger log = LogManager.getLogger(ReentrantLockUtils.class.getName());
 
 	// 独占锁
 	Lock lock = new ReentrantLock();
+//	ReentrantReadWriteLock jj;
 	Condition full = lock.newCondition();
 	Condition empty = lock.newCondition();
 

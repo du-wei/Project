@@ -83,7 +83,7 @@ public class SpringModel1 {
 	public void printList(List<String> result) {
 		System.out.println("list value:");
 		for (Iterator<String> iterator = result.iterator(); iterator.hasNext();) {
-			String element = (String) iterator.next();
+			String element = iterator.next();
 			System.out.println(element);
 		}
 	}
@@ -92,7 +92,7 @@ public class SpringModel1 {
 		System.out.println("map value:");
 		for (Iterator<String> iterator = result.keySet().iterator(); iterator
 				.hasNext();) {
-			String element = (String) iterator.next();
+			String element = iterator.next();
 			System.out.println(element);
 		}
 	}
@@ -100,7 +100,7 @@ public class SpringModel1 {
 	public void printSet(Set<String> result) {
 		System.out.println("set value:");
 		for (Iterator<String> iterator = result.iterator(); iterator.hasNext();) {
-			String element = (String) iterator.next();
+			String element = iterator.next();
 			System.out.println(element);
 		}
 	}

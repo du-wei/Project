@@ -2,6 +2,7 @@ package com.webapp.utils.model;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.webapp.utils.math.MathUtils;
@@ -11,11 +12,18 @@ public class ModelUtils {
 
 	public static Student getStu() {
 	    Student student = new Student();
-	    student.setId(MathUtils.nextInt());
-	    student.setName(RndUtils.getStr(10));
-	    student.setAge(MathUtils.nextInt(10, 20));
-	    student.setAddress(RndUtils.rndStr(15));
-	    student.setCard(RndUtils.rndStr(18));
+//	    student.setId(MathUtils.nextInt());
+//	    student.setStuNo(RndUtils.getStr(5));
+//	    student.setName(RndUtils.getStr(5));
+//	    student.setCard(RndUtils.getStr(18));
+//	    student.setSex("mail");
+//	    student.setBirthday(new Date());
+//	    student.setAge(MathUtils.nextInt(10, 20));
+//	    student.setAddress(RndUtils.rndStr(15));
+//	    student.setNation("中国");
+	    student.setPolitic("");
+	    student.setSpecialty("compute");
+//	    student.setSpecialty(null);
 	    return student;
     }
 

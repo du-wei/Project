@@ -10,6 +10,7 @@ import javax.jws.WebService;
 @WebService(endpointInterface = "com.webapp.webservice.service.cxf.CxfHello")
 public class CxfHelloImpl implements CxfHello {
 
+	@Override
 	public String sayHello(String str) {
 		System.out.println(" service " + str);
 		return "hello service === " + str;
@@ -30,6 +31,7 @@ public class CxfHelloImpl implements CxfHello {
 		return list;
 	}
 
+	@Override
 	public List<CxfUser> getUsers() {
 		CxfUser cxfUser = new CxfUser();
 		cxfUser.setName("users");
@@ -38,6 +40,7 @@ public class CxfHelloImpl implements CxfHello {
 		return users;
 	}
 
+	@Override
 	public Map<String, CxfUser> getMapUser() {
 
 		CxfUser cxfUser = new CxfUser();

@@ -15,8 +15,6 @@ import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.DosFileAttributeView;
 import java.nio.file.attribute.DosFileAttributes;
-import java.util.ArrayList;
-import java.util.List;
 
 public class NioPath {
 

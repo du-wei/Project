@@ -1,14 +1,7 @@
 package com.webapp.utils.test;
 
 import java.util.Optional;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.LongBinaryOperator;
-import java.util.function.LongConsumer;
-import java.util.function.LongFunction;
-import java.util.function.LongPredicate;
-import java.util.function.LongSupplier;
 
 //@FunctionalInterface
 public interface Lambda {

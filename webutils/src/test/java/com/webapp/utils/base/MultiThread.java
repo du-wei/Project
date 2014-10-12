@@ -1,7 +1,5 @@
 package com.webapp.utils.base;
 
-import java.util.concurrent.locks.ReentrantLock;
-
 import org.junit.Test;
 
 import com.webapp.utils.codec.KeysUtils;
@@ -20,6 +18,7 @@ public class MultiThread {
 		for(int i=0; i<500; i++){
 			final int ok = i;
 			new Thread(new Runnable() {
+				@Override
 				public void run() {
 					String data = "hello" + ok;
 					System.out.println(data + " - " + start(data) + "-" + ok);

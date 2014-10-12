@@ -1,7 +1,5 @@
 package com.webapp.utils.test;
 
-import static org.junit.Assert.*;
-
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 

@@ -31,6 +31,7 @@ public class PictureCheckCode extends ActionSupport {
 		this.response = ServletActionContext.getResponse();
 	}
 
+	@Override
 	public String execute() throws Exception {
 		response.setHeader("Pragma", "No-cache");
 		response.setHeader("Cache-Control", "No-cache");

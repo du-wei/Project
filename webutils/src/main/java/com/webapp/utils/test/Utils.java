@@ -6,13 +6,59 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 public class Utils {
+	//mina
+	//json object to json
+	public static final String Dot = ",";
+	/** EmailPattern,值为 {@value} */
+	public static final String EmailPattern = "^(\\w+[-+.]*)+@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+	/** PhonePattern,值为 {@value} */
+	public static final String PhonePattern = "^13[0-9]{9}|15[012356789][0-9]{8}|18[0256789][0-9]{8}|147[0-9]{8}$";
 
 	@Test
 	public void testName() throws Exception {
-		System.out.println(Utils.delTail(".,"));
+//		System.out.println(Utils.safedPhone(null));
 	}
 
+	/**
+	 * For example
+     * <pre>example@163.com -> http://mail.163.com</pre>
+	 * @param email
+	 * @return Email home page link
+	 */
+	public static String toEmail(String email) {
+		return StringUtils.isEmpty(email) ? null :
+			email.contains("@gmail") ? "https://accounts.google.com" : "http://mail."+email.split("@")[1];
+	}
 
+	/**
+	 * Verify the name
+	 * @param name
+	 * 		matches {@link #EmailPattern}
+	 * @return boolean
+	 */
+	public static boolean validName(String name, int least, int most){
+		return StringUtils.isNotEmpty(name) && name.matches("^[a-zA-Z0-9\\.\\-_]{4,20}$");
+	}
+
+	/**
+	 * Verify the email
+	 * @param email
+	 * 		matches {@link #EmailPattern}
+	 * @return boolean
+	 */
+	public static boolean validEmail(String email){
+		return StringUtils.isNotEmpty(email) && email.matches(EmailPattern);
+	}
+
+	/**
+	 * Verify the mobile phone number
+	 * @param phone
+	 * 		matches {@link #PhonePattern}
+	 * @return boolean
+	 */
+	public static boolean validPhone(String phone){
+		return StringUtils.isNotEmpty(phone) && phone.matches(PhonePattern);
+	}
 
 	/**
 	 * For example
@@ -52,7 +98,7 @@ public class Utils {
 	 * @return string
 	 */
 	public static <T> String split(List<T> list) {
-		return split(list, ",");
+		return split(list, Dot);
 	}
 
 	/**
@@ -64,8 +110,8 @@ public class Utils {
 	 */
 	public static <T> String split(List<T> list, String split) {
 		StringBuffer result = new StringBuffer();
-		list.forEach((item) -> result.append(item + ","));
-		return StringUtils.removeEnd(result.toString(), ",");
+		list.forEach((item) -> result.append(item + Dot));
+		return StringUtils.removeEnd(result.toString(), Dot);
 	}
 
 	/**
@@ -75,7 +121,7 @@ public class Utils {
 	 * @return
 	 */
 	public static String delTail(String str){
-		return delTail(str, ",");
+		return delTail(str, Dot);
 	}
 
 	/**

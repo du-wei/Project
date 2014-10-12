@@ -45,6 +45,7 @@ public class BinaryStrGenerator extends BasicDataGenerator implements
 
 	private StringGenerator stringGenerator = new StringGenerator();
 
+	@Override
 	public void initialize(DBMonsterContext ctx) throws Exception {
 		random = (Random) ctx.getProperty(DBMonster.RANDOM_KEY);
 		log = (Log) ctx.getProperty(DBMonster.LOGGER_KEY);
@@ -57,6 +58,7 @@ public class BinaryStrGenerator extends BasicDataGenerator implements
 	 *
 	 * @return value.
 	 */
+	@Override
 	public Object generate() throws Exception {
 		if (nulls != 0 && random.nextInt(101) <= nulls) {
 			return null;
@@ -112,6 +114,7 @@ public class BinaryStrGenerator extends BasicDataGenerator implements
 
 	}
 
+	@Override
 	public void reset() {
 		currentIndex = 0;
 	}

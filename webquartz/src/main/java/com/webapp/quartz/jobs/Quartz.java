@@ -35,6 +35,7 @@ public class Quartz implements Job {
 	 *
 	 * @see org.quartz.Job#execute(org.quartz.JobExecutionContext)
 	 */
+	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		logger.info("start...");
 	}

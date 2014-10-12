@@ -15,7 +15,7 @@ import redis.clients.jedis.Transaction;
 import com.webapp.utils.config.ConfigUtils;
 
 public class RedisUtils {
-
+	//RedisClient gui
 	private static Logger logger = LogManager.getLogger(RedisUtils.class);
 	private static String redisCfg = "redis.properties";
 	private final static Configuration config = ConfigUtils.addConfig(redisCfg);

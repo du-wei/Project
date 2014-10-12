@@ -45,10 +45,12 @@ public class HttpUnitUtils {
 			_headers = headers;
 		}
 
+		@Override
 		public URL getURL() {
 			return _sourceURL;
 		}
 
+		@Override
 		public String[] getHeaderFields(String fieldName) {
 			return fieldName.equalsIgnoreCase("set-cookie") ? _headers
 					: new String[0];

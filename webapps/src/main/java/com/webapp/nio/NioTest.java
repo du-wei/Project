@@ -9,8 +9,6 @@ import java.nio.IntBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
-import java.util.Objects;
-
 import org.junit.Test;
 
 public class NioTest {

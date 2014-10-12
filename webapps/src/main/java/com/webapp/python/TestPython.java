@@ -1,8 +1,5 @@
 package com.webapp.python;
 
-import java.io.FileReader;
-import java.net.URL;
-
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;

@@ -1,7 +1,5 @@
 package com.webapp.design.strategy;
 
-import java.util.Comparator;
-
 public class Cat implements Comparable<Cat> {
 
     private int height;

@@ -37,18 +37,22 @@ public class AsyncDemoServlet extends HttpServlet {
 		AsyncContext ctx = req.startAsync();
 		ctx.addListener(new AsyncListener() {
 
+			@Override
 			public void onTimeout(AsyncEvent asyncEvent) throws IOException {
 				System.out.println("onTimeout");
 			}
 
+			@Override
 			public void onStartAsync(AsyncEvent asyncEvent) throws IOException {
 				System.out.println("onStartAsync");
 			}
 
+			@Override
 			public void onError(AsyncEvent asyncEvent) throws IOException {
 				System.out.println("onError");
 			}
 
+			@Override
 			public void onComplete(AsyncEvent asyncEvent) throws IOException {
 				System.out.println("onComplete");
 			}
@@ -72,6 +76,7 @@ public class AsyncDemoServlet extends HttpServlet {
 			this.ctx = ctx;
 		}
 
+		@Override
 		public void run() {
 			try {
 				// 等待十秒钟，以模拟业务方法的执行

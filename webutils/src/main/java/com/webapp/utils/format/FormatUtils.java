@@ -2,7 +2,6 @@ package com.webapp.utils.format;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class FormatUtils {
@@ -59,19 +58,19 @@ public class FormatUtils {
 	}
 
 	private static NumberFormat getNumberFormat(int scale) {
-		NumberFormat format = DecimalFormat.getNumberInstance();
+		NumberFormat format = NumberFormat.getNumberInstance();
 		setFormat(scale, format);
 		return format;
 	}
 
 	private static NumberFormat getPercentFormat(int scale) {
-		NumberFormat format = DecimalFormat.getPercentInstance();
+		NumberFormat format = NumberFormat.getPercentInstance();
 		setFormat(scale, format);
 		return format;
 	}
 
 	private static NumberFormat getCurrencyFormat(int scale) {
-		NumberFormat format = DecimalFormat.getCurrencyInstance();
+		NumberFormat format = NumberFormat.getCurrencyInstance();
 		setFormat(scale, format);
 		return format;
 	}
