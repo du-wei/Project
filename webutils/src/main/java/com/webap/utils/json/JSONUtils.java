@@ -1,5 +1,7 @@
-package com.webapp.utils.test;
+package com.webap.utils.json;
 
+import java.lang.reflect.Field;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -15,66 +17,17 @@ import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.alibaba.fastjson.serializer.ValueFilter;
-import com.webapp.utils.model.ModelUtils;
-import com.webapp.utils.model.Student;
+import com.webapp.utils.test.CamelUtils;
 
 /**
- * @author king
- *
- */
+* @ClassName: JSONUtils.java
+* @Package com.webap.utils.json
+* @Description: JSON序列号工具完整版
+* @author  king king
+* @date 2014年10月13日 下午9:41:36
+* @version V1.0
+*/
 public class JSONUtils {
-
-	public static void main(String[] args) throws Exception, Exception {
-//		List<Student> stuList = ModelUtils.getStuList(2);
-		 Student stu = ModelUtils.getStu();
-
-		String json = JSONUtils.of(stu).toString();
-		System.out.println(json);
-
-//		System.out.println(json);
-
-//		ExtraProcessor process = new ExtraProcessor() {
-//			public void processExtra(Object object, String key, Object value) {
-//				int jj = 0;
-//				System.out.println(jj);
-//				System.out.println(object + key + value);
-//			}
-//		};
-//
-//		ExtraTypeProvider provider = new ExtraTypeProvider() {
-//			public java.lang.reflect.Type getExtraType(Object object, String key) {
-//				System.out.println(key);
-//				return null;
-//			}
-//		};
-//		JSONLexerBase lexer = new JSONScanner(json);
-//		DefaultJSONParser jsonParser = new DefaultJSONParser(json);
-
-//		if(lexer.tokenName().equals("id")){
-//			lexer.nextToken();
-//		}
-//		jsonParser.setResolveStatus(DefaultJSONParser.TypeNameRedirect);
-//		jsonParser.config(Feature.InitStringFieldAsEmpty, true);
-
-
-//		JSONLexer lexer2 = jsonParser.getLexer();
-//		lexer2.skipWhitespace();
-//		System.out.println(jsonParser.getInput().length());
-//
-//		do{
-//			lexer2.nextToken();
-//			System.out.println(lexer2.stringVal());
-//		}while (lexer2.getBufferPosition() != jsonParser.getInput().length());
-//		lexer2.resetStringPosition();
-//
-//		Student parseObject = jsonParser.parseObject(Student.class);
-//		jsonParser.close();
-
-
-//		Student parseObject = JSON.parseObject(json, Student.class, provider);
-//		System.out.println(JSON.toJSONString(parseObject, true));
-
-	}
 
     private Object jsonObj;
 
@@ -84,8 +37,6 @@ public class JSONUtils {
     	jsonObj = object;
 
     	SerializeWriter writer = new SerializeWriter();
-//    	SerializeConfig config = new SerializeConfig();
-//    	config.put(String.class, ObjectSerializer);
     	jsonSerializer = new JSONSerializer(writer);
     }
 
@@ -320,6 +271,28 @@ public class JSONUtils {
 	public JSONUtils dateFormat(String format) {
     	jsonSerializer.setDateFormat(new SimpleDateFormat(format));
     	return this;
+	}
+
+	public <T> JSONUtils doubleFormat(String pattern, Class<T> clz){
+		jsonSerializer.getValueFilters().add(new ValueFilter() {
+			DecimalFormat format = new DecimalFormat(pattern);
+			List<NameFilter> nameFilters = jsonSerializer.getNameFilters();
+
+			public Object process(Object object, String name, Object value) {
+				Field[] fields = clz.getDeclaredFields();
+				for(Field field : fields){
+					if(field.getType().getSimpleName().equalsIgnoreCase(double.class.getSimpleName())){
+						String key = field.getName();
+						for(NameFilter filter : nameFilters){
+							key = filter.process(null, key, null);
+						}
+						if(key.equals(name)) return format.format(value);
+					}
+				}
+				return value;
+			}
+		});
+		return this;
 	}
 
 	/**

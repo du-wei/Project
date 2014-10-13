@@ -10,20 +10,36 @@ import com.webapp.utils.random.RndUtils;
 
 public class ModelUtils {
 
+	public static JavaType getJavaType() {
+		JavaType type = new JavaType();
+		type.setBbyte(new Byte("byte"));
+		type.setBchar('a');
+		type.setBdouble(22.70000);
+		type.setBfloat(11.0f);
+		type.setBint(10);
+		type.setBlong(123);
+		type.setBshort((short)2);
+		type.setBbool(true);
+		type.setStr("str");
+		return type;
+	}
+
 	public static Student getStu() {
 	    Student student = new Student();
-//	    student.setId(MathUtils.nextInt());
-//	    student.setStuNo(RndUtils.getStr(5));
-//	    student.setName(RndUtils.getStr(5));
-//	    student.setCard(RndUtils.getStr(18));
-//	    student.setSex("mail");
-//	    student.setBirthday(new Date());
-//	    student.setAge(MathUtils.nextInt(10, 20));
-//	    student.setAddress(RndUtils.rndStr(15));
-//	    student.setNation("中国");
+	    student.setId(MathUtils.nextInt());
+	    student.setStuNo(RndUtils.getStr(5));
+	    student.setName(RndUtils.getStr(5));
+	    student.setCard(RndUtils.getStr(18));
+	    student.setSex(true);
+	    student.setBirthday(new Date());
+	    student.setAge((short)1);
+	    student.setAddress(RndUtils.rndStr(15));
+	    student.setNation("中国");
 	    student.setPolitic("");
 	    student.setSpecialty("compute");
-//	    student.setSpecialty(null);
+	    student.setMoney(11.0f);
+	    student.setWeight(22.01);
+	    student.setHeight(22.00);
 	    return student;
     }
 

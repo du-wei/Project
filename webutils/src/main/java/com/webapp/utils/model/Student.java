@@ -12,16 +12,16 @@ public class Student {
 	private String stuNo;
 	private String name;
 	private String card;
-	private String sex;
+	private boolean sex;
 	private Date birthday;
-	private int age;
+	private short age;
+	private double weight;
+	private double height;
+	private float money;
 	private String address;
 	private String nation;
-	//政治面貌
 	private String politic;
-	//专业
 	private String specialty;
-
 	public int getId() {
 		return id;
 	}
@@ -46,10 +46,10 @@ public class Student {
 	public void setCard(String card) {
 		this.card = card;
 	}
-	public String getSex() {
+	public boolean isSex() {
 		return sex;
 	}
-	public void setSex(String sex) {
+	public void setSex(boolean sex) {
 		this.sex = sex;
 	}
 	public Date getBirthday() {
@@ -58,11 +58,29 @@ public class Student {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	public int getAge() {
+	public short getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(short age) {
 		this.age = age;
+	}
+	public double getWeight() {
+		return weight;
+	}
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+	public double getHeight() {
+		return height;
+	}
+	public void setHeight(double height) {
+		this.height = height;
+	}
+	public float getMoney() {
+		return money;
+	}
+	public void setMoney(float money) {
+		this.money = money;
 	}
 	public String getAddress() {
 		return address;
@@ -88,5 +106,4 @@ public class Student {
 	public void setSpecialty(String specialty) {
 		this.specialty = specialty;
 	}
-
 }
