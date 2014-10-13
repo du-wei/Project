@@ -2,6 +2,8 @@ package com.webapp.utils.test;
 
 import java.lang.reflect.Field;
 
+import com.webapp.utils.string.Utils;
+
 public class CamelUtils {
 
 	private static final String SEPARATOR = "_";

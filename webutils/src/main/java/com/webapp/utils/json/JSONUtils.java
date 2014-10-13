@@ -1,4 +1,4 @@
-package com.webap.utils.json;
+package com.webapp.utils.json;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;

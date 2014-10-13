@@ -1,18 +1,27 @@
-package com.webapp.utils.test;
+package com.webapp.utils.string;
 
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+/**
+* @ClassName: Utils.java
+* @Package com.webapp.utils.string
+* @Description: 字符串相关便捷工具类
+* @author  king king
+* @date 2014年10月13日 下午9:43:51
+* @version V1.0
+*/
 public class Utils {
 	//mina
-	//json object to json
 	public static final String Dot = ",";
 	/** EmailPattern,值为 {@value} */
 	public static final String EmailPattern = "^(\\w+[-+.]*)+@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
 	/** PhonePattern,值为 {@value} */
 	public static final String PhonePattern = "^13[0-9]{9}|15[012356789][0-9]{8}|18[0256789][0-9]{8}|147[0-9]{8}$";
+
+
 
 	@Test
 	public void testName() throws Exception {
@@ -74,7 +83,7 @@ public class Utils {
 	 * For example
 	 * <pre>example@163.com -> exam***@163.com</pre>
 	 * @param email
-	 * @param len * the length of the
+	 * @param len The length of *
 	 * @return The safety of Email
 	 */
 	public static String safedEmail(String email, int len) {
@@ -105,7 +114,7 @@ public class Utils {
 	 * For example
 	 * <pre>["a", "b", "c"] -> a,b,c</pre>
 	 * @param list
-	 * @param split The separator
+	 * @param split The separator default ,
 	 * @return string
 	 */
 	public static <T> String split(List<T> list, String split) {
