@@ -10,13 +10,13 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../webcommon/pom.xml</relativePath>
 	</parent>
-	<artifactId>utils</artifactId>
+	<artifactId>webutils-release</artifactId>
 	<packaging>jar</packaging>
-	<name>utils</name>
+	<name>webutils-release</name>
 
 	<build>
 		<defaultGoal>install</defaultGoal>
-		<finalName>${project.artifactId}</finalName>
+		<finalName>commons-utils</finalName>
 		<outputDirectory>target/classes</outputDirectory>
 		<directory>${basedir}/target</directory>
 		<plugins>
