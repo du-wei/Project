@@ -17,7 +17,7 @@ import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.alibaba.fastjson.serializer.ValueFilter;
-import com.webapp.utils.test.CamelUtils;
+import com.webapp.utils.string.Utils;
 
 /**
 * @ClassName: JSONUtils.java
@@ -64,7 +64,7 @@ public class JSONUtils {
 	public String toCamelKey() {
 		jsonSerializer.getNameFilters().add(new NameFilter() {
 			public String process(Object object, String name, Object value) {
-				return CamelUtils.toCamel(name);
+				return Utils.toCamel(name);
 			}
 		});
 		return toString();
@@ -92,7 +92,7 @@ public class JSONUtils {
 	public String toUnderlineKey() {
 		jsonSerializer.getNameFilters().add(new NameFilter() {
 			public String process(Object object, String name, Object value) {
-				return CamelUtils.toUnderline(name);
+				return Utils.toUnderline(name);
 			}
 		});
 		return toString();
