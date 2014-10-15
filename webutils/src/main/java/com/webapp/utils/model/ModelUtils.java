@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.webapp.utils.math.MathUtils;
-import com.webapp.utils.random.RndUtils;
+import com.webapp.utils.random.RandomUtils;
 
 public class ModelUtils {
 
@@ -26,14 +25,14 @@ public class ModelUtils {
 
 	public static Student getStu() {
 	    Student student = new Student();
-	    student.setId(MathUtils.nextInt());
-	    student.setStuNo(RndUtils.getStr(5));
-	    student.setName(RndUtils.getStr(5));
-	    student.setCard(RndUtils.getStr(18));
+	    student.setId(RandomUtils.nextInt());
+	    student.setStuNo(RandomUtils.str(5));
+	    student.setName(RandomUtils.str(5));
+	    student.setCard(RandomUtils.str(18));
 	    student.setSex(true);
 	    student.setBirthday(new Date());
 	    student.setAge((short)1);
-	    student.setAddress(RndUtils.rndStr(15));
+	    student.setAddress(RandomUtils.str(15));
 	    student.setNation("中国");
 	    student.setPolitic("");
 	    student.setSpecialty("compute");

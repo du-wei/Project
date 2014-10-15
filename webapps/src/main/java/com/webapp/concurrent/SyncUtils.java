@@ -10,8 +10,7 @@ import jodd.util.ThreadUtil;
 
 import org.junit.Test;
 
-import com.webapp.utils.math.MathUtils;
-import com.webapp.utils.random.RndUtils;
+import com.webapp.utils.random.RandomUtils;
 import com.webapp.utils.test.Console;
 import com.webapp.utils.test.ThreadUtils;
 
@@ -21,7 +20,7 @@ public class SyncUtils {
 	public void testPhaser() throws Exception {
 		Phaser phaser = new Phaser(3);
 		ThreadUtils.testSimpleCase(()->{
-			ThreadUtil.sleep(MathUtils.nextInt(0, 5) * 1000);
+			ThreadUtil.sleep(RandomUtils.nextInt(0, 5) * 1000);
 
 //			int arrive = phaser.arrive();
 //			int aaaa = phaser.arriveAndAwaitAdvance();
@@ -65,7 +64,7 @@ System.out.println(phase);
 		ThreadUtils.testSimpleCase(()->{
 			try {
 
-				String data = RndUtils.getStr(5);
+				String data = RandomUtils.str(5);
 				Console.out("%s要交换数据%s", Thread.currentThread().getName(), data);
 				String changeData = exchanger.exchange(data);
 				Console.out("%s换回的数据%s", Thread.currentThread().getName(), changeData);
@@ -82,11 +81,11 @@ System.out.println(phase);
 		CyclicBarrier cb = new CyclicBarrier(3, ()->System.out.println("都到齐了，继续走啊"));
 		ThreadUtils.testSimpleCase(()->{
 			try {
-				ThreadUtil.sleep(MathUtils.nextInt(0, 5) * 1000);
+				ThreadUtil.sleep(RandomUtils.nextInt(0, 5) * 1000);
 				ThreadUtils.logCyclicBarrier(cb, "A");
 				cb.await();
 
-				ThreadUtil.sleep(MathUtils.nextInt(0, 5) * 1000);
+				ThreadUtil.sleep(RandomUtils.nextInt(0, 5) * 1000);
 				ThreadUtils.logCyclicBarrier(cb, "B");
 				cb.await();
 			} catch (Exception e) {
