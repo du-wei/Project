@@ -17,6 +17,8 @@ import com.webapp.utils.regex.RegexConst;
 */
 public class Utils {
 	//mina
+
+	/** symbol --> {@value} */
 	public static final String Dot = ".";
 	public static final String Lparen = "(";
 	public static final String Rparen = ")";
