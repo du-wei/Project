@@ -41,6 +41,7 @@
 		<spring_component>2.0.8</spring_component>
 		<aspectj_version>1.8.2</aspectj_version>
 		<fastjson_version>1.1.42</fastjson_version>
+		<jodd_version>3.6.1</jodd_version>
 		<commons_io>2.4</commons_io>
 		<commons_lang3>3.3.2</commons_lang3>
 		<commons_math3>3.3</commons_math3>
@@ -87,12 +88,7 @@
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-			<version>2.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jodd</groupId>
-			<artifactId>jodd</artifactId>
-			<version>3.3.7</version>
+			<version>2.5</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -126,6 +122,31 @@
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.jodd</groupId>
+				<artifactId>jodd-core</artifactId>
+				<version>${jodd_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jodd</groupId>
+				<artifactId>jodd-mail</artifactId>
+				<version>${jodd_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jodd</groupId>
+				<artifactId>jodd-http</artifactId>
+				<version>${jodd_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jodd</groupId>
+				<artifactId>jodd-json</artifactId>
+				<version>${jodd_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jodd</groupId>
+				<artifactId>jodd-db</artifactId>
+				<version>${jodd_version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

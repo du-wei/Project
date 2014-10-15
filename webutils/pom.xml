@@ -120,16 +120,23 @@
 			<artifactId>saxpath</artifactId>
 			<version>1.0-FCS</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.jpinyin</groupId>
-			<artifactId>jpinyin</artifactId>
-			<version>1.0</version>
-		</dependency>
+		<!-- <dependency>
+            <groupId>opensource</groupId>
+            <artifactId>jpinyin</artifactId>
+            <version>1.0</version>
+        </dependency> -->
 		<dependency>
 			<groupId>com.luhuiguo</groupId>
 			<artifactId>chinese-utils</artifactId>
 			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd-mail</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -7,24 +7,54 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
 
 public class MyDateUtils {
 
+	private static Logger logger = LogManager.getLogger(MyDateUtils.class);
+
 	private static DateTime date = new DateTime();
-	private static String defaultTime = "HH:mm:ss";
-	private static String defaultDate = "yyyy-MM-dd";
-	private static String defaultFormat = "yyyy-MM-dd HH:mm:ss";
+	private static final String defaultTime = "HH:mm:ss";
+	private static final String defaultDate = "yyyy-MM-dd";
+	private static final String defaultFormat = "yyyy-MM-dd HH:mm:ss";
+	private static final String Fmt_DateTime_G = "EEE MMM dd HH:mm:ss Z yyyy";
+	private static final String Fmt_DateTime_AT = "yyyy.MM.dd G 'at' HH:mm:ss z";
+	private static final String Fmt_DateTime_TZ = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+	private static final String Fmt_DateTime_T = "yyyy-MM-dd'T'HH:mm:ss";
+	private static final String Fmt_DateTime = "yyyy-MM-dd HH:mm:ss";
+	private static final String Fmt_DateTime_NS = "yyyy-MM-dd HH:mm";
+	private static final String Fmt_Date = "yyyy-MM-dd";
+	private static final String Fmt_DateTime_Slant = "yyyy/MM/dd HH:mm:ss";
+	private static final String Fmt_DateTime_SNS = "yyyy/MM/dd HH:mm";
+	private static final String Fmt_Date_Slant = "yyyy/MM/dd";
+	private static final String Fmt_Date_CN = "yyyy年MM月dd日";
+	private static final String Fmt_Time = "HH:mm:ss";
+	private static final String Fmt_Time_M = "h:mm a";
+
+	public static void main(String[] args) {
+//		DateUtils.
+    }
+
 	private static SimpleDateFormat format = new SimpleDateFormat(
 			"EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 
 	private static String[] parsePatterns = new String[] {
-			"EEE MMM dd HH:mm:ss Z yyyy", //
-			"yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd",
-			"yyyy.MM.dd G 'at' HH:mm:ss z", "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
-			"yyyy-MM-dd'T'HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy/MM/dd HH:mm:ss",
-			"yyyy/MM/dd HH:mm", "yyyy/MM/dd", "yyyy年MM月dd日", "HH:mm:ss",
-			"h:mm a" };
+			Fmt_DateTime_G, //
+			Fmt_DateTime_AT, //
+			Fmt_DateTime_TZ, //
+			Fmt_DateTime_T, //
+			Fmt_DateTime, //
+			Fmt_DateTime_NS, //
+			Fmt_Date, //
+			Fmt_DateTime_Slant, //
+			Fmt_DateTime_SNS, //
+			Fmt_Date_Slant, //
+			Fmt_Date_CN, //
+			Fmt_Time, //
+			Fmt_Time_M  //
+	};
 
 	// ------- getDateTime -------
 	public static String getCurDateTime() {
@@ -94,12 +124,11 @@ public class MyDateUtils {
 	}
 
 	// ------- parseStr ------+++
-	public static Calendar parseStrToCal(String source) {
-		return parse(source).toCalendar(Locale.getDefault());
-	}
-
-	public static Date parseStrToDate(String source) {
+	public static Date parseDate(String source) {
 		return parse(source).toDate();
+	}
+	public static Date parseDate(String source, String format) {
+		return parse(source, new String[] { format }).toDate();
 	}
 
 	public static Calendar getCalByDate(Date date) {
@@ -109,44 +138,47 @@ public class MyDateUtils {
 	}
 
 	// ------- parse HH ------
-	public static int getYearByStr(String source) {
-		return parseStrToCal(source).get(Calendar.YEAR);
+	public static int getYear(String source) {
+		return parse(source).getYear();
 	}
 
-	public static int getMonthByStr(String source) {
-		return parseStrToCal(source).get(Calendar.MONTH);
+	public static int getMonth(String source) {
+		return parse(source).getMonthOfYear();
 	}
 
-	public static int getDayByStr(String source) {
-		return parseStrToCal(source).get(Calendar.DAY_OF_MONTH);
+	public static int getDayOfMonth(String source) {
+		return parse(source).getDayOfMonth();
 	}
 
-	public static int getHourByStr(String source) {
-		return parseStrToCal(source).get(Calendar.HOUR_OF_DAY);
+	public static int getDayOfWeek(String source) {
+		return parse(source).getDayOfWeek();
 	}
 
-	public static int getMinuteByStr(String source) {
-		return parseStrToCal(source).get(Calendar.MINUTE);
+	public static int getDayOfYear(String source) {
+		return parse(source).getDayOfYear();
 	}
 
-	public static int getSecondByStr(String source) {
-		return parseStrToCal(source).get(Calendar.SECOND);
+	public static int getHour(String source) {
+		return parse(source).getHourOfDay();
 	}
 
-	public static DateTime parseDate(String str) {
-		return parseDate(str, parsePatterns);
+	public static int getMinute(String source) {
+		return parse(source).getMinuteOfHour();
 	}
 
-	public static DateTime parseDate(String str, String parsePattern) {
-		return parseDate(str, new String[] { parsePattern });
+	public static int getSecond(String source) {
+		return parse(source).getSecondOfMinute();
 	}
 
-	private static DateTime parseDate(String str, String[] parsePattern) {
+	private static DateTime parse(String str) {
+		return parse(str, parsePatterns);
+	}
+
+	private static DateTime parse(String str, String[] parsePattern) {
 		try {
-			return date.withMillis(DateUtils.parseDate(str, parsePattern)
-					.getTime());
+			return date.withMillis(DateUtils.parseDate(str, parsePattern).getTime());
 		} catch (ParseException e) {
-			e.printStackTrace();
+			logger.error(str + "解析出错", e);
 			return null;
 		}
 	}
@@ -155,7 +187,7 @@ public class MyDateUtils {
 		try {
 			return date.withMillis(format.parse(str).getTime());
 		} catch (ParseException e) {
-			e.printStackTrace();
+			logger.error(str + "解析出错", e);
 			return null;
 		}
 	}
@@ -168,14 +200,14 @@ public class MyDateUtils {
 		return date.withMillis(millis);
 	}
 
-	public static DateTime parse(String source) {
+	public static DateTime parses(String source) {
 		if (source
 				.matches("\\w{3} \\w{3} \\d{2} \\d{2}:\\d{2}:\\d{2} [\\+]?\\w{3,4} \\d{4}")) {
 			return parseGMT(source);
 		} else if (source.matches("\\d{13}")) {
 			return parseMillis(source);
 		}
-		return parseDate(source);
+		return parse(source);
 	}
 
 }

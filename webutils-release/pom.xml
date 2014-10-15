@@ -21,9 +21,9 @@
 			<version>${servlet_version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.jpinyin</groupId>
-			<artifactId>jpinyin</artifactId>
-			<version>1.0</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>${commons_email}</version>
 		</dependency>
 	</dependencies>
 

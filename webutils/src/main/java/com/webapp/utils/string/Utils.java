@@ -2,10 +2,9 @@ package com.webapp.utils.string;
 
 import java.util.List;
 
-import opensource.jpinyin.PinyinHelper;
-
 import org.apache.commons.lang3.StringUtils;
 
+import com.webapp.utils.jpinyin.PinyinHelper;
 import com.webapp.utils.regex.RegexConst;
 
 /**
