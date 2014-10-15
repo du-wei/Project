@@ -2,6 +2,8 @@ package com.webapp.utils.string;
 
 import java.util.List;
 
+import opensource.jpinyin.PinyinHelper;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.webapp.utils.regex.RegexConst;
@@ -26,6 +28,37 @@ public class Utils {
 	public static final String Comma = ",";
 	public static final String Colon = ":";
 	public static final String Underline = "_";
+
+	/**
+	 * pinyin
+     * <pre>中国 -> zhongguo</pre>
+	 * @param str
+	 * @return pinyin
+	 */
+	public static String toPinyin(String str) {
+	    return PinyinHelper.convertToPinyinString(str, "");
+    }
+
+	/**
+	 * pinyin
+     * <pre>中国 -> zhongguo</pre>
+	 * @param str
+	 * 		separator pinyin separator
+	 * @return pinyin
+	 */
+	public static String toPinyin(String str, String separator) {
+	    return PinyinHelper.convertToPinyinString(str, separator);
+    }
+
+	/**
+	 * ShortPinyin
+     * <pre>中国 -> zg</pre>
+	 * @param str
+	 * @return ShortPinyin
+	 */
+	public static String toShortPinyin(String str) {
+	    return PinyinHelper.getShortPinyin(str);
+    }
 
 	/**
 	 * Underline
@@ -216,4 +249,47 @@ public class Utils {
 	public static String delTail(String str, String remove){
 		return StringUtils.removeEnd(str, remove);
 	}
+
+	/**
+	 * Is Chinese
+	 * @param str
+	 * @return boolean
+	 */
+	public static boolean isChinese(String str){
+		return isChinese(str, false);
+	}
+
+	/**
+	 * Is Chinese
+	 * @param str
+	 * @return boolean
+	 */
+	public static boolean isChinese(String str, boolean hasSymbols) {
+        char[] ch = str.toCharArray();
+        for (int i = 0; i < ch.length; i++) {
+            char c = ch[i];
+            if (isChinese(c, hasSymbols)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isChinese(char c, boolean hasSymbols) {
+        Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
+        if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
+                || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
+                || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A) {
+            return true;
+        }
+        if (hasSymbols) {
+            if (ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
+                    || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
+                    || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

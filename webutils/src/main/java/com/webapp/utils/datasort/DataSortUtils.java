@@ -37,19 +37,15 @@ public class DataSortUtils {
 	}
 
 	protected static enum OrderType {
-		desc("desc", "降序"), asce("asce", "升序"), shell_desc("shell_desc",
-				"插入排序->Shell排序->稳定"), insert_desc("insert_desc",
-				"插入排序->直接插入排序->稳定"), quick_desc("quick_desc", "交换排序->快速排序->不稳定"), bubble_desc(
-				"bubble_desc", "交换排序->冒泡排序->稳定"), heap_desc("heap_desc",
-				"选择排序 ->堆排序->不稳定"), select_desc("select_desc",
-				"选择排序 ->直接选择排序->已改进->不稳定"), binaryInsert_desc(
-				"binaryInsert_desc", "插入排序->折半插入排序->稳定"), shell_asce(
-				"shell_asce", "插入排序->Shell排序->稳定"), insert_asce("insert_asce",
-				"插入排序->直接插入排序->稳定"), quick_asce("quick_asce", "交换排序->快速排序->不稳定"), bubble_asce(
-				"bubble_asce", "交换排序->冒泡排序->稳定"), heap_asce("heap_asce",
-				"选择排序 ->堆排序->不稳定"), select_asce("select_asce",
-				"选择排序 ->直接选择排序->已改进->不稳定"), binaryInsert_asce(
-				"binaryInsert_asce", "插入排序->折半插入排序->稳定");
+		desc("desc", "降序"), asce("asce", "升序"), shell_desc("shell_desc", "插入排序->Shell排序->稳定"), insert_desc(
+		        "insert_desc", "插入排序->直接插入排序->稳定"), quick_desc("quick_desc", "交换排序->快速排序->不稳定"), bubble_desc(
+		        "bubble_desc", "交换排序->冒泡排序->稳定"), heap_desc("heap_desc", "选择排序 ->堆排序->不稳定"), select_desc(
+		        "select_desc", "选择排序 ->直接选择排序->已改进->不稳定"), binaryInsert_desc("binaryInsert_desc",
+		        "插入排序->折半插入排序->稳定"), shell_asce("shell_asce", "插入排序->Shell排序->稳定"), insert_asce(
+		        "insert_asce", "插入排序->直接插入排序->稳定"), quick_asce("quick_asce", "交换排序->快速排序->不稳定"), bubble_asce(
+		        "bubble_asce", "交换排序->冒泡排序->稳定"), heap_asce("heap_asce", "选择排序 ->堆排序->不稳定"), select_asce(
+		        "select_asce", "选择排序 ->直接选择排序->已改进->不稳定"), binaryInsert_asce("binaryInsert_asce",
+		        "插入排序->折半插入排序->稳定");
 
 		private String key;
 		private String comment;
@@ -113,38 +109,31 @@ public class DataSortUtils {
 	}
 
 	public static byte[] sort(byte[] data, OrderType type) {
-		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data),
-				type));
+		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data), type));
 	}
 
 	public static char[] sort(char[] data, OrderType type) {
-		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data),
-				type));
+		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data), type));
 	}
 
 	public static double[] sort(double[] data, OrderType type) {
-		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data),
-				type));
+		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data), type));
 	}
 
 	public static float[] sort(float[] data, OrderType type) {
-		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data),
-				type));
+		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data), type));
 	}
 
 	public static int[] sort(int[] data, OrderType type) {
-		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data),
-				type));
+		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data), type));
 	}
 
 	public static long[] sort(long[] data, OrderType type) {
-		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data),
-				type));
+		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data), type));
 	}
 
 	public static short[] sort(short[] data, OrderType type) {
-		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data),
-				type));
+		return ArrayUtils.toPrimitive(getOrderSort(ArrayUtils.toObject(data), type));
 	}
 
 	public static <T extends Comparable<T>> T[] sort(T[] data, OrderType type) {
@@ -155,13 +144,11 @@ public class DataSortUtils {
 		return getOrderSort(data, type, comp);
 	}
 
-	public static <T extends Comparable<T>> List<T> sort(List<T> data,
-			OrderType type) {
+	public static <T extends Comparable<T>> List<T> sort(List<T> data, OrderType type) {
 		return sort(data, type, null);
 	}
 
-	public static <T> List<T> sort(List<T> data, OrderType type,
-			Comparator<T> comp) {
+	public static <T> List<T> sort(List<T> data, OrderType type, Comparator<T> comp) {
 		@SuppressWarnings("unchecked")
 		T[] a = (T[]) data.toArray();
 		getOrderSort(a, type, comp);
@@ -284,8 +271,7 @@ public class DataSortUtils {
 					flag = true;
 				}
 			}
-			if (!flag)
-				break;
+			if (!flag) break;
 		}
 		return data;
 	}
@@ -296,11 +282,9 @@ public class DataSortUtils {
 		for (int i = 0; i < length - 1; i++) {
 			minIndex = i;
 			for (int j = i + 1; j < length; j++) {
-				if (compare(data[j], data[minIndex], comp) < 0)
-					minIndex = j;
+				if (compare(data[j], data[minIndex], comp) < 0) minIndex = j;
 			}
-			if (minIndex != i)
-				swap(data, minIndex, i);
+			if (minIndex != i) swap(data, minIndex, i);
 		}
 		return data;
 	}
@@ -314,8 +298,7 @@ public class DataSortUtils {
 		return data;
 	}
 
-	private static <T> T[] buildMaxHeap(T[] data, int lastIndex,
-			Comparator<T> comp) {
+	private static <T> T[] buildMaxHeap(T[] data, int lastIndex, Comparator<T> comp) {
 		int lastNode = lastIndex / 2 - 1;
 		for (int i = lastNode; i >= 0; i--) {
 			int k = i;
@@ -324,8 +307,7 @@ public class DataSortUtils {
 				if (bigIndex < lastIndex - 1) {
 					// bigIndex += comp.compare(data[bigIndex],
 					// data[bigIndex+1]) < 0 ? 1 : 0;
-					bigIndex += compare(data[bigIndex], data[bigIndex + 1],
-							comp) < 0 ? 1 : 0;
+					bigIndex += compare(data[bigIndex], data[bigIndex + 1], comp) < 0 ? 1 : 0;
 				}
 				// if(comp.compare(data[k], data[bigIndex]) < 0){
 				if (compare(data[k], data[bigIndex], comp) < 0) {
@@ -339,8 +321,7 @@ public class DataSortUtils {
 		return data;
 	}
 
-	private static <T> T[] quickSort(T[] data, int start, int end,
-			Comparator<T> comp) {
+	private static <T> T[] quickSort(T[] data, int start, int end, Comparator<T> comp) {
 		if (start < end) {
 			// T base = data[start];
 			int i = start;
@@ -367,28 +348,22 @@ public class DataSortUtils {
 		data[j] = temp;
 	}
 
-	private static <T extends Comparable<T>> T[] getOrderSort(T[] data,
-			OrderType type) {
+	private static <T extends Comparable<T>> T[] getOrderSort(T[] data, OrderType type) {
 		return getOrderSort(data, type, null);
 	}
 
-	private static <T> T[] getOrderSort(T[] data, OrderType type,
-			Comparator<T> comp) {
-		if (type == OrderType.binaryInsert_asce
-				|| type == OrderType.binaryInsert_desc) {
+	private static <T> T[] getOrderSort(T[] data, OrderType type, Comparator<T> comp) {
+		if (type == OrderType.binaryInsert_asce || type == OrderType.binaryInsert_desc) {
 			binaryInsertSort(data, comp);
-		} else if (type == OrderType.bubble_asce
-				|| type == OrderType.bubble_desc) {
+		} else if (type == OrderType.bubble_asce || type == OrderType.bubble_desc) {
 			bubbleSort(data, comp);
 		} else if (type == OrderType.heap_asce || type == OrderType.heap_desc) {
 			heapSort(data, comp);
 		} else if (type == OrderType.quick_asce || type == OrderType.quick_desc) {
 			quickSort(data, comp);
-		} else if (type == OrderType.insert_asce
-				|| type == OrderType.insert_desc) {
+		} else if (type == OrderType.insert_asce || type == OrderType.insert_desc) {
 			insertSort(data, comp);
-		} else if (type == OrderType.select_asce
-				|| type == OrderType.select_desc) {
+		} else if (type == OrderType.select_asce || type == OrderType.select_desc) {
 			selectSort(data, comp);
 		} else if (type == OrderType.shell_asce || type == OrderType.shell_desc) {
 			shellSort(data, comp);

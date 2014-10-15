@@ -1,10 +1,19 @@
-package com.webapp.utils.test;
+package com.webapp.utils.servlet;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.webapp.utils.regex.RegexConst;
 
+/**
+* @ClassName: ServletUtils.java
+* @Package com.webapp.utils.servlet
+* @Description: Servlet相关工具类
+* @author  Lenovo king
+* @date 2014年10月14日 下午2:23:53
+* @version V1.0
+*/
 public class ServletUtils {
 
 	/**
@@ -38,7 +47,8 @@ public class ServletUtils {
 	 * @return The requested domain name
 	 */
 	public static String getDomain(HttpServletRequest req) {
-		return req.getServerName();
+		String domain = req.getServerName();
+		return domain + (domain.matches(RegexConst.Ip4) ? ":" + getPort(req) : "");
 	}
 
 	/**
@@ -48,7 +58,7 @@ public class ServletUtils {
 	 * @return The requested base url
 	 */
 	public static String getBaseUrl(HttpServletRequest req) {
-		return "http://" + req.getServerName();
+		return "http://" + getDomain(req);
 	}
 
 	/**
