@@ -192,17 +192,21 @@ public class Utils {
 	 * @return The safety of Email
 	 */
 	public static String safedEmail(String email, int len) {
-		return email.replaceAll("(.{" + len + "})(?=@)", "***");
+		if(StringUtils.isNotEmpty(email))
+			return email.replaceAll("(.{" + len + "})(?=@)", "***");
+		return null;
 	}
 
 	/**
 	 * For example
 	 * <pre>13888888888 -> 138****8888</pre>
 	 * @param phone
-	 * @return The safety of phone
+	 * @return The safety of mobile
 	 */
-	public static String safedPhone(String phone) {
-		return phone.replaceAll("(?<=\\d{3})(.{4})(?=\\d{4})", "****");
+	public static String safedMobile(String mobile) {
+		if(StringUtils.isNotEmpty(mobile))
+			return mobile.replaceAll("(?<=\\d{3})(.{4})(?=\\d{4})", "****");
+		return null;
 	}
 
 	/**
@@ -224,7 +228,10 @@ public class Utils {
 	 */
 	public static <T> String split(List<T> list, String split) {
 		StringBuffer result = new StringBuffer();
-		list.forEach((item) -> result.append(item + Dot));
+//		list.forEach((item) -> result.append(item + Dot));
+		for(T item : list){
+			result.append(item + Dot);
+		}
 		return StringUtils.removeEnd(result.toString(), Dot);
 	}
 
@@ -246,7 +253,9 @@ public class Utils {
 	 * @return
 	 */
 	public static String delTail(String str, String remove){
-		return StringUtils.removeEnd(str, remove);
+		if(StringUtils.isNotEmpty(str))
+			return StringUtils.removeEnd(str, remove);
+		return null;
 	}
 
 	/**

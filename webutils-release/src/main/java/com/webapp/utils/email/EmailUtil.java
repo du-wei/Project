@@ -28,10 +28,6 @@ import org.apache.logging.log4j.Logger;
  */
 public class EmailUtil {
 
-	public static void main(String[] args) {
-
-    }
-
 	private static Logger log = LogManager.getLogger(EmailUtil.class.getName());
 	public static final String TEXT_PLAIN = "1";
 	public static final String TEXT_HTML = "2";
@@ -111,7 +107,7 @@ public class EmailUtil {
 	 * @date 2012-12-14 下午2:06:43
 	 * @version V1.0
 	 */
-	public class Mail {
+	public static class Mail {
 
 		/** @Fields host : HOST */
 		private String host;

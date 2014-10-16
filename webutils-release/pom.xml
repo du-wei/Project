@@ -10,9 +10,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../webcommon/pom.xml</relativePath>
 	</parent>
-	<artifactId>webutils-release</artifactId>
+	<artifactId>jk-utils</artifactId>
 	<packaging>jar</packaging>
-	<name>webutils-release</name>
+	<version>1.0.0</version>
 
 	<dependencies>
 		<dependency>
@@ -29,28 +29,20 @@
 
 	<build>
 		<defaultGoal>install</defaultGoal>
-		<finalName>commons-utils</finalName>
+		<finalName>jk-utils</finalName>
 		<outputDirectory>target/classes</outputDirectory>
 		<directory>${basedir}/target</directory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<appendAssemblyId>false</appendAssemblyId>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<extensions>false</extensions>
+        		<inherited>true</inherited>
+        		<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>${encoding}</encoding>
 				</configuration>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>assembly</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

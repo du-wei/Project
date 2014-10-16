@@ -134,9 +134,10 @@ public class JSONUtils {
 	 * @return this
 	 */
 	public JSONUtils before(String key, Object value) {
+		final String fkey = key;
 		jsonSerializer.getBeforeFilters().add(new BeforeFilter() {
 			public void writeBefore(Object object) {
-				this.writeKeyValue(key, value);
+				this.writeKeyValue(fkey, fkey);
 			}
 		});
 		return this;
@@ -150,9 +151,11 @@ public class JSONUtils {
 	 * @return this
 	 */
 	public JSONUtils after(String key, Object value) {
+		final String fkey = key;
+		final Object fvalue = value;
 		jsonSerializer.getAfterFilters().add(new AfterFilter() {
 			public void writeAfter(Object object) {
-				this.writeKeyValue(key, value);
+				this.writeKeyValue(fkey, fvalue);
 			}
 		});
 		return this;
@@ -193,9 +196,11 @@ public class JSONUtils {
 	 * @return this
 	 */
 	public JSONUtils modifyKey(String key, String replacement) {
+		final String fkey = key;
+		final String freplacement = replacement;
 		jsonSerializer.getNameFilters().add(new NameFilter() {
 			public String process(Object object, String name, Object value) {
-				return key.equals(name) ? replacement : name;
+				return fkey.equals(name) ? freplacement : name;
 			}
 		});
 		return this;
@@ -209,14 +214,16 @@ public class JSONUtils {
 	 * @return this
 	 */
 	public JSONUtils modifyVal(String key, Object replacement) {
+		final String fkey = key;
+		final Object freplacement = replacement;
 		jsonSerializer.getValueFilters().add(new ValueFilter() {
-			String orgKey = key;
+			String orgKey = fkey;
 			List<NameFilter> nameFilters = jsonSerializer.getNameFilters();
 			public Object process(Object object, String name, Object value) {
 				for(NameFilter filter : nameFilters){
 					orgKey = filter.process(object, orgKey, value);
 				}
-				return orgKey.equals(name) ? replacement : value;
+				return orgKey.equals(name) ? freplacement : value;
 			}
 		});
 		return this;
@@ -230,15 +237,18 @@ public class JSONUtils {
 	 * @return this
 	 */
 	public JSONUtils modifyVal(String key, String regexVal, String replacement) {
+		final String fkey = key;
+		final String fregexVal = regexVal;
+		final String freplacement = replacement;
 		jsonSerializer.getValueFilters().add(new ValueFilter() {
-			String orgKey = key;
+			String orgKey = fkey;
 			List<NameFilter> nameFilters = jsonSerializer.getNameFilters();
 			public Object process(Object object, String name, Object value) {
 				for(NameFilter filter : nameFilters){
 					orgKey = filter.process(object, orgKey, value);
 				}
-				if(orgKey.equals(name) && String.valueOf(value).matches(regexVal)){
-					value = replacement;
+				if(orgKey.equals(name) && String.valueOf(value).matches(fregexVal)){
+					value = freplacement;
 				}
 				return value;
 			}
@@ -254,9 +264,11 @@ public class JSONUtils {
 	 * @return this
 	 */
 	public JSONUtils filterVal(String key, String regexVal) {
+		final String fkey = key;
+		final String fregexVal = regexVal;
 		PropertyFilter filter = new PropertyFilter() {
 			public boolean apply(Object object, String name, Object value) {
-				return key.equals(name) ? String.valueOf(value).matches(regexVal) :true;
+				return fkey.equals(name) ? String.valueOf(value).matches(fregexVal) :true;
 			}
 		};
 		jsonSerializer.getPropertyFilters().add(filter);
@@ -274,12 +286,14 @@ public class JSONUtils {
 	}
 
 	public <T> JSONUtils doubleFormat(String pattern, Class<T> clz){
+		final String fpattern = pattern;
+		final Class<T> fclz = clz;
 		jsonSerializer.getValueFilters().add(new ValueFilter() {
-			DecimalFormat format = new DecimalFormat(pattern);
+			DecimalFormat format = new DecimalFormat(fpattern);
 			List<NameFilter> nameFilters = jsonSerializer.getNameFilters();
 
 			public Object process(Object object, String name, Object value) {
-				Field[] fields = clz.getDeclaredFields();
+				Field[] fields = fclz.getDeclaredFields();
 				for(Field field : fields){
 					if(field.getType().getSimpleName().equalsIgnoreCase(double.class.getSimpleName())){
 						String key = field.getName();
