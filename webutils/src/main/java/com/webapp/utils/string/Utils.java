@@ -83,6 +83,9 @@ public class Utils {
 		return sb.toString();
 	}
 
+	public static void main(String[] args) {
+	    System.out.println(toCamel("stu_no"));
+    }
 	/**
 	 * Camel-Case
      * <pre>user_id -> userId</pre>
@@ -98,7 +101,7 @@ public class Utils {
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
 
-            if(String.valueOf(c) == Underline){
+            if(String.valueOf(c).equals(Underline)){
             	upperCase = true;
             }else {
 				if(upperCase){
