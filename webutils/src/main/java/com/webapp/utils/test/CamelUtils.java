@@ -3,6 +3,7 @@ package com.webapp.utils.test;
 import java.lang.reflect.Field;
 
 import com.webapp.utils.string.Utils;
+import com.webapp.utils.string.Utils.Symbol;
 
 public class CamelUtils {
 
@@ -30,7 +31,7 @@ public class CamelUtils {
 
             String consts = Utils.toUnderline(col);
 
-            columns.append(consts + (consts.contains(Utils.Underline) ? " " : "") + col + ",");
+            columns.append(consts + (consts.contains(Symbol.Underline) ? " " : "") + col + ",");
         }
         return Utils.delTail(columns.toString());
     }
