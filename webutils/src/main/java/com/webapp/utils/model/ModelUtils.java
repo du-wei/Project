@@ -9,17 +9,35 @@ import com.webapp.utils.random.RandomUtils;
 
 public class ModelUtils {
 
+	public static JsonType getJsonType() {
+		JsonType type = new JsonType();
+		type.setJkDouble(22.70000);
+		type.setJkInt(10);
+		type.setJkLong(123);
+		type.setJkBool(true);
+		type.setStr("str");
+		type.setJkDate(new Date());
+		type.setList(null);
+		type.setMap(null);
+		type.setSet(null);
+		return type;
+	}
+
 	public static JavaType getJavaType() {
 		JavaType type = new JavaType();
-		type.setBbyte(new Byte("byte"));
-		type.setBchar('a');
-		type.setBdouble(22.70000);
-		type.setBfloat(11.0f);
-		type.setBint(10);
-		type.setBlong(123);
-		type.setBshort((short)2);
-		type.setBbool(true);
+		type.setJkByte(new Byte("1"));
+		type.setJkChar('a');
+		type.setJkDouble(22.70000);
+		type.setJkFloat(11.0f);
+		type.setJkInt(10);
+		type.setJkLong(123);
+		type.setJkShort((short)2);
+		type.setJkBool(true);
 		type.setStr("str");
+
+		type.setList(null);
+		type.setMap(null);
+		type.setSet(null);
 		return type;
 	}
 

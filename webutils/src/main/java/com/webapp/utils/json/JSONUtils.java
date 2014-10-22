@@ -2,8 +2,8 @@ package com.webapp.utils.json;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import com.alibaba.fastjson.JSON;
@@ -13,8 +13,9 @@ import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.NameFilter;
 import com.alibaba.fastjson.serializer.PascalNameFilter;
 import com.alibaba.fastjson.serializer.PropertyFilter;
-import com.alibaba.fastjson.serializer.SerializeWriter;
+import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.alibaba.fastjson.serializer.ValueFilter;
 import com.webapp.utils.string.Utils;
@@ -36,8 +37,8 @@ public class JSONUtils {
     private JSONUtils(Object object) {
     	this.jsonObj = object;
 
-    	SerializeWriter writer = new SerializeWriter();
-    	jsonSerializer = new JSONSerializer(writer);
+    	SerializeConfig config = new SerializeConfig();
+    	jsonSerializer = new JSONSerializer(config);
     }
 
 	public static JSONUtils of(Object object) {
@@ -269,7 +270,8 @@ public class JSONUtils {
 	 * @return this
 	 */
 	public JSONUtils dateFormat(String format) {
-    	jsonSerializer.setDateFormat(new SimpleDateFormat(format));
+		jsonSerializer.getMapping().put(Date.class, new SimpleDateFormatSerializer(format));
+//    	jsonSerializer.setDateFormat(format);
     	return this;
 	}
 

@@ -57,6 +57,7 @@ public class RandomUtils {
 	public static double nextDouble(double least, double bound) {
 		return ThreadLocalRandom.current().nextDouble(least, bound);
 	}
+
 	public static double nextDouble(double least, double bound, int scale) {
 		return Double.parseDouble(FmtUtils.of(nextDouble(least, bound)).fmt(scale));
 	}
@@ -76,6 +77,7 @@ public class RandomUtils {
 	public static float nextFloat() {
 		return ThreadLocalRandom.current().nextFloat();
 	}
+
 	public static float nextFloat(int scale) {
 		return Float.parseFloat(FmtUtils.of(nextFloat()).fmt(scale));
 	}

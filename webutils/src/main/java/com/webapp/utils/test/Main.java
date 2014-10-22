@@ -22,7 +22,7 @@ public class Main {
 	public static void main(String[] args) {
 				 Student stu = ModelUtils.getStu();
 
-				String json = JSONUtils.of(stu).toString();
+				String json = JSONUtils.of(stu).after("a", "b").toString();
 				System.out.println(json);
 
 		//		System.out.println(json);

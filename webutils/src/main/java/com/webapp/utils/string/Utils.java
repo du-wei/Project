@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.webapp.utils.jpinyin.PinyinFormat;
 import com.webapp.utils.jpinyin.PinyinHelper;
 import com.webapp.utils.regex.RegexConst;
 
@@ -65,7 +66,7 @@ public class Utils {
 	 * @return pinyin
 	 */
 	public static String toPinyin(String str) {
-	    return PinyinHelper.convertToPinyinString(str, "");
+	    return toPinyin(str, "");
     }
 
 	/**
@@ -76,7 +77,7 @@ public class Utils {
 	 * @return pinyin
 	 */
 	public static String toPinyin(String str, String separator) {
-	    return PinyinHelper.convertToPinyinString(str, separator);
+	    return PinyinHelper.convertToPinyinString(str, separator, PinyinFormat.WITHOUT_TONE);
     }
 
 	/**

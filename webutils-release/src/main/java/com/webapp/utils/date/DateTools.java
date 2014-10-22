@@ -21,56 +21,61 @@ import org.joda.time.DateTime;
 public class DateTools {
 
 	private static Logger logger = LogManager.getLogger(DateTools.class);
-	/** date --> {@value} */
-	public static final String Fmt_DateTime_G = "EEE MMM dd HH:mm:ss Z yyyy";
-	/** date --> {@value} */
-	public static final String Fmt_DateTime_AT = "yyyy.MM.dd G 'at' HH:mm:ss z";
-	/** date --> {@value} */
-	public static final String Fmt_DateTime_TZ = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-	/** date --> {@value} */
-	public static final String Fmt_DateTime_T = "yyyy-MM-dd'T'HH:mm:ss";
-	/** date --> {@value} */
-	public static final String Fmt_DateTime = "yyyy-MM-dd HH:mm:ss";
-	/** date --> {@value} */
-	public static final String Fmt_DateTime_NS = "yyyy-MM-dd HH:mm";
-	/** date --> {@value} */
-	public static final String Fmt_Date = "yyyy-MM-dd";
-	/** date --> {@value} */
-	public static final String Fmt_DateTime_Slant = "yyyy/MM/dd HH:mm:ss";
-	/** date --> {@value} */
-	public static final String Fmt_DateTime_SNS = "yyyy/MM/dd HH:mm";
-	/** date --> {@value} */
-	public static final String Fmt_Date_Slant = "yyyy/MM/dd";
-	/** date --> {@value} */
-	public static final String Fmt_Date_CN = "yyyy年MM月dd日";
-	/** date --> {@value} */
-	public static final String Fmt_Time = "HH:mm:ss";
-	/** date --> {@value} */
-	public static final String Fmt_Time_M = "h:mm a";
+
+	public static interface FmtDate{
+
+		/** date --> {@value} */
+		public static final String Fmt_DateTime_UTC = "EEE MMM dd hh:mm:ss zzz yyyy";
+		/** date --> {@value} */
+		public static final String Fmt_DateTime_Z = "EEE MMM dd HH:mm:ss Z yyyy";
+		/** date --> {@value} */
+		public static final String Fmt_DateTime_AT = "yyyy.MM.dd G 'at' HH:mm:ss z";
+		/** date --> {@value} */
+		public static final String Fmt_DateTime_TZ = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+		/** date --> {@value} */
+		public static final String Fmt_DateTime_T = "yyyy-MM-dd'T'HH:mm:ss";
+		/** date --> {@value} */
+		public static final String Fmt_DateTime = "yyyy-MM-dd HH:mm:ss";
+		/** date --> {@value} */
+		public static final String Fmt_DateTime_NS = "yyyy-MM-dd HH:mm";
+		/** date --> {@value} */
+		public static final String Fmt_Date = "yyyy-MM-dd";
+		/** date --> {@value} */
+		public static final String Fmt_DateTime_Slant = "yyyy/MM/dd HH:mm:ss";
+		/** date --> {@value} */
+		public static final String Fmt_DateTime_SNS = "yyyy/MM/dd HH:mm";
+		/** date --> {@value} */
+		public static final String Fmt_Date_Slant = "yyyy/MM/dd";
+		/** date --> {@value} */
+		public static final String Fmt_Date_CN = "yyyy年MM月dd日";
+		/** date --> {@value} */
+		public static final String Fmt_Time = "HH:mm:ss";
+		/** date --> {@value} */
+		public static final String Fmt_Time_M = "h:mm a";
+
+	}
+
 
 	private static String[] parsePatterns = new String[] {
-			Fmt_DateTime_G, //
-			Fmt_DateTime_AT, //
-			Fmt_DateTime_TZ, //
-			Fmt_DateTime_T, //
-			Fmt_DateTime, //
-			Fmt_DateTime_NS, //
-			Fmt_Date, //
-			Fmt_DateTime_Slant, //
-			Fmt_DateTime_SNS, //
-			Fmt_Date_Slant, //
-			Fmt_Date_CN, //
-			Fmt_Time, //
-			Fmt_Time_M  //
+		FmtDate.Fmt_DateTime_UTC, //
+		FmtDate.Fmt_DateTime_Z, //
+		FmtDate.Fmt_DateTime_AT, //
+		FmtDate.Fmt_DateTime_TZ, //
+		FmtDate.Fmt_DateTime_T, //
+		FmtDate.Fmt_DateTime, //
+		FmtDate.Fmt_DateTime_NS, //
+		FmtDate.Fmt_Date, //
+		FmtDate.Fmt_DateTime_Slant, //
+		FmtDate.Fmt_DateTime_SNS, //
+		FmtDate.Fmt_Date_Slant, //
+		FmtDate.Fmt_Date_CN, //
+		FmtDate.Fmt_Time, //
+		FmtDate.Fmt_Time_M  //
 	};
 	private DateTime ofDate;
 	private DateTools(DateTime date){
 		this.ofDate = date;
 	}
-
-	public static void main(String[] args) throws Exception {
-		System.out.println(DateTools.of("1413379722312").format());
-    }
 
 	/** now date **/
 	public static DateTools now(){
@@ -115,17 +120,17 @@ public class DateTools {
 
 	/** Get yyyy-MM-dd **/
 	public String getDate() {
-	    return ofDate.toString(Fmt_Date);
+	    return ofDate.toString(FmtDate.Fmt_Date);
     }
 
 	/** Get HH:mm:ss **/
 	public String getTime() {
-	    return ofDate.toString(Fmt_Time);
+	    return ofDate.toString(FmtDate.Fmt_Time);
     }
 
 	/** Get yyyy-MM-dd HH:mm:ss **/
 	public String getDateTime() {
-	    return ofDate.toString(Fmt_DateTime);
+	    return ofDate.toString(FmtDate.Fmt_DateTime);
     }
 
 	/** Get long date **/
@@ -135,7 +140,7 @@ public class DateTools {
 
 	/** format yyyy-MM-dd HH:mm:ss **/
 	public String format() {
-	    return ofDate.toString(Fmt_DateTime);
+	    return ofDate.toString(FmtDate.Fmt_DateTime);
     }
 
 	/** format by format **/
@@ -156,10 +161,10 @@ public class DateTools {
 	public boolean isBeforeNow(){
 		return ofDate.isBeforeNow();
 	}
-	public boolean isBeforeNow(String date){
+	public boolean isBefore(String date){
 		return ofDate.isBefore(parse(date).getMillis());
 	}
-	public boolean isBeforeNow(Date date){
+	public boolean isBefore(Date date){
 		return ofDate.isBefore(date.getTime());
 	}
 
@@ -169,7 +174,14 @@ public class DateTools {
 	private static DateTime parse(String date, String[] parsePattern) {
 		DateTime dateTime = new DateTime();
 		try {
-			return dateTime.withMillis(date.matches("\\d{13}") ? Long.parseLong(date) : DateUtils.parseDate(date, parsePattern).getTime());
+			if(date.matches("\\d{13}")){
+				dateTime.withMillis(Long.parseLong(date));
+			}else if(date.matches("\\w{3} \\w{3} \\d{2} \\d{2}:\\d{2}:\\d{2} [\\+]?\\w{3,4} \\d{4}")){
+				dateTime.withMillis(DateUtils.parseDate(date, Locale.ENGLISH, parsePattern).getTime());
+			}else {
+				dateTime.withMillis(DateUtils.parseDate(date, parsePattern).getTime());
+			}
+			return dateTime;
 		} catch (ParseException e) {
 			logger.error(date + " parse error", e);
 			return null;
