@@ -3,6 +3,7 @@ package com.webapp.utils.enums;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
@@ -84,12 +85,19 @@ public class EnumUtils {
 		Iterator<E> iterator = EnumSet.allOf(clz).iterator();
 		while(iterator.hasNext()){
 			E next = iterator.next();
-			if(invoke(method, next).equals(value)){
+			if(invoke(method, next).toString().equals(value)){
 				return next;
 			}
 		}
 		return null;
 	}
+
+	@SafeVarargs
+    public static <E extends Enum<E>> List<E> getEnums(E[] all, E... excludes) {
+    	List<E> result = new ArrayList<E>(Arrays.asList(all));
+		result.removeAll(Arrays.asList(excludes));
+		return result;
+    }
 
 	private static <E> Object invoke(Method method, E obj) {
 		Object result = null;

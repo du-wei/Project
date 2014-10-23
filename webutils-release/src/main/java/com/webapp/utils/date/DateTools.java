@@ -175,11 +175,11 @@ public class DateTools {
 		DateTime dateTime = new DateTime();
 		try {
 			if(date.matches("\\d{13}")){
-				dateTime.withMillis(Long.parseLong(date));
+				dateTime = dateTime.withMillis(Long.parseLong(date));
 			}else if(date.matches("\\w{3} \\w{3} \\d{2} \\d{2}:\\d{2}:\\d{2} [\\+]?\\w{3,4} \\d{4}")){
-				dateTime.withMillis(DateUtils.parseDate(date, Locale.ENGLISH, parsePattern).getTime());
+				dateTime = dateTime.withMillis(DateUtils.parseDate(date, Locale.ENGLISH, parsePattern).getTime());
 			}else {
-				dateTime.withMillis(DateUtils.parseDate(date, parsePattern).getTime());
+				dateTime = dateTime.withMillis(DateUtils.parseDate(date, parsePattern).getTime());
 			}
 			return dateTime;
 		} catch (ParseException e) {

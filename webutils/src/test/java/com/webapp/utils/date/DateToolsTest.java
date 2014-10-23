@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import com.webapp.utils.date.DateTools.FmtDate;
 
-public class DataToolsTest {
+public class DateToolsTest {
 
 	String format = "%1$-30s\t%3$s -> %2$s\n";
 	String data = "2014-10-10 10:10:10";
@@ -25,7 +25,7 @@ public class DataToolsTest {
 	    System.out.printf(format , data, result, "isBefore(data)");
 	    assertThat(result, Matchers.is(true));
 
-	    result = DateTools.of(data).isBefore("2014-10-11 10:10:10");
+		result = DateTools.of(data).isBefore("2014-10-11 10:10:10");
 	    System.out.printf(format , data, result, "isBefore(2014-10-11 10:10:10)");
 	    assertThat(result, Matchers.is(true));
 

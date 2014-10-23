@@ -8,46 +8,49 @@ import com.webapp.utils.random.RandomUtils;
 
 public class DataSortUtilsTest {
 
+	String format = "%1$-40s\t%3$s -> %2$s\n";
+
 	@Test
     public void sortByte() throws Exception {
 		byte[] data = RandomUtils.nextBytes("kingadmin".getBytes());
-		System.out.println("sortByte before -> " + Arrays.toString(data));
-	    System.out.println("sortByte after  -> " + Arrays.toString(DataSortUtils.sort(data)));
+
+	    String result = Arrays.toString(DataSortUtils.sort(data));
+	    System.out.printf(format , Arrays.toString(data), result, "sort");
     }
 	@Test
 	public void sortChar() throws Exception {
-		char[] data = RandomUtils.str(10).toCharArray();
-		System.out.println("sortChar before -> " + Arrays.toString(data));
-		System.out.println("sortChar after  -> " + Arrays.toString(DataSortUtils.sort(data)));
+		char[] data = RandomUtils.str(6).toCharArray();
+		String result = Arrays.toString(DataSortUtils.sort(data));
+	    System.out.printf(format , Arrays.toString(data), result, "sort");
 	}
 	@Test
 	public void sortDouble() throws Exception {
-		double[] data = RandomUtils.doubleArray(10, 2);
-		System.out.println("sortDouble before -> " + Arrays.toString(data));
-		System.out.println("sortDouble after  -> " + Arrays.toString(DataSortUtils.sort(data)));
+		double[] data = RandomUtils.doubleArray(6, 2);
+		String result = Arrays.toString(DataSortUtils.sort(data));
+	    System.out.printf(format , Arrays.toString(data), result, "sort");
 	}
 	@Test
 	public void sortFloat() throws Exception {
-		float[] data = RandomUtils.floatArray(10, 2);
-		System.out.println("sortFloat before -> " + Arrays.toString(data));
-		System.out.println("sortFloat after  -> " + Arrays.toString(DataSortUtils.sort(data)));
+		float[] data = RandomUtils.floatArray(6, 2);
+		String result = Arrays.toString(DataSortUtils.sort(data));
+	    System.out.printf(format , Arrays.toString(data), result, "sort");
 	}
 	@Test
 	public void sortInt() throws Exception {
-		int[] data = RandomUtils.intArray(10, 200);
-		System.out.println("sortInt before -> " + Arrays.toString(data));
-		System.out.println("sortInt after  -> " + Arrays.toString(DataSortUtils.sort(data)));
+		int[] data = RandomUtils.intArray(6, 200);
+		String result = Arrays.toString(DataSortUtils.sort(data));
+	    System.out.printf(format , Arrays.toString(data), result, "sort");
 	}
 	@Test
 	public void sortLong() throws Exception {
-		long[] data = RandomUtils.longArray(10, 200);
-		System.out.println("sortLong before -> " + Arrays.toString(data));
-		System.out.println("sortLong after  -> " + Arrays.toString(DataSortUtils.sort(data)));
+		long[] data = RandomUtils.longArray(6, 200);
+		String result = Arrays.toString(DataSortUtils.sort(data));
+	    System.out.printf(format , Arrays.toString(data), result, "sort");
 	}
 	@Test
 	public void sortShort() throws Exception {
 		short[] data = new short[]{(short)RandomUtils.nextInt(), (short)RandomUtils.nextInt(), (short)RandomUtils.nextInt()};
-		System.out.println("sortShort before -> " + Arrays.toString(data));
-		System.out.println("sortShort after  -> " + Arrays.toString(DataSortUtils.sort(data)));
+		String result = Arrays.toString(DataSortUtils.sort(data));
+	    System.out.printf(format , Arrays.toString(data), result, "sort");
 	}
 }

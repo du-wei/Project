@@ -16,7 +16,7 @@ import org.apache.commons.lang3.ArrayUtils;
 */
 public class DataSortUtils {
 
-	public static enum OrderType {
+	public enum OrderType {
 		desc("desc", "降序"), asce("asce", "升序"), //
 		shell_desc("shell_desc", "插入排序->Shell排序->稳定"), //
 		insert_desc("insert_desc", "插入排序->直接插入排序->稳定"), //

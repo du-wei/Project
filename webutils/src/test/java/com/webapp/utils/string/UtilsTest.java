@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class UtilsTest {
 
-	String format = "%1$s\t%3$s -> %2$s\n";
+	String format = "%1$-20s\t%3$s -> %2$s\n";
 
 	@Test
     public void delTail() throws Exception {
