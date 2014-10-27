@@ -16,8 +16,10 @@ import com.webapp.utils.regex.RegexConst;
 * @date 2014年10月13日 下午9:43:51
 * @version V1.0
 */
-public class Utils {
+public final class Utils {
 	//mina
+
+	private Utils(){}
 
 	public static interface Symbol{
 

@@ -12,6 +12,7 @@ public interface Lambda {
 //    Consumer<T>——将T作为输入，不返回任何内容
 //    Supplier<T>——没有输入，返回T
 //    BinaryOperator<T>——将两个T作为输入，返回一个T作为输出
+//	  UnaryOperator<T>
 
 //	java.util.stream
 //	中间操作包括

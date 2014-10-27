@@ -9,11 +9,12 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import com.webapp.utils.string.Utils.Symbol;
 
-public class FmtUtils {
+public final class FmtUtils {
 
 	private String data;
 	private boolean endZero = true;
-	public FmtUtils(String data){
+
+	private FmtUtils(String data){
 		this.data = data;
 	}
 //	pattern()

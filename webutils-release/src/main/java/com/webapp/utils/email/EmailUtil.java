@@ -26,14 +26,16 @@ import org.apache.logging.log4j.Logger;
  * @date 2013年12月20日 下午6:45:08
  * @version V1.0
  */
-public class EmailUtil {
+public final class EmailUtil {
 
 	private static Logger log = LogManager.getLogger(EmailUtil.class.getName());
 	public static final String TEXT_PLAIN = "1";
 	public static final String TEXT_HTML = "2";
 	public static final String ATTACHMENT_PLAIN = "3";
 
-	public static boolean sendEmail(Mail mail) {
+	private EmailUtil(){}
+
+ 	public static boolean sendEmail(Mail mail) {
 		try {
 			if (mail == null)
 				throw new NullPointerException("邮件参数不能为空。");

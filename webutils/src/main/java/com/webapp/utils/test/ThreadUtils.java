@@ -45,7 +45,7 @@ public interface ThreadUtils {
 
 		for(int i=0; i<count; i++){
 //			Thread thread = new Thread(run, "Thread-" + i);
-//			Console.out("Object-%s -> thread id[%s] name[%s]", run.hashCode(), thread.getId(), thread.getName());
+//			System.out.printf("Object-%s -> thread id[%s] name[%s]", run.hashCode(), thread.getId(), thread.getName());
 			completionService.submit(run, i);
 		}
 
@@ -75,15 +75,15 @@ public interface ThreadUtils {
 		long total = endTime-startTime;
 
 		if(isNanoTime){
-			Console.out("total time = %s纳秒", total);
-			Console.out("total time = %s微秒", total/1000L);
-			Console.out("total time = %s毫秒", total/1000_000L);
-			Console.out("total time = %s秒", total/1000_000_000L);
-			Console.out("total time = %s分", total/(1000_000_000L * 60));
+			System.out.printf("total time = %s纳秒\t", total);
+			System.out.printf("total time = %s微秒\t", total/1000L);
+			System.out.printf("total time = %s毫秒\t", total/1000_000L);
+			System.out.printf("total time = %s秒\t", total/1000_000_000L);
+			System.out.printf("total time = %s分\t", total/(1000_000_000L * 60));
 		}else {
-			Console.out("total time = %s毫秒", total);
-			Console.out("total time = %s秒", total/1000);
-			Console.out("total time = %s分", total/1000/60);
+			System.out.printf("total time = %s毫秒\t", total);
+			System.out.printf("total time = %s秒\t", total/1000);
+			System.out.printf("total time = %s分\t", total/1000/60);
 		}
 	}
 
@@ -95,19 +95,19 @@ public interface ThreadUtils {
 		int arrive = cb.getNumberWaiting() + 1;
 
 		String name = Thread.currentThread().getName();
-		Console.out("%s已经到达集合点%s, 当前有%s个已经到达", name, place, arrive);
+		System.out.printf("%s已经到达集合点%s, 当前有%s个已经到达\t", name, place, arrive);
 	}
 
 	public static void logAcquire(Semaphore sp) throws InterruptedException {
-		Console.out("tryAcquire=s, availablePermits=%s, queueLength=%s, queuedThreads=%s, isFair=%s",
+		System.out.printf("tryAcquire=s, availablePermits=%s, queueLength=%s, queuedThreads=%s, isFair=%s\t",
 				 sp.availablePermits(), sp.getQueueLength(),
 				sp.hasQueuedThreads(), sp.isFair());
 		sp.acquire();
-		Console.out("线程 %s进入，当前有%d个并发", Thread.currentThread().getName(), threadCount.incrementAndGet());
+		System.out.printf("线程 %s进入，当前有%d个并发\t", Thread.currentThread().getName(), threadCount.incrementAndGet());
 	}
 
 	public static void logRelease(Semaphore sp) {
 		sp.release();
-		Console.out("线程 %s离开，当前有%d个并发", Thread.currentThread().getName(), threadCount.decrementAndGet());
+		System.out.printf("线程 %s离开，当前有%d个并发\t", Thread.currentThread().getName(), threadCount.decrementAndGet());
 	}
 }

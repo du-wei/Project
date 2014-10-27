@@ -24,7 +24,9 @@ import com.webapp.utils.format.FmtUtils;
 * @date 2014年10月15日 下午11:37:31
 * @version V1.0
 */
-public class RandomUtils {
+public final class RandomUtils {
+
+	private RandomUtils(){}
 
 	public static int nextInt() {
 		return ThreadLocalRandom.current().nextInt();

@@ -18,7 +18,9 @@ import org.apache.commons.lang3.StringUtils;
 * @date 2014年10月21日 下午8:34:41
 * @version V1.0
 */
-public class EnumUtils {
+public final class EnumUtils {
+
+	private EnumUtils(){}
 
 	/**
      * @Description Convert enum attribute to list

@@ -14,7 +14,9 @@ import org.apache.commons.lang3.ArrayUtils;
 * @date 2014年10月15日 下午11:49:38
 * @version V1.0
 */
-public class DataSortUtils {
+public final class DataSortUtils {
+
+	private DataSortUtils(){}
 
 	public enum OrderType {
 		desc("desc", "降序"), asce("asce", "升序"), //

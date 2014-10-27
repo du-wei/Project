@@ -1,11 +1,12 @@
 package com.webapp.utils.model;
 
 public class Score {
-	
+
 	private int id;
 	private String stuId;
 	private String courseId;
 	private double score;
+
 	public int getId() {
 		return id;
 	}
@@ -30,6 +31,6 @@ public class Score {
 	public void setScore(double score) {
 		this.score = score;
 	}
-	
-	
+
+
 }

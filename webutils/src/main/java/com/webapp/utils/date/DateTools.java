@@ -18,9 +18,11 @@ import org.joda.time.DateTime;
 * @date 2014年10月15日 下午10:46:07
 * @version V1.0
 */
-public class DateTools {
+public final class DateTools {
 
 	private static Logger logger = LogManager.getLogger(DateTools.class);
+
+	private DateTools(){}
 
 	public static interface FmtDate{
 

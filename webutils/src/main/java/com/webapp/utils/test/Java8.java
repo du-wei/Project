@@ -3,8 +3,6 @@ package com.webapp.utils.test;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
-import org.junit.Test;
-
 public class Java8  {
 
 	public static void main(String[] args) {
@@ -26,23 +24,6 @@ public class Java8  {
 		BiFunction<Long,Long,Integer> bf = Long::compare;
 
 	}
-
-	@Test
-	public void testName() throws Exception {
-		Lambda.start();
-//		Lambda.isEmpty(null);
-	}
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

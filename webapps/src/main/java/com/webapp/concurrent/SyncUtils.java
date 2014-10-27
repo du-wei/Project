@@ -11,7 +11,6 @@ import jodd.util.ThreadUtil;
 import org.junit.Test;
 
 import com.webapp.utils.random.RandomUtils;
-import com.webapp.utils.test.Console;
 import com.webapp.utils.test.ThreadUtils;
 
 public class SyncUtils {
@@ -42,7 +41,7 @@ System.out.println(phase);
 			int arrivedParties = phaser.getArrivedParties();
 			int unarrivedParties = phaser.getUnarrivedParties();
 
-			Console.out("%s-%s-%s-%s", 0, phase, arrivedParties, unarrivedParties);
+			System.out.printf("%s-%s-%s-%s", 0, phase, arrivedParties, unarrivedParties);
 //			System.out.println(Thread.currentThread().getName());
 //			phaser.arrive();	//此处可使用latch.countDown()
 //
@@ -65,9 +64,9 @@ System.out.println(phase);
 			try {
 
 				String data = RandomUtils.str(5);
-				Console.out("%s要交换数据%s", Thread.currentThread().getName(), data);
+				System.out.printf("%s要交换数据%s", Thread.currentThread().getName(), data);
 				String changeData = exchanger.exchange(data);
-				Console.out("%s换回的数据%s", Thread.currentThread().getName(), changeData);
+				System.out.printf("%s换回的数据%s", Thread.currentThread().getName(), changeData);
 
 			} catch (Exception e) {
 				e.printStackTrace();

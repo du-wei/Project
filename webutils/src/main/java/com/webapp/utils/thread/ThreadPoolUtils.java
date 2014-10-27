@@ -11,8 +11,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -103,16 +101,6 @@ public class ThreadPoolUtils {
 		return cs;
 	}
 
-	public static ExecutorService newThreadPool(int minPoolSize, int maxPoolSize) {
-		return newThreadPool(minPoolSize, maxPoolSize, 0);
-	}
-
-	public static ExecutorService newThreadPool(int minPoolSize,
-			int maxPoolSize, int keepAliveTime) {
-		return newThreadPool(minPoolSize, maxPoolSize, keepAliveTime,
-				new LinkedBlockingQueue<Runnable>());
-	}
-
 	public static ExecutorService newThreadPool(int minPoolSize,
 			int maxPoolSize, int keepAliveTime,
 			BlockingQueue<Runnable> workQueue) {
@@ -138,62 +126,6 @@ public class ThreadPoolUtils {
 		 */
 		executor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());
 		return executor;
-	}
-
-	public class ThreadPoolExecutorUtils extends ThreadPoolExecutor {
-
-		public ThreadPoolExecutorUtils(int corePoolSize, int maximumPoolSize,
-				long keepAliveTime, TimeUnit unit,
-				BlockingQueue<Runnable> workQueue) {
-			super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
-		}
-
-		@Override
-		public void execute(Runnable command) {
-			super.execute(command);
-		}
-
-		@Override
-		protected void beforeExecute(Thread t, Runnable r) {
-			logger.info("beforeExecute");
-			super.beforeExecute(t, r);
-		}
-
-		@Override
-		protected void afterExecute(Runnable r, Throwable t) {
-			logger.info("afterExecute");
-			super.afterExecute(r, t);
-		}
-
-	}
-
-	// 创建一个定长的线程池，每提交一个任务就创建一个线程，知道最大。当某个线程由于Exception而结束， 会创建一个新的
-	public static ExecutorService newFixedThreadPool() {
-		ExecutorService threadPool = Executors.newFixedThreadPool(10);
-		return threadPool;
-	}
-
-	// 创建一个可缓存的线程池，如果线程池的长度超过需求时，回收空闲的。 如果需求增加时，可以创建新的
-	public static ExecutorService newCachedThreadPool() {
-		ExecutorService threadPool = Executors.newCachedThreadPool();
-		return threadPool;
-	}
-
-	public static ExecutorService newSingleThreadExecutor() {
-		ExecutorService threadPool = Executors.newSingleThreadExecutor();
-		return threadPool;
-	}
-
-	public static ScheduledExecutorService newScheduledThreadPool() {
-		ScheduledExecutorService threadPool = Executors
-				.newScheduledThreadPool(10);
-		return threadPool;
-	}
-
-	public static ScheduledExecutorService newSingleThreadScheduledExecutor() {
-		ScheduledExecutorService threadPool = Executors
-				.newSingleThreadScheduledExecutor();
-		return threadPool;
 	}
 
 }
