@@ -11,4 +11,9 @@ public final class RegexUtils {
 	    return matcher.group();
     }
 
+	public static boolean isMatch(String data, String regex) {
+	    Matcher matcher = Pattern.compile(regex).matcher(data);
+	    return matcher.matches();
+    }
+
 }

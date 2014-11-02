@@ -17,17 +17,18 @@ import pl.kernelpanic.dbmonster.schema.Schema;
 import pl.kernelpanic.dbmonster.schema.SchemaUtil;
 
 import com.webapp.utils.config.ConfigUtils;
+import com.webapp.utils.config.PathUtils;
 
 public class DbmonsterUtils {
 
 	@Test
 	public void testok() throws Exception {
-		String schemaPath = ConfigUtils.getPathStr("dbmonster-schema.xml");
+		String schemaPath = PathUtils.getPath("dbmonster-schema.xml").toString();
 		dataGenerate(schemaPath);
 	}
 
 	public static void main(String... schemaPath) throws Exception {
-		System.setProperty("user.home", ConfigUtils.getClassPath());
+		System.setProperty("user.home", PathUtils.getClassPath());
 		String[] args = new String[] { "-cdbmonster.properties",
 				"-s" + schemaPath, "-n 100" };
 		Launcher.main(args);

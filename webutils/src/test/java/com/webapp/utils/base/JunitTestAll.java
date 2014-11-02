@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import com.webapp.utils.collectionns.ListUtilsTest;
 import com.webapp.utils.datasort.DataSortUtilsTest;
 import com.webapp.utils.date.DateToolsTest;
 import com.webapp.utils.enums.EnumUtilsTest;
@@ -22,7 +23,8 @@ import com.webapp.utils.string.UtilsTest;
 	FmtUtilsTest.class,
 	JSONUtilsTest.class,
 	RandomUtilsTest.class,
-	UtilsTest.class
+	UtilsTest.class,
+	ListUtilsTest.class
 })
 public class JunitTestAll {
 }

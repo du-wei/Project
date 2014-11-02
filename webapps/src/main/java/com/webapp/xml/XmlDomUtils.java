@@ -18,7 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.webapp.utils.config.ConfigUtils;
+import com.webapp.utils.config.PathUtils;
 
 public class XmlDomUtils {
 
@@ -30,7 +30,7 @@ public class XmlDomUtils {
 	public static void main(String[] args) throws Exception {
 
 		Document document = parse(new File(
-				ConfigUtils.getCurPath(XmlDomUtils.class) + "/schema.xml"));
+				PathUtils.getCurPath(XmlDomUtils.class) + "/schema.xml"));
 		System.out.println(document.getXmlEncoding());
 
 		Element root = document.getDocumentElement();

@@ -26,7 +26,7 @@ import org.lionsoul.jcseg.analyzer.JcsegAnalyzer4X;
 import org.lionsoul.jcseg.core.JcsegTaskConfig;
 
 import com.webapp.lucene.pinyin.PinYinAnalyzer;
-import com.webapp.utils.config.ConfigUtils;
+import com.webapp.utils.config.PathUtils;
 
 public class LuceneTest {
 
@@ -111,7 +111,7 @@ public class LuceneTest {
 	@Test
 	public void testIndex() throws Exception {
 
-		File file = new File(ConfigUtils.getPathStr("word.txt"));
+		File file = new File(PathUtils.getPath("word.txt").toString());
 		FileReader fileReader = new FileReader(file);
 		BufferedReader reader = new BufferedReader(fileReader);
 

@@ -13,7 +13,7 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import com.webapp.utils.config.ConfigUtils;
+import com.webapp.utils.config.PathUtils;
 
 public class XmlJDomUtils {
 
@@ -23,7 +23,7 @@ public class XmlJDomUtils {
 
 		SAXBuilder builder = new SAXBuilder();
 
-		Document doc = builder.build(new File(ConfigUtils
+		Document doc = builder.build(new File(PathUtils
 				.getCurPath(XmlJDomUtils.class) + "/schema.xml"));
 
 		Element root = doc.getRootElement();
@@ -56,9 +56,9 @@ public class XmlJDomUtils {
 		pretty.setEncoding("utf-8");
 
 		XMLOutputter out = new XMLOutputter(pretty);
-		System.out.println(ConfigUtils.getUserPath()
+		System.out.println(PathUtils.getUserPath()
 				+ "/src/main/java/com/webapp/xml/jdom.xml");
-		out.output(doc, new FileOutputStream(ConfigUtils.getUserPath()
+		out.output(doc, new FileOutputStream(PathUtils.getUserPath()
 				+ "/src/main/java/com/webapp/xml/jdom.xml"));
 		System.out.println("--------");
 	}

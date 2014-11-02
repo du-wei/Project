@@ -40,7 +40,7 @@
 		<spring_version>4.1.0.RELEASE</spring_version>
 		<spring_component>2.0.8</spring_component>
 		<aspectj_version>1.8.2</aspectj_version>
-		<fastjson_version>1.1.43</fastjson_version>
+		<fastjson_version>1.2.0</fastjson_version>
 		<jodd_version>3.6.1</jodd_version>
 		<commons_io>2.4</commons_io>
 		<commons_lang3>3.3.2</commons_lang3>
@@ -330,8 +330,12 @@
 	<!-- 远程仓库配置 -->
 	<repositories>
 		<repository>
-		    <id>central</id>
+		    <id>repo1</id>
 		    <url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+		    <id>central</id>
+		    <url>http://central.maven.org/maven2</url>
 		</repository>
 		<repository>
 		    <id>apache-central</id>

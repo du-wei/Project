@@ -9,6 +9,9 @@ import org.apache.commons.lang3.StringUtils;
 public class KeysUtils {
 
 	public static void main(String[] args) {
+		//encrypt
+		//decrypt
+
 	    System.out.println();
     }
 

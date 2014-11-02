@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.webapp.utils.config.ConfigUtils;
+import com.webapp.utils.config.PathUtils;
 
 public class PoolUtils {
 

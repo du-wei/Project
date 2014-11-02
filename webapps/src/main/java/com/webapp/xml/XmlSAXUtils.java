@@ -11,7 +11,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.webapp.utils.config.ConfigUtils;
+import com.webapp.utils.config.PathUtils;
 
 public class XmlSAXUtils {
 
@@ -25,7 +25,7 @@ public class XmlSAXUtils {
 
 		MyHandle myHandle = new MyHandle();
 
-		sp.parse(new File(ConfigUtils.getCurPath(XmlSAXUtils.class)
+		sp.parse(new File(PathUtils.getCurPath(XmlSAXUtils.class)
 				+ "/schema.xml"), myHandle);
 		System.out.println(myHandle.result.toString());
 

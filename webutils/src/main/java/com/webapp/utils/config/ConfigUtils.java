@@ -4,10 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,7 +29,6 @@ import org.apache.logging.log4j.Logger;
 public class ConfigUtils {
 
 	private static Logger logger = LogManager.getLogger(ConfigUtils.class);
-
 	private static CompositeConfiguration composite;
 
 	// 1。使用java.util.Properties类的load()方法
@@ -47,113 +42,21 @@ public class ConfigUtils {
 	public static Properties read(String path) {
 		Properties p = new Properties();
 		try (InputStream in = new BufferedInputStream(new FileInputStream(
-				getPathStr(path)))) {
+				PathUtils.getPath(path).toString()))) {
 			p.load(in);
 		} catch (IOException e) {
-			logger.error(ConfigUtils.class.getSimpleName() + " 读取属性文件出错", e);
-			throw new RuntimeException(ConfigUtils.class.getSimpleName()
+			logger.error(PathUtils.class.getSimpleName() + " 读取属性文件出错", e);
+			throw new RuntimeException(PathUtils.class.getSimpleName()
 					+ " 读取属性文件出错");
 		}
 		return p;
-	}
-
-	public static String getCurPath(Class<?> clz) {
-		return encode(clz.getResource("")).toString();
-	}
-
-	public static String getUserPath() {
-		return System.getProperty("user.dir");
-	}
-
-	public static String getClassPath() {
-		return encode(getResource("/")).toString();
-	}
-
-	public static URL getPathUrl(String path) {
-		return getResource(path);
-	}
-
-	public static URL getPathUrl(String path, boolean isClasspath) {
-		return getResource(path, isClasspath);
-	}
-
-	public static Path getPath(String path) {
-		return encode(getResource(path));
-	}
-
-	public static Path getPath(String path, boolean isClasspath) {
-		return encode(getResource(path, isClasspath));
-	}
-
-	public static String getPathStr(String path) {
-		return encode(getResource(path)).toString();
-	}
-
-	public static String getPathStr(String path, boolean isClasspath) {
-		return encode(getResource(path, isClasspath)).toString();
-	}
-
-	public static boolean hasFileInClassPath(String path) {
-		return Files.exists(Paths.get(getUserPath() + path));
-	}
-
-	public static URL getResource(String path) {
-		return getResource(path, true);
-	}
-
-	public static URL getResource(Path path) {
-		return encodeURL(getResource(path.toString()));
-	}
-
-	public static URL getResource(String path, boolean isClasspath) {
-		// 根目录
-		URL result = null;
-		if (isClasspath) {
-			result = ConfigUtils.class.getResource(path);
-			if (result == null && !path.contains("/")) {
-				result = ConfigUtils.class.getResource("/" + path);
-			}
-			return result;
-		} else {
-			try {
-				result = Paths.get(path).toAbsolutePath().toUri().toURL();
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-			return result;
-		}
-
-	}
-
-	private static Path encode(URI url) {
-		return Paths.get(url);
-	}
-
-	private static Path encode(URL url) {
-		try {
-			return encode(url.toURI());
-		} catch (URISyntaxException e) {
-			logger.error(ConfigUtils.class.getSimpleName() + " URL转换URI出错", e);
-			throw new RuntimeException(ConfigUtils.class.getSimpleName()
-					+ " URL转换URI出错");
-		}
-	}
-
-	private static URL encodeURL(URL url) {
-		try {
-			return encode(url.toURI()).toUri().toURL();
-		} catch (Exception e) {
-			logger.error(ConfigUtils.class.getSimpleName() + " URL转换URI出错", e);
-			throw new RuntimeException(ConfigUtils.class.getSimpleName()
-					+ " URL转换URI出错");
-		}
 	}
 
 	public static CompositeConfiguration loadDirConfig(String path,
 			String... suffix) {
 		Path dir = Paths.get(path);
 		if (dir.toString().equals("\\") || !Files.isDirectory(dir)) {
-			dir = getPath(path);
+			dir = PathUtils.getPath(path);
 		}
 		return loadDirConfig(dir, suffix);
 	}
@@ -176,7 +79,7 @@ public class ConfigUtils {
 	public static Configuration loadAllConfig(String file) {
 		DefaultConfigurationBuilder builder = null;
 		try {
-			builder = new DefaultConfigurationBuilder(getPathStr(file));
+			builder = new DefaultConfigurationBuilder(PathUtils.getPath(file).toString());
 			return builder.getConfiguration(true);
 		} catch (ConfigurationException e) {
 			logger.error(" 配置文件 ->" + file + " 加载出错!", e);
@@ -221,7 +124,7 @@ public class ConfigUtils {
 	private static Configuration getConfig(String path) {
 		try {
 			if (!Paths.get(path).isAbsolute()) {
-				path = getPathStr(path);
+				path = PathUtils.getPath(path).toString();
 			}
 			if (path.endsWith(".properties")) {
 				PropertiesConfiguration config = new PropertiesConfiguration(
@@ -258,8 +161,7 @@ public class ConfigUtils {
 
 	// java system
 	public static InputStream getInputStream(String url) {
-		InputStream in = ConfigUtils.class.getResourceAsStream(url);
-		// InputStream in5 = ClassLoader.getSystemResourceAsStream(url);
+		InputStream in = PathUtils.class.getResourceAsStream(url);
 		return in;
 	}
 
@@ -277,25 +179,4 @@ public class ConfigUtils {
 		}
 		return rb;
 	}
-
-	public static String getJavaPath() {
-		return System.getProperty("sun.boot.library.path");
-	}
-
-	public static String getUserHome() {
-		return System.getProperty("user.home");
-	}
-
-	public static String getJavaVmVersion() {
-		return System.getProperty("java.vm.version");
-	}
-
-	public static String getJavaRunVersion() {
-		return System.getProperty("java.runtime.version");
-	}
-
-	public static String getJavaPathSeparator() {
-		return System.getProperty("path.separator");
-	}
-
 }

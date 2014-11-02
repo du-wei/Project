@@ -21,7 +21,7 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 import org.junit.Test;
 
-import com.webapp.utils.config.ConfigUtils;
+import com.webapp.utils.config.PathUtils;
 
 public class XmlDom4jUtils {
 
@@ -32,7 +32,7 @@ public class XmlDom4jUtils {
 
 	@Test
 	public void testName() throws Exception {
-		File file = new File(ConfigUtils.getCurPath(XmlDom4jUtils.class)
+		File file = new File(PathUtils.getCurPath(XmlDom4jUtils.class)
 				+ "/schema.xml");
 
 		String path = "F:/360云盘/project/webapps/src/main/java/com/webapp/xml/schema.xml";

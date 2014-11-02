@@ -17,7 +17,7 @@ import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import org.junit.Test;
-import com.webapp.utils.config.ConfigUtils;
+import com.webapp.utils.config.PathUtils;
 
 public class XmlStaxUtils {
 
@@ -73,7 +73,7 @@ public class XmlStaxUtils {
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 
 		InputStream inputStream = new FileInputStream(new File(
-				ConfigUtils.getCurPath(XmlStaxUtils.class) + "/schema.xml"));
+				PathUtils.getCurPath(XmlStaxUtils.class) + "/schema.xml"));
 
 		XMLEventReader reader = inputFactory.createXMLEventReader(inputStream);
 
