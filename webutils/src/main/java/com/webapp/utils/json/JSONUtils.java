@@ -13,6 +13,7 @@ import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.NameFilter;
 import com.alibaba.fastjson.serializer.PascalNameFilter;
 import com.alibaba.fastjson.serializer.PropertyFilter;
+import com.alibaba.fastjson.serializer.PropertyPreFilter;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
@@ -382,6 +383,23 @@ public class JSONUtils {
 	 */
     public JSONUtils toNullListAsEmpty() {
     	jsonSerializer.config(SerializerFeature.WriteNullListAsEmpty, true);
+    	return this;
+    }
+
+    public JSONUtils addNameFilter(NameFilter filter) {
+    	jsonSerializer.getNameFilters().add(filter);
+    	return this;
+    }
+    public JSONUtils addValueFilters(ValueFilter filter) {
+    	jsonSerializer.getValueFilters().add(filter);
+    	return this;
+    }
+    public JSONUtils addPropertyFilter(PropertyFilter filter) {
+    	jsonSerializer.getPropertyFilters().add(filter);
+    	return this;
+    }
+    public JSONUtils addPropertyPreFilter(PropertyPreFilter filter) {
+    	jsonSerializer.getPropertyPreFilters().add(filter);
     	return this;
     }
 

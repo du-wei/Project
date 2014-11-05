@@ -1,0 +1,13 @@
+
+<!-- velocity 宏-函数	#showData(i) -->
+#macro(showData $i)
+	---- > $i
+#end
+
+<!-- 时间格式化 $!{date.format('yyyy-MM-dd HH:mm:ss',$!time)} -->
+
+<!-- 数值转换 -->
+#set($Integer = 0)
+$Integer.parseInt($int);
+#set($Double = 0.0)
+$Double.parseDouble($double);

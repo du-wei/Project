@@ -19,6 +19,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>edu.washington.cs.types.checker</groupId>
+			<artifactId>checker-framework</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.typesafe.akka</groupId>
 			<artifactId>akka-actor_2.10</artifactId>
 			<version>2.3.6</version>
