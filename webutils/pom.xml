@@ -18,6 +18,7 @@
 	</properties>
 
 	<dependencies>
+						
 		<dependency>
 			<groupId>edu.washington.cs.types.checker</groupId>
 			<artifactId>checker-framework</artifactId>

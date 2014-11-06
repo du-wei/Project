@@ -17,6 +17,7 @@ public class FmtUtilsTest {
 	double data3 = 3000.0d;
 	String data4 = "$4000.000";
 	long data5 = 5000;
+	double data6 = 0.0d;
 
 	@Test
     public void fmtScale() throws Exception {
@@ -41,12 +42,15 @@ public class FmtUtilsTest {
 		System.out.printf(format , data5, result, "long\tfmt(2)");
 		assertThat(result, Matchers.is("5000.00"));
 
+		result = FmtUtils.of(data6).fmt(2);
+		System.out.printf(format , data6, result, "long\tfmt(2)");
+		assertThat(result, Matchers.is("0.00"));
 		System.out.println("-------------------------------------->");
     }
 
 	@Test
     public void fmt1() throws Exception {
-		String fmt = "#.0000";
+		String fmt = "0.0000";
 
 		String result = FmtUtils.of(data1).fmt(fmt);
 		System.out.printf(format , data1, result, "int\tfmt("+fmt+")");
@@ -67,13 +71,17 @@ public class FmtUtilsTest {
 		result = FmtUtils.of(data5).fmt(fmt);
 		System.out.printf(format , data5, result, "long\tfmt("+fmt+")");
 		assertThat(result, Matchers.is("5000.0000"));
+		
+		result = FmtUtils.of(data6).fmt(fmt);
+		System.out.printf(format , data6, result, "long\tfmt("+fmt+")");
+		assertThat(result, Matchers.is("0.0000"));
 		System.out.println("-------------------------------------->");
 	}
 
 	@Test
     public void fmt2() throws Exception {
 
-		String fmt = "$#.0000";
+		String fmt = "$0.0000";
 
 		String result = FmtUtils.of(data1).fmt(fmt);
 		System.out.printf(format , data1, result, "int\tfmt("+fmt+")");
@@ -94,6 +102,10 @@ public class FmtUtilsTest {
 		result = FmtUtils.of(data5).fmt(fmt);
 		System.out.printf(format , data5, result, "long\tfmt("+fmt+")");
 		assertThat(result, Matchers.is("$5000.0000"));
+		
+		result = FmtUtils.of(data6).fmt(fmt);
+		System.out.printf(format , data6, result, "long\tfmt("+fmt+")");
+		assertThat(result, Matchers.is("$0.0000"));
 		System.out.println("-------------------------------------->");
     }
 
@@ -120,6 +132,9 @@ public class FmtUtilsTest {
 		System.out.printf(format , data5, result, "long\tfmtCurrency()");
 		assertThat(result, Matchers.is("￥5000"));
 
+		result = FmtUtils.of(data6).fmtCurrency(2);
+		System.out.printf(format , data6, result, "long\tfmtCurrency()");
+		assertThat(result, Matchers.is("￥0.00"));
 		System.out.println("-------------------------------------->");
     }
 
@@ -146,6 +161,38 @@ public class FmtUtilsTest {
 		System.out.printf(format , data5, result, "long\tfmtDollar()");
 		assertThat(result, Matchers.is("$5000"));
 
+		result = FmtUtils.of(data6).fmtDollar(2);
+		System.out.printf(format , data6, result, "long\tfmtDollar()");
+		assertThat(result, Matchers.is("$0.00"));
+		System.out.println("-------------------------------------->");
+    }
+	
+	@Test
+    public void fmtPercent() throws Exception {
+
+		String result = FmtUtils.of(data1).fmtPercent();
+		System.out.printf(format , data1, result, "int\tfmtPercent()");
+		assertThat(result, Matchers.is("100000%"));
+
+		result = FmtUtils.of(data2).fmtPercent();
+		System.out.printf(format , data2, result, "float\tfmtPercent()");
+		assertThat(result, Matchers.is("200000.0%"));
+
+		result = FmtUtils.of(data3).fmtPercent();
+		System.out.printf(format , data3, result, "double\tfmtPercent()");
+		assertThat(result, Matchers.is("300000.0%"));
+
+		result = FmtUtils.of(data4).fmtPercent();
+		System.out.printf(format , data4, result, "string\tfmtPercent()");
+		assertThat(result, Matchers.is("400000.000%"));
+
+		result = FmtUtils.of(data5).fmtPercent();
+		System.out.printf(format , data5, result, "long\tfmtPercent()");
+		assertThat(result, Matchers.is("500000%"));
+
+		result = FmtUtils.of(data6).fmtPercent(2);
+		System.out.printf(format , data6, result, "long\tfmtPercent()");
+		assertThat(result, Matchers.is("0.00%"));
 		System.out.println("-------------------------------------->");
     }
 

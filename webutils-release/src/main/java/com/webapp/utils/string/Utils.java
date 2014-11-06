@@ -17,8 +17,7 @@ import com.webapp.utils.regex.RegexConst;
 * @version V1.0
 */
 public final class Utils {
-	//mina
-
+	
 	private Utils(){}
 
 	public static interface Symbol{

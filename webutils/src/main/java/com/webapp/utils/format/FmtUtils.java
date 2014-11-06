@@ -115,7 +115,7 @@ public final class FmtUtils {
 	private String getPattern(String data, String before, String after) {
 	    int length = data.replaceFirst("\\d+\\.|\\d+", "").length();
 	    String symbol = endZero ? "0" : "#";
-    	StringBuffer pattern = new StringBuffer(before + "#");
+    	StringBuffer pattern = new StringBuffer(before + "0");
 
     	pattern.append(length > 0 ? "." : Symbol.Empty);
     	for(int i=0; i<length; i++){

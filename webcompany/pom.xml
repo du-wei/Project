@@ -25,29 +25,9 @@
 		<outputDirectory>target/classes</outputDirectory>
 		<defaultGoal>install</defaultGoal>
 		<directory>${basedir}/target</directory>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-			</plugin>
-		</plugins>
 	</build>
-	
+
 	<dependencies>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
-		<!--junit-->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
@@ -126,5 +106,5 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
-  
+
 </project>
