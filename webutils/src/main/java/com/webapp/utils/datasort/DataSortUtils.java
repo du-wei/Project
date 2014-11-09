@@ -181,7 +181,7 @@ public final class DataSortUtils {
 			int low = 0;
 			int high = i - 1;
 			while (low <= high) {
-				int mid = (low + high) / 2;
+				int mid = (low + high) >> 1;
 				if (compare(temp, data[mid], comp) > 0) {
 					low = mid + 1;
 				} else {
@@ -259,11 +259,11 @@ public final class DataSortUtils {
 	}
 
 	private static <T> T[] buildMaxHeap(T[] data, int lastIndex, Comparator<T> comp) {
-		int lastNode = lastIndex / 2 - 1;
+		int lastNode = (lastIndex >> 1) - 1;
 		for (int i = lastNode; i >= 0; i--) {
 			int k = i;
-			while (k * 2 + 1 < lastIndex) {
-				int bigIndex = k * 2 + 1;
+			while ((k << 1) + 1 < lastIndex) {
+				int bigIndex = (k << 1) + 1;
 				if (bigIndex < lastIndex - 1) {
 					// bigIndex += comp.compare(data[bigIndex],
 					// data[bigIndex+1]) < 0 ? 1 : 0;

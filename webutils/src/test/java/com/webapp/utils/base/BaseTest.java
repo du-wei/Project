@@ -12,9 +12,12 @@ public class BaseTest {
 
 	@Test
     public void testName() throws Exception {
-		logger.info("hello");
-		logger.warn("hello");
+		logger.debug("debug");
+		logger.info("info");
+		logger.warn("warn");
 		System.out.println("..");
+		Thread.sleep(1000000);
+		
     }
 	
 }

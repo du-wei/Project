@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
@@ -66,8 +67,23 @@ public interface ThreadUtils {
 		testSimpleCase(run, count, false);
 	}
 
+	
+	public static void testCAP(Consumer<Integer> cap, int loop) {
+    	long startTime = System.nanoTime();
+    	for(int i=0; i<loop; i++){
+    		cap.accept(i);
+    	}
+    	ThreadUtils.computeTime(startTime, true);
+    }
+	
+	public static void testSimpleCAP(Consumer<Integer> cap, int loop) {
+    	long startTime = System.nanoTime();
+    	cap.accept(loop);
+    	ThreadUtils.computeTime(startTime, true);
+    }
+	
 	public static void computeTime(long startTime, boolean isNanoTime){
-		if(isNanoTime && String.valueOf(startTime).length() != 16){
+		if(isNanoTime && String.valueOf(startTime).length() != 15){
 			System.out.println(startTime + "不是正确的纳秒数");
 			return;
 		}
@@ -75,16 +91,17 @@ public interface ThreadUtils {
 		long total = endTime-startTime;
 
 		if(isNanoTime){
-			System.out.printf("total time = %s纳秒\t", total);
-			System.out.printf("total time = %s微秒\t", total/1000L);
-			System.out.printf("total time = %s毫秒\t", total/1000_000L);
-			System.out.printf("total time = %s秒\t", total/1000_000_000L);
-			System.out.printf("total time = %s分\t", total/(1000_000_000L * 60));
-		}else {
-			System.out.printf("total time = %s毫秒\t", total);
-			System.out.printf("total time = %s秒\t", total/1000);
-			System.out.printf("total time = %s分\t", total/1000/60);
+//			System.out.printf("\ntotal time = %s纳秒\t", total);
+			System.out.printf("\ntotal time = %s微秒\t", total/1000L);
+			System.out.printf("\ntotal time = %s毫秒\t", total/1000_000L);
+			System.out.printf("\ntotal time = %s秒\t", total/1000_000_000L);
+			System.out.printf("\ntotal time = %s分\t", total/(1000_000_000L * 60));
+		}else {                
+			System.out.printf("\ntotal time = %s毫秒\t", total);
+			System.out.printf("\ntotal time = %s秒\t", total/1000);
+			System.out.printf("\ntotal time = %s分\t", total/1000/60);
 		}
+		System.out.println();
 	}
 
 	public static void computeTime(long startTime){

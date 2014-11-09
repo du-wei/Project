@@ -234,7 +234,17 @@
                     <server>tomcat7</server>
 	            </configuration>
 	        </plugin>
-
+	        <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<extensions>false</extensions>
+        		<inherited>true</inherited>
+				<configuration>
+					<source>${jdk_version}</source>
+					<target>${jdk_version}</target>
+					<encoding>${encoding}</encoding>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

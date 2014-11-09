@@ -25,6 +25,38 @@
 	
 	<aop:aspectj-autoproxy/>
 	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+           <list>  
+              <value>classpath*:build_dev.properties</value>
+           </list>  
+        </property>  
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="fileEncoding" value="utf-8"/>
+    </bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${driver}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="maxIdle" value="30"></property>
+		<property name="defaultAutoCommit" value="true"></property>
+	</bean>
+	
+	<bean id="multiDataSource" class="com.webapp.datasource.MultiDataSource">
+        <property name="defaultTargetDataSource" ref="dataSource"/>
+        <property name="targetDataSources">
+            <map>
+                <entry key="dataSource" value-ref="dataSource"/>
+            </map>
+        </property>
+    </bean>
+    
+    <!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="multiDataSource"/>
+    </bean> -->
+	
 	<!-- <bean id="result" name="result" class="com.webapp.entity.Result"></bean> -->
 	
 </beans>
