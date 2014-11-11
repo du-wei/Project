@@ -18,7 +18,18 @@
 	</properties>
 
 	<dependencies>
-						
+		<dependency>
+			<groupId>it.unimi.dsi</groupId>
+			<artifactId>fastutil</artifactId>
+			<version>6.5.15</version>
+		</dependency>
+		<dependency>
+			<groupId>net.openhft</groupId>
+			<artifactId>koloboke-api-jdk8</artifactId>
+			<!-- <artifactId>koloboke-api-jdk6-7</artifactId> -->
+			<version>0.6.5</version>
+		</dependency>
+								
 		<dependency>
 			<groupId>edu.washington.cs.types.checker</groupId>
 			<artifactId>checker-framework</artifactId>

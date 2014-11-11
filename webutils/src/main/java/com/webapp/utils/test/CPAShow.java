@@ -1,13 +1,7 @@
 package com.webapp.utils.test;
 
-import java.util.Arrays;
-import java.util.function.Consumer;
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-
-import com.webapp.utils.datasort.DataSortUtils;
-import com.webapp.utils.datasort.DataSortUtils.OrderType;
 
 public class CPAShow {
 

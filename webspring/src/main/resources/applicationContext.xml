@@ -41,6 +41,13 @@
 		<property name="username" value="${username}"></property>
 		<property name="password" value="${password}"></property>
 		<property name="maxIdle" value="30"></property>
+		<!-- <property name="maxActive" value="100"></property> -->
+		<!-- <property name="numActive" value="100"></property> -->
+		<!-- <property name="maxWait" value="2000"></property> -->
+		<property name="maxWaitMillis" value="2000"></property>
+		<property name="testOnBorrow" value="true"></property>
+		<property name="testOnReturn" value="true"></property>
+		<property name="validationQuery" value="1"></property>
 		<property name="defaultAutoCommit" value="true"></property>
 	</bean>
 	
