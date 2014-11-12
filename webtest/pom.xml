@@ -124,6 +124,48 @@
 		<outputDirectory>target/classes</outputDirectory>
 		<defaultGoal>install</defaultGoal>
 		<directory>${basedir}/target</directory>
+		
+		<plugins>
+			<plugin>
+	            <groupId>org.apache.tomcat.maven</groupId>
+		        <artifactId>tomcat7-maven-plugin</artifactId>
+		        <version>2.2</version>
+	            <configuration>
+	                <path>/webutils</path>
+	                <port>8080</port>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <finalName>webutils</finalName>
+                    <server>tomcat7</server>
+	            </configuration>
+	        </plugin>
+	        <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<extensions>false</extensions>
+        		<inherited>true</inherited>
+				<configuration>
+					<source>${jdk_version}</source>
+					<target>${jdk_version}</target>
+					<encoding>${encoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.jdbc.url>jdbc:mysql://localhost:3306/mysonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true</sonar.jdbc.url>
+				<sonar.jdbc.driverClassName>com.mysql.jdbc.Driver</sonar.jdbc.driverClassName>
+				<sonar.jdbc.username>root</sonar.jdbc.username>
+				<sonar.jdbc.password>root</sonar.jdbc.password>
+				<sonar.host.url>http://localhost:9999</sonar.host.url>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

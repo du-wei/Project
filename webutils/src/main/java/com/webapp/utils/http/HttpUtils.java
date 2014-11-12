@@ -26,18 +26,33 @@ public final class HttpUtils {
 
 	private HttpPost post;
 	private HttpGet get;
+	private static final ThreadLocal<HttpUtils> local = new ThreadLocal<HttpUtils>();
 	private HttpUtils(HttpPost post){
 		this.post = post;
 	}
 	private HttpUtils(HttpGet get){
 		this.get = get;
 	}
+	
+	/** setData **/
+    private HttpUtils setData(HttpGet get, HttpPost post) {
+	    this.post = post;
+	    this.get = get;
+	    return this;
+    }
+    /** local data **/
+    private static HttpUtils localData(String url, boolean isGet) {
+    	if (local.get() == null) {
+    		local.set(isGet ? new HttpUtils(new HttpGet(url)) : new HttpUtils(new HttpPost(url)));
+    	}
+		return local.get().setData(isGet ? new HttpGet(url) : null, isGet ? null : new HttpPost(url));
+	}
 
 	public static HttpUtils get(String url){
-		return new HttpUtils(new HttpGet(url));
+		return localData(url, true);
 	}
 	public static HttpUtils post(String url){
-		return new HttpUtils(new HttpPost(url));
+		return localData(url, false);
 	}
 
 	public HttpUtils addHeader(String key, String val){

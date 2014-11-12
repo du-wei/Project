@@ -22,8 +22,25 @@ public final class DateTools {
 
 	private static Logger logger = LogManager.getLogger(DateTools.class);
 
-	private DateTools(){}
-
+	private DateTime ofDate;
+	private static final ThreadLocal<DateTools> local = new ThreadLocal<DateTools>();
+	private static final String[] parsePatterns = new String[] {
+		FmtDate.Fmt_DateTime_UTC, //
+		FmtDate.Fmt_DateTime_Z, //
+		FmtDate.Fmt_DateTime_AT, //
+		FmtDate.Fmt_DateTime_TZ, //
+		FmtDate.Fmt_DateTime_T, //
+		FmtDate.Fmt_DateTime, //
+		FmtDate.Fmt_DateTime_NS, //
+		FmtDate.Fmt_Date, //
+		FmtDate.Fmt_DateTime_Slant, //
+		FmtDate.Fmt_DateTime_SNS, //
+		FmtDate.Fmt_Date_Slant, //
+		FmtDate.Fmt_Date_CN, //
+		FmtDate.Fmt_Time, //
+		FmtDate.Fmt_Time_M  //
+	};
+	
 	public static interface FmtDate{
 
 		/** date --> {@value} */
@@ -56,53 +73,46 @@ public final class DateTools {
 		public static final String Fmt_Time_M = "h:mm a";
 
 	}
-
-
-	private static String[] parsePatterns = new String[] {
-		FmtDate.Fmt_DateTime_UTC, //
-		FmtDate.Fmt_DateTime_Z, //
-		FmtDate.Fmt_DateTime_AT, //
-		FmtDate.Fmt_DateTime_TZ, //
-		FmtDate.Fmt_DateTime_T, //
-		FmtDate.Fmt_DateTime, //
-		FmtDate.Fmt_DateTime_NS, //
-		FmtDate.Fmt_Date, //
-		FmtDate.Fmt_DateTime_Slant, //
-		FmtDate.Fmt_DateTime_SNS, //
-		FmtDate.Fmt_Date_Slant, //
-		FmtDate.Fmt_Date_CN, //
-		FmtDate.Fmt_Time, //
-		FmtDate.Fmt_Time_M  //
-	};
-	private DateTime ofDate;
+	
 	private DateTools(DateTime date){
 		this.ofDate = date;
+	}
+	
+	/** setData **/
+    private DateTools setData(DateTime ofDate) {
+	    this.ofDate = ofDate;
+	    return this;
+    }
+    /** local data **/
+    private static DateTools localData(DateTime date) {
+    	if (local.get() == null) local.set(new DateTools(date));
+		return local.get().setData(date);
 	}
 
 	/** now date **/
 	public static DateTools now(){
-		return new DateTools(DateTime.now());
+		return localData(DateTime.now());
 	}
 
 	/**
 	* @param date string date
 	*/
 	public static DateTools of(String date){
-		return new DateTools(parse(date));
+		return localData(parse(date));
 	}
 
 	/**
 	* @param date long date
 	*/
 	public static DateTools of(long date){
-		return new DateTools(new DateTime().withMillis(date));
+		return localData(new DateTime().withMillis(date));
 	}
 
 	/**
 	* @param date date
 	*/
 	public static DateTools of(Date date){
-		return new DateTools(new DateTime().withMillis(date.getTime()));
+		return localData(new DateTime().withMillis(date.getTime()));
 	}
 
 	/** To java.util.Date **/

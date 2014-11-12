@@ -12,7 +12,7 @@ public class Jdk8Utils<T, R> {
 		int[] jj = {1, 2};
 		String[] jjj = {"aa", "bb"};
 		System.out.println(Jdk8Utils.of(jj).contains(1));
-
+System.out.println(jjj.getClass().getName());
 	}
 
 	private T[] objArr;
@@ -32,7 +32,7 @@ public class Jdk8Utils<T, R> {
 	}
 
 	public static Jdk8Utils<Integer, int[]> of(int[] data){
-		return newInstance(ArrayUtils.toObject(data));
+		return newInstance(data);
 	}
 	public static Jdk8Utils<Double, double[]> of(double[] data){
 		return newInstance(ArrayUtils.toObject(data));

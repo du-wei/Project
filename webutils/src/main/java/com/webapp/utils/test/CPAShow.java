@@ -17,14 +17,7 @@ public class CPAShow {
 //		ThreadUtils.testSimpleCAP(CPAShow::loop3, 20000);
 //		ThreadUtils.testSimpleCAP(CPAShow::compute, 1);
 //		ThreadUtils.testSimpleCAP(CPAShow::compute1, 2000000);
-		ThreadUtils.testSimpleCAP(CPAShow::utils, 100000000);
 	}
-	
-	public static void utils(int loop) {
-		for(int i=0; i<loop; i++){
-			Instance.of(i).toStr();
-		}
-    }
 	
 	public static void compute(int loop) {//-------------->
 	    //* 2 4 8 --> <<2
@@ -72,19 +65,19 @@ public class CPAShow {
 		}
 	}
 	
-	private static void loop1(int loop) {
+	public static void loop1(int loop) {
 		String s = "";
 		for (int i = 1; i < loop; i++) {
 			s = s + "+" + i;
 		}
 	}
-	private static void loop2(int loop) {//-------------->
+	public static void loop2(int loop) {//-------------->
 		StringBuffer sb = new StringBuffer();
 		for (int i = 1; i < loop; i++) {
 			sb.append(i).append("+");
 		}
 	}
-	private static void loop3(int loop) {//-------------->
+	public static void loop3(int loop) {//-------------->
 		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i < loop; i++) {
 			sb.append(i).append("+");

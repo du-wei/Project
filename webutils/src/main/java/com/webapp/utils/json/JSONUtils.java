@@ -32,18 +32,27 @@ import com.webapp.utils.string.Utils;
 public class JSONUtils {
 
     private Object jsonObj;
-
     private JSONSerializer jsonSerializer;
+    private static final ThreadLocal<JSONUtils> local = new ThreadLocal<JSONUtils>();
 
     private JSONUtils(Object object) {
     	this.jsonObj = object;
-
-    	SerializeConfig config = new SerializeConfig();
-    	jsonSerializer = new JSONSerializer(config);
+    	jsonSerializer = new JSONSerializer(new SerializeConfig());
     }
+    /** setData **/
+    private JSONUtils setData(Object jsonObj, JSONSerializer jsonSerializer) {
+	    this.jsonObj = jsonObj;
+	    this.jsonSerializer = jsonSerializer;
+	    return this;
+    }
+    /** local data **/
+    private static JSONUtils localData(Object object) {
+    	if (local.get() == null) local.set(new JSONUtils(object));
+		return local.get().setData(object, new JSONSerializer(new SerializeConfig()));
+	}
 
 	public static JSONUtils of(Object object) {
-		return new JSONUtils(object);
+		return localData(object);
 	}
 
 	/**
