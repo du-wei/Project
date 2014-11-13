@@ -1,4 +1,4 @@
-package com.webapp.mybatis.annotation;
+package com.webapp.mybatis.annotation.dao;
 
 import org.apache.ibatis.jdbc.SqlBuilder;
 

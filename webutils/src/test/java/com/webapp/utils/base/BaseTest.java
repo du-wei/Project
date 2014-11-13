@@ -16,8 +16,7 @@ public class BaseTest {
 		logger.info("info");
 		logger.warn("warn");
 		System.out.println("..");
-		Thread.sleep(1000000);
-		
+//		Thread.sleep(1000000);
     }
 	
 }

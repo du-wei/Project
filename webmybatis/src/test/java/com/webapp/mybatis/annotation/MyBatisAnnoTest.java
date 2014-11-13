@@ -3,10 +3,11 @@ package com.webapp.mybatis.annotation;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.webapp.basetest.TestRunner;
+import com.webapp.basetest.BaseRunner;
 import com.webapp.model.User;
+import com.webapp.mybatis.annotation.dao.BaseDao;
 
-public class MyBatisAnnoTest extends TestRunner {
+public class MyBatisAnnoTest extends BaseRunner {
     
     @Autowired
     BaseDao baseDAO;

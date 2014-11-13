@@ -8,10 +8,7 @@ public final class RegexUtils {
 
 	public static String match(String data, String regex) {
 	    Matcher matcher = Pattern.compile(regex).matcher(data);
-	    if(matcher.find()){
-	    	return matcher.group();
-	    }
-	    return "";
+	    return matcher.group();
     }
 
 	public static boolean isMatch(String data, String regex) {

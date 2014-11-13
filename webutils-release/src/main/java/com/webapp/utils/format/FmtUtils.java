@@ -13,10 +13,23 @@ public final class FmtUtils {
 
 	private String data;
 	private boolean endZero = true;
-
+	private static final ThreadLocal<FmtUtils> local = new ThreadLocal<FmtUtils>();
 	private FmtUtils(String data){
 		this.data = data;
 	}
+	
+	/** setData **/
+    private FmtUtils setData(String data, boolean endZero) {
+	    this.data = data;
+	    this.endZero = endZero;
+	    return this;
+    }
+    /** local data **/
+    private static FmtUtils localData(String result) {
+    	if (local.get() == null) local.set(new FmtUtils(result));
+		return local.get().setData(result, true);
+	}
+	
 //	pattern()
 	public static <T> FmtUtils of(T data) {
 		String result;
@@ -27,7 +40,8 @@ public final class FmtUtils {
 		}else {
 			throw new IllegalArgumentException("Parameter should be Number or String");
 		}
-	    return new FmtUtils(result);
+		
+	    return localData(result);
     }
 
 	public String fmt(int scale){

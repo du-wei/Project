@@ -1,2 +1,0 @@
-className = com/webapp
-outRoot = V:\360cloud\project\webtemplate\src\test\java

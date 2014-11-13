@@ -1,2 +1,0 @@
-className = ${basepackage_dir}
-outRoot = ${outRoot_dir}

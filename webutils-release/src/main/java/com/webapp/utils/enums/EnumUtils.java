@@ -74,6 +74,24 @@ public final class EnumUtils {
 	}
 
 	/**
+	 * @Description Get enum name
+     * @param clz enum class
+     * @param prop enum name
+	 * @return boolean
+	 */
+	public static <E extends Enum<E>> E getEnum(Class<E> clz, String name){
+
+		Iterator<E> iterator = EnumSet.allOf(clz).iterator();
+		while(iterator.hasNext()){
+			E next = iterator.next();
+			if(next.name().equals(name)){
+				return next;
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * @Description Get enum by attribute and value
      * @param clz enum class
      * @param prop enum attribute

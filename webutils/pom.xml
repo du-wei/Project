@@ -235,13 +235,9 @@
 		<plugins>
 	        <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<extensions>false</extensions>
-        		<inherited>true</inherited>
+				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<source>${jdk_version}</source>
-					<target>${jdk_version}</target>
-					<encoding>${encoding}</encoding>
+					<skipTests>false</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>

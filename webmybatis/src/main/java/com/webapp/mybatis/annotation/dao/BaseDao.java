@@ -1,4 +1,4 @@
-package com.webapp.mybatis.annotation;
+package com.webapp.mybatis.annotation.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +10,7 @@ import com.webapp.model.User;
 
 public interface BaseDao {
 
-    @Select("select * from user where id=:id limit 1")
+    @Select("select * from user limit 1")
     public User getUser1(int id);
 
     @Select("select * from user")
