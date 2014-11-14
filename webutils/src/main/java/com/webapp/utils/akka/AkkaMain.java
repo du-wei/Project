@@ -22,5 +22,15 @@ public class AkkaMain {
 		x ^= y;
 		y ^= x;
 		x ^= y;
+		
+		System.out.println(x);
+		System.out.println(y);
+		
+		//时间换空间
+		x=x+y;
+		y=x-y;
+		x=x-y;
+		System.out.println(x);
+		System.out.println(y);
     }
 }

@@ -5,7 +5,7 @@ import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 
 public class KeyedPooledFactoryImpl<K, V> extends
-		BaseKeyedPooledObjectFactory<K, V> {
+        BaseKeyedPooledObjectFactory<K, V> {
 
 	@Override
 	public V create(K key) throws Exception {

@@ -1,12 +1,13 @@
 package com.webapp.design;
 
+
 /** @ClassName: Singleton.java 单例模式
  * @Package com.webapp.design
  * @Description: TODO 类型描述
  * @author king king
  * @date 2013年12月22日 下午9:25:22
  * @version V1.0 */
-// 单例模式-懒汉式单例 比下面的有所改进
+//单例模式-懒汉式单例 比下面的有所改进
 public class Singleton {
 
 	// 私有静态对象,加载时候不做初始化
@@ -19,13 +20,13 @@ public class Singleton {
 
 	// 静态工厂方法,返回此类的唯一实例.当发现实例没有初始化的时候,才初始化.
 	public static Singleton getInstance() {
-		if (instance == null) {
+//		if (instance == null) {
 			synchronized (Singleton.class) {
-				// if(instance == null){
-				instance = new Singleton();
-				// }
+				 if(instance == null){
+					 instance = new Singleton();
+				 }
 			}
-		}
+//		}
 		return instance;
 	}
 
@@ -64,4 +65,9 @@ class GoodSingleton {
 	public static GoodSingleton getInstance() {
 		return SingleHolder.instance;
 	}
+	
+	//序列化时也单例
+//	private Object readResolve(){
+//		return SingleHolder.instance;
+//	}
 }

@@ -16,6 +16,7 @@ import java.util.zip.ZipInputStream;
 public class PinyinResource
 {
     private static final Logger LOGGER = Logger.getLogger(PinyinResource.class.getName());
+    private static final String base = "/data_db";
 
     private static Properties getResource(String resourceName)
     {
@@ -38,19 +39,19 @@ public class PinyinResource
 
     protected static Properties getPinyinTable()
     {
-        String resourceName = "/data/pinyin.db";
+        String resourceName = base + "/pinyin.db";
         return getResource(resourceName);
     }
 
     protected static Properties getMutilPintinTable()
     {
-        String resourceName = "/data/mutil_pinyin.db";
+        String resourceName = base + "/mutil_pinyin.db";
         return getResource(resourceName);
     }
 
     protected static Properties getChineseTable()
     {
-        String resourceName = "/data/chinese.db";
+        String resourceName = base + "/chinese.db";
         return getResource(resourceName);
     }
 }

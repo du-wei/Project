@@ -30,7 +30,7 @@ public class XmlDomUtils {
 	public static void main(String[] args) throws Exception {
 
 		Document document = parse(new File(
-				PathUtils.getCurPath(XmlDomUtils.class) + "/schema.xml"));
+		        PathUtils.getCurPath(XmlDomUtils.class) + "/schema.xml"));
 		System.out.println(document.getXmlEncoding());
 
 		Element root = document.getDocumentElement();
@@ -45,7 +45,7 @@ public class XmlDomUtils {
 
 			// NamedNodeMap nodeMap = nl.item(i).getAttributes();
 			String name = element.getElementsByTagName("age").item(0)
-					.getFirstChild().getNodeValue();
+			        .getFirstChild().getNodeValue();
 			// System.out.println("name -" +name);
 		}
 
@@ -58,7 +58,7 @@ public class XmlDomUtils {
 	}
 
 	private static StringBuffer parseElement(Element element,
-			StringBuffer result) {
+	        StringBuffer result) {
 		String tagName = element.getTagName();
 		result.append("<" + tagName);
 

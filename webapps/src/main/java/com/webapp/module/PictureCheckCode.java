@@ -19,9 +19,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class PictureCheckCode extends ActionSupport {
 
-	/**
-	 * @Fields serialVersionUID : TODO 字段说明
-	 */
+	/** @Fields serialVersionUID : TODO 字段说明 */
 	private static final long serialVersionUID = 1L;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
@@ -41,7 +39,7 @@ public class PictureCheckCode extends ActionSupport {
 		int width = 80;
 		int height = 25;
 		BufferedImage image = new BufferedImage(width, height,
-				BufferedImage.TYPE_INT_RGB);
+		        BufferedImage.TYPE_INT_RGB);
 		Graphics grap = image.getGraphics();
 		grap.setColor(getRandomColor(100));
 		grap.fillRect(0, 0, width, height);
@@ -74,7 +72,7 @@ public class PictureCheckCode extends ActionSupport {
 			// TODO: Prefer StringBuffer over += for concatenating strings
 			checkCode += String.valueOf((char) temp);
 			Color color = new Color(20 + random.nextInt(110),
-					20 + random.nextInt(110), 20 + random.nextInt(110));
+			        20 + random.nextInt(110), 20 + random.nextInt(110));
 			grap.setColor(color);
 			// System.out.println(checkCode);
 			// 将文字旋转指定角度
@@ -82,8 +80,7 @@ public class PictureCheckCode extends ActionSupport {
 			trans.rotate(random.nextInt(45) * 3.14 / 180, 15 * i + 10, 5);
 			// 随机缩放文字
 			float scaleSize = random.nextFloat() + 0.8f;
-			if (scaleSize > 1.1f)
-				scaleSize = 1f;
+			if (scaleSize > 1.1f) scaleSize = 1f;
 			trans.scale(scaleSize, scaleSize);
 			grap2D.setTransform(trans);
 			grap.drawString(String.valueOf((char) temp), 20 * i + 10, 14);
@@ -98,10 +95,9 @@ public class PictureCheckCode extends ActionSupport {
 	private Color getRandomColor(int s) {
 		int e = 255;
 		Random random = new Random();
-		if (s > 255)
-			s = 100;
+		if (s > 255) s = 100;
 		return new Color(s + random.nextInt(e - s), s + random.nextInt(e - s),
-				s + random.nextInt(e - s));
+		        s + random.nextInt(e - s));
 	}
 
 }

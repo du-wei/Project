@@ -2,7 +2,7 @@ package com.webapp.design.decorator;
 
 public abstract class Decorator extends Dog {
 
-    @Override
+	@Override
 	public abstract String getDesc();
 
 }

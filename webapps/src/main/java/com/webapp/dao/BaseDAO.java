@@ -41,7 +41,7 @@ public interface BaseDAO<T> {
 
 	/** 使用指定的检索标准检索数据，返回部分记录 */
 	List<T> findByCriteria(DetachedCriteria criteria, int firstResult,
-			int maxResults);
+	        int maxResults);
 
 	/** 使用HSQL语句检索数据，返回 Iterator */
 	@SuppressWarnings("unchecked")

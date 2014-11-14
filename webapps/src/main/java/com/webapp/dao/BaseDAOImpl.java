@@ -51,7 +51,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
 		return ((Integer) hibernateTemplate.execute(new HibernateCallback() {
 			@Override
 			public Object doInHibernate(Session session)
-					throws HibernateException {
+			        throws HibernateException {
 				return session.createQuery(hql).executeUpdate();
 			}
 		})).intValue();
@@ -71,7 +71,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
 		List<T> list = hibernateTemplate.executeFind(new HibernateCallback() {
 			@Override
 			public Object doInHibernate(Session session)
-					throws HibernateException {
+			        throws HibernateException {
 				return session.createQuery(hql).list();
 			}
 		});
@@ -83,32 +83,32 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
 	@SuppressWarnings("unchecked")
 	public List<T> listAll(String clazz) {
 		return hibernateTemplate.find("from " + clazz
-				+ " as a order by a.id desc");
+		        + " as a order by a.id desc");
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<T> listAll(T entity) {
 		return hibernateTemplate.find("from " + entity.getClass().getName()
-				+ " as a order by a.id desc");
+		        + " as a order by a.id desc");
 	}
 
 	/** 分页装载指定类的所有持久化对象 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<T> listAllByPage(String clazz, final int pageNo,
-			final int pageSize) {
+	        final int pageSize) {
 		final String hql = "from " + clazz + " as a order by a.id desc";
 		List<T> list = hibernateTemplate.executeFind(new HibernateCallback() {
 			@Override
 			public Object doInHibernate(Session session)
-					throws HibernateException {
+			        throws HibernateException {
 				Query query = session.createQuery(hql);
 				query.setMaxResults(pageSize);
 				query.setFirstResult((pageNo - 1) * pageSize);
 				List<T> result = query.list();
 				if (!Hibernate.isInitialized(result))
-					Hibernate.initialize(result);
+				    Hibernate.initialize(result);
 				return result;
 			}
 		});
@@ -126,9 +126,9 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<T> findByCriteria(DetachedCriteria criteria, int firstResult,
-			int maxResults) {
+	        int maxResults) {
 		return hibernateTemplate.findByCriteria(criteria, firstResult,
-				maxResults);
+		        maxResults);
 	}
 
 	/** 使用HSQL语句检索数据，返回 Iterator */
@@ -166,7 +166,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
 		return hibernateTemplate.executeFind(new HibernateCallback() {
 			@Override
 			public Object doInHibernate(Session session)
-					throws HibernateException {
+			        throws HibernateException {
 				return session.createQuery(hql).list();
 			}
 		});
@@ -176,17 +176,17 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<T> queryByPage(final String hql, final int pageNo,
-			final int pageSize) {
+	        final int pageSize) {
 		return hibernateTemplate.executeFind(new HibernateCallback() {
 			@Override
 			public Object doInHibernate(Session session)
-					throws HibernateException {
+			        throws HibernateException {
 				Query query = session.createQuery(hql);
 				query.setMaxResults(pageSize);
 				query.setFirstResult((pageNo - 1) * pageSize);
 				List result = query.list();
 				if (!Hibernate.isInitialized(result))
-					Hibernate.initialize(result);
+				    Hibernate.initialize(result);
 				return result;
 			}
 		});
@@ -196,7 +196,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
 	@Override
 	public int countAll(String clazz) {
 		return (Integer) hibernateTemplate
-				.find("select count(*) from " + clazz).get(0);
+		        .find("select count(*) from " + clazz).get(0);
 	}
 
 	/** 统计指定类的查询结果 */

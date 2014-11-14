@@ -1,7 +1,7 @@
 package com.webapp.design.command;
 
 public abstract class Command {
-    public abstract void execute();
+	public abstract void execute();
 
-    public abstract void unDo();
+	public abstract void unDo();
 }

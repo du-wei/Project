@@ -24,7 +24,7 @@ public class XmlJDomUtils {
 		SAXBuilder builder = new SAXBuilder();
 
 		Document doc = builder.build(new File(PathUtils
-				.getCurPath(XmlJDomUtils.class) + "/schema.xml"));
+		        .getCurPath(XmlJDomUtils.class) + "/schema.xml"));
 
 		Element root = doc.getRootElement();
 		System.out.println(root.getName());
@@ -57,9 +57,9 @@ public class XmlJDomUtils {
 
 		XMLOutputter out = new XMLOutputter(pretty);
 		System.out.println(PathUtils.getUserPath()
-				+ "/src/main/java/com/webapp/xml/jdom.xml");
+		        + "/src/main/java/com/webapp/xml/jdom.xml");
 		out.output(doc, new FileOutputStream(PathUtils.getUserPath()
-				+ "/src/main/java/com/webapp/xml/jdom.xml"));
+		        + "/src/main/java/com/webapp/xml/jdom.xml"));
 		System.out.println("--------");
 	}
 

@@ -5,12 +5,12 @@ import java.util.List;
 
 public abstract class CommandPattern<T> {
 
-    public List<T> commands = new ArrayList<T>();
+	public List<T> commands = new ArrayList<T>();
 
-    public void addCommand(T t) {
-	this.commands.add(t);
-    }
+	public void addCommand(T t) {
+		this.commands.add(t);
+	}
 
-    public abstract void executeCommands();
+	public abstract void executeCommands();
 
 }

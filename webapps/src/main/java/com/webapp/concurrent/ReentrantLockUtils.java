@@ -8,14 +8,15 @@ import org.apache.logging.log4j.Logger;
 
 public class ReentrantLockUtils<T> {
 
-	//StampedLock jj;
-//	http://developer.51cto.com/art/201405/439149.htm
+	// StampedLock jj;
+	// http://developer.51cto.com/art/201405/439149.htm
 
-	private static Logger log = LogManager.getLogger(ReentrantLockUtils.class.getName());
+	private static Logger log = LogManager.getLogger(ReentrantLockUtils.class
+	        .getName());
 
 	// 独占锁
 	Lock lock = new ReentrantLock();
-//	ReentrantReadWriteLock jj;
+	// ReentrantReadWriteLock jj;
 	Condition full = lock.newCondition();
 	Condition empty = lock.newCondition();
 
@@ -34,7 +35,8 @@ public class ReentrantLockUtils<T> {
 			}
 			items[put_index] = data;
 			++count;
-			log.info(String.format("take-count-%d-put-%d-%s", count, take_index, data));
+			log.info(String.format("take-count-%d-put-%d-%s", count,
+			        take_index, data));
 			if (++put_index == items.length) put_index = 0;
 			empty.signal();
 		} finally {
@@ -54,7 +56,8 @@ public class ReentrantLockUtils<T> {
 				}
 			}
 			Object data = items[take_index];
-			log.info(String.format("take-count-%d-take-%d-%s", count, take_index, data));
+			log.info(String.format("take-count-%d-take-%d-%s", count,
+			        take_index, data));
 			if (++take_index == items.length) take_index = 0;
 			--count;
 			full.signal();

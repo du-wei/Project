@@ -1,13 +1,11 @@
 package com.webapp.arithmetic;
 
-/**
- * @ClassName: Script.java
+/** @ClassName: Script.java
  * @Package com.webapp.arithmetic
  * @Description: TODO 类型描述
  * @author king chenglong@coweibo.cn
  * @date 2012-11-23 下午4:44:06
- * @version V1.0
- */
+ * @version V1.0 */
 public class Script {
 
 	// sort

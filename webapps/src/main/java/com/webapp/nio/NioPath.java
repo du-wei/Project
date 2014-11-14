@@ -38,8 +38,8 @@ public class NioPath {
 		// System.out.println(list2);
 
 		FileChannel fileChannel = FileChannel.open(
-				Paths.get("E://okhello.txt"), StandardOpenOption.CREATE,
-				StandardOpenOption.WRITE);
+		        Paths.get("E://okhello.txt"), StandardOpenOption.CREATE,
+		        StandardOpenOption.WRITE);
 		fileChannel.close();
 
 	}
@@ -51,7 +51,7 @@ public class NioPath {
 		Path paths = Paths.get("E://ss");
 
 		DosFileAttributeView dos = Files.getFileAttributeView(paths,
-				DosFileAttributeView.class);
+		        DosFileAttributeView.class);
 		DosFileAttributes attr = dos.readAttributes();
 		System.out.println(attr.isReadOnly());
 		// Files.getAttribute(paths, "dd");
@@ -84,7 +84,7 @@ public class NioPath {
 		Path base = Files.createDirectories(Paths.get("E:\\hello", "file"));
 		Path filePath = Paths.get(base.toString(), "ok.txt");
 		Path file = Files.notExists(filePath) ? Files.createFile(filePath)
-				: filePath;
+		        : filePath;
 
 		// Path target = Paths.get ("D:\\Backup\\MyStuff.txt");
 		// Set<PosixFilePermission> perms = PosixFilePermissions.fromString
@@ -115,7 +115,7 @@ public class NioPath {
 		Path source = Paths.get("C:\\My Documents\\Stuff.txt");
 		Path target = Paths.get("D:\\Backup\\MyStuff.txt");
 		Files.move(source, target, StandardCopyOption.REPLACE_EXISTING,
-				StandardCopyOption.COPY_ATTRIBUTES);
+		        StandardCopyOption.COPY_ATTRIBUTES);
 	}
 
 	public static void p(Object obj) {

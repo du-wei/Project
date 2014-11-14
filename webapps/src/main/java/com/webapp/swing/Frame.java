@@ -37,7 +37,7 @@ class MyFrame extends JFrame {
 		this.setLocation(w / 4, h / 4);
 
 		Image icon = tk.getImage(System.getProperty("user.dir")
-				+ "\\WebRoot\\images\\ok.gif");
+		        + "\\WebRoot\\images\\ok.gif");
 		this.setIconImage(icon);
 
 		JPanel jp = new JPanel();

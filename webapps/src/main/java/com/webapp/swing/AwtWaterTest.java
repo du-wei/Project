@@ -47,10 +47,10 @@ public class AwtWaterTest extends HttpServlet {
 	public void TestImageMix() throws Exception {
 		String root = System.getProperty("user.dir");
 		BufferedImage image = ImageIO.read(new File(root
-				+ "/WebRoot/images/img_bg.png"));
+		        + "/WebRoot/images/img_bg.png"));
 		Graphics grap = image.getGraphics();
 		Image star = ImageIO.read(new File(root
-				+ "/WebRoot/images/img_star.png"));
+		        + "/WebRoot/images/img_star.png"));
 		grap.drawImage(star, 90, 100, 15, 15, null); // 乌鲁木齐
 		// grap.drawImage(star, 180, 170, 15, 15, null);//西宁
 		// grap.drawImage(star, 90, 210, 15, 15, null);//拉萨
@@ -85,21 +85,21 @@ public class AwtWaterTest extends HttpServlet {
 		grap.dispose();
 
 		ImageIO.write(image, "png", new File(root
-				+ "/WebRoot/images/img_mix.png"));
+		        + "/WebRoot/images/img_mix.png"));
 	}
 
 	@Test
 	public void TestImageStr() throws Exception {
 		String root = System.getProperty("user.dir");
 		BufferedImage image = ImageIO.read(new File(root
-				+ "/WebRoot/images/image.png"));
+		        + "/WebRoot/images/image.png"));
 		Graphics g = image.createGraphics();
 		g.setColor(Color.RED);
 		g.setFont(new Font("宋体", Font.PLAIN, 20));
 		g.drawString("hello world", image.getWidth() - 150,
-				image.getHeight() - 10);
+		        image.getHeight() - 10);
 		ImageIO.write(image, "png", new File(root
-				+ "/WebRoot/images/ImageStr.png"));
+		        + "/WebRoot/images/ImageStr.png"));
 	}
 
 }

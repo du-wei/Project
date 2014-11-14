@@ -20,6 +20,12 @@
 			<artifactId>datumbox-framework</artifactId>
 			<version>0.5.1</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.webapp</groupId>
+			<artifactId>webutils</artifactId>
+			<version>${web_version}</version>
+		</dependency>
 	</dependencies>
 		
 	

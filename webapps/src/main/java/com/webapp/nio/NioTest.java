@@ -95,7 +95,7 @@ public class NioTest {
 			sub.put(temp - 1);
 		}
 		p("position = " + buf.position() + "，limit = " + buf.limit()
-				+ "，capacty = " + buf.capacity());
+		        + "，capacty = " + buf.capacity());
 		buf.flip(); // 重设缓冲区
 		buf.limit(buf.capacity());
 		System.out.print("主缓冲区中的内容：");
@@ -108,25 +108,26 @@ public class NioTest {
 		IntBuffer buf = IntBuffer.allocate(10);
 		p("1、写入数据之前的position、limit和capacity：");
 		p("position = " + buf.position() + "，limit = " + buf.limit()
-				+ "，capacty = " + buf.capacity());
+		        + "，capacty = " + buf.capacity());
 
-		int temp[] = { 5, 7, 9 };// 定义一个int数组
+		int temp[] =
+		{ 5, 7, 9 };// 定义一个int数组
 		buf.put(3); // 设置一个数据
 		buf.put(temp); // 此时已经存放了四个记录
 
 		p("2、写入数据之后的position、limit和capacity：");
 		p("position = " + buf.position() + "，limit = " + buf.limit()
-				+ "，capacty = " + buf.capacity());
+		        + "，capacty = " + buf.capacity());
 
 		buf.flip(); // 重设缓冲区
 		buf.flip();
 		p("3、准备输出数据时 buf.flip() position、limit和capacity：");
 		p("position = " + buf.position() + "，limit = " + buf.limit()
-				+ "，capacty = " + buf.capacity());
+		        + "，capacty = " + buf.capacity());
 
 		buf.rewind();
 		p("position = " + buf.position() + "，limit = " + buf.limit()
-				+ "，capacty = " + buf.capacity());
+		        + "，capacty = " + buf.capacity());
 
 		System.out.print("缓冲区中的内容：");
 		while (buf.hasRemaining()) {
@@ -137,7 +138,7 @@ public class NioTest {
 		buf.clear();
 		p("\n4、准备写入数据时 buf.clear() position、limit和capacity：");
 		p("position = " + buf.position() + "，limit = " + buf.limit()
-				+ "，capacty = " + buf.capacity());
+		        + "，capacty = " + buf.capacity());
 
 	}
 

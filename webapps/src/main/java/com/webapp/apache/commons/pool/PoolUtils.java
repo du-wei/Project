@@ -23,10 +23,10 @@ public class PoolUtils {
 	public static Logger logger = LogManager.getLogger(PoolUtils.class);
 
 	public static <T> GenericObjectPool<T> getPool(
-			PooledObjectFactory<T> factory, String config) {
+	        PooledObjectFactory<T> factory, String config) {
 		CompositeConfiguration prop = ConfigUtils.addConfig(config);
 		GenericObjectPool<T> pool = new GenericObjectPool<>(factory,
-				getPoolConfig(prop));
+		        getPoolConfig(prop));
 
 		int count = prop.getInt("minIdle");
 		try {
@@ -40,10 +40,10 @@ public class PoolUtils {
 	}
 
 	public static <K, V> GenericKeyedObjectPool<K, V> getKeyedPool(
-			KeyedPooledObjectFactory<K, V> factory, String config, List<K> keys) {
+	        KeyedPooledObjectFactory<K, V> factory, String config, List<K> keys) {
 		CompositeConfiguration prop = ConfigUtils.addConfig(config);
 		GenericKeyedObjectPool<K, V> pool = new GenericKeyedObjectPool<>(
-				factory, getKeyedPoolConfig(prop));
+		        factory, getKeyedPoolConfig(prop));
 		int count = prop.getInt("minIdle");
 		try {
 			for (int i = 0; i < count; i++) {
@@ -58,71 +58,71 @@ public class PoolUtils {
 	}
 
 	public static <K, V> GenericKeyedObjectPool<K, V> getKeyedPool(
-			KeyedPooledObjectFactory<K, V> factory, String config, K... keys) {
+	        KeyedPooledObjectFactory<K, V> factory, String config, K... keys) {
 		return getKeyedPool(factory, config, Arrays.asList(keys));
 	}
 
 	private static GenericObjectPoolConfig getPoolConfig(
-			CompositeConfiguration props) {
+	        CompositeConfiguration props) {
 		GenericObjectPoolConfig config = new GenericObjectPoolConfig();
 		config.setMinIdle(props.getInt("minIdle",
-				GenericObjectPoolConfig.DEFAULT_MIN_IDLE));
+		        GenericObjectPoolConfig.DEFAULT_MIN_IDLE));
 		config.setMaxIdle(props.getInt("maxIdle",
-				GenericObjectPoolConfig.DEFAULT_MAX_IDLE));
+		        GenericObjectPoolConfig.DEFAULT_MAX_IDLE));
 		config.setMaxTotal(props.getInt("maxTotal",
-				GenericObjectPoolConfig.DEFAULT_MAX_TOTAL));
+		        GenericObjectPoolConfig.DEFAULT_MAX_TOTAL));
 		setBaseObjectPoolConfig(config, props);
 		return config;
 	}
 
 	private static GenericKeyedObjectPoolConfig getKeyedPoolConfig(
-			CompositeConfiguration props) {
+	        CompositeConfiguration props) {
 		GenericKeyedObjectPoolConfig config = new GenericKeyedObjectPoolConfig();
 		config.setMinIdlePerKey(props.getInt("minIdle",
-				GenericKeyedObjectPoolConfig.DEFAULT_MIN_IDLE_PER_KEY));
+		        GenericKeyedObjectPoolConfig.DEFAULT_MIN_IDLE_PER_KEY));
 		config.setMaxIdlePerKey(props.getInt("maxIdle",
-				GenericKeyedObjectPoolConfig.DEFAULT_MAX_IDLE_PER_KEY));
+		        GenericKeyedObjectPoolConfig.DEFAULT_MAX_IDLE_PER_KEY));
 		config.setMaxTotalPerKey(props.getInt("maxTotalPerKey",
-				GenericKeyedObjectPoolConfig.DEFAULT_MAX_TOTAL_PER_KEY));
+		        GenericKeyedObjectPoolConfig.DEFAULT_MAX_TOTAL_PER_KEY));
 		config.setMaxTotal(props.getInt("maxTotal",
-				GenericKeyedObjectPoolConfig.DEFAULT_MAX_TOTAL));
+		        GenericKeyedObjectPoolConfig.DEFAULT_MAX_TOTAL));
 		setBaseObjectPoolConfig(config, props);
 		return config;
 	}
 
 	private static void setBaseObjectPoolConfig(BaseObjectPoolConfig config,
-			Configuration props) {
+	        Configuration props) {
 		config.setLifo(props.getBoolean("lifo",
-				BaseObjectPoolConfig.DEFAULT_LIFO));
+		        BaseObjectPoolConfig.DEFAULT_LIFO));
 		config.setMaxWaitMillis(props.getLong("maxWaitMillis",
-				BaseObjectPoolConfig.DEFAULT_MAX_WAIT_MILLIS));
+		        BaseObjectPoolConfig.DEFAULT_MAX_WAIT_MILLIS));
 		config.setJmxEnabled(props.getBoolean("jmxEnabled",
-				BaseObjectPoolConfig.DEFAULT_JMX_ENABLE));
+		        BaseObjectPoolConfig.DEFAULT_JMX_ENABLE));
 		config.setJmxNamePrefix(props.getString("jmxNamePrefix",
-				BaseObjectPoolConfig.DEFAULT_JMX_NAME_PREFIX));
+		        BaseObjectPoolConfig.DEFAULT_JMX_NAME_PREFIX));
 		config.setTestOnBorrow(props.getBoolean("testOnBorrow",
-				BaseObjectPoolConfig.DEFAULT_TEST_ON_BORROW));
+		        BaseObjectPoolConfig.DEFAULT_TEST_ON_BORROW));
 		config.setTestOnReturn(props.getBoolean("testOnReturn",
-				BaseObjectPoolConfig.DEFAULT_TEST_ON_RETURN));
+		        BaseObjectPoolConfig.DEFAULT_TEST_ON_RETURN));
 		config.setTestWhileIdle(props.getBoolean("testWhileIdle",
-				BaseObjectPoolConfig.DEFAULT_TEST_WHILE_IDLE));
+		        BaseObjectPoolConfig.DEFAULT_TEST_WHILE_IDLE));
 		config.setBlockWhenExhausted(props.getBoolean("blockWhenExhausted",
-				BaseObjectPoolConfig.DEFAULT_BLOCK_WHEN_EXHAUSTED));
+		        BaseObjectPoolConfig.DEFAULT_BLOCK_WHEN_EXHAUSTED));
 		config.setNumTestsPerEvictionRun(props.getInt("numTestsPerEvictionRun",
-				BaseObjectPoolConfig.DEFAULT_NUM_TESTS_PER_EVICTION_RUN));
+		        BaseObjectPoolConfig.DEFAULT_NUM_TESTS_PER_EVICTION_RUN));
 		config.setEvictionPolicyClassName(props.getString(
-				"evictionPolicyClassName",
-				BaseObjectPoolConfig.DEFAULT_EVICTION_POLICY_CLASS_NAME));
+		        "evictionPolicyClassName",
+		        BaseObjectPoolConfig.DEFAULT_EVICTION_POLICY_CLASS_NAME));
 		config.setMinEvictableIdleTimeMillis(props.getLong(
-				"minEvictableIdleTimeMillis",
-				BaseObjectPoolConfig.DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS));
+		        "minEvictableIdleTimeMillis",
+		        BaseObjectPoolConfig.DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS));
 		config.setTimeBetweenEvictionRunsMillis(props.getLong(
-				"timeBetweenEvictionRunsMillis",
-				BaseObjectPoolConfig.DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS));
+		        "timeBetweenEvictionRunsMillis",
+		        BaseObjectPoolConfig.DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS));
 		config.setSoftMinEvictableIdleTimeMillis(props
-				.getLong(
-						"softMinEvictableIdleTimeMillis",
-						BaseObjectPoolConfig.DEFAULT_SOFT_MIN_EVICTABLE_IDLE_TIME_MILLIS));
+		        .getLong(
+		                "softMinEvictableIdleTimeMillis",
+		                BaseObjectPoolConfig.DEFAULT_SOFT_MIN_EVICTABLE_IDLE_TIME_MILLIS));
 
 	}
 

@@ -13,7 +13,7 @@ public class Gawk {
 		Process p = run.exec("sh E://data1/xx.sh E://data1/xx.txt");
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				p.getInputStream()));
+		        p.getInputStream()));
 
 		String s = "";
 		while ((s = reader.readLine()) != null) {

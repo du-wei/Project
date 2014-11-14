@@ -28,7 +28,7 @@ public class NioServer {
 				if (key.isAcceptable()) {
 					// SocketChannel client = server.accept();
 					SocketChannel client = ((ServerSocketChannel) key.channel())
-							.accept();
+					        .accept();
 					client.configureBlocking(false);
 					client.register(selector, SelectionKey.OP_READ);
 					key.interestOps(SelectionKey.OP_ACCEPT);

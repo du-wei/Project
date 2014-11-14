@@ -5,14 +5,12 @@ import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-/**
- * @ClassName: EncodeUtils.java
+/** @ClassName: EncodeUtils.java
  * @Package com.webapp.nio
  * @Description: TODO 类型描述
  * @author king chenglong
  * @date 2013-1-16 上午11:32:57
- * @version V1.0
- */
+ * @version V1.0 */
 public class EncodeUtils {
 
 	/* --------------------- decode ---------------------- */
@@ -20,7 +18,7 @@ public class EncodeUtils {
 	// ByteBuffer to String by charsetName
 	public static String decode(ByteBuffer buffer, String charsetName) { // root
 		return Charset.forName(charsetName)
-				.decode((ByteBuffer) buffer.rewind()).toString();
+		        .decode((ByteBuffer) buffer.rewind()).toString();
 	}
 
 	public static String decode(ByteBuffer buffer) {
@@ -65,40 +63,34 @@ public class EncodeUtils {
 		return Charset.forName(charsetName).encode(str);
 	}
 
-	/**
-	 * CharBuffer to ByteBuffer by UTF-8 encode
+	/** CharBuffer to ByteBuffer by UTF-8 encode
 	 * 
 	 * @param buffer
 	 *            CharBuffer type
-	 * @return ByteBuffer of by UTF-8 encode
-	 */
+	 * @return ByteBuffer of by UTF-8 encode */
 	public static ByteBuffer encode(CharBuffer buffer) {
 		return encode(buffer, "UTF-8");
 	}
 
-	/**
-	 * CharBuffer to ByteBuffer by charsetName encode
+	/** CharBuffer to ByteBuffer by charsetName encode
 	 * 
 	 * @param buffer
 	 *            CharBuffer type
 	 * @param charsetName
 	 *            encode name
-	 * @return ByteBuffer of by charsetName encode
-	 */
+	 * @return ByteBuffer of by charsetName encode */
 	public static ByteBuffer encode(CharBuffer buffer, String charsetName) {
 		return Charset.forName(charsetName)
-				.encode((CharBuffer) buffer.rewind());
+		        .encode((CharBuffer) buffer.rewind());
 	}
 
-	/**
-	 * byte[] to ByteBuffer by UTF-8 encode
+	/** byte[] to ByteBuffer by UTF-8 encode
 	 * 
 	 * @param byteArray
 	 *            byte[] type
 	 * @param charsetName
 	 *            encode name
-	 * @return ByteBuffer of by UTF-8 encode
-	 */
+	 * @return ByteBuffer of by UTF-8 encode */
 	public static ByteBuffer encode(byte[] byteArray) {
 		return ByteBuffer.wrap(byteArray);
 	}

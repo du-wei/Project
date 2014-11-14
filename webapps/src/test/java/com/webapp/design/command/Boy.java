@@ -4,37 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Boy {
-    private String name;
-    private List<Command> commands = new ArrayList<Command>();
+	private String name;
+	private List<Command> commands = new ArrayList<Command>();
 
-    public String getName() {
-	return name;
-    }
-
-    public void setName(String name) {
-	this.name = name;
-    }
-
-    // public void pursue(MM mm) {
-    // }
-    //
-    // public void doSomeThing() {
-    //
-    // }
-
-    public void addCommand(Command c1) {
-	this.commands.add(c1);
-    }
-
-    public void executeCommands() {
-	for (Command c : commands) {
-	    c.execute();
-	    c.unDo();
+	public String getName() {
+		return name;
 	}
-    }
 
-    // public void undoCommands() {
-    // //
-    // }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	// public void pursue(MM mm) {
+	// }
+	//
+	// public void doSomeThing() {
+	//
+	// }
+
+	public void addCommand(Command c1) {
+		this.commands.add(c1);
+	}
+
+	public void executeCommands() {
+		for (Command c : commands) {
+			c.execute();
+			c.unDo();
+		}
+	}
+
+	// public void undoCommands() {
+	// //
+	// }
 
 }

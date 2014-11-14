@@ -25,14 +25,12 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @ClassName: WatcherFile.java
+/** @ClassName: WatcherFile.java
  * @Package com.webapp.nio
  * @Description: TODO 类型描述
  * @author king chenglong@coweibo.cn
  * @date 2012-9-14 下午5:56:15
- * @version V1.0
- */
+ * @version V1.0 */
 public class WatcherFile {
 
 	public static void main(String[] args) {
@@ -44,14 +42,12 @@ public class WatcherFile {
 		}
 	}
 
-	/**
-	 * @throws Exception
+	/** @throws Exception
 	 * @Title: dojob
 	 * @Description: TODO 方法描述
 	 * @param 参数描述
 	 * @return void 返回类型描述
-	 * @throws
-	 */
+	 * @throws */
 
 	private WatchService watcher;
 	private Map<WatchKey, Path> keys;
@@ -65,7 +61,7 @@ public class WatcherFile {
 		WatchKey key = null;
 		try {
 			key = dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE,
-					ENTRY_MODIFY);
+			        ENTRY_MODIFY);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -84,7 +80,7 @@ public class WatcherFile {
 		Files.walkFileTree(start, new SimpleFileVisitor<Path>() {
 			@Override
 			public FileVisitResult preVisitDirectory(Path dir,
-					BasicFileAttributes attrs) {
+			        BasicFileAttributes attrs) {
 				register(dir);
 				return FileVisitResult.CONTINUE;
 			}

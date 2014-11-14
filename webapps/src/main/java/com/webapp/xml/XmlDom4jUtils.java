@@ -33,7 +33,7 @@ public class XmlDom4jUtils {
 	@Test
 	public void testName() throws Exception {
 		File file = new File(PathUtils.getCurPath(XmlDom4jUtils.class)
-				+ "/schema.xml");
+		        + "/schema.xml");
 
 		String path = "F:/360云盘/project/webapps/src/main/java/com/webapp/xml/schema.xml";
 		File files = new File(path);
@@ -101,7 +101,7 @@ public class XmlDom4jUtils {
 
 	public XmlDom4jUtils updateText(String sourceText, String targetText) {
 		List<?> list = doc.selectNodes("//*[contains(text(), '" + sourceText
-				+ "')]");
+		        + "')]");
 		Iterator<?> it = list.iterator();
 		while (it.hasNext()) {
 			Element el = (Element) it.next();
@@ -142,14 +142,14 @@ public class XmlDom4jUtils {
 	}
 
 	public static Document create(String outPath, String xmlStr)
-			throws Exception {
+	        throws Exception {
 		Document document = XmlDom4jUtils.read(xmlStr);
 		saveXml(outPath, document);
 		return document;
 	}
 
 	public static Document create(String outPath, Document document)
-			throws Exception {
+	        throws Exception {
 		saveXml(outPath, document);
 		return document;
 	}
@@ -165,7 +165,7 @@ public class XmlDom4jUtils {
 	}
 
 	public static Document saveXml(File file, Document document,
-			OutputFormat format) {
+	        OutputFormat format) {
 		try {
 			XMLWriter output = new XMLWriter(new FileOutputStream(file), format);
 			output.write(document);
@@ -227,7 +227,7 @@ public class XmlDom4jUtils {
 				for (int k = 0; k < ele.attributeCount(); k++) {
 					Attribute attr = ele.attribute(k);
 					result.append(" " + attr.getName() + "=\""
-							+ attr.getValue() + "\"");
+					        + attr.getValue() + "\"");
 				}
 
 				result.append(">");
@@ -271,7 +271,7 @@ public class XmlDom4jUtils {
 	}
 
 	private Document update(String file, String xpath, String element,
-			String tagText) throws Exception {
+	        String tagText) throws Exception {
 
 		Document doc = read(file);
 

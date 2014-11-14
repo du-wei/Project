@@ -17,6 +17,12 @@ public class CPAShow {
 //		ThreadUtils.testSimpleCAP(CPAShow::loop3, 20000);
 //		ThreadUtils.testSimpleCAP(CPAShow::compute, 1);
 //		ThreadUtils.testSimpleCAP(CPAShow::compute1, 2000000);
+		int a = 5;
+		int b = 8;
+		
+		
+		
+		
 	}
 	
 	public static void compute(int loop) {//-------------->

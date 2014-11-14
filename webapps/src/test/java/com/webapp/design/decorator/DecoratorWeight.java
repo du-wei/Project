@@ -2,21 +2,21 @@ package com.webapp.design.decorator;
 
 public class DecoratorWeight extends Decorator {
 
-    private Dog dog;
+	private Dog dog;
 
-    public DecoratorWeight(Dog dog) {
-	super();
-	this.dog = dog;
-    }
+	public DecoratorWeight(Dog dog) {
+		super();
+		this.dog = dog;
+	}
 
-    @Override
-    public String getDesc() {
-	return dog.getDesc() + " Weight";
-    }
+	@Override
+	public String getDesc() {
+		return dog.getDesc() + " Weight";
+	}
 
-    @Override
-    public double cost() {
-	return dog.cost() + 30;
-    }
+	@Override
+	public double cost() {
+		return dog.cost() + 30;
+	}
 
 }

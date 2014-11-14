@@ -25,7 +25,8 @@ public class HttpUtils_old {
 
 	public static String toStr(InputStream in) throws Exception {
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(in, "gbk"));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in,
+		        "gbk"));
 
 		StringBuffer result = new StringBuffer();
 		String line = "";
@@ -40,12 +41,15 @@ public class HttpUtils_old {
 		return execute(get);
 	}
 
-	public static InputStream get(String uri, List<NameValuePair> param) throws Exception {
-		String url = new URIBuilder(uri).setParameters(param).build().toString();
+	public static InputStream get(String uri, List<NameValuePair> param)
+	        throws Exception {
+		String url = new URIBuilder(uri).setParameters(param).build()
+		        .toString();
 		return get(url);
 	}
 
-	public static InputStream get(String uri, Map<String, String> param) throws Exception {
+	public static InputStream get(String uri, Map<String, String> param)
+	        throws Exception {
 		return get(uri, getParams(param));
 	}
 
@@ -54,15 +58,18 @@ public class HttpUtils_old {
 		return execute(post);
 	}
 
-	public static InputStream post(String uri, Map<String, String> param) throws Exception {
+	public static InputStream post(String uri, Map<String, String> param)
+	        throws Exception {
 		return post(uri, getParams(param));
 	}
 
-	public static InputStream post(String uri, List<NameValuePair> param) throws Exception {
+	public static InputStream post(String uri, List<NameValuePair> param)
+	        throws Exception {
 		return post(uri, getParams(param));
 	}
 
-	private static InputStream post(String uri, HttpEntity entity) throws Exception {
+	private static InputStream post(String uri, HttpEntity entity)
+	        throws Exception {
 		HttpPost post = new HttpPost(uri);
 		post.setEntity(entity);
 		return execute(post);
@@ -82,11 +89,11 @@ public class HttpUtils_old {
 
 	private static HttpEntity getParams(List<NameValuePair> param) {
 		try {
-	        return param == null ? null : new UrlEncodedFormEntity(param);
-        } catch (UnsupportedEncodingException e) {
-	        e.printStackTrace();
-	        return null;
-        }
+			return param == null ? null : new UrlEncodedFormEntity(param);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private static InputStream execute(HttpUriRequest req) throws Exception {

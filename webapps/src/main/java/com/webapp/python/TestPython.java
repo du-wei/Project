@@ -9,7 +9,7 @@ public class TestPython {
 	public static void main(String[] args) throws Exception, ScriptException {
 
 		ScriptEngine engine = new ScriptEngineManager()
-				.getEngineByName("python");
+		        .getEngineByName("python");
 
 		// URL url = TestPython.class.getResource("/");
 		// System.out.println(url.toString());

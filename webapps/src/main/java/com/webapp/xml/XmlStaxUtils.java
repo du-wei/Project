@@ -69,11 +69,11 @@ public class XmlStaxUtils {
 
 	// 基于迭代模型方式
 	private static void v2() throws FactoryConfigurationError,
-			FileNotFoundException, XMLStreamException {
+	        FileNotFoundException, XMLStreamException {
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 
 		InputStream inputStream = new FileInputStream(new File(
-				PathUtils.getCurPath(XmlStaxUtils.class) + "/schema.xml"));
+		        PathUtils.getCurPath(XmlStaxUtils.class) + "/schema.xml"));
 
 		XMLEventReader reader = inputFactory.createXMLEventReader(inputStream);
 
@@ -90,7 +90,7 @@ public class XmlStaxUtils {
 					attr.next();
 
 					System.out.println(" " + attr.next() + "=\"-----------"
-							+ "\"");
+					        + "\"");
 					// result.append(" " + reader.getAttributeName(i) + "=\"" +
 					// reader.getAttributeValue(i) + "\"");
 				}
@@ -110,12 +110,12 @@ public class XmlStaxUtils {
 
 	// 基于光标方式
 	private static void v1(File file) throws FactoryConfigurationError,
-			FileNotFoundException, XMLStreamException {
+	        FileNotFoundException, XMLStreamException {
 		InputStream inputStream = new FileInputStream(file);
 
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		XMLStreamReader reader = inputFactory
-				.createXMLStreamReader(inputStream);
+		        .createXMLStreamReader(inputStream);
 
 		StringBuffer result = new StringBuffer();
 		while (reader.hasNext()) {
@@ -125,10 +125,10 @@ public class XmlStaxUtils {
 
 				for (int i = 0; i < reader.getAttributeCount(); i++) {
 					System.out.println(" " + reader.getAttributeName(i)
-							+ "=\"-----------" + reader.getAttributeValue(i)
-							+ "\"");
+					        + "=\"-----------" + reader.getAttributeValue(i)
+					        + "\"");
 					result.append(" " + reader.getAttributeName(i) + "=\""
-							+ reader.getAttributeValue(i) + "\"");
+					        + reader.getAttributeValue(i) + "\"");
 				}
 				result.append(">");
 			} else if (type == XMLStreamConstants.CHARACTERS) {
@@ -151,7 +151,7 @@ public class XmlStaxUtils {
 		// http://www.blogjava.net/jinn/archive/2008/07/18/215812.html
 		// http://www.2cto.com/kf/201303/196647.html
 		XMLStreamWriter writer = XMLOutputFactory.newInstance()
-				.createXMLStreamWriter(System.out);
+		        .createXMLStreamWriter(System.out);
 
 		writer.writeStartDocument("utf-8", "1.0");
 		writer.writeEndDocument();

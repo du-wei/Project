@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class WebContextListener implements ServletContextListener,
-		ServletContextAttributeListener {
+        ServletContextAttributeListener {
 
 	private Logger logger = LogManager.getLogger(WebContextListener.class);
 
@@ -31,7 +31,7 @@ public class WebContextListener implements ServletContextListener,
 	@Override
 	public void attributeAdded(ServletContextAttributeEvent event) {
 		logger.info("【监听到】ServletContext对象中新增一名为" + event.getName()
-				+ "的属性，其属性值为" + event.getValue());
+		        + "的属性，其属性值为" + event.getValue());
 	}
 
 	// 当ServletContext对象中删除属性时将执行此方法

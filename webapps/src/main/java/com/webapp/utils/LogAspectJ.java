@@ -20,11 +20,9 @@ public class LogAspectJ {
 	// 取得日志记录器Logger
 	public Logger logger = LogManager.getLogger(LogAspectJ.class);
 
-	/**
-	 * 使用@Pointcut注解定义一个切入点,切入点的名字为anyMethod(), 切入点正则表达式execution(*
+	/** 使用@Pointcut注解定义一个切入点,切入点的名字为anyMethod(), 切入点正则表达式execution(*
 	 * test.spring.action.UserAction.*(..))
-	 * 的意思是拦截test.spring.action.UserAction类中的所有方法, 不论方法参数有无,也不管返回结果为何类型。
-	 * */
+	 * 的意思是拦截test.spring.action.UserAction类中的所有方法, 不论方法参数有无,也不管返回结果为何类型。 */
 	@Pointcut("execution(* com.iphone.action.*(..))")
 	@SuppressWarnings("unused")
 	private void anyMethod() {
@@ -34,7 +32,7 @@ public class LogAspectJ {
 	// 定义前置通知
 	public void myBeforeAdvice(JoinPoint joinpoint) {
 		String classAndMethod = joinpoint.getTarget().getClass().getName()
-				+ "类的" + joinpoint.getSignature().getName();
+		        + "类的" + joinpoint.getSignature().getName();
 		logger.info("前置通知:" + classAndMethod + "方法开始执行！");
 	}
 
@@ -42,7 +40,7 @@ public class LogAspectJ {
 	// 定义后置通知
 	public void myAfterReturningAdvice(JoinPoint joinpoint) {
 		String classAndMethod = joinpoint.getTarget().getClass().getName()
-				+ "类的" + joinpoint.getSignature().getName();
+		        + "类的" + joinpoint.getSignature().getName();
 		logger.info("后置通知:" + classAndMethod + "方法执行正常结束！");
 	}
 
@@ -50,7 +48,7 @@ public class LogAspectJ {
 	// 定义异常通知
 	public void myAfterThrowingAdvice(JoinPoint joinpoint, Exception e) {
 		String classAndMethod = joinpoint.getTarget().getClass().getName()
-				+ "类的" + joinpoint.getSignature().getName();
+		        + "类的" + joinpoint.getSignature().getName();
 		logger.info("异常通知:" + classAndMethod + "方法抛出异常：" + e.getMessage());
 	}
 
@@ -58,7 +56,7 @@ public class LogAspectJ {
 	// 定义最终通知
 	public void myAfterAdvice(JoinPoint joinpoint) {
 		String classAndMethod = joinpoint.getTarget().getClass().getName()
-				+ "类的" + joinpoint.getSignature().getName();
+		        + "类的" + joinpoint.getSignature().getName();
 		logger.info("最终通知:" + classAndMethod + "方法执行结束！");
 	}
 
@@ -70,9 +68,9 @@ public class LogAspectJ {
 		Object result = pjp.proceed();
 		long endtime = System.currentTimeMillis();// 记下结束时间
 		String classAndMethod = pjp.getTarget().getClass().getName() + "类的"
-				+ pjp.getSignature().getName();
+		        + pjp.getSignature().getName();
 		logger.info("环绕通知:" + classAndMethod + "方法执行结束,耗时"
-				+ (endtime - begintime) + "毫秒！");
+		        + (endtime - begintime) + "毫秒！");
 		return result;
 	}
 }
