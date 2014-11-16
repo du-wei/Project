@@ -13,12 +13,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.webapp.config.AppContextConfig;
 import com.webapp.config.AppMvcConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes={AppContextConfig.class, AppMvcConfig.class})
+@ContextConfiguration(classes={AppMvcConfig.class})
 public class SpringAnnoWebRunner {
 	
 	@Autowired

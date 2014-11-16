@@ -3,6 +3,7 @@ package com.webapp.base;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.aop.framework.AopProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -14,11 +15,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.webapp.datasource.TestDao;
+import com.webapp.dao.BaseDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations={"classpath:applicationContext.xml","classpath:spring-mvc.xml"})
+@ContextConfiguration(locations={"classpath*:applicationContext.xml","classpath:spring-mvc.xml"})
 public class SpringWebRunner {
 
 	@Autowired
@@ -38,11 +39,17 @@ public class SpringWebRunner {
 	}
 	
 	@Autowired
-	TestDao testDao;
+	BaseDao baseDao;
 	
 	@Test
     public void testName() throws Exception {
-	    testDao.getStudent();
+//	    System.out.println(baseDao.getUser(1).getUsername());
+	    System.out.println(baseDao.getUser_new(1).getUsername());
+	    
+	    
+	    
+	    
+	    
     }
 
 }

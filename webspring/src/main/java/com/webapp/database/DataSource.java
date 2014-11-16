@@ -1,4 +1,4 @@
-package com.webapp.datasource;
+package com.webapp.database;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

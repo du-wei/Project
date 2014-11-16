@@ -1,4 +1,4 @@
-package com.webapp.datasource;
+package com.webapp.database;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

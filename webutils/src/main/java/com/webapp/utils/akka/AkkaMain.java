@@ -1,36 +1,41 @@
 package com.webapp.utils.akka;
 
-import java.math.BigInteger;
+import static org.junit.Assert.*;
 
-import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
-
-
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import akka.actor.Props;
+import akka.actor.UntypedActor;
 
 public class AkkaMain {
+	
+	@Test
+    public void testName() throws Exception {
+	    ActorSystem system = ActorSystem.create("demo");
+	    ActorRef actor1 = system.actorOf(Props.create(Actor1.class));
+	    ActorRef actor2 = system.actorOf(Props.create(Actor2.class));
+	    actor1.tell("hello akka", actor2);
+	    
+	    system.shutdown();
+    }
+}
 
-	//ehcache
-	//http://haohaoxuexi.iteye.com/category/319453
+class Actor1 extends UntypedActor{
+	@Override
+    public void onReceive(Object arg) throws Exception {
+        if(arg instanceof String){
+        	System.out.println("1 ------ " + arg);
+        }
+    }
+}
 
-	//(x&y)+((x^y)>>1) 平均值
-	//(~x+1) 求相反数
-
-	public static void main(String[] args) {
-//		Main.main(new String[]{"com.webapp.utils.akka.MyActor"});
-		int x = 1;
-		int y = 7;
-		x ^= y;
-		y ^= x;
-		x ^= y;
-		
-		System.out.println(x);
-		System.out.println(y);
-		
-		//时间换空间
-		x=x+y;
-		y=x-y;
-		x=x-y;
-		System.out.println(x);
-		System.out.println(y);
+class Actor2 extends UntypedActor{
+	@Override
+    public void onReceive(Object arg) throws Exception {
+        if(arg instanceof String){
+        	System.out.println("2 ------ " + arg);
+        }
     }
 }

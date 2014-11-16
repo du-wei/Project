@@ -1,4 +1,4 @@
-package com.webapp.datasource;
+package com.webapp.database;
 
 import java.lang.reflect.Method;
 
@@ -12,9 +12,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class DataSourceAspecj {
 
-	@Around("execution(@com.webapp.datasource.DataSource * *(..))")
+	@Around("within(*..*Dao+) || within(*..*DAO+) || within(*..DataSourceSwitch+)")
 	public Object myAroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
-		
 		Class<? extends ProceedingJoinPoint> dsClz = pjp.getClass();
 		Method dsMethod = ((MethodSignature)pjp.getSignature()).getMethod();
 		
@@ -25,7 +24,7 @@ public class DataSourceAspecj {
 			dsAnno = dsClz.getAnnotation(DataSource.class);
 		}
 		
-		if(dsAnno != null && dsAnno.value().equals("")){
+		if(dsAnno != null && !dsAnno.value().equals("")){
 			MultiDataSource.setDataSourceKey(dsAnno.value());
 		}
 		

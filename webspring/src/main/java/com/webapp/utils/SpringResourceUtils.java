@@ -1,4 +1,4 @@
-package com.webapp.config;
+package com.webapp.utils;
 
 public class SpringResourceUtils {
 	

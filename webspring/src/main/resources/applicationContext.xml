@@ -17,8 +17,8 @@
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 
-	<!-- 代表annotation配置 -->
-	<context:annotation-config />
+	<!-- 代表annotation配置 
+	<context:annotation-config />-->
 
 	<!-- 到指定的包内扫描组件 -->
 	<context:component-scan base-package="com.webapp" />
@@ -41,28 +41,43 @@
 		<property name="username" value="${username}"></property>
 		<property name="password" value="${password}"></property>
 		<property name="maxIdle" value="30"></property>
-		<!-- <property name="maxActive" value="100"></property> -->
-		<!-- <property name="numActive" value="100"></property> -->
-		<!-- <property name="maxWait" value="2000"></property> -->
 		<property name="maxWaitMillis" value="2000"></property>
 		<property name="testOnBorrow" value="true"></property>
 		<property name="testOnReturn" value="true"></property>
-		<property name="validationQuery" value="1"></property>
+		<property name="validationQuery" value="select 1"></property>
 		<property name="defaultAutoCommit" value="true"></property>
 	</bean>
 	
-	<bean id="multiDataSource" class="com.webapp.datasource.MultiDataSource">
+	<bean id="dataSource_new" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${driver_new}"></property>
+		<property name="url" value="${url_new}"></property>
+		<property name="username" value="${username_new}"></property>
+		<property name="password" value="${password_new}"></property>
+		<property name="maxIdle" value="30"></property>
+		<property name="maxWaitMillis" value="2000"></property>
+		<property name="testOnBorrow" value="true"></property>
+		<property name="testOnReturn" value="true"></property>
+		<property name="validationQuery" value="select 1"></property>
+		<property name="defaultAutoCommit" value="true"></property>
+	</bean>
+	
+	<bean id="multiDataSource" class="com.webapp.database.MultiDataSource">
         <property name="defaultTargetDataSource" ref="dataSource"/>
         <property name="targetDataSources">
             <map>
                 <entry key="dataSource" value-ref="dataSource"/>
+                <entry key="dataSource_new" value-ref="dataSource_new"/>
             </map>
         </property>
     </bean>
     
-    <!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.webapp.dao,com.webapp.aspectj" />
+	</bean>
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="multiDataSource"/>
-    </bean> -->
+    </bean>
 	
 	<!-- <bean id="result" name="result" class="com.webapp.entity.Result"></bean> -->
 	

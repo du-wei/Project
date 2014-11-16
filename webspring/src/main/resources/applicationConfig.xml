@@ -81,14 +81,14 @@
 	</bean>
 	
 	
-	<bean id="test" class="com.webapp.config.Test">
+	<!-- <bean id="test" class="com.webapp.config.Test">
 		<property name="list" ref="list" />
 	    <property name="map" ref="map"/>
 	    <property name="properties" ref="properties"/>
 	    <property name="array" ref="array"/>
 	    <property name="set" ref="set"/>
 	   	<property name="constantValue" ref="constantValue"/>
-	</bean>
+	</bean> -->
 	
 	<util:list id="list" list-class="java.util.ArrayList">
 	  	<value>listValue1</value>

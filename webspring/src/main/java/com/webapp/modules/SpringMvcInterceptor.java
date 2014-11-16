@@ -1,4 +1,4 @@
-package com.webapp.interceptor;
+package com.webapp.modules;
 
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;

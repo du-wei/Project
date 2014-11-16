@@ -1,4 +1,4 @@
-package com.webapp.context;
+package com.webapp.modules;
 
 
 public class SpringContext {

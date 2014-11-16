@@ -1,4 +1,4 @@
-package com.webapp.concurrent;
+package com.webapp.thread.concurrent;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;

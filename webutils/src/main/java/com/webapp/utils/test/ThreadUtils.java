@@ -68,7 +68,8 @@ public interface ThreadUtils {
 	}
 
 	
-	public static void testCAP(Consumer<Integer> cap, int loop) {
+	public static void testCAP(Consumer<Integer> cap, int loop, String name) {
+		System.out.println(name);
     	long startTime = System.nanoTime();
     	for(int i=0; i<loop; i++){
     		cap.accept(i);
@@ -83,24 +84,24 @@ public interface ThreadUtils {
     }
 	
 	public static void computeTime(long startTime, boolean isNanoTime){
-		if(isNanoTime && String.valueOf(startTime).length() != 15){
+		if(isNanoTime && String.valueOf(startTime).length() <= 13){
 			System.out.println(startTime + "不是正确的纳秒数");
 			return;
 		}
 		long endTime = isNanoTime ? System.nanoTime() : System.currentTimeMillis();
 		long total = endTime-startTime;
-
 		if(isNanoTime){
 //			System.out.printf("\ntotal time = %s纳秒\t", total);
-			System.out.printf("\ntotal time = %s微秒\t", total/1000L);
+			System.out.printf("total time = %s微秒\t", total/1000L);
 			System.out.printf("\ntotal time = %s毫秒\t", total/1000_000L);
 			System.out.printf("\ntotal time = %s秒\t", total/1000_000_000L);
 			System.out.printf("\ntotal time = %s分\t", total/(1000_000_000L * 60));
 		}else {                
-			System.out.printf("\ntotal time = %s毫秒\t", total);
+			System.out.printf("total time = %s毫秒\t", total);
 			System.out.printf("\ntotal time = %s秒\t", total/1000);
 			System.out.printf("\ntotal time = %s分\t", total/1000/60);
 		}
+		System.out.println();
 		System.out.println();
 	}
 
@@ -126,5 +127,9 @@ public interface ThreadUtils {
 	public static void logRelease(Semaphore sp) {
 		sp.release();
 		System.out.printf("线程 %s离开，当前有%d个并发\t", Thread.currentThread().getName(), threadCount.decrementAndGet());
+	}
+
+	public static void practice(){
+		
 	}
 }

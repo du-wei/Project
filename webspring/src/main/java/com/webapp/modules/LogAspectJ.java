@@ -1,4 +1,4 @@
-package com.webapp.listener;
+package com.webapp.modules;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +26,6 @@ public class LogAspectJ {
 	 * 的意思是拦截test.spring.action.UserAction类中的所有方法, 不论方法参数有无,也不管返回结果为何类型。
 	 * */
 	@Pointcut("execution(* com.webapp.controller..*.*(..))")
-	@SuppressWarnings("unused")
 	private void anyMethod() {
 	}// 定义切入点的名字
 

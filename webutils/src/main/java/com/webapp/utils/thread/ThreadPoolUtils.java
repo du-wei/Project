@@ -63,26 +63,6 @@ public class ThreadPoolUtils {
 		return futures;
 	}
 
-	public List<Future<?>> submit4Future(ExecutorService executor,
-			Runnable runnable, int loopSize) {
-		List<Future<?>> futures = new ArrayList<>();
-		for (int i = 0; i < loopSize; i++) {
-			Future<?> future = executor.submit(runnable);
-			futures.add(future);
-		}
-		return futures;
-	}
-
-	public <T> List<Future<T>> submit4Future(ExecutorService executor,
-			Runnable runnable, int loopSize, T result) {
-		List<Future<T>> futures = new ArrayList<>();
-		for (int i = 0; i < loopSize; i++) {
-			Future<T> future = executor.submit(runnable, result);
-			futures.add(future);
-		}
-		return futures;
-	}
-
 	public <T> CompletionService<T> submit4Complete(ExecutorService executor,
 			Callable<T> callable, int loopSize) {
 		CompletionService<T> cs = new ExecutorCompletionService<>(executor);
