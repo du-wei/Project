@@ -133,21 +133,6 @@ public final class EnumUtils {
 		return "get" + StringUtils.capitalize(prop);
     }
 
-
-//	private static boolean hasField(Class<?> clz, String prop){
-//		return getField(clz, prop) != null ? true : false;
-//	}
-//
-//	private static Field getField(Class<?> clz, String prop){
-//		Field field = null;
-//		try {
-//	        field = clz.getField(prop);
-//        } catch (NoSuchFieldException | SecurityException e) {
-//	        e.printStackTrace();
-//        }
-//		return field;
-//	}
-
 	private static <T> Method getMethod(Class<T> clz, String prop, Class<?>... parameterTypes){
 		try {
 	        return clz.getMethod(prop, parameterTypes);

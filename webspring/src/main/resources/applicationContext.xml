@@ -16,6 +16,8 @@
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+<!-- classpath*:**/applicationContext.xml -->
+	<!-- <import resource="lib/validator-rest-1.0.jar*/cms-validator-common.xml"/>   -->
 
 	<!-- 代表annotation配置 
 	<context:annotation-config />-->

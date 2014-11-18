@@ -14,7 +14,7 @@ public class DataSourceAspecj {
 
 	@Around("within(*..*Dao+) || within(*..*DAO+) || within(*..DataSourceSwitch+)")
 	public Object myAroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
-		Class<? extends ProceedingJoinPoint> dsClz = pjp.getClass();
+		Class<?> dsClz = pjp.getTarget().getClass().getInterfaces()[0];
 		Method dsMethod = ((MethodSignature)pjp.getSignature()).getMethod();
 		
 		DataSource dsAnno = null;
