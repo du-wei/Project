@@ -25,11 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("rest")
 public class RestController {
 
-	@RequestMapping("index")
-	public String execute() {
-		return "index";
-	}
-
 	@RequestMapping("/index/{name}")
 	public ModelAndView get(@PathVariable String name) {
 		System.out.println(name);

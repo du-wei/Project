@@ -1,9 +1,14 @@
 package com.webapp.program;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
-import com.webapp.utils.test.ThreadUtils;
+import com.webapp.utils.codec.CodeUtils;
+import com.webapp.utils.datasort.DataSortUtils.OrderType;
 
 public class CPAShow {
 
@@ -25,27 +30,59 @@ public class CPAShow {
 //		ThreadUtils.testSimpleCAP(CPAShow::compute4, 2000000000);
 //		ThreadUtils.testSimpleCAP(CPAShow::tryTest2, 2000000000);
 //		ThreadUtils.testSimpleCAP(CPAShow::tryTest, 2000000000);
-		ThreadUtils.testSimpleCAP(CPAShow::local1, 200000000);
-		ThreadUtils.testSimpleCAP(CPAShow::local2, 200000000);
-		
+//		ThreadUtils.testSimpleCAP(CPAShow::local1, 200000000);
+//		ThreadUtils.testSimpleCAP(CPAShow::local2, 200000000);
+//		ThreadUtils.testSimpleCAP(CPAShow::invoke1, 2000000);
+//		ThreadUtils.testSimpleCAP(CPAShow::invoke, 2000000);
+
 //		CPAShow cpaShow = new CPAShow();
+
+
 	}
-	
-	
+
+	public static void myself1(int loop){
+	}
+	public static void myself2(int loop){
+		for(int i=0; i<loop; i++){
+
+		}
+	}
+
+
+	public static void invoke(int loop){
+		for(int i=0; i<loop; i++){
+			try {
+	        	Field field = OrderType.class.getDeclaredField("key");
+		        field.setAccessible(true);
+				field.get(OrderType.asce);
+	        } catch (Exception e) {
+	        }
+		}
+	}
+	public static void invoke1(int loop) {
+		for(int i=0; i<loop; i++){
+			try {
+				Method method = OrderType.class.getDeclaredMethod("getKey");
+				Object invoke = method.invoke(OrderType.asce);
+			} catch (Exception e) {}
+		}
+	}
+
+
 	public static int local = 0;
 	public static void local1(int loop){
 		for(int i=0; i<loop; i++){
 			local++;
 		}
 	}
-	
+
 	public static void local2(int loop){//-------------->
 		int a = 0;
 		for(int i=0; i<loop; i++){
 			a++;
 		}
 	}
-	
+
  	public static void tryTest(int loop){//-------------->
 		int a=0;
 		try {
@@ -53,10 +90,10 @@ public class CPAShow {
 				a++;
 			}
 		} catch (Exception e) {
-			
+
 		}
 	}
-	
+
 	public static void tryTest2(int loop){
 		int a=0;
 		for(int i=0; i<loop; i++){
@@ -66,7 +103,7 @@ public class CPAShow {
             }
 		}
 	}
-	
+
 	public static void compute(int loop) {//-------------->
 	    //* 2 4 8 --> <<2
 		/// 2 4 8 --> >>2
@@ -75,7 +112,7 @@ public class CPAShow {
 	public static void compute1(int loop) {
 		int i = 5*2;
 	}
-	
+
 	public static void compute2(int loop) {
 		//(x&y)+((x^y)>>1) 平均值
 		//(~x+1) 求相反数
@@ -108,7 +145,7 @@ public class CPAShow {
 			y = temp;
 		}
 	}
-	
+
 	public static void spilt1(int loop) {//-------------->
 	    String jj = "1,2,3,4,5,6,7,8,9,0";
 		jj.split(",");
@@ -117,11 +154,11 @@ public class CPAShow {
 		String jj = "1,2,3,4,5,6,7,8,9,0";
 		StringUtils.split(",");
 	}
-	
+
 	public static void copyArray(int loop) {//-------------->
 		int[] arr1 = new int[]{0, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 		int[] arr2 = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
-		
+
 		for (int i = 1; i < loop; i++) {
 			System.arraycopy(arr1, 5, arr2, 5, 5);
 		}
@@ -145,7 +182,7 @@ public class CPAShow {
 			String s3 = s.toString();
 		}
 	}
-	
+
 	public static void loop1(int loop) {
 		String s = "";
 		for (int i = 1; i < loop; i++) {
@@ -164,5 +201,5 @@ public class CPAShow {
 			sb.append(i).append("+");
 		}
 	}
-	
+
 }

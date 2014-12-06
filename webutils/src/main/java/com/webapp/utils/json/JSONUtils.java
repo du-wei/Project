@@ -263,6 +263,9 @@ public class JSONUtils {
      * Obj class {int id=1;}
      * JSONUtils.of(new Obj()).filterVal("id", "\d").toString() -> {id:2}   </pre>
 	 * @return this
+	 * @tag label
+	 * name = "ffff"
+	 * comment = "fefefe"
 	 */
 	public JSONUtils filterVal(final String key, final String regexVal) {
 		PropertyFilter filter = new PropertyFilter() {

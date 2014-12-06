@@ -55,12 +55,4 @@ System.out.println(jjj.getClass().getName());
 		return Stream.of(objArr).anyMatch(t->t.equals(valToFind));
 	}
 
-	@Override
-	public String toString(){
-		List<T> asList = Arrays.asList(objArr);
-		System.out.println(asList);
-		return asList.toString();
-
-	}
-
 }

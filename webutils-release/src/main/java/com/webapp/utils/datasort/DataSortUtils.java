@@ -27,6 +27,7 @@ public final class DataSortUtils {
 		heap_desc("heap_desc", "选择排序 ->堆排序->不稳定"), //
 		select_desc("select_desc", "选择排序 ->直接选择排序->已改进->不稳定"), //
 		binaryInsert_desc("binaryInsert_desc", "插入排序->折半插入排序->稳定"), //
+		
 		shell_asce("shell_asce", "插入排序->Shell排序->稳定"), //
 		insert_asce("insert_asce", "插入排序->直接插入排序->稳定"), //
 		quick_asce("quick_asce", "交换排序->快速排序->不稳定"), //

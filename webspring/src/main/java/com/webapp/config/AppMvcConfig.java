@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.webapp.mvc")
+@ComponentScan("com.webapp.mvc.kk")
 public class AppMvcConfig {
 	
 	@Bean

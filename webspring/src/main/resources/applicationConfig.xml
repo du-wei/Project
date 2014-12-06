@@ -63,10 +63,6 @@
 		<property name="remark2" value="${maxTotalPerKey}" />
 	</bean>
 	
-	<bean id="config1" name="config1" class="com.webapp.entity.SpringConfigEntity">
-		<property name="name" value="hello" />
-	</bean>
-	
 	<!-- 程序中使用,配置文件中引用不到 -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="defaultEncoding" value="utf-8" />

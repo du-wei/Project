@@ -1,6 +1,9 @@
 package com.webapp.utils.string;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -331,4 +334,21 @@ public final class Utils {
         return false;
     }
 
+    public static String ascii2native(String ascii) {
+
+		List<String> ascii_s = new ArrayList<String>();
+		String regex = "\\\\u[0-9,a-f,A-F]{4}";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(ascii);
+		while (m.find()) {
+			ascii_s.add(m.group());
+		}
+		for (int i = 0, j = 2; i < ascii_s.size(); i++) {
+			String code = ascii_s.get(i).substring(j, j + 4);
+			char ch = (char) Integer.parseInt(code, 16);
+			ascii = ascii.replace(ascii_s.get(i), String.valueOf(ch));
+		}
+		return ascii;
+	}
+    
 }

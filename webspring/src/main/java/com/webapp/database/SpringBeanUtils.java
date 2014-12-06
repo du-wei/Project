@@ -2,21 +2,20 @@ package com.webapp.database;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ApplicationObjectSupport;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SpringBeanUtils extends ApplicationObjectSupport /*implements ApplicationContextAware */ {
+public class SpringBeanUtils implements ApplicationContextAware {
 
-	private static ApplicationContext ctx;
+	private static ApplicationContext ctx = null;
 	
 	@Override
-    protected void initApplicationContext(ApplicationContext context)
+    public void setApplicationContext(ApplicationContext context)
             throws BeansException {
-	    super.initApplicationContext(context);
-	    ctx = context;
+		ctx = context;
     }
-	
+
 	public static <T> T getBean(Class<T> clz) {
 		return ctx.getBean(clz);
     }

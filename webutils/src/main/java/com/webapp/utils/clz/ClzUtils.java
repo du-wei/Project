@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 import org.apache.commons.lang3.StringUtils;
 
 public class ClzUtils {
-
+	
 	public static boolean hasAnno(Class<?> clz, Class<? extends Annotation> anno) {
 		return clz.isAnnotationPresent(anno);
     }
@@ -80,10 +80,22 @@ public class ClzUtils {
 		Field field = null;
 		try {
 	        field = clz.getDeclaredField(prop);
-//	        Modifier.isPublic(1);
         } catch (NoSuchFieldException | SecurityException e) {
+        	e.printStackTrace();
         }
 		return field;
 	}
+	
+	public static Object getFieldVal(Field field, Object instance) {
+		Object result = null;
+	    try {
+	    	if(!field.isAccessible()) field.setAccessible(true);
+	    	result = field.get(instance);
+        } catch (IllegalAccessException | SecurityException e) {
+	        e.printStackTrace();
+        }
+	    return result;
+	    
+    }
 	
 }

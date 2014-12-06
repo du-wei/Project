@@ -1,18 +1,6 @@
 package com.webapp.action;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.handler;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import org.junit.Test;
-import org.springframework.test.web.servlet.MvcResult;
-
 import com.webapp.base.SpringWebRunner;
-import com.webapp.mvc.ResultController;
-import com.webapp.utils.ReqConst;
 
 /**
  * 	测试普通控制器
@@ -22,7 +10,7 @@ public class ResultControllerTest extends SpringWebRunner {
 
 	////http://jinnianshilongnian.iteye.com/blog/2004660
 
-	@Test
+	/*@Test
 	public void testName() throws Exception {
 		MvcResult result = mvc.perform(get(ReqConst.RESULT_BASE + "/test"))
 				.andExpect(status().isOk()).andReturn();
@@ -86,6 +74,6 @@ public class ResultControllerTest extends SpringWebRunner {
 			.andDo(print())
 			.andReturn();
 		System.out.println(result.getResponse().getContentAsString());
-	}
+	}*/
 
 }

@@ -6,8 +6,6 @@ import org.databene.contiperf.timer.RandomTimer;
 import org.junit.Rule;
 import org.junit.Test;
 
-import com.webapp.utils.codec.KeysUtils;
-
 //@RunWith(ParallelRunner.class) //多个测试方法同时执行
 public class ContiperfUtils {
 
@@ -29,7 +27,7 @@ public class ContiperfUtils {
 	@PerfTest(invocations = 200, threads = 20, timer = RandomTimer.class)
 	@Test
 	public void testName2() throws Exception {
-		System.out.println(KeysUtils.shaHex("hello"));
+		System.out.println();
 	}
 
 }

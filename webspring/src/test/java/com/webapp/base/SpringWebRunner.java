@@ -3,7 +3,6 @@ package com.webapp.base;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.aop.framework.AopProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -12,14 +11,17 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.webapp.dao.BaseDao;
+import com.webapp.constant.Mapping;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations={"classpath*:applicationContext.xml","classpath:spring-mvc.xml"})
+@ContextConfiguration(locations={"classpath*:applicationContext.xml"})
 public class SpringWebRunner {
 
 	@Autowired
@@ -38,18 +40,68 @@ public class SpringWebRunner {
 		mvc = MockMvcBuilders.webAppContextSetup(wac).build();
 	}
 	
-	@Autowired
-	BaseDao baseDao;
+	@Test
+    public void json() throws Exception {
+	    MvcResult result = mvc.perform(MockMvcRequestBuilders.get(Mapping.TEST_BASE+Mapping.JSON))
+		    .andExpect(MockMvcResultMatchers.status().isOk())
+		    .andReturn();
+	    
+	    Thread.sleep(10000000);
+	    System.out.println(result.getResponse().getContentAsString());
+    }
 	
 	@Test
-    public void testName() throws Exception {
-//	    System.out.println(baseDao.getUser(1).getUsername());
-	    System.out.println(baseDao.getUser_new(1).getUsername());
-	    
-	    
-	    
-	    
-	    
+    public void redirect_mav() throws Exception {
+	    MvcResult result = mvc.perform(MockMvcRequestBuilders.get(Mapping.TEST_BASE+Mapping.REDIRECT_MAV))
+		    .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		    .andExpect(MockMvcResultMatchers.redirectedUrl(Mapping.pub_view+"?key=val"))
+		    .andReturn();
+	    System.out.println(result.getResponse().getContentAsString());
     }
+	
+	@Test
+	public void redirect_mav_rv() throws Exception {
+		MvcResult result = mvc.perform(MockMvcRequestBuilders.get(Mapping.TEST_BASE+Mapping.REDIRECT_MAV_RV))
+				.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+				.andExpect(MockMvcResultMatchers.redirectedUrl(Mapping.pub_view))
+				.andReturn();
+		System.out.println(result.getResponse().getContentAsString());
+	}
+	
+	@Test
+    public void redirect_rv() throws Exception {
+	    MvcResult result = mvc.perform(MockMvcRequestBuilders.get(Mapping.TEST_BASE+Mapping.REDIRECT_RV))
+		    .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+		    .andExpect(MockMvcResultMatchers.redirectedUrl(Mapping.pub_view+"?key=val"))
+		    .andReturn();
+	    System.out.println(result.getResponse().getContentAsString());
+    }
+	
+	@Test
+	public void redirect_str() throws Exception {
+		MvcResult result = mvc.perform(MockMvcRequestBuilders.get(Mapping.TEST_BASE+Mapping.REDIRECT_STR))
+				.andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+				.andReturn();
+		System.out.println(result.getResponse().getContentAsString());
+	}
+	
+	@Test
+	public void forward_str() throws Exception {
+		MvcResult result = mvc.perform(MockMvcRequestBuilders.get(Mapping.TEST_BASE+Mapping.FORWARD_STR))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.forwardedUrl(Mapping.pub_view))
+				.andReturn();
+		System.out.println(result.getResponse().getContentAsString());
+	}
+	
+	@Test
+	public void forward_mav() throws Exception {
+		MvcResult result = mvc.perform(MockMvcRequestBuilders.get(Mapping.TEST_BASE+Mapping.FORWARD_MAV))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.forwardedUrl(Mapping.pub_view))
+				.andReturn();
+		System.out.println(result.getResponse().getContentAsString());
+	}
+
 
 }
