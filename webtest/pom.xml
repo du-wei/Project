@@ -124,7 +124,7 @@
 		<outputDirectory>target/classes</outputDirectory>
 		<defaultGoal>install</defaultGoal>
 		<directory>${basedir}/target</directory>
-		
+
 		<plugins>
 			<plugin>
 	            <groupId>org.apache.tomcat.maven</groupId>
@@ -151,7 +151,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>sonar</id>

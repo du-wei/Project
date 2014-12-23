@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <base href="<%=basePath%>">
 <title>index</title>
 <link rel="stylesheet" type="text/css" href="css/project-validate.css"/>
-<script type="text/javascript" src="common/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="common/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="common/jquery.validate-1.11.1.js"></script>
 <script type="text/javascript" src="tools/jqueryUtils.js"></script>
 <script type="text/javascript">

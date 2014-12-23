@@ -3,13 +3,13 @@
 <head>
 	<title>必联</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="../common/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="formValidator-4.1.1.js"></script>
 	<script type="text/javascript" src="formcheck.js"></script>
-	
+
 <script type="text/javascript">
 $(function(){
-	
+
 	$.formValidator.initConfig({formID:"forma",theme:"Default"});
 	$("#jjj").formValidator({
 		onShow:"请输入密码",
@@ -27,13 +27,13 @@ $(function(){
 		onError:"密码不能为空,请确认"
 	});
 	$(":radio[name='aiguo']").formValidator({tipID:"aiguoTip",onFocus:"你得认真思考哦",defaultValue:["4"]}).inputValidator({min:1,max:1,onError:"难道你不爱国？你给我选！！！！"}).defaultPassed();
-	
-	
+
+
 	//自动构建提示层
 	$.validate.init({
 		formId : "form",
 		onSuccess : function(){alert("success");}
-		
+
 	});
 	$("#name").formValid({
 		//tipId : 'tip',
@@ -48,7 +48,7 @@ $(function(){
 		onShowTextColor:{mouseOnColor:"#000000",mouseOutColor:"#999999"},
 		//fixTipID : null,
 		onShowFixText:"成龙",
-		
+
 		triggerEvent : "blur",
 		ajax : false,
         tipSelector : null,
@@ -64,7 +64,7 @@ $(function(){
 		async : false,
 		url : "http://localhost:8080/webapps/testAction!temp"
 	});
-	
+
 	$("#name1").formValid({
         onFocus : "请输入内容onFocus",
         onCorrect : "输入正确onCorrect",
@@ -79,20 +79,20 @@ $(function(){
 		operateor 	: "=",
 		onError		: "密码不一致"
 	});
-	
+
 	$("#sele").formValid({
-		
+
 	}).inputValid({
 		min:1
 	});
-	
+
 	$(":radio[name='radio']").formValid({
 		tipId : "radioTip",
 		defaultVal : ["4"]
 	}).inputValid({
 		min:1
 	});
-	
+
 	$(":checkbox[name='check']").formValid({
 		tipId : "checkTip",
 		defaultVal : ["4"]
@@ -100,13 +100,13 @@ $(function(){
 		min:1,
 		max:2
 	});
-	
+
 	$("#pwd").formValid({
 	}).inputValid({
 		min:1,
 		max:2
 	});
-	
+
 	$("#textarea").formValid({
 	}).inputValid({
 		min:1,
@@ -117,12 +117,12 @@ $(function(){
 		},
 		onError : "fun error"
 	});
-	
+
 	$("#regex").formValid({
 	}).regexValid({
 		regExp:"^\\w{2,4}$"
 	});
-	
+
 	/*
 	$("#ajaxBtn").formValid({
 	}).ajaxValid({
@@ -130,8 +130,8 @@ $(function(){
 		url : "http://localhost:8080/webapps/testAction!temp"
 	});
 	*/
-	
-	
+
+
 });
 </script>
 </head>
@@ -147,14 +147,14 @@ $(function(){
         <br>
         <input type="submit" value="submit"/>
 	</form>
-	
+
 	<form id="form" action="check.htm">
 		<input type="text" id="name" /><span id="nameTip"></span>
 		<div id="nameFixTip"></div>
-		
+
 		<br>
 		<div><input type="text" id="name1" /><span id="name1Tip"></span></div>
-		
+
 		<br>
 		<select id="sele" style="width:80px;"><br>
 			<option value="0">请选择</option>
@@ -162,7 +162,7 @@ $(function(){
 			<option value="2">2</option>
 		</select>
 		<span id="seleTip"></span>
-		
+
 		<br>
 		<br>
 		radio1<input type="radio" name="radio" id="r1" value="1" />
@@ -185,17 +185,17 @@ $(function(){
         <textarea id="textarea" rows="2" cols="30"></textarea><span id="textareaTip"></span>
         <br>
         <br>
-        
+
         <input type="text" id="regex" /><span id="regexTip"></span>
-        
+
         <br>
         <br>
-        
+
         <input type="text" id="ajaxBtn" /><span id="ajaxBtnTip"></span>
         <input type="button" id="btn" value="btn">
         <br>
         <br>
-		<!-- 
+		<!--
 		<input type="button">
 		<input type="file">
 		<input type="hidden">

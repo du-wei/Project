@@ -8,10 +8,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath%>">
 <title>index</title>
-<script type="text/javascript" src="common/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="common/jquery-1.10.2.min.js"></script>
 <!--
-<script type="text/javascript" src="common/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="common/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="common/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="common/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="common/jquery.bpopup-0.9.3.js"></script>
  -->
 <script type="text/javascript" src="common/jquery.bpopup-0.9.0.js"></script>

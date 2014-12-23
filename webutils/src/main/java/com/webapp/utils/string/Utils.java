@@ -20,7 +20,7 @@ import com.webapp.utils.regex.RegexConst;
 * @version V1.0
 */
 public final class Utils {
-	
+
 	private Utils(){}
 
 	public static interface Symbol{
@@ -107,10 +107,12 @@ public final class Utils {
 		boolean prevUpper = false, curUpper = false, nextUpper = false;
 		for (int i = 0; i < str.length(); i++) {
 			char s = str.charAt(i);
+
 			prevUpper = curUpper;
 			curUpper = (i == 0) ? Character.isUpperCase(s) : nextUpper;
 			nextUpper = (i < str.length() - 1 ? Character.isUpperCase(str.charAt(i + 1)) : true);
 
+			if(String.valueOf(s).equals(Symbol.Underline)) continue;
 			if(i > 0 && curUpper && !(nextUpper && prevUpper)) sb.append(Symbol.Underline);
 
 			sb.append(Character.toLowerCase(s));
@@ -350,5 +352,5 @@ public final class Utils {
 		}
 		return ascii;
 	}
-    
+
 }

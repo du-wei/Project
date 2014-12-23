@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <title>My JSP 'zoom.jsp' starting page</title>
 	<link rel="stylesheet" type="text/css" href="js/jqzoom.css">
-	<script type="text/javascript" src="../../common/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="../../common/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.jqzoom.js"></script>
 	
 

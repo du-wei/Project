@@ -45,12 +45,12 @@ public class UtilsController {
 
 	@Test
 	public void test() throws Exception {
-//		WebUtils
+//		WebUtils.
 //		RequestContextUtils
 //		WebAsyncUtils
 //		WebApplicationContextUtils.
 		RestTemplate restTemplate = new RestTemplate();
-		
+
 	}
 
 	@ResponseBody
@@ -62,5 +62,5 @@ public class UtilsController {
 		byte[] images = FileCopyUtils.copyToByteArray(res.getInputStream());
 		return images;
 	}
-	
+
 }

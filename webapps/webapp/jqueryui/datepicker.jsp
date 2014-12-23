@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="js/themes/redmond/jquery-ui-1.8.16.custom.css" media="screen"/>
-<script type="text/javascript" src="../common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../common/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){

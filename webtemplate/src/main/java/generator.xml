@@ -16,8 +16,10 @@
 	<!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->
 	<entry key="tableRemovePrefixes"></entry>
 
-	<!-- Mysql -->
+	<!-- Mysql
 	<entry key="jdbc_url">jdbc:mysql://10.18.6.91:3306/meng800_show?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+	 -->
+	<entry key="jdbc_url">jdbc:mysql://localhost:3306/webapp?useUnicode=true&amp;characterEncoding=UTF-8</entry>
 	<entry key="jdbc_driver">com.mysql.jdbc.Driver</entry>
 	<entry key="jdbc_username">root</entry>
 	<entry key="jdbc_password">root</entry>

@@ -33,7 +33,7 @@ public final class HttpUtils {
 	private HttpUtils(HttpGet get){
 		this.get = get;
 	}
-	
+
 	/** setData **/
     private HttpUtils setData(HttpGet get, HttpPost post) {
 	    this.post = post;
@@ -133,10 +133,16 @@ public final class HttpUtils {
 	}
 
 	public String getStr() throws Exception {
-		StringBuffer result = new StringBuffer();
-		InputStream is = null;
 		CloseableHttpClient client = HttpClients.createDefault();
 		HttpResponse resp = client.execute(get != null ? get : post);
+		String result = toString(resp);
+		client.close();
+		return result;
+	}
+
+	public static String toString(HttpResponse resp) throws Exception{
+		StringBuffer result = new StringBuffer();
+		InputStream is = null;
 		if (resp.getStatusLine().getStatusCode() == 200) {
 			is = resp.getEntity().getContent();
 		}
@@ -147,8 +153,6 @@ public final class HttpUtils {
 				result.append(line);
 			}
 		}
-		client.close();
 		return result.toString();
-	}
-
+    }
 }

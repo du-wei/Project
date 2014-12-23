@@ -10,18 +10,26 @@ import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.Key;
+import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
+import java.security.Signature;
+import java.security.interfaces.DSAPrivateKey;
+import java.security.interfaces.DSAPublicKey;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
@@ -31,7 +39,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 
 public class CodeUtils {
-
 
 //	http://snowolf.iteye.com/blog/379860
 //	 如基本的单向加密算法：
@@ -50,33 +57,39 @@ public class CodeUtils {
 
 	public static final String UNICODE = "unicode";
 	public static final String UTF8 = "utf-8";
+	private static final String FIXED = "fixed_key";
 
 	public static String bytesToString(byte[] data) {
         return StringUtils.newStringUtf8(data);
     }
 
-	public static SecretKey getSecretKey(AlgoSym algoSym) {
-		return getSecretKey(algoSym, null, false);
-    }
-
-	public static SecretKey getSecretKey(AlgoSym algoSym, String seed) {
-		return getSecretKey(algoSym, seed, true);
-    }
-
-	private static SecretKey getSecretKey(AlgoSym algoSym, String seed, boolean isSeed) {
-		KeyGenerator instance = null;
-        try {
-            instance = KeyGenerator.getInstance(algoSym.getAlgorithm());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-		if(isSeed) instance.init(algoSym.getKeySize(), new SecureRandom(seed.getBytes()));
-		SecretKey deskey = instance.generateKey();
-
-		return deskey;
-    }
-
 	public static class KeyUtils {
+
+		public static SecretKey getSecretKey(AlgoSym algoSym) {
+			return getSecretKey(algoSym, null, false);
+	    }
+
+		public static SecretKey getSecretKey(AlgoSym algoSym, String seed) {
+			return getSecretKey(algoSym, seed, true);
+	    }
+
+		private static SecretKey getSecretKey(AlgoSym algoSym, String seed, boolean isSeed) {
+			KeyGenerator instance = null;
+	        try {
+	            instance = KeyGenerator.getInstance(algoSym.getAlgorithm());
+	        } catch (NoSuchAlgorithmException e) {
+	            e.printStackTrace();
+	        }
+			if(isSeed) {
+				instance.init(algoSym.getKeySize(), new SecureRandom(seed.getBytes()));
+			}else {
+				instance.init(algoSym.getKeySize());
+			}
+			SecretKey deskey = instance.generateKey();
+
+			return deskey;
+	    }
+
 		public static void genKeyPair(AlgoAsym algoAsym) throws Exception {
 			KeyPairGenerator keyPairGen;
 	        try {
@@ -92,12 +105,10 @@ public class CodeUtils {
 
 				writePubKey(pubName, pubKey);
 		        writePriKey(priName, priKey);
-
-		        if (algoAsym.equals(AlgoAsym.RSA_128)) {
+		        if(algoAsym.getAlgorithm().contains("RSA")){
 		        	RSAPublicKey rsaPubKey = (RSAPublicKey)pubKey;
-			        RSAPrivateKey rsaPriKey = (RSAPrivateKey)priKey;
-
-			        System.out.println(rsaPubKey.toString());
+		        	RSAPrivateKey rsaPriKey = (RSAPrivateKey)priKey;
+		        	System.out.println(pubKey.toString());
 					System.out.println("exponent 16 -> " + rsaPubKey.getPublicExponent().toString(16));
 					System.out.println("byte -> " + rsaPubKey.getEncoded());
 					System.out.println("10 -> " + rsaPubKey.getModulus().toString());
@@ -109,29 +120,62 @@ public class CodeUtils {
 					System.out.println("byte -> " + rsaPriKey.getEncoded());
 					System.out.println("10 -> " + rsaPriKey.getModulus().toString());
 					System.out.println("16 -> " + rsaPriKey.getModulus().toString(16));
-					System.out.println("base64 -> " + Encode.encodeBase64Str(rsaPriKey.getEncoded()));
+					System.out.println("base64 -> " + Encode.encodeBase64Str(priKey.getEncoded()));
 					System.out.println("file -> " + System.getProperty("user.dir") + "\\" + priName);
-                }
-//		        else if(algoAsym.equals(AlgoAsym.DSA_128)){
-//                	DSAPublicKey dsaPubKey = (DSAPublicKey)pubKey;
-//                	DSAPrivateKey dsaPriKey = (DSAPrivateKey)priKey;
-//
-//			        System.out.println(dsaPubKey.toString());
-//			        System.out.println("byte -> " + dsaPubKey.getEncoded());
-//					System.out.println("base64 -> " + Encode.encodeBase64Str(dsaPubKey.getEncoded()));
-//					System.out.println("file -> " + System.getProperty("user.dir") + "\\" + pubName);
-//					System.out.println();
-//					System.out.println(dsaPriKey.getAlgorithm() + " private key ");
-//					System.out.println("byte -> " + dsaPriKey.getEncoded());
-//					System.out.println("base64 -> " + Encode.encodeBase64Str(dsaPriKey.getEncoded()));
-//					System.out.println("file -> " + System.getProperty("user.dir") + "\\" + priName);
-//				}
+		        }else if (algoAsym.getAlgorithm().contains("DSA")) {
+		        	DSAPublicKey dsaPubKey = (DSAPublicKey)pubKey;
+	            	DSAPrivateKey dsaPriKey = (DSAPrivateKey)priKey;
+
+			        System.out.println(dsaPubKey.toString());
+			        System.out.println("byte -> " + dsaPubKey.getEncoded());
+					System.out.println("base64 -> " + Encode.encodeBase64Str(dsaPubKey.getEncoded()));
+					System.out.println("file -> " + System.getProperty("user.dir") + "\\" + pubName);
+					System.out.println();
+					System.out.println(dsaPriKey.getAlgorithm() + " private key ");
+					System.out.println("byte -> " + dsaPriKey.getEncoded());
+					System.out.println("base64 -> " + Encode.encodeBase64Str(dsaPriKey.getEncoded()));
+					System.out.println("file -> " + System.getProperty("user.dir") + "\\" + priName);
+				}
 
 
 	        } catch (NoSuchAlgorithmException e) {
 		        e.printStackTrace();
 	        }
 	    }
+
+		public static PublicKey getPublicKey(AlgoAsym algoAsym, byte[] key) {
+			X509EncodedKeySpec keySpec = new X509EncodedKeySpec(key);
+
+			PublicKey publicKey = null;
+            try {
+	            publicKey = KeyUtils.getKeyFactory(algoAsym).generatePublic(keySpec);
+            } catch (InvalidKeySpecException e) {
+	            e.printStackTrace();
+            }
+			return publicKey;
+        }
+
+		public static PrivateKey getPrivateKey(AlgoAsym algoAsym, byte[] key) {
+			PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(key);
+
+			PrivateKey privateKey = null;
+            try {
+	            privateKey = KeyUtils.getKeyFactory(algoAsym).generatePrivate(keySpec);
+            }catch (InvalidKeySpecException e) {
+	            e.printStackTrace();
+            }
+			return privateKey;
+        }
+
+		private static KeyFactory getKeyFactory(AlgoAsym algoAsym) {
+			KeyFactory keyFactory = null;
+			try {
+	            keyFactory = KeyFactory.getInstance(algoAsym.getAlgorithm());
+            } catch (NoSuchAlgorithmException e) {
+	            e.printStackTrace();
+            }
+			return keyFactory;
+        }
 
 		@SuppressWarnings("unchecked")
         public static <T> T readKey(Class<T> clz, String path) {
@@ -326,7 +370,6 @@ public class CodeUtils {
 
 	}
 
-
 	public enum AlgoSym {
 		//对称加密
 		AES_128("AES", 128),
@@ -352,13 +395,14 @@ public class CodeUtils {
 
 	public enum AlgoAsym {
 		//数字签名的变种，非对称
-//		DSA_128("DSA", 128),
-//		DSA_192("AES", 192),
-//		DSA_256("AES", 256),
+		DSA_128("DSA", 128),
+//		DSA_192("DSA", 192),
+//		DSA_256("DSA", 256),
+
 		//非对称加密
 		RSA_128("RSA", 128);
-//		RSA_192("AES", 192),
-//		RSA_256("AES", 256),
+//		RSA_192("RSA", 192),
+//		RSA_256("RSA", 256),
 
 		private String algorithm;
 		private int keySize;
@@ -372,6 +416,14 @@ public class CodeUtils {
 		AlgoAsym(String algorithm, int keySize){
 			this.algorithm = algorithm;
 			this.keySize = keySize;
+		}
+
+		public boolean isRSA(){
+			return this.getAlgorithm().equalsIgnoreCase("RSA");
+		}
+
+		public boolean isDSA(){
+			return this.getAlgorithm().equalsIgnoreCase("DSA");
 		}
 	}
 
@@ -398,24 +450,54 @@ public class CodeUtils {
 			return result;
 		}
 
+		private static byte[] encryptSign(byte[] data, PrivateKey privateKey) {
+			byte[] result = null;
+            try {
+                Signature sign = Signature.getInstance(privateKey.getAlgorithm());
+                sign.initSign(privateKey);
+                sign.update(data);
+                result = sign.sign();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+			return result;
+		}
+
 		public Encrypt encrypt(AlgoSym algoSym) {
-			data = encrypt(data, getSecretKey(algoSym));
+			data = encrypt(data, KeyUtils.getSecretKey(algoSym, DigestUtils.sha256Hex(FIXED)));
 			return this;
         }
 
-		public Encrypt encrypt(AlgoSym algoSym, String seed) {
-			data = encrypt(data, getSecretKey(algoSym, seed));
+		public Encrypt encrypt(AlgoSym algoSym, byte[] key) {
+			SecretKeySpec secretKey = new SecretKeySpec(key, algoSym.getAlgorithm());
+			data = encrypt(data, secretKey);
 			return this;
         }
 
-		public Encrypt encrypt(AlgoAsym algoAsym, PublicKey pubKey) {
-	        data = encrypt(data, pubKey);
-	        return this;
+		public Encrypt encrypt(AlgoSym algoSym, String base64Key) {
+			encrypt(algoSym, Decode.decodeBase64(base64Key.getBytes()));
+			return this;
         }
 
-		public Encrypt encrypt(AlgoAsym algoAsym, String path) {
-	        data = encrypt(data, KeyUtils.readPubKey(path));
-	        return this;
+		public Encrypt encrypt(Key key) {
+			data = encrypt(data, key);
+			return this;
+        }
+
+		public Encrypt encrypt(AlgoAsym algoAsym, byte[] key) {
+			if(algoAsym.isRSA()){
+				// RSA 公钥加密，私钥解密
+				data = encrypt(data, KeyUtils.getPublicKey(algoAsym, key));
+			}else if (algoAsym.isDSA()) {
+				// DSA 私钥加密，公钥解密
+				data = encryptSign(data, KeyUtils.getPrivateKey(algoAsym, key));
+			}
+			return this;
+        }
+
+		public Encrypt encrypt(AlgoAsym algoAsym, String base64Key) {
+			encrypt(algoAsym, Decode.decodeBase64(base64Key.getBytes()));
+			return this;
         }
 
 		public byte[] toByte() {
@@ -427,11 +509,11 @@ public class CodeUtils {
 		public String toHexStr() {
 			return Encode.encodeRadixStr(data, 16);
         }
-		public byte[] toBase64(boolean padding) {
-			return Encode.encodeBase64(data, padding);
+		public byte[] toBase64() {
+			return Encode.encodeBase64(data);
         }
-		public String toBase64Str(boolean padding) {
-			return Encode.encodeBase64Str(data, padding);
+		public String toBase64Str() {
+			return Encode.encodeBase64Str(data);
 		}
 	}
 
@@ -456,25 +538,55 @@ public class CodeUtils {
             }
 			return result;
 		}
+
+		private static byte[] decryptSign(byte[] data, PublicKey publicKey) {
+			byte[] result = null;
+            try {
+                Signature sign = Signature.getInstance(publicKey.getAlgorithm());
+                sign.initVerify(publicKey);
+                sign.update(data);
+                result = sign.sign();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+			return result;
+		}
+
 		public Decrypt decrypt(AlgoSym algoSym) {
-			data = decrypt(data, getSecretKey(algoSym));
+			data = decrypt(data, KeyUtils.getSecretKey(algoSym, DigestUtils.sha256Hex(FIXED)));
 			return this;
         }
 
-		public Decrypt decrypt(AlgoSym algoSym, String seed) {
-			data = decrypt(data, getSecretKey(algoSym, seed));
+		public Decrypt decrypt(AlgoSym algoSym, byte[] key) {
+			SecretKeySpec secretKey = new SecretKeySpec(key, algoSym.getAlgorithm());
+			data = decrypt(data, secretKey);
 			return this;
         }
 
-		public Decrypt decrypt(AlgoAsym algoAsym, PrivateKey priKey) {
-			data = decrypt(data, priKey);
+		public Decrypt decrypt(AlgoSym algoSym, String base64Key) {
+			decrypt(algoSym, Decode.decodeBase64(base64Key.getBytes()));
 			return this;
         }
 
-		public Decrypt decrypt(AlgoAsym algoAsym, String path) {
-			data = decrypt(data, KeyUtils.readPriKey(path));
+		public Decrypt decrypt(Key key) {
+			data = decrypt(data, key);
 			return this;
         }
+
+		public Decrypt decrypt(AlgoAsym algoAsym, byte[] key) {
+			if(algoAsym.isRSA()){
+				// RSA 公钥加密，私钥解密
+				data = decrypt(data, KeyUtils.getPrivateKey(algoAsym, key));
+			}else if (algoAsym.isDSA()) {
+				// DSA 私钥加密，公钥解密
+				data = decryptSign(data, KeyUtils.getPublicKey(algoAsym, key));
+			}
+			return this;
+        }
+		public Decrypt decrypt(AlgoAsym algoAsym, String base64Key) {
+			decrypt(algoAsym, Decode.decodeBase64(base64Key.getBytes()));
+			return this;
+		}
 
 		public byte[] toByte() {
 	        return data;

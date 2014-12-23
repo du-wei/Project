@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript" src="../common/jquery-1.6.min.js"></script>
+<script type="text/javascript" src="../common/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
 //1 开放公共参数
 //2 开放部分功能

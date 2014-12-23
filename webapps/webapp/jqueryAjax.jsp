@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath%>">
 <title>index</title>
-<script type="text/javascript" src="common/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="common/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="tools/jqueryUtils.js"></script>
 <script type="text/javascript">
 $(function(){

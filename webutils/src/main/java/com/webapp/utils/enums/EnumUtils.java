@@ -20,21 +20,40 @@ import com.webapp.utils.clz.ClzUtils;
 public final class EnumUtils {
 
 	private EnumUtils(){}
-	
+
 	@SafeVarargs
     public static <E extends Enum<E>> List<String> getList(Class<E> clz, String prop, E...excludes){
 		Field field = ClzUtils.getField(clz, prop);
-		
+
 		List<String> result = new ArrayList<String>();
 		if(field == null) return result;
 
 		EnumSet<E> allOf = EnumSet.allOf(clz);
 		if(excludes != null) allOf.removeAll(Arrays.asList(excludes));
-		
+
 		Iterator<E> iterator = allOf.iterator();
 		while(iterator.hasNext()){
 			E next = iterator.next();
 			result.add(ClzUtils.getFieldVal(field, next).toString());
+		}
+		return result;
+	}
+
+    @SafeVarargs
+    @SuppressWarnings("unchecked")
+	public static <E extends Enum<E>, T> List<T> getList(Class<E> clz, String prop, Class<T> returnType, E...excludes){
+		Field field = ClzUtils.getField(clz, prop);
+
+		List<T> result = new ArrayList<T>();
+		if(field == null) return result;
+
+		EnumSet<E> allOf = EnumSet.allOf(clz);
+		if(excludes != null) allOf.removeAll(Arrays.asList(excludes));
+
+		Iterator<E> iterator = allOf.iterator();
+		while(iterator.hasNext()){
+			E next = iterator.next();
+			result.add((T)ClzUtils.getFieldVal(field, next));
 		}
 		return result;
 	}
@@ -48,7 +67,7 @@ public final class EnumUtils {
 	public static <E extends Enum<E>> String valueOf(E enumEle, String prop){
 		Field field = ClzUtils.getField(enumEle.getClass(), prop);
 		if(field == null) return null;
-		
+
 		return ClzUtils.getFieldVal(field, enumEle).toString();
 	}
 
@@ -58,7 +77,7 @@ public final class EnumUtils {
      * @param prop enum value
 	 * @return boolean
 	 */
-	public static <E extends Enum<E>> boolean isNotExist(Class<E> clz, String prop, String value){
+	public static <E extends Enum<E>> boolean isNotExist(Class<E> clz, String prop, Object value){
 		return !isExist(clz, prop, value);
 	}
 
@@ -68,7 +87,7 @@ public final class EnumUtils {
      * @param prop enum value
 	 * @return boolean
 	 */
-	public static <E extends Enum<E>> boolean isExist(Class<E> clz, String prop, String value){
+	public static <E extends Enum<E>> boolean isExist(Class<E> clz, String prop, Object value){
 		return getEnum(clz, prop, value) != null ? true : false;
 	}
 
@@ -97,14 +116,14 @@ public final class EnumUtils {
      * @param prop enum value
 	 * @return boolean
 	 */
-	public static <E extends Enum<E>> E getEnum(Class<E> clz, String prop, String value){
+	public static <E extends Enum<E>> E getEnum(Class<E> clz, String prop, Object value){
 		Field field = ClzUtils.getField(clz, prop);
 		if(field == null) return null;
 
 		Iterator<E> iterator = EnumSet.allOf(clz).iterator();
 		while(iterator.hasNext()){
 			E next = iterator.next();
-			if(ClzUtils.getFieldVal(field, next).toString().equals(value)){
+			if(ClzUtils.getFieldVal(field, next).equals(value)){
 				return next;
 			}
 		}
@@ -115,7 +134,7 @@ public final class EnumUtils {
     public static <E extends Enum<E>> List<E> getEnums(E[] all, E... excludes) {
     	List<E> result = new ArrayList<E>(Arrays.asList(all));
 		result.removeAll(Arrays.asList(excludes));
-		
+
 		return result;
     }
 

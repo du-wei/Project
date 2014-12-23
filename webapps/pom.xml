@@ -16,20 +16,6 @@
 	<properties>
 	</properties>
 
-	<build>
-		<finalName>webapps</finalName>
-		<outputDirectory>target/classes</outputDirectory>
-		<defaultGoal>install</defaultGoal>
-		<directory>${basedir}/target</directory>
-	</build>
-	<!-- <reporting>
-	    <plugins>
-	        <plugin>
-	            <groupId>org.apache.maven.plugins</groupId>
-	            <artifactId>maven-project-info-reports-plugin</artifactId>
-	        </plugin>
-	    </plugins>
-	</reporting> -->
 	<dependencies>
 		<dependency>
 			<groupId>org.jodd</groupId>
@@ -256,5 +242,44 @@
 			<version>${web_version}</version>
 		</dependency>
 	</dependencies>
+
+
+	<build>
+		<finalName>webapps</finalName>
+		<outputDirectory>target/classes</outputDirectory>
+		<defaultGoal>install</defaultGoal>
+		<directory>${basedir}/target</directory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webappDirectory>target/${project.artifactId}</webappDirectory>
+					<warSourceDirectory>webapp</warSourceDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk_version}</source>
+					<target>${jdk_version}</target>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.5.v20141112</version>
+				<configuration>
+					<scanIntervalSeconds>2</scanIntervalSeconds>
+					 <webAppSourceDirectory>${basedir}/webapp</webAppSourceDirectory>
+					<webAppConfig>
+						<contextPath>/</contextPath>
+					</webAppConfig>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

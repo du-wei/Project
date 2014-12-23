@@ -6,12 +6,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>easyui layout</title>
 
-<link rel="stylesheet" type="text/css" href="js/themes/default/easyui.css" />
-<script type="text/javascript" src="../common/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/jqueryeasyui/themes/default/easyui.css" />
+<script type="text/javascript" src="../common/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/jqueryeasyui/js/jquery.easyui.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -35,7 +36,7 @@ $(document).ready(function(){
 			iconCls:'icon-help',
 			handler:function(){alert("help!");}
 		}]
-		
+
 	});
 	$("#tabs").tabs({
 		height:'200',
@@ -49,10 +50,10 @@ $(document).ready(function(){
 	$("#calendar-text").click(function(){
 		$("#calendar").calendar();
 	});
-	
+
 	$("#showImage").click(function(){
 		$("<img />").insertAfter("#showImage").appendTo("<div id='showBigImage' />");
-		
+
 		$("#showBigImage").show().dialog({
 			title:'',
 			width:'300',
@@ -140,8 +141,8 @@ $(document).ready(function(){
             },
             message: 'Please enter at least {0} characters.'
         }
-    }); 
-	
+    });
+
 	$("#draggable").draggable({
 		handle:"#title"
 		//revert:false
@@ -150,7 +151,7 @@ $(document).ready(function(){
 		//disabled:false
 		//edge:500
 	});
-	
+
 	$('.drag').draggable({
 		proxy:'clone',
 //		proxy:function(source){
@@ -185,9 +186,9 @@ $(document).ready(function(){
 			$(this).removeClass('over');
 		}
 	});
-	
+
 	$("#combobox").combobox({
-		url:"js/combobox_data.json",
+		url:"jqueryeasyui/js/combobox_data.json",
 		valueField:"id",
 		textField:"text",
 		//multiple:"false",
@@ -210,7 +211,7 @@ $(document).ready(function(){
 	$("#com_box4").click(function(){
 		$('#combobox').combobox('enable');
 	})
-	
+
 	$("#combo").combo({
 		required:true,
 		editable:false
@@ -221,7 +222,7 @@ $(document).ready(function(){
 		var s = $(this).next('span').text();
 		$('#combo').combo('setValue', v).combo('setText', s).combo('hidePanel');
 	});
-	
+
 	$("#datagrid").datagrid({
 		url:"js/datagrid_data.json",
 		title:"my datagrid",
@@ -337,7 +338,7 @@ $(document).ready(function(){
 			timeout:5000
 		})
 	}).linkbutton();
-	
+
 	$("#progress").click(function(){
 		var win = $.messager.progress({
 			title:"progrss",
@@ -443,17 +444,17 @@ $(document).ready(function(){
 			$(this).pagination('loaded');
 		}
 	});
-	
-	$('#searchbox').searchbox({   
-	     width:350,   
-	     searcher:function(value,name){   
-	         alert(value + "," + name)   
-	     },   
+
+	$('#searchbox').searchbox({
+	     width:350,
+	     searcher:function(value,name){
+	         alert(value + "," + name)
+	     },
 	     menu:'#searchbox-mm',
-		 value:"hello world",   
-	     prompt:'Please Input Value'  
-	 }); 
-	
+		 value:"hello world",
+	     prompt:'Please Input Value'
+	 });
+
 });
 
 </script>
@@ -485,13 +486,13 @@ $(document).ready(function(){
 </style>
 </head>
 <body>
-	
-	
+
+
 <div id="layout" class="easyui-layout">
 	<!-- title=null region="" border=true split=false icon=null href=null -->
 	<!-- resize panel collapse expand-->
 	<div region="east" icon="icon-help" title="East" style="width:200px;"></div>
-	
+
     <div region="west" title="West" split="true" style="width:200px;">
 		<!-- width height fit=false border=true animate=true iconCls -->
 		<div id="accordion" fit="true">
@@ -499,9 +500,9 @@ $(document).ready(function(){
 			<div title="accordion2">hello world</div>
 		</div>
 	</div>
-	
+
 	<div region="north" title="North Title" style="height:100px;"></div>
-	
+
     <div region="center" title="center title" style="padding:0px;background:#eee;">
 		<!-- width=auto height=auto plain=false fit=false border=true tools=null scrollDuration=400 scrollcrement=100 -->
 		<div id="tabs">
@@ -516,14 +517,14 @@ $(document).ready(function(){
 				<a href="javascript:void(0)" id="window-button" class="easyui-linkbutton">window</a>
 				<div id="window">hello world</div>
 				<img src="../images/shoe1_small.jpg" id="showImage" />
-				
+
 			</div>
 			<div title="tab3">
 				<div id="draggable" style="border:1px solid red;width:100px;">
 					<div id="title" style="background:#ccc;">title</div>
 					hello world<br/>hello world<br/>hello world<br/>hello world
 				</div>
-				
+
 				<div id="source" style="border:1px solid #ccc;width:300px;height:400px;float:left;margin:5px;">
 					drag me!
 					<div id="d1" class="drag">Drag 1</div>
@@ -533,7 +534,7 @@ $(document).ready(function(){
 				<div id="target" style="border:1px solid #ccc;width:300px;height:400px;float:left;margin:5px;">
 					drop here!
 				</div>
-				
+
 			</div>
 			<div title="tab4">
 				<select id="combobox" name="dept">
@@ -542,7 +543,7 @@ $(document).ready(function(){
 				<a href="#" id="com_box2" class="easyui-linkbutton">getValue</a>
 				<a href="#" id="com_box3" class="easyui-linkbutton">disable</a>
 				<a href="#" id="com_box4" class="easyui-linkbutton">enable</a>
-				
+
 				<select id="combo" name="combo"></select>
 				<div id="sp">
 					<div style="color:#99BBE8;background:#fafafa;padding:5px;">Select a language</div>
@@ -561,12 +562,12 @@ $(document).ready(function(){
 			<div title="tab6">
 				<button id="btn-menu">menu</button>
 				<a href="#" id="menubutton" iconCls="icon-edit">show</a>
-				
+
                 <a href="javascript:void(0)" id="splitbutton" iconCls="icon-ok" onclick="javascript:alert('ok')">Ok</a>
                 <div id="mm" style="width:100px;">
                     <div iconCls="icon-ok">Ok</div>
                     <div iconCls="icon-cancel">Cancel</div>
-                </div> 
+                </div>
 
 				<br/>
 				<br/>
@@ -585,8 +586,8 @@ $(document).ready(function(){
 				<br/>
 				<div id="resizable" style="width:100px;height:100px;border:1px solid #ccc;">
 					hello world
-				</div> 
-				
+				</div>
+
 				<div id="menu" class="easyui-menu" style="width:120px;">
 					<div onclick="javascript:alert('new')">New</div>
 					<div>
@@ -606,26 +607,26 @@ $(document).ready(function(){
 					<div iconCls="icon-save">Save</div>
 					<div class="menu-sep"></div>
 					<div>Exit</div>
-				</div>									
+				</div>
 			</div>
-			
+
 			<div title="tab7">
 				<div id="propertygrid"></div>
 				<a href="#" id="property-change" class="easyui-linkbutton">getchanges</a>
 			</div>
-			
+
 			<div title="tab8">
 				<div id="progressbar"></div>
 				<a href="#" id="progressbar-btn" class="easyui-linkbutton">test</a>
-				
+
 				<div id="pagination" style="background:#eeffff;border:1px solid #ccc;"></div>
-				
-				<input id="searchbox"></input>   
-				<div id="searchbox-mm" style="width:120px">   
-				    <div name="all" iconCls="icon-ok">All News</div>   
-				    <div name="sports">Sports News</div>   
-				</div>   
-				
+
+				<input id="searchbox"></input>
+				<div id="searchbox-mm" style="width:120px">
+				    <div name="all" iconCls="icon-ok">All News</div>
+				    <div name="sports">Sports News</div>
+				</div>
+
 				<ul id="tree" class="easyui-tree" animate="true" dnd="true">
 					<li>
 						<span>Folder</span>
@@ -646,8 +647,8 @@ $(document).ready(function(){
 					</li>
 					<li><span>File21</span></li>
 				</ul>
-				
-				
+
+
 			</div>
 		</div>
 	</div>

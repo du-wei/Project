@@ -1,7 +1,5 @@
 package com.webapp.utils.akka;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import akka.actor.ActorRef;
@@ -10,14 +8,14 @@ import akka.actor.Props;
 import akka.actor.UntypedActor;
 
 public class AkkaMain {
-	
+
 	@Test
     public void testName() throws Exception {
 	    ActorSystem system = ActorSystem.create("demo");
 	    ActorRef actor1 = system.actorOf(Props.create(Actor1.class));
 	    ActorRef actor2 = system.actorOf(Props.create(Actor2.class));
 	    actor1.tell("hello akka", actor2);
-	    
+
 	    system.shutdown();
     }
 }
