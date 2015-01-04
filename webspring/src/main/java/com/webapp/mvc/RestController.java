@@ -24,6 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("rest")
 public class RestController {
+	//filter HiddenHttpMethodFilter _method 转换请求方式
+	//Ant风格
+	//? 	一个字符
+	//*		多个字符
+	//**	多层路径
 
 	@RequestMapping("/index/{name}")
 	public ModelAndView get(@PathVariable String name) {

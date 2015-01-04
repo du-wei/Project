@@ -17,6 +17,11 @@
 	</properties>
 	
 	<dependencies>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
 		<!-- <dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-jaxb-annotations</artifactId>
@@ -149,6 +154,7 @@
 				<configuration>
 					<source>${jdk_version}</source>
 					<target>${jdk_version}</target>
+					<encoding>${encoding}</encoding>
 					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>

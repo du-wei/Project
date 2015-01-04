@@ -7,16 +7,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <base href="<%=basePath%>">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>index</title>
 </head>
 <body>
-spring mvc
-${msg }
+exception <br/>
 
-<form action="testFile" method="post" enctype="multipart/form-data">
-	file <input type="file" name="file"/> <br/>
-	desc <input type="text" name="desc"/>
-	<input type="submit" value="sub"/>
-</form>
+
+error <br/>${exception}
 </body>
 </html>

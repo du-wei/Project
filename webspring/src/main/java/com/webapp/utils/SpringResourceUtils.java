@@ -1,6 +1,7 @@
 package com.webapp.utils;
 
 
+
 public class SpringResourceUtils {
 
 	public static void main(String[] args) {
@@ -16,6 +17,7 @@ public class SpringResourceUtils {
 //		ResourceBundle bundle = MessageSourceResourceBundle.getBundle("pool");
 //		String string = bundle.getString("maxIdle");
 //		System.out.println(string);
+
     }
 
 }

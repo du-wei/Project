@@ -19,13 +19,38 @@
            http://www.springframework.org/schema/util
            http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
-	<!-- 
-	#{1} #{1.1} #{1e4} #{'str'} #{false} 
+	<!-- @initbind -->
+	<!-- bindingResult -->
+
+	<!-- 映射数据转换 -->
+	<bean id="conver" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<ref bean=""/>
+			</set>
+		</property>
+	</bean>
+	<mvc:annotation-driven conversion-service="conver"></mvc:annotation-driven>
 	
+	<!-- 国际化资源 -->
+	<bean class="org.springframework.content.support.ResourceBundleMessageSource">
+		<property name="basename" value="i18n"/>
+	</bean>
+	
+	<!-- 当请求没有被映射，会返回目标资源需要配合mvc:annotation-driven -->
+	<mvc:default-servlet-handler/>
+	
+	<!-- 直接映射资源需要配合mvc:annotation-driven -->
+	<mvc:view-controller path="/success" view-name="success"/>
+	<mvc:annotation-driven />
+
+	<!--
+	#{1} #{1.1} #{1e4} #{'str'} #{false}
+
 	引用bean
-	<property name="obj" value="#{beanid}"/> 
+	<property name="obj" value="#{beanid}"/>
 	<property name="obj" ref="beanid"/>
-	
+
 	属性
 	<property name="obj" value="#{beanid.prop}"/>
 	方法
@@ -38,21 +63,21 @@
 	If-else运算符：?:
 	正则表达式：matches
 	 -->
-	 
+
 	<!-- 加载静态文件在spring配置中使用 -->
 	<!-- <context:property-placeholder location="pool.properties"/> -->
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
-        <property name="locations">  
-           <list>  
-              <!-- 这里支持多种寻址方式：classpath和file -->  
-              <value>classpath*:pool.properties</value>  
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+           <list>
+              <!-- 这里支持多种寻址方式：classpath和file -->
+              <value>classpath*:pool.properties</value>
               <!-- <value>file:/opt/demo/config/demo-mq.properties</value>   -->
-            </list>  
-        </property>  
+            </list>
+        </property>
         <property name="ignoreResourceNotFound" value="true" />
         <property name="fileEncoding" value="utf-8"/>
-    </bean>  
-	 
+    </bean>
+
 	<bean id="config" name="config" class="com.webapp.entity.SpringConfigEntity">
 		<property name="name" value="#{config1.getName()?.toUpperCase()}" />
 		<property name="intVal" value="#{1}" />
@@ -62,7 +87,7 @@
 		<property name="remark1" value="#{'helloworld' matches 'helloworld'}" />
 		<property name="remark2" value="${maxTotalPerKey}" />
 	</bean>
-	
+
 	<!-- 程序中使用,配置文件中引用不到 -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="defaultEncoding" value="utf-8" />
@@ -75,8 +100,8 @@
 			</list>
 		</property>
 	</bean>
-	
-	
+
+
 	<!-- <bean id="test" class="com.webapp.config.Test">
 		<property name="list" ref="list" />
 	    <property name="map" ref="map"/>
@@ -85,24 +110,24 @@
 	    <property name="set" ref="set"/>
 	   	<property name="constantValue" ref="constantValue"/>
 	</bean> -->
-	
+
 	<util:list id="list" list-class="java.util.ArrayList">
 	  	<value>listValue1</value>
 	  	<value>listValue2</value>
 	</util:list>
-	
+
 	<util:map id="map">
 	  <entry key="key1"  value="mapValue1" />
 	  <entry key="key12" value="mapValue2" />
 	</util:map>
-	
+
 	<util:set id="set" set-class="java.util.TreeSet">
 	  <value>setValue1</value>
 	  <value>setValue2</value>
 	</util:set>
-	
+
 	<util:properties id="properties" location="classpath:pool.properties" />
-	
+
 	<util:list id="array">
 	  <value>arrayValue1</value>
 	  <value>arrayValue2</value>

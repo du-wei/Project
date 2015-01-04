@@ -1,11 +1,13 @@
 package com.webapp.modules;
 
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 public class SpringContext {
 	
 	public static void main(String[] args) {
+//		BeanPostProcessor
 //		ApplicationContext 
 //	    ClassPathXmlApplicationContext
 //		FileSystemXmlApplicationContext

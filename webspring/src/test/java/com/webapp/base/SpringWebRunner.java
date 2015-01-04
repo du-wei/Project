@@ -1,5 +1,6 @@
 package com.webapp.base;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,6 +40,23 @@ public class SpringWebRunner {
 	public void runBefore(){
 		mvc = MockMvcBuilders.webAppContextSetup(wac).build();
 	}
+	
+	@Test
+	public void datasource() {
+//	    ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		BasicDataSource data = (BasicDataSource)wac.getBean("dataSource");
+		System.out.println(data.getUrl());
+		BasicDataSource data2 = (BasicDataSource)wac.getBean("dataSource_new");
+		System.out.println(data2.getUrl());
+	    
+    }
+	
+	@Test
+    public void get_req() throws Exception {
+	    MvcResult result = mvc.perform(MockMvcRequestBuilders.get(Mapping.TEST_BASE+"get_req"))
+		    .andExpect(MockMvcResultMatchers.status().isOk())
+		    .andReturn();
+    }
 	
 	@Test
     public void json() throws Exception {
