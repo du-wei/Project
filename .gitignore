@@ -7,3 +7,4 @@ mem.*
 *.classpath
 .settings
 target
+logs
