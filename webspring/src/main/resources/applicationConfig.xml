@@ -19,19 +19,8 @@
            http://www.springframework.org/schema/util
            http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
-	<!-- @initbind -->
 	<!-- bindingResult -->
 
-	<!-- 映射数据转换 -->
-	<bean id="conver" class="org.springframework.context.support.ConversionServiceFactoryBean">
-		<property name="converters">
-			<set>
-				<ref bean=""/>
-			</set>
-		</property>
-	</bean>
-	<mvc:annotation-driven conversion-service="conver"></mvc:annotation-driven>
-	
 	<!-- 国际化资源 -->
 	<bean class="org.springframework.content.support.ResourceBundleMessageSource">
 		<property name="basename" value="i18n"/>

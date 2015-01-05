@@ -18,7 +18,7 @@ import com.webapp.config.AppMvcConfig;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes={AppMvcConfig.class})
-public class SpringAnnoWebRunner {
+public class RunnerWebAnno {
 	
 	@Autowired
 	protected WebApplicationContext wac;

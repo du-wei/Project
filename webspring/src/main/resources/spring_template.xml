@@ -15,7 +15,8 @@
            http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-
+           
+	<!-- 可被继承的数据源 -->
 	<bean id="dbcp_dataSource" class="org.apache.commons.dbcp2.BasicDataSource" abstract="true">
 		<property name="driverClassName" value="${driver}" />
 		<property name="url" value="${url}" />
@@ -27,6 +28,17 @@
 		<property name="testOnReturn" value="true" />
 		<property name="validationQuery" value="select 1" />
 		<property name="defaultAutoCommit" value="true" />
+	</bean>
+	
+	<mvc:annotation-driven conversion-service="conversionService" />
+	<!-- 自定义参数转换器配置 -->
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<!-- <bean class="com.webapp.mvc.MyConverter" /> -->
+				<ref bean="myConverter"/>
+			</set>
+		</property>
 	</bean>
 	
 </beans>

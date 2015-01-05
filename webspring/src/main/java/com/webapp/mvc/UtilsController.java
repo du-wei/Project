@@ -5,9 +5,6 @@ import java.io.OutputStream;
 import javax.servlet.http.HttpServletRequest;
 
 import org.junit.Test;
-import org.springframework.context.MessageSource;
-import org.springframework.context.support.MessageSourceAccessor;
-import org.springframework.context.support.MessageSourceResourceBundle;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -17,16 +14,12 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.context.request.async.WebAsyncUtils;
 import org.springframework.web.context.support.ServletContextResource;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.springframework.web.servlet.support.RequestContextUtils;
-import org.springframework.web.util.WebUtils;
 
 import com.webapp.constant.Mapping;
 
 @Controller
-@RequestMapping(Mapping.BASE)
+@RequestMapping(Mapping.ACTION)
 public class UtilsController {
 
 	@RequestMapping(Mapping.PATH)

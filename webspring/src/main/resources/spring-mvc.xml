@@ -24,6 +24,7 @@
 	</mvc:annotation-driven>
 	<mvc:default-servlet-handler/>
 	<mvc:view-controller path="/index" view-name="index"/>
+	<mvc:view-controller path="/databind" view-name="databind"/>
 
 	<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
 		<constructor-arg value="utf-8" index="0" />

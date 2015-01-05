@@ -13,10 +13,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 spring mvc
 ${msg }
 
-<form action="testFile" method="post" enctype="multipart/form-data">
-	file <input type="file" name="file"/> <br/>
-	desc <input type="text" name="desc"/>
-	<input type="submit" value="sub"/>
-</form>
 </body>
 </html>

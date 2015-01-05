@@ -7,8 +7,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,15 +23,9 @@ import com.webapp.utils.model.Student;
  *	spring mvc return result controller
  */
 @Controller
-@RequestMapping(Mapping.BASE)
+@RequestMapping(Mapping.RESULT)
 public class ResultController {
 
-	//所有方法之前执行，并将结果放到模型中
-	@ModelAttribute(Mapping.ATTR)
-	public String befor() {
-		return "modelAttr";
-	}
-	
 	@RequestMapping(Mapping.OUT)
 	public void printWriter(HttpServletResponse resp) throws Exception {
 		PrintWriter pw = resp.getWriter();
@@ -38,36 +33,42 @@ public class ResultController {
 		pw.flush();
 	}
 	
-	@RequestMapping(Mapping.STR)
 	@ResponseBody
-	public String str(HttpServletResponse resp) throws Exception {
+	@RequestMapping(Mapping.STR)
+	public String str() throws Exception {
 		return "string";
 	}
 	
-	@RequestMapping(Mapping.OBJ)
 	@ResponseBody
+	@RequestMapping(Mapping.OBJ)
 	public Student obj() {
 		return ModelUtils.getStu();
 	}
 	
-	@RequestMapping(Mapping.JSON)
 	@ResponseBody
+	@RequestMapping(Mapping.JSON)
 	public JSONObject json() {
 		return JSON.parseObject(JSON.toJSONString(ModelUtils.getStu()));
 	}
 
-	@RequestMapping(Mapping.LIST)
 	@ResponseBody
+	@RequestMapping(Mapping.LIST)
 	public List<Student> list() {
 		return ModelUtils.getStuList(5);
 	}
 
-	@RequestMapping(Mapping.MAP)
 	@ResponseBody
+	@RequestMapping(Mapping.MAP)
 	public Map<String, Student> map() {
 		Map<String, Student> map = new HashMap<String, Student>();
 		map.put("key", ModelUtils.getStu());
 		return map;
 	}
+	
+	@RequestMapping("entity")
+	public ResponseEntity<String> output() {
+		ResponseEntity<String> resp = new ResponseEntity<String>("hello", HttpStatus.OK);
+	    return resp;
+    }
 
 }

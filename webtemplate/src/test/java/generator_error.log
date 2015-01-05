@@ -1,0 +1,65 @@
+java.lang.RuntimeException: generate oucur error,templateFile is:${basepackage_dir}\consts\${className}Consts.java => V:\360cloud\project\webtemplate\src\test\java\com\ok\consts\UserConsts.java cause:freemarker.core.InvalidReferenceException: The following has evaluated to null or missing:
+==> column.columnNameUpper  [in template "${basepackage_dir}\\consts\\${className}Consts.java" at line 17, column 38]
+
+Tip: If the failing expression is known to be legally null/missing, either specify a default value with myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthessis: (myOptionVar.foo)!myDefault, (myOptionVar.foo)??
+
+The failing instruction:
+==> ${column.columnNameUpper}  [in template "${basepackage_dir}\\consts\\${className}Consts.java" at line 17, column 36]
+	at cn.org.rapid_framework.generator.Generator$TemplateProcessor.executeGenerate(Generator.java:352)
+	at cn.org.rapid_framework.generator.Generator$TemplateProcessor.access$100(Generator.java:308)
+	at cn.org.rapid_framework.generator.Generator.scanTemplatesAndProcess(Generator.java:288)
+	at cn.org.rapid_framework.generator.Generator.processTemplateRootDirs(Generator.java:216)
+	at cn.org.rapid_framework.generator.Generator.generateBy(Generator.java:179)
+	at cn.org.rapid_framework.generator.GeneratorFacade$ProcessUtils.processByTable(GeneratorFacade.java:275)
+	at cn.org.rapid_framework.generator.GeneratorFacade$ProcessUtils.processByTable(GeneratorFacade.java:243)
+	at cn.org.rapid_framework.generator.GeneratorFacade.generateByTable(GeneratorFacade.java:122)
+	at com.webapp.template.utils.GenerateMain.createModel(GenerateMain.java:38)
+	at com.webapp.template.utils.GenerateMain.main(GenerateMain.java:56)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+Caused by: freemarker.core.InvalidReferenceException: The following has evaluated to null or missing:
+==> column.columnNameUpper  [in template "${basepackage_dir}\\consts\\${className}Consts.java" at line 17, column 38]
+
+Tip: If the failing expression is known to be legally null/missing, either specify a default value with myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthessis: (myOptionVar.foo)!myDefault, (myOptionVar.foo)??
+
+The failing instruction:
+==> ${column.columnNameUpper}  [in template "${basepackage_dir}\\consts\\${className}Consts.java" at line 17, column 36]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:98)
+	at freemarker.core.EvalUtil.coerceModelToString(EvalUtil.java:382)
+	at freemarker.core.Expression.evalAndCoerceToString(Expression.java:115)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:76)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.IteratorBlock$Context.runLoop(IteratorBlock.java:193)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:509)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:103)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.Environment.process(Environment.java:243)
+	at freemarker.template.Template.process(Template.java:277)
+	at cn.org.rapid_framework.generator.Generator$TemplateProcessor.processTemplateForGeneratorControl(Generator.java:388)
+	at cn.org.rapid_framework.generator.Generator$TemplateProcessor.executeGenerate(Generator.java:340)
+	... 32 more

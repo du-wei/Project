@@ -1,4 +1,4 @@
-package com.webapp.exception.handler;
+package com.webapp.handler;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,12 +13,12 @@ import com.alibaba.fastjson.JSONObject;
 @ControllerAdvice
 public class WebExceptionHandler {
 
-	@ExceptionHandler
-	public ModelAndView handleException(Exception ex) {
-		ModelAndView mav = new ModelAndView("error");
-		mav.addObject("exception", ex);
-		return mav;
-    }
+//	@ExceptionHandler
+//	public ModelAndView handleException(Exception ex) {
+//		ModelAndView mav = new ModelAndView("error");
+//		mav.addObject("exception", ex);
+//		return mav;
+//    }
 	
 	/* 次异常处理适合用于公共接口 */
 	@ResponseBody

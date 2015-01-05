@@ -6,23 +6,20 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.util.WebUtils;
 
-import com.alibaba.fastjson.JSONObject;
 import com.webapp.constant.Mapping;
 
 @Controller
-@RequestMapping(Mapping.BASE)
+@RequestMapping(Mapping.ACTION)
 public class DirectController {
 
 	/*
@@ -32,52 +29,9 @@ public class DirectController {
 	 * redirect
 	 * RedirectView
 	 */
-
-//	方法注解和参数
-//	@ModelAttribute 将参数放到模型中
-//	1、@RequestParam绑定单个请求参数值；
-//	2、@PathVariable绑定URI模板变量值；
-//	3、@CookieValue绑定Cookie数据值
-//	4、@RequestHeader绑定请求头数据；
-//	5、@ModelValue绑定参数到命令对象；
-//	6、@SessionAttributes绑定命令对象到session；放到类的上面
-//	7、@RequestBody绑定请求的内容区数据并能进行自动类型转换等。
-//	8、@RequestPart绑定“multipart/data”数据，除了能绑定@RequestParam能做到的请求参数外，还能绑定上传的文件等。
-
-//  servlet原生类型
-// 	HandlerMethodInvoker -> resolveCommonArgument -> resolveStandardArgument impl
-//	HttpServletRequest
-//	HttpServletResponse
-//	HttpSession
-//	Principal
-//	Locale
-//	InputStream
-//	OutputStream
-//	Reader
-//	Writer
-
-//	WebRequest
-//	NativeWebRequest
-//	SessionStatus
-
-//	模型数据
-//	ModelAndView
-//	Map->ModelMap和Model
-//	@SessionAttributes
-//	@ModelAttribute
-//	ConversionServiceFactoryBean
 	
 	private String key = "key";
 	private String val = "val";
-
-	@ResponseBody
-	@RequestMapping(value="get_req", method=RequestMethod.GET)
-	public String get(ModelAndView mav){
-		JSONObject result = new JSONObject();
-		result.put("code", "支持get");
-//		return result.toJSONString();
-		return "{中国}";
-	}
 	
 	@RequestMapping(Mapping.pub_view)
 	public ModelAndView pub_view(ModelAndView mav, HttpServletRequest req){
@@ -86,7 +40,7 @@ public class DirectController {
 		Map<String, ?> para = RequestContextUtils.getInputFlashMap(req);
 		if (para != null)
 			System.out.println(para.get(key));
-		System.out.println(req.getParameter(key));
+		System.out.println(WebUtils.findParameterValue(req, key));
 		System.out.println(req.getAttribute(key));
 		return mav;
 	}
@@ -131,11 +85,8 @@ public class DirectController {
 	}
 	@RequestMapping(Mapping.REDIRECT_STR)
 	public String redirect_str() {
-//		UriComponentsBuilder.fromPath("").
 		return "redirect:" + Mapping.pub_view;
 	}
-
-
 
 	@RequestMapping(Mapping.REDIRECT_ALL)
 	public String str1(RedirectAttributes para) {

@@ -11,7 +11,9 @@ package com.webapp.mvc;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.webapp.constant.Mapping;
 
 /**
  * @ClassName: TestXmlView.java
@@ -22,25 +24,43 @@ import org.springframework.web.servlet.ModelAndView;
  * @version V1.0
  */
 @Controller
-@RequestMapping("rest")
+@RequestMapping(Mapping.REST)
 public class RestController {
-	//filter HiddenHttpMethodFilter _method 转换请求方式
+
+	@ResponseBody
+	@RequestMapping("/{name}")
+	public String rest(@PathVariable String name) {
+		System.out.println(name);
+		return name;
+	}
+
+	@ResponseBody
+	@RequestMapping("/{name}/{id}")
+	public String rest(@PathVariable String name, @PathVariable String id) {
+		return name + '-' + id;
+	}
+	
+	
 	//Ant风格
 	//? 	一个字符
 	//*		多个字符
 	//**	多层路径
-
-	@RequestMapping("/index/{name}")
-	public ModelAndView get(@PathVariable String name) {
-		System.out.println(name);
-		return new ModelAndView("index", "msg", name);
+	@ResponseBody
+	@RequestMapping("/ant/name?")
+	public String ant_1() {
+		return "ant/name?";
 	}
-
-	@RequestMapping("/index/{name}/{id}")
-	public ModelAndView get(@PathVariable String name, @PathVariable String id) {
-		System.out.println(name + '-' + id);
-		String msg = name + " - " + id;
-		return new ModelAndView("index", "msg", msg);
+	
+	@ResponseBody
+	@RequestMapping("/ant/pwd*")
+	public String ant_n() {
+		return "ant/pwd*";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/ant/**/2n")
+	public String ant_2n() {
+		return "ant/**/2n";
 	}
 
 }
