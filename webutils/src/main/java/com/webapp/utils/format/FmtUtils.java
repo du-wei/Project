@@ -83,8 +83,14 @@ public final class FmtUtils {
 	public double toDouble(){
 		return NumberUtils.toDouble(data);
 	}
+	public double toDouble(int scale){
+		return NumberUtils.toDouble(fmt(scale));
+	}
 	public float toFloat(){
 		return NumberUtils.toFloat(data);
+	}
+	public float toFloat(int scale){
+		return NumberUtils.toFloat(fmt(scale));
 	}
 	public long toLong(){
 		return NumberUtils.toLong(data);

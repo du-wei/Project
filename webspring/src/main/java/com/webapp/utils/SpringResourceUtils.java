@@ -1,6 +1,8 @@
 package com.webapp.utils;
 
+import java.util.ResourceBundle;
 
+import org.springframework.context.support.MessageSourceResourceBundle;
 
 public class SpringResourceUtils {
 
@@ -14,9 +16,9 @@ public class SpringResourceUtils {
 		// Properties props = PropertiesLoaderUtils.loadProperties(fileRource);
 		// System.out.println(props.toString());
 
-//		ResourceBundle bundle = MessageSourceResourceBundle.getBundle("pool");
-//		String string = bundle.getString("maxIdle");
-//		System.out.println(string);
+		ResourceBundle bundle = MessageSourceResourceBundle.getBundle("pool");
+		String string = bundle.getString("maxIdle");
+		System.out.println(string);
 
     }
 

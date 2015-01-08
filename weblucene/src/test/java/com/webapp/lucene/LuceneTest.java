@@ -85,27 +85,27 @@ public class LuceneTest {
 		String str = "this is my house, i am come from yunnang";
 		String pp = "古时通常泛指中原地区";
 
-		// AnalyzerUtils.showToken(str, AnalyzerUtils.getStandardAnalyzer());
-		// AnalyzerUtils.showToken(str, AnalyzerUtils.getSimpleAnalyzer());
+		 AnalyzerUtils.showToken(str1, AnalyzerUtils.getStandardAnalyzer());
+		 AnalyzerUtils.showToken(str1, AnalyzerUtils.getSimpleAnalyzer());
 		// AnalyzerUtils.showToken(str, AnalyzerUtils.getKeywordAnalyzer());
 		// AnalyzerUtils.showToken(str, AnalyzerUtils.getWhitespaceAnalyzer());
 		//
 		// AnalyzerUtils.showToken(str, AnalyzerUtils.getCJKAnalyzer());
-		// AnalyzerUtils.showToken(str, AnalyzerUtils.getAnsjAnalysis());
+		 AnalyzerUtils.showToken(str1, AnalyzerUtils.getAnsjAnalysis());
 		// AnalyzerUtils.showToken(str,
 		// AnalyzerUtils.getSmartChineseAnalyzer());
 		// AnalyzerUtils.showToken(str, AnalyzerUtils.getMMSegAnalyzer());
 
-		JcsegAnalyzer4X jcseg = new JcsegAnalyzer4X(JcsegTaskConfig.SIMPLE_MODE);
+//		JcsegAnalyzer4X jcseg = new JcsegAnalyzer4X(JcsegTaskConfig.SIMPLE_MODE);
 		// JcsegAnalyzer4X jcseg = (JcsegAnalyzer4X)analyzer;
-		JcsegTaskConfig taskConfig = jcseg.getTaskConfig();
-		taskConfig.setAppendCJKPinyin(true);
-		taskConfig.setAppendPartOfSpeech(true);
+//		JcsegTaskConfig taskConfig = jcseg.getTaskConfig();
+//		taskConfig.setAppendCJKPinyin(true);
+//		taskConfig.setAppendPartOfSpeech(true);
 
 		// Analyzer analyzer = new SmartChineseAnalyzer(Version.LUCENE_47);
 		// PerFieldAnalyzerWrapper pr = new PerFieldAnalyzerWrapper(analyzer);
 
-		AnalyzerUtils.showToken(pp, new PinYinAnalyzer());
+//		AnalyzerUtils.showToken(pp, new PinYinAnalyzer());
 	}
 
 	@Test

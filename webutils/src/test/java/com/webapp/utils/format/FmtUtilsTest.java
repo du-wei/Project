@@ -20,6 +20,31 @@ public class FmtUtilsTest {
 	double data6 = 0.0d;
 
 	@Test
+	public void fmtNum() {
+	    String data = "2.65145";
+	    
+	    double result = FmtUtils.of(data).endZero(true).toDouble(2);
+		System.out.printf(format , data, result, "string\ttoDouble(2)");
+		assertThat(result, Matchers.is(2.65));
+		
+		result = FmtUtils.of(data1).endZero(false).toDouble(2);
+		System.out.printf(format , data1, result, "int\ttoDouble(2)");
+		assertThat(result, Matchers.is(1000.0));
+		
+		result = FmtUtils.of(data2).endZero(false).toDouble(2);
+		System.out.printf(format , data2, result, "float\ttoDouble(2)");
+		assertThat(result, Matchers.is(2000.0));
+		
+		result = FmtUtils.of(data3).endZero(true).toDouble(2);
+		System.out.printf(format , data3, result, "double\ttoDouble(2)");
+		assertThat(result, Matchers.is(3000.0));
+		
+		result = FmtUtils.of(data4).endZero(true).toDouble(2);
+		System.out.printf(format , data4, result, "string\ttoDouble(2)");
+		assertThat(result, Matchers.is(4000.0));
+    }
+	
+	@Test
     public void fmtScale() throws Exception {
 
 		String result = FmtUtils.of(data1).fmt(2);

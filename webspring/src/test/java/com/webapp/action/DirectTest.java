@@ -1,6 +1,5 @@
 package com.webapp.action;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -10,16 +9,6 @@ import com.webapp.base.RunnerWeb;
 import com.webapp.constant.Mapping;
 
 public class DirectTest extends RunnerWeb {
-	
-	@Test
-	public void datasource() {
-//	    ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-		BasicDataSource data = (BasicDataSource)wac.getBean("dataSource");
-		System.out.println(data.getUrl());
-		BasicDataSource data2 = (BasicDataSource)wac.getBean("dataSource_new");
-		System.out.println(data2.getUrl());
-	    
-    }
 	
 	@Test
     public void redirect_mav() throws Exception {

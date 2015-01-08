@@ -43,9 +43,9 @@ public class PinYinAnalyzer extends Analyzer {
 		Set set = new HashSet();
 
 		// Tokenizer source = new StandardTokenizer(Version.LUCENE_47, reader);
-		Forest forests = new Forest();
-		Analysis analysis = new ToAnalysis(forests);
-		Tokenizer source = new AnsjTokenizer(analysis, reader, null, true);
+//		Forest forests = new Forest();
+//		Analysis analysis = new ToAnalysis();
+		Tokenizer source = new AnsjTokenizer(null, reader, null, true);
 		TokenFilter filter = new PinyinFilter(source);
 		// TokenFilter reslut = new PinyinFilter(source);
 

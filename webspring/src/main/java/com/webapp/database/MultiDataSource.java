@@ -21,7 +21,7 @@ public class MultiDataSource extends AbstractRoutingDataSource {
 	}
 	public static void setDefDataSource() throws Throwable {
 		if(isCheck && defDataSource == null){
-			AbstractRoutingDataSource bean = SpringBeanUtils.getBean(AbstractRoutingDataSource.class);
+			AbstractRoutingDataSource bean = ContextBeanUtils.getBean(AbstractRoutingDataSource.class);
 			Class<?> multiDs = bean.getClass().getSuperclass();
 			
 			Field field = multiDs.getDeclaredField("defaultTargetDataSource");
