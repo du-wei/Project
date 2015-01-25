@@ -20,15 +20,18 @@
            http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
 	<!-- bindingResult -->
+	<beans profile="dev">
+
+	</beans>
 
 	<!-- 国际化资源 -->
 	<bean class="org.springframework.content.support.ResourceBundleMessageSource">
 		<property name="basename" value="i18n"/>
 	</bean>
-	
+
 	<!-- 当请求没有被映射，会返回目标资源需要配合mvc:annotation-driven -->
 	<mvc:default-servlet-handler/>
-	
+
 	<!-- 直接映射资源需要配合mvc:annotation-driven -->
 	<mvc:view-controller path="/success" view-name="success"/>
 	<mvc:annotation-driven />
@@ -55,6 +58,7 @@
 
 	<!-- 加载静态文件在spring配置中使用 -->
 	<!-- <context:property-placeholder location="pool.properties"/> -->
+	<!-- org.springframework.context.support.PropertySourcesPlaceholderConfigurer -->
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
            <list>

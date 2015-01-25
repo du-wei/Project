@@ -15,7 +15,7 @@ import com.webapp.util.PageUtil;
 public class NewsAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private int id;
 	private int currentPage = 1;
 	private Page page;

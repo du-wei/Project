@@ -8,14 +8,14 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import com.webapp.config.AppMvcConfig;
+import com.webapp.config.MvcConfig;
 
 public class MyWebAppInitializer implements WebApplicationInitializer {
 
 	@Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 		AnnotationConfigWebApplicationContext  dispatcherContext = new AnnotationConfigWebApplicationContext();
-		dispatcherContext.register(AppMvcConfig.class);
+		dispatcherContext.register(MvcConfig.class);
 		
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
 		dispatcher.setLoadOnStartup(1);
