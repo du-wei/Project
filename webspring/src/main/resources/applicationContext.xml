@@ -11,6 +11,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+<<<<<<< HEAD
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
 
 	<!-- classpath*:**/applicationContext.xml -->
@@ -80,4 +81,83 @@
         <property name="basePackage" value="com.webapp.dao,com.webapp.aspectj" />
 	</bean>
 	
+=======
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+	<!-- classpath*:**/applicationContext.xml -->
+	<!-- http://jinnianshilongnian.iteye.com/category/301336 -->
+
+	<util:properties id="poolprop" location="classpath:pool.properties" />
+
+	<!-- 到指定的包内扫描组件 -->
+	<context:component-scan base-package="com.webapp.database" />
+
+
+	<bean id="propertySouorceConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+           <list>
+              <value>classpath*:build_dev.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="fileEncoding" value="utf-8"/>
+    </bean>
+
+	<!--
+	<import resource="spring-mvc.xml"/>
+
+	<aop:aspectj-autoproxy/>
+
+	<bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+           <list>
+              <value>classpath*:build_dev.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="fileEncoding" value="utf-8"/>
+    </bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<property name="maxIdle" value="30" />
+		<property name="maxWaitMillis" value="2000" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="defaultAutoCommit" value="true" />
+	</bean>
+
+	<bean id="dataSource_new" parent="dataSource">
+		<property name="url" value="${url_new}" />
+		<property name="username" value="${username_new}" />
+		<property name="password" value="${password_new}" />
+	</bean>
+
+	<bean id="multiDataSource" class="com.webapp.database.MultiDataSource">
+        <property name="defaultTargetDataSource" ref="dataSource"/>
+        <property name="targetDataSources">
+            <map>
+                <entry key="dataSource" value-ref="dataSource"/>
+                <entry key="dataSource_new" value-ref="dataSource_new"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="multiDataSource"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.webapp.dao,com.webapp.aspectj" />
+	</bean> -->
+
+	<beans profile="dev">
+		<context:property-placeholder location="classpath*:build_test.properties"/>
+	</beans>
+
+>>>>>>> branch 'master' of https://github.com/googlecosplay/Project.git
 </beans>
