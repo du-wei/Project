@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
-public class DataHandler {
+public class DataBinder {
 
 	@InitBinder
 	// ("name")

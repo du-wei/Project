@@ -9,6 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
+import com.webapp.utils.WebBeanUtils;
+
 public class MultiDataSource extends AbstractRoutingDataSource {
 
 	private static Logger logger = LogManager.getLogger(MultiDataSource.class);
@@ -21,7 +23,7 @@ public class MultiDataSource extends AbstractRoutingDataSource {
 	}
 	public static void setDefDataSource() throws Throwable {
 		if(isCheck && defDataSource == null){
-			AbstractRoutingDataSource bean = ContextBeanUtils.getBean(AbstractRoutingDataSource.class);
+			AbstractRoutingDataSource bean = WebBeanUtils.getBean(AbstractRoutingDataSource.class);
 			Class<?> multiDs = bean.getClass().getSuperclass();
 			
 			Field field = multiDs.getDeclaredField("defaultTargetDataSource");

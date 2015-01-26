@@ -27,10 +27,9 @@ public class LogAspectJ {
 	 * */
 	@Pointcut("execution(* com.webapp.controller..*.*(..))")
 	private void anyMethod() {
-	}// 定义切入点的名字
+	}
 
 	@Before("anyMethod()")
-	// 定义前置通知
 	public void myBeforeAdvice(JoinPoint joinpoint) {
 		System.out.println("xxxx");
 		String classAndMethod = joinpoint.getTarget().getClass().getName()
@@ -39,7 +38,6 @@ public class LogAspectJ {
 	}
 
 	@AfterReturning("anyMethod()")
-	// 定义后置通知
 	public void myAfterReturningAdvice(JoinPoint joinpoint) {
 		String classAndMethod = joinpoint.getTarget().getClass().getName()
 				+ "类的" + joinpoint.getSignature().getName();
@@ -47,7 +45,6 @@ public class LogAspectJ {
 	}
 
 	@AfterThrowing(pointcut = "anyMethod()", throwing = "e")
-	// 定义异常通知
 	public void myAfterThrowingAdvice(JoinPoint joinpoint, Exception e) {
 		String classAndMethod = joinpoint.getTarget().getClass().getName()
 				+ "类的" + joinpoint.getSignature().getName();
@@ -55,7 +52,6 @@ public class LogAspectJ {
 	}
 
 	@After("anyMethod()")
-	// 定义最终通知
 	public void myAfterAdvice(JoinPoint joinpoint) {
 		String classAndMethod = joinpoint.getTarget().getClass().getName()
 				+ "类的" + joinpoint.getSignature().getName();
@@ -63,7 +59,6 @@ public class LogAspectJ {
 	}
 
 	@Around("anyMethod()")
-	// 定义环绕通知
 	public Object myAroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
 		long begintime = System.currentTimeMillis();// 记下开始时间
 		// 传递给连接点对象进行接力处理
