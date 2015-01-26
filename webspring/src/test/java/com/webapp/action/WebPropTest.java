@@ -5,7 +5,6 @@ import java.util.Properties;
 import org.junit.Test;
 
 import com.webapp.base.RunnerWeb;
-import com.webapp.utils.WebPropsResolver;
 import com.webapp.utils.WebPropsUtils;
 
 public class WebPropTest extends RunnerWeb {

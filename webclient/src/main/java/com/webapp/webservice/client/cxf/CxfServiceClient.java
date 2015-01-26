@@ -1,10 +1,5 @@
 package com.webapp.webservice.client.cxf;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
-import com.webapp.webservice.service.utils.WebServiceUtils;
 import com.webapp.webservice.service.utils.WsCxfUtils;
 
 public class CxfServiceClient {

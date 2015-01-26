@@ -1,8 +1,5 @@
 package com.webapp.hadoop;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 
 public class HadoopTest {
 	// hadoop http://192.168.88.128:8088/cluster

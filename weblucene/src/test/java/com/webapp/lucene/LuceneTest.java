@@ -22,10 +22,7 @@ import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.spell.SpellChecker;
 import org.junit.Test;
-import org.lionsoul.jcseg.analyzer.JcsegAnalyzer4X;
-import org.lionsoul.jcseg.core.JcsegTaskConfig;
 
-import com.webapp.lucene.pinyin.PinYinAnalyzer;
 import com.webapp.utils.config.PathUtils;
 
 public class LuceneTest {

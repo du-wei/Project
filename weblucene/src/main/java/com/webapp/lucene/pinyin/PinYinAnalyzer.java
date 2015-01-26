@@ -2,37 +2,15 @@ package com.webapp.lucene.pinyin;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import love.cq.domain.Forest;
-
 import org.ansj.lucene.util.AnsjTokenizer;
-import org.ansj.lucene4.AnsjAnalysis;
-import org.ansj.splitWord.Analysis;
-import org.ansj.splitWord.analysis.BaseAnalysis;
-import org.ansj.splitWord.analysis.ToAnalysis;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.Tokenizer;
-import org.apache.lucene.analysis.cjk.CJKTokenizer;
-import org.apache.lucene.analysis.core.LetterTokenizer;
-import org.apache.lucene.analysis.miscellaneous.EmptyTokenStream;
-import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
-import org.apache.lucene.analysis.tokenattributes.CharTermAttributeImpl;
-import org.apache.lucene.analysis.util.CharArraySet;
-import org.apache.lucene.util.Version;
-import org.apache.poi.poifs.storage.SmallBlockTableReader;
-import org.apache.xmlbeans.impl.store.CharUtil;
-
-import com.hp.hpl.sparta.xpath.ThisNodeTest;
-import com.webapp.lucene.LuceneUtils;
 
 public class PinYinAnalyzer extends Analyzer {
 

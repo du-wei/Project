@@ -2,8 +2,6 @@ package com.webapp.remoting.client.hessian;
 
 import java.net.MalformedURLException;
 
-import org.junit.Test;
-
 import com.caucho.hessian.client.HessianProxyFactory;
 import com.webapp.remoting.service.hessian.IHessian;
 

@@ -6,7 +6,6 @@ package com.webapp.thrift.generator.test;
 import org.junit.Test;
 
 import com.webapp.thrift.generator.builder.ThriftFileBuilder;
-import com.webapp.thrift.generator.test.ICommonUserService;
 
 /**
  * @author hongliuliao

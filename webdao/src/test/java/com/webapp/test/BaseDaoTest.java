@@ -8,22 +8,16 @@
  */
 package com.webapp.test;
 
-import static org.hamcrest.Matchers.greaterThan;
-import static org.junit.Assert.assertThat;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.internal.SessionFactoryImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.webapp.dao.BaseDAO;
 import com.webapp.entity.Student;
-import com.webapp.util.SpringContextUtil;
 
 /**
  * @ClassName: BaseDaoTest.java

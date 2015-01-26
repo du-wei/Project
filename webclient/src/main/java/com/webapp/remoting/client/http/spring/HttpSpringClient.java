@@ -1,8 +1,5 @@
 package com.webapp.remoting.client.http.spring;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.webapp.remoting.service.http.spring.HttpSpringUtils;
 import com.webapp.remoting.service.http.spring.IHttp;
 

@@ -1,7 +1,5 @@
 package com.webapp.modules;
 
-import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 public class SpringContext {

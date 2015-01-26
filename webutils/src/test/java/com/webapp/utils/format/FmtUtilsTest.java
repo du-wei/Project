@@ -1,6 +1,6 @@
 package com.webapp.utils.format;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import java.util.function.Supplier;
 

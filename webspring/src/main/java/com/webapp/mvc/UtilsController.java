@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.support.ServletContextResource;
 
 import com.webapp.constant.Mapping;
@@ -42,7 +41,7 @@ public class UtilsController {
 //		RequestContextUtils
 //		WebAsyncUtils
 //		WebApplicationContextUtils.
-		RestTemplate restTemplate = new RestTemplate();
+//		RestTemplate restTemplate = new RestTemplate();
 
 	}
 

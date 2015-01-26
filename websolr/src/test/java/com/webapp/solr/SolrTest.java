@@ -1,8 +1,5 @@
 package com.webapp.solr;
 
-import java.io.FileWriter;
-import java.util.Random;
-
 import org.junit.Test;
 
 public class SolrTest {

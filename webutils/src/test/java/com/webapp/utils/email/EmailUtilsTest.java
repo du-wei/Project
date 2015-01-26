@@ -1,6 +1,6 @@
 package com.webapp.utils.email;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;

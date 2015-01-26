@@ -1,8 +1,9 @@
 
 package com.ok.dao;
 
-import com.ok.model.User;
 import org.apache.ibatis.annotations.Select;
+
+import com.ok.model.User;
 
 /**
  * @description: The automatically generated UserDao

@@ -3,11 +3,9 @@ package com.webapp.program;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
-import com.webapp.utils.codec.CodeUtils;
 import com.webapp.utils.datasort.DataSortUtils.OrderType;
 
 public class CPAShow {

@@ -4,7 +4,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.webapp.remoting.service.rmi.spring.MyRemote;
-import com.webapp.remoting.service.rmi.spring.RmiSpringUtils;
 
 public class RmiSpringClient {
 

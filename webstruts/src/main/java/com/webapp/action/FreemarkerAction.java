@@ -1,6 +1,5 @@
 package com.webapp.action;
 
-import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;

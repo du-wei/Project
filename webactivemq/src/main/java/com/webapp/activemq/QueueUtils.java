@@ -20,7 +20,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.commons.pool.PoolUtils;
 
 /**
  * @ClassName: Sender.java
