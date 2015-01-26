@@ -1,10 +1,10 @@
 mem.*
 *.class
-# Package Files #
 *.war
 *.ear
 *.project
 *.classpath
+*.log
 .settings
-target
-logs
+target/*
+logs/*

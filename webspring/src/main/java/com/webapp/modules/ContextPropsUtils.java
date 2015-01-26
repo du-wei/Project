@@ -1,6 +1,7 @@
 package com.webapp.modules;
 
 import java.util.Iterator;
+import java.util.Properties;
 
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
@@ -14,6 +15,11 @@ public class ContextPropsUtils {
 	private static PropertySourcesPropertyResolver resolver = null;
 	private static MutablePropertySources props = null;
 
+	public static Properties getProp(String beanId){
+		PropertySource<?> ps = props.get(beanId);
+		return ps != null ? (Properties)ps.getSource() : null;
+	}
+	
 	public static String get(String key, String defaultValue){
 		return resolver.getProperty(key, defaultValue);
 	}

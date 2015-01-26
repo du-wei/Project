@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 默认目录 -->
+<decorators defaultdir="/template">
+	
+	<!-- 放弃装饰部分 -->
+	<excludes>
+		<pattern>/40*.jsp</pattern>
+		<pattern>/css/*</pattern>
+		<pattern>/index.jsp*</pattern>
+		<pattern>/JsonAction*</pattern>
+	</excludes>
+	
+    <!-- 缺省装饰页 -->
+    <decorator name="main" page="main.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+     
+    <!-- 自定义装饰页,我们下面实例就是这部分起作用 -->
+    <decorator name="login" page="login.jsp">
+        <pattern>/login*</pattern>
+    </decorator>
+	
+    <!-- 只装饰一个页面也可用这种方式定义 -->
+    <decorator name="panel" page="simple.jsp"/>
+	 
+    <!-- 装饰velocity模板
+    <decorator name="velocity" page="velocity.vm">
+        <pattern>/velocity.html</pattern>
+    </decorator>
+     -->
+    <!-- 装饰freeMarker模板 
+    <decorator name="freemarker" page="freemarker.ftl">
+        <pattern>/freemarker.html</pattern>
+    </decorator>
+	-->
+    <decorator name="test" page="test.jsp">
+        <pattern>/agent.jsp</pattern>
+    </decorator>
+</decorators>

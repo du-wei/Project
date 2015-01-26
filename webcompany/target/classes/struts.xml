@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	
+	
+	<package name="front" namespace="/" extends="struts-default">
+		<default-action-ref name="index"/>
+		<action name="newsAction" class="com.accp.action.NewsAction">
+			<result>index/showNewsList.jsp</result>
+			<result name="news">index/detailNews.jsp</result>
+		</action>
+		<action name="productAction" class="com.accp.action.ProductAction">
+			<result>index/showProductList.jsp</result>
+			<result name="product">index/detailProduct.jsp</result>
+		</action>
+	
+		<action name="index" class="com.accp.action.NewsAction" method="getIndexNews">
+			<result type="chain">
+				<param name="actionName">indexProduct</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="indexProduct" class="com.accp.action.ProductAction" method="getIndexProduct">
+			<result>/index.jsp</result>
+		</action>
+		
+		<action name="messageAction" class="com.accp.action.MessageAction">
+			<result>index/msgBoard.jsp</result>
+			<result name="revert">index/revertMsg.jsp</result>
+		</action>
+		
+		<action name="revertAction" class="com.accp.action.RevertAction">
+			<result type="redirectAction">
+				<param name="actionName">messageAction!updateCount</param>
+				<param name="namespace">/</param>
+				<param name="message.id">${revert.messageId}</param>
+			</result>
+		</action>
+		
+		<action name="userAction" class="com.accp.action.UserAction">
+			<result>chat/index.jsp</result>
+			<result name="userLogin" type="redirect">chat/register.jsp</result>
+			<result name="admin">admin/index.jsp</result>
+			<result name="adminLogin" type="redirect">index/login.jsp</result>
+			<result name="exitAdmin" type="redirect">index/login.jsp</result>
+		</action>
+	</package>
+	
+	<package name="admin" namespace="/admin" extends="struts-default">
+		<!-- userAcion -->
+		<action name="*_*" class="com.accp.action.{1}Action" method="{2}">
+			<result>{1}_manager.jsp</result>
+			<result name="manager">Product_update.jsp</result>
+		</action>
+	</package>
+</struts>    

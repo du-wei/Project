@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- bindingResult -->
+	<beans profile="dev">
+
+	</beans>
+
+	<!-- 国际化资源 -->
+	<bean class="org.springframework.content.support.ResourceBundleMessageSource">
+		<property name="basename" value="i18n"/>
+	</bean>
+
+	<!-- 当请求没有被映射，会返回目标资源需要配合mvc:annotation-driven -->
+	<mvc:default-servlet-handler/>
+
+	<!-- 直接映射资源需要配合mvc:annotation-driven -->
+	<mvc:view-controller path="/success" view-name="success"/>
+	<mvc:annotation-driven />
+
+	<!--
+	#{1} #{1.1} #{1e4} #{'str'} #{false}
+
+	引用bean
+	<property name="obj" value="#{beanid}"/>
+	<property name="obj" ref="beanid"/>
+
+	属性
+	<property name="obj" value="#{beanid.prop}"/>
+	方法
+	<property name="obj" value="#{beanid.getProp()}"/>
+	方法返回null时， ?不在调用后面的方法
+	T(package).method()调用静态方法
+	算数运算符 +, -, *, /, %, ^
+	比较运算符：  ==, <=, >=, lt, gt, eq, le, ge
+	逻辑运算符号： and, or, not, |
+	If-else运算符：?:
+	正则表达式：matches
+	 -->
+
+	<!-- 加载静态文件在spring配置中使用 -->
+	<!-- <context:property-placeholder location="pool.properties"/> -->
+	<!-- org.springframework.context.support.PropertySourcesPlaceholderConfigurer -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+           <list>
+              <!-- 这里支持多种寻址方式：classpath和file -->
+              <value>classpath*:pool.properties</value>
+              <!-- <value>file:/opt/demo/config/demo-mq.properties</value>   -->
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="fileEncoding" value="utf-8"/>
+    </bean>
+
+	<bean id="config" name="config" class="com.webapp.entity.SpringConfigEntity">
+		<property name="name" value="#{config1.getName()?.toUpperCase()}" />
+		<property name="intVal" value="#{1}" />
+		<property name="longVal" value="#{T(java.lang.System).currentTimeMillis()}" />
+		<property name="doubleVal" value="#{1.1}" />
+		<property name="boolVal" value="#{100 lt 10}" />
+		<property name="remark1" value="#{'helloworld' matches 'helloworld'}" />
+		<property name="remark2" value="${maxTotalPerKey}" />
+	</bean>
+
+	<!-- 程序中使用,配置文件中引用不到 -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="fileEncodings" value="utf-8" />
+		<property name="useCodeAsDefaultMessage" value="false" />
+		<property name="basenames">
+			<list>
+				<!-- 指定资源文件基名称  jdbc为文件名，不包含扩展名 -->
+				<value>pool</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- <bean id="test" class="com.webapp.config.Test">
+		<property name="list" ref="list" />
+	    <property name="map" ref="map"/>
+	    <property name="properties" ref="properties"/>
+	    <property name="array" ref="array"/>
+	    <property name="set" ref="set"/>
+	   	<property name="constantValue" ref="constantValue"/>
+	</bean> -->
+
+	<util:list id="list" list-class="java.util.ArrayList">
+	  	<value>listValue1</value>
+	  	<value>listValue2</value>
+	</util:list>
+
+	<util:map id="map">
+	  <entry key="key1"  value="mapValue1" />
+	  <entry key="key12" value="mapValue2" />
+	</util:map>
+
+	<util:set id="set" set-class="java.util.TreeSet">
+	  <value>setValue1</value>
+	  <value>setValue2</value>
+	</util:set>
+
+	<util:properties id="properties" location="classpath:pool.properties" />
+
+	<util:list id="array">
+	  <value>arrayValue1</value>
+	  <value>arrayValue2</value>
+	</util:list>
+	<util:constant id="constantValue" static-field="java.sql.Connection.TRANSACTION_SERIALIZABLE"/>
+</beans>
