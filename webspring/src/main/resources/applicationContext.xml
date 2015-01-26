@@ -30,7 +30,7 @@
 	<context:component-scan base-package="com.webapp" />
 	<import resource="spring-mvc.xml"/>
 	
-	<aop:aspectj-autoproxy/>
+	<!-- <aop:aspectj-autoproxy/> -->
 	
 	<!-- <context:property-placeholder location="classpath*:build_dev.properties"/> -->
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

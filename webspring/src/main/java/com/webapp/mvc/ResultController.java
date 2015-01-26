@@ -26,6 +26,12 @@ import com.webapp.utils.model.Student;
 @RequestMapping(Mapping.RESULT)
 public class ResultController {
 
+	@ResponseBody
+	@RequestMapping("/bool")
+	public boolean bool() throws Exception {
+		return true;
+	}
+	
 	@RequestMapping(Mapping.OUT)
 	public void printWriter(HttpServletResponse resp) throws Exception {
 		PrintWriter pw = resp.getWriter();

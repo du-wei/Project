@@ -78,7 +78,7 @@ public class IndexUtils {
 			int i = 0;
 			while ((spare = entry.next()) != null) {
 				charsSpare.grow(spare.length);
-				UnicodeUtil.UTF8toUTF16(spare.bytes, spare.offset, spare.length, charsSpare);
+//				UnicodeUtil.UTF8toUTF16(spare.bytes, spare.offset, spare.length, charsSpare);
 
 				Document doc = new Document();
 				String word = charsSpare.toString();
