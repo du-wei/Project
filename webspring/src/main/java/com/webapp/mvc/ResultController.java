@@ -35,14 +35,14 @@ public class ResultController {
 	@RequestMapping(Mapping.OUT)
 	public void printWriter(HttpServletResponse resp) throws Exception {
 		PrintWriter pw = resp.getWriter();
-		pw.write("hello");
+		pw.write("hello+中国");
 		pw.flush();
 	}
 	
 	@ResponseBody
 	@RequestMapping(Mapping.STR)
 	public String str() throws Exception {
-		return "string";
+		return "string+中国";
 	}
 	
 	@ResponseBody

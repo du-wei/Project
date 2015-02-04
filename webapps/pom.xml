@@ -96,11 +96,11 @@
 			<version>${spring_version}</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-hibernate3</artifactId>
 			<version>${spring_component}</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.springframework</groupId>

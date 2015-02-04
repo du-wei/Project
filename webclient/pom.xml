@@ -14,9 +14,10 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<cxf_version>2.7.8</cxf_version>
+		<cxf_version>3.0.3</cxf_version>
 		<hessian_version>4.0.33</hessian_version>
 	</properties>
+	
 
 	<build>
 		<finalName>webclient</finalName>
@@ -33,9 +34,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
-			<artifactId>apache-cxf</artifactId>
+			<artifactId>cxf-core</artifactId>
 			<version>${cxf_version}</version>
-			<type>pom</type>
 		</dependency>
 		<!-- <dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -62,11 +62,11 @@
 			<artifactId>spring-beans</artifactId>
 			<version>${spring_version}</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-remoting</artifactId>
 			<version>${spring_component}</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>com.caucho</groupId>
 			<artifactId>hessian</artifactId>
