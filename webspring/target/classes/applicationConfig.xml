@@ -20,9 +20,6 @@
            http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
 	<!-- bindingResult -->
-	<beans profile="dev">
-
-	</beans>
 
 	<!-- 国际化资源 -->
 	<bean class="org.springframework.content.support.ResourceBundleMessageSource">

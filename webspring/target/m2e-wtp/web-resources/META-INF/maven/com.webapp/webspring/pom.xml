@@ -14,6 +14,7 @@
 	<name>webspring</name>
 
 	<properties>
+	
 	</properties>
 	
 	<dependencies>
@@ -137,9 +138,39 @@
 	<build>
 		<finalName>webspring</finalName>
 		<outputDirectory>target/classes</outputDirectory>
-		<defaultGoal>install</defaultGoal>
+		<defaultGoal>compile</defaultGoal>
 		<directory>${basedir}/target</directory>
 		<plugins>
+			<!-- 替换页面变量 
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<webResources>
+						<resource>  
+	                        <directory>src/main/webapp</directory>  
+	                        <includes>  
+	                            <include>**/*.vm</include>  
+	                        </includes>  
+	                        <filtering>true</filtering>  
+	                    </resource>  
+					</webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.3</version>
+				<configuration>
+					<timestampFormat>'?v='yyyyMMddHHmmss</timestampFormat>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals><goal>create-timestamp</goal></goals>
+					</execution>
+				</executions>
+			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -164,7 +195,7 @@
 				<version>9.2.5.v20141112</version>
 				<configuration>
 					<scanIntervalSeconds>2</scanIntervalSeconds>
-					 <webAppSourceDirectory>${basedir}/webapp</webAppSourceDirectory>
+					<webAppSourceDirectory>${basedir}/webapp</webAppSourceDirectory>
 					<webAppConfig>
 						<contextPath>/</contextPath>
 					</webAppConfig>
@@ -177,6 +208,38 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+			<!-- <plugin>  
+	            <groupId>org.apache.maven.plugins</groupId>  
+	            <artifactId>maven-eclipse-plugin</artifactId>  
+	            <version>2.7</version>  
+	            <configuration>  
+	                <addVersionToProjectName>false</addVersionToProjectName>  
+	                <useProjectReferences>false</useProjectReferences>  
+	                <encoding>UTF-8</encoding>  
+	                <wtpmanifest>false</wtpmanifest>  
+	                <wtpapplicationxml>true</wtpapplicationxml>  
+	                <wtpversion>1.5</wtpversion>  
+	                <additionalBuildcommands>  
+	                    <buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>  
+	                    <buildcommand>org.eclipse.wst.common.project.facet.core.builder</buildcommand>  
+	                    <buildcommand>org.eclipse.wst.validation.validationbuilder</buildcommand>  
+	                    <buildcommand>org.eclipse.m2e.core.maven2Builder</buildcommand>
+	                </additionalBuildcommands>  
+	                <additionalProjectnatures>  
+	                    <nature>org.springframework.ide.eclipse.core.springnature</nature>  
+	                    <nature>org.maven.ide.eclipse.maven2Nature</nature>  
+	                    <nature>org.eclipse.wst.common.project.facet.core.nature</nature>  
+	                    <nature>org.eclipse.jdt.core.javanature</nature>  
+	                    <nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>  
+	                    <projectnature>org.eclipse.jdt.core.javanature</projectnature>
+	                    <projectnature>org.eclipse.m2e.core.maven2Nature</projectnature>
+	                    <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+	                </additionalProjectnatures>  
+	                <classpathContainers>  
+	                    <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>  
+	                </classpathContainers>  
+	            </configuration>  
+	        </plugin> -->
 		</plugins>
 	</build>
 
