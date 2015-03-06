@@ -15,75 +15,44 @@
            http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-           
-	<!-- 可被继承的数据源 -->
-	<bean id="dbcp_dataSource" class="org.apache.commons.dbcp2.BasicDataSource" abstract="true">
-		<property name="driverClassName" value="${driver}" />
-		<property name="url" value="${url}" />
-		<property name="username" value="${username}" />
-		<property name="password" value="${password}" />
-		<property name="maxIdle" value="30" />
-		<property name="maxWaitMillis" value="2000" />
-		<property name="testOnBorrow" value="true" />
-		<property name="testOnReturn" value="true" />
-		<property name="validationQuery" value="select 1" />
-		<property name="defaultAutoCommit" value="true" />
-	</bean>
-	
-	<mvc:annotation-driven conversion-service="conversionService" />
-	<!-- 自定义参数转换器配置 -->
-	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-		<property name="converters">
-			<set>
-				<!-- <bean class="com.webapp.mvc.MyConverter" /> -->
-				<ref bean="myConverter"/>
-			</set>
-		</property>
-	</bean>
-	
+
 	<!-- 多视图配置 -->
 	<bean id="viewResolver" class="com.webapp.config.MultiViewResover">  
         <property name="resolvers">  
             <map>  
                 <entry key="jsp" value-ref="jspViewResolver" />  
                 <entry key="ftl" value-ref="freemarkerViewResolver" />  
-                <entry key="vm" value-ref="velocityViewResolver" />   
+                <entry key="vm" value-ref="velocityViewResolver" />  
             </map>  
         </property>  
     </bean>
-    
-	<!-- 定义JSP视图解析器-->  
-	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
-        <property name="prefix" value="/WEB-INF/view/" />  
-        <property name="suffix" value=".jsp" />  
-        <property name="contentType" value="text/html;charset=UTF-8" />  
-    </bean>
-    
-    <!-- velocity环境配置 -->  
+
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="prefix" value="/WEB-INF/view/" />
+       <property name="suffix" value=".jsp" />
+       <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+	
+	<!-- velocity环境配置  视图解析器-->  
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">  
-        <!-- velocity配置文件路径 -->  
         <property name="configLocation" value="classpath:velocity.properties"/>  
-        <!-- velocity模板路径 -->  
-        <property name="resourceLoaderPath" value="/WEB-INF/velocity/"/>  
+        <property name="resourceLoaderPath" value="/WEB-INF/view/"/>  
     </bean>  
-    <!-- velocity视图解析器 -->  
     <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">  
         <property name="cache" value="false"/>  
-        <property name="prefix" value="/WEB-INF/view/"/>  
+        <property name="prefix" value="/"/>  
         <property name="suffix" value=".vm"/>  
         <property name="contentType" value="text/html;charset=UTF-8" />  
-        <!-- 多ViewResovler配置 -->   
-        <property name="order" value="1" />  
     </bean>
     
     <!-- FreeMarker环境配置 -->  
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
-        <property name="templateLoaderPath" value="/WEB-INF/freemarker/"/>  
+        <property name="templateLoaderPath" value="/WEB-INF/view/"/>  
     </bean> 
     <bean id="freemarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">  
-        <property name="cache" value="true"/>  
+        <property name="cache" value="false"/>  
         <property name="prefix" value="/"/>  
         <property name="suffix" value=".ftl"/>    
     </bean>
-	
+    
 </beans>

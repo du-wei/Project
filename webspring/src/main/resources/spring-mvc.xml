@@ -16,6 +16,8 @@
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+	<import resource="spring-mvc-view.xml"/>
+
 	<!-- 开启mvc annotation注解 -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>  
@@ -36,28 +38,10 @@
 	<mvc:view-controller path="/index" view-name="index"/>
 	<mvc:view-controller path="/databind" view-name="databind"/> -->
 
-	<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
-		<constructor-arg value="utf-8" index="0" />
-		<property name="supportedMediaTypes">
-			<list>
-				<value>text/plain;charset=UTF-8</value>
-				<value>text/html;charset=UTF-8</value>
-				<value>application/xml;charset=UTF-8</value>
-				<value>application/json;charset=UTF-8</value>
-			</list>
-		</property>
-	</bean>
 	<!-- <mvc:interceptors>
 		<bean class="com.webapp.modules.SpringMvcInterceptor" />
 	</mvc:interceptors> -->
 
-	<bean id="interViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-       <property name="prefix" value="/WEB-INF/view/" />
-       <property name="suffix" value=".jsp" />
-       <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-	</bean>
-	
-	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="maxUploadSize" value="1024000" />

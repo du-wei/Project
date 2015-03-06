@@ -2,6 +2,7 @@ package com.webapp.constant;
 
 public class Mapping {
 	
+	public final static String VIEW = "/view";
 	public final static String ACTION = "/action";
 	public final static String DATA = "/data";
 	public final static String REST = "/rest";

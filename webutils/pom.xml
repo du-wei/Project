@@ -31,29 +31,8 @@
 		</dependency>
 								
 		<dependency>
-			<groupId>edu.washington.cs.types.checker</groupId>
-			<artifactId>checker-framework</artifactId>
-			<version>1.7.5</version>
-		</dependency>
-
-		<dependency>
 			<groupId>com.typesafe.akka</groupId>
 			<artifactId>akka-actor_2.10</artifactId>
-			<version>2.3.6</version>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-testkit_2.10</artifactId>
-			<version>2.3.6</version>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-remote_2.10</artifactId>
-			<version>2.3.6</version>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-camel_2.10</artifactId>
 			<version>2.3.6</version>
 		</dependency>
 
@@ -144,11 +123,6 @@
 			<artifactId>saxpath</artifactId>
 			<version>1.0-FCS</version>
 		</dependency>
-		<!-- <dependency>
-            <groupId>opensource</groupId>
-            <artifactId>jpinyin</artifactId>
-            <version>1.0</version>
-        </dependency> -->
 		<dependency>
 			<groupId>com.luhuiguo</groupId>
 			<artifactId>chinese-utils</artifactId>
@@ -172,18 +146,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.jodd</groupId>
-			<artifactId>jodd-bean</artifactId>
-			<version>3.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jodd</groupId>
 			<artifactId>jodd-props</artifactId>
 			<version>3.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-			<version>2.9.0</version>
 		</dependency>
 
 		<!-- 验证码  -->
@@ -192,11 +156,6 @@
 			<artifactId>kaptcha</artifactId>
 			<version>0.0.9</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.octo.captcha</groupId>
-			<artifactId>jcaptcha</artifactId>
-			<version>1.0</version>
-		</dependency> -->
 
 	</dependencies>
 

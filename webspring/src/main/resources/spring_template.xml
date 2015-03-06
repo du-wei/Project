@@ -41,4 +41,49 @@
 		</property>
 	</bean>
 	
+	<!-- 多视图配置 -->
+	<bean id="viewResolver" class="com.webapp.config.MultiViewResover">  
+        <property name="resolvers">  
+            <map>  
+                <entry key="jsp" value-ref="jspViewResolver" />  
+                <entry key="ftl" value-ref="freemarkerViewResolver" />  
+                <entry key="vm" value-ref="velocityViewResolver" />   
+            </map>  
+        </property>  
+    </bean>
+    
+	<!-- 定义JSP视图解析器-->  
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/WEB-INF/view/" />  
+        <property name="suffix" value=".jsp" />  
+        <property name="contentType" value="text/html;charset=UTF-8" />  
+    </bean>
+    
+    <!-- velocity环境配置 -->  
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">  
+        <!-- velocity配置文件路径 -->  
+        <property name="configLocation" value="classpath:velocity.properties"/>  
+        <!-- velocity模板路径 -->  
+        <property name="resourceLoaderPath" value="/WEB-INF/velocity/"/>  
+    </bean>  
+    <!-- velocity视图解析器 -->  
+    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">  
+        <property name="cache" value="false"/>  
+        <property name="prefix" value="/WEB-INF/view/"/>  
+        <property name="suffix" value=".vm"/>  
+        <property name="contentType" value="text/html;charset=UTF-8" />  
+        <!-- 多ViewResovler配置 -->   
+        <property name="order" value="1" />  
+    </bean>
+    
+    <!-- FreeMarker环境配置 -->  
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
+        <property name="templateLoaderPath" value="/WEB-INF/freemarker/"/>  
+    </bean> 
+    <bean id="freemarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">  
+        <property name="cache" value="true"/>  
+        <property name="prefix" value="/"/>  
+        <property name="suffix" value=".ftl"/>    
+    </bean>
+	
 </beans>
