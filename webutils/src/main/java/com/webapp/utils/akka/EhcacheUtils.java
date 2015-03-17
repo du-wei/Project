@@ -17,8 +17,8 @@ public class EhcacheUtils {
 		cache.showCacheName();
 
 		cache.put("key", "val");
-
 		Object object = cache.get("key");
+
 		System.out.println(object);
 
 	}

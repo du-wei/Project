@@ -7,10 +7,9 @@ import org.junit.Test;
 
 import redis.clients.jedis.JedisShardInfo;
 import redis.clients.jedis.ShardedJedis;
-import redis.clients.jedis.Transaction;
 
 public class RedisTest {
-
+	
 	@Test
 	public void test() {
 		// ShardedJedis shardedJedis = RedisClusterUtils.getShardedJedis();
@@ -30,11 +29,13 @@ public class RedisTest {
 
 	}
 
-	public static void main(String[] args) {
-		Transaction tx = RedisUtils.ByTrans();
-		tx.set("ok", "xxx");
-		System.out.println(RedisUtils.exec(tx));
-		System.out.println(RedisUtils.get("ok"));
-	}
-
+	@Test
+	public void name() {
+	    String key = RedisUtils.set("key", "val");
+	    System.out.println(key);
+	    
+	    String string = RedisUtils.get("key");
+	    System.out.println(string);
+    }
+	
 }

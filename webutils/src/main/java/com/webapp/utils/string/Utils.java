@@ -35,6 +35,8 @@ public final class Utils {
 		public static final String Comma = ",";
 		/** Colon --> {@value} */
 		public static final String Colon = ":";
+		/** LineThrough --> {@value} */
+		public static final String LineThrough = "-";
 		/** Underline --> {@value} */
 		public static final String Underline = "_";
 		/** Pound --> {@value} */
