@@ -5,6 +5,8 @@ import java.util.Properties;
 
 import org.junit.Test;
 
+import com.webapp.thrift.generator.builder.ThriftFieldBuilder;
+
 import cn.org.rapid_framework.generator.GeneratorFacade;
 import cn.org.rapid_framework.generator.GeneratorProperties;
 

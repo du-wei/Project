@@ -1,23 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="OFF" >
-	<properties>
-		<property name="log_home">log/</property>
-	</properties>
-	<appenders>
-		<console name="console" target="SYSTEM_OUT">
-			<patternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-		</console>
-		<file name="file" fileName="logs/logs.log">
-			<patternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-		</file>
-	</appenders>
-	<loggers>
-		<logger name="org.springframework.web" level="info" />
-		<!-- 	<appender-ref ref="file"/>
-		</logger> -->
-		<root level="info">
-			<appender-ref ref="console"/>
-		</root>
-	</loggers>
+	<Properties>
+		<Property name="logs">logs</Property>
+		<Property name="pattern">%d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %logger{36} - %msg%n</Property>
+		<Property name="filePattern">%d{yyyy-MM-dd}_%i</Property>
+	</Properties>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}"/>
+		</Console>
+		<File name="file" fileName="${logs}/file.log">
+			<Filters>
+				<ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+			<PatternLayout pattern="${pattern}"/>
+		</File>
+		<RollingFile name="debug_file" fileName="${logs}/debug.log" filePattern="${logs}/debug_${filePattern}.log">
+			<Filters>
+				<ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+                <TimeBasedTriggeringPolicy interval="24"/>
+                <SizeBasedTriggeringPolicy size="10 KB"/>
+            </Policies>
+		</RollingFile>
+		<RollingFile name="info_file" fileName="${logs}/info.log" filePattern="${logs}/info_${filePattern}.log">
+			<Filters>
+				<ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+                <TimeBasedTriggeringPolicy interval="24" />
+                <SizeBasedTriggeringPolicy size="10 KB"/>
+            </Policies>
+		</RollingFile>
+		<RollingFile name="error_file" fileName="${logs}/error.log" filePattern="${logs}/error_${filePattern}.log">
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+                <TimeBasedTriggeringPolicy interval="24" />
+                <SizeBasedTriggeringPolicy size="10 KB"/>
+            </Policies>
+		</RollingFile>
+		
+		<RollingFile name="simple_file" fileName="${logs}/simple.log" filePattern="${logs}/simple_${filePattern}.log">
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+				<!-- <OnStartupTriggeringPolicy /> -->
+                <TimeBasedTriggeringPolicy interval="24" />
+                <SizeBasedTriggeringPolicy size="10 KB"/>
+            </Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.webapp.mvc.ResultController" level="debug" additivity="true">
+			<Appender-ref ref="simple_file"/>
+		</Logger>
+		<Root level="info">
+			<Appender-ref ref="console" />
+			<Appender-ref ref="debug_file" />
+			<Appender-ref ref="info_file" />
+			<Appender-ref ref="error_file" />
+		</Root>
+	</Loggers>
 </configuration>
 

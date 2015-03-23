@@ -8,10 +8,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Locale;
 import java.util.Properties;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
 
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
@@ -31,14 +28,6 @@ public class ConfigUtils {
 	private static Logger logger = LogManager.getLogger(ConfigUtils.class);
 	private static CompositeConfiguration composite;
 
-	// 1。使用java.util.Properties类的load()方法
-	/**
-	 * @Title: read
-	 * @Description: TODO helloworld
-	 * @param sdfadf
-	 * @return Properties adfadf
-	 * @throws adsfsad
-	 */
 	public static Properties read(String path) {
 		Properties p = new Properties();
 		try (InputStream in = new BufferedInputStream(new FileInputStream(
@@ -73,9 +62,6 @@ public class ConfigUtils {
 		return composite;
 	}
 
-	/*
-	 * apache configuration
-	 */
 	public static Configuration loadAllConfig(String file) {
 		DefaultConfigurationBuilder builder = null;
 		try {
@@ -159,24 +145,4 @@ public class ConfigUtils {
 		return strategy;
 	}
 
-	// java system
-	public static InputStream getInputStream(String url) {
-		InputStream in = PathUtils.class.getResourceAsStream(url);
-		return in;
-	}
-
-	public static ResourceBundle getResourceBundle(String url) {
-		ResourceBundle rb = ResourceBundle.getBundle(url, Locale.getDefault());
-		return rb;
-	}
-
-	public static ResourceBundle getResourceBundle(InputStream in) {
-		ResourceBundle rb = null;
-		try {
-			rb = new PropertyResourceBundle(in);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return rb;
-	}
 }

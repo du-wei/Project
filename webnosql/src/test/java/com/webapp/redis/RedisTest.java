@@ -4,9 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
 import redis.clients.jedis.JedisShardInfo;
 import redis.clients.jedis.ShardedJedis;
+
+import com.webapp.utils.test.ThreadUtils;
 
 public class RedisTest {
 	
@@ -31,11 +34,21 @@ public class RedisTest {
 
 	@Test
 	public void name() {
-	    String key = RedisUtils.set("key", "val");
-	    System.out.println(key);
-	    
-	    String string = RedisUtils.get("key");
-	    System.out.println(string);
+//	    String key = RedisUtils.set("key", "val");
+//	    System.out.println(key);
+//	    
+//	    String string = RedisUtils.get("key");
+//	    System.out.println(string);
+		
+    }
+	
+	@Test
+	public void get() {
+		for(int i=0; i<2000; i++){
+			String string = RedisUtils.get("key");
+		    System.out.println(i + " - " +string);
+		}
+		
     }
 	
 }

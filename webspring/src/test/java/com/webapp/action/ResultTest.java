@@ -17,6 +17,14 @@ public class ResultTest extends RunnerWeb {
 	////http://jinnianshilongnian.iteye.com/blog/2004660
 
 	@Test
+	public void bool() throws Exception{
+		MvcResult result = mvc.perform(MockMvcRequestBuilders.get(Mapping.RESULT + "/bool"))
+			    .andExpect(MockMvcResultMatchers.status().isOk())
+			    .andReturn();
+		System.out.println(result.getResponse().getContentAsString());
+	}
+	
+	@Test
 	public void printWriter() throws Exception{
 		MvcResult result = mvc.perform(MockMvcRequestBuilders.get(Mapping.RESULT + "/out"))
 			    .andExpect(MockMvcResultMatchers.status().isOk())

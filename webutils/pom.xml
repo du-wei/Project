@@ -24,30 +24,15 @@
 			<version>3.4.6</version>
 		</dependency>
 		<dependency>
-			<groupId>it.unimi.dsi</groupId>
-			<artifactId>fastutil</artifactId>
-			<version>6.5.15</version>
-		</dependency>
-		<dependency>
-			<groupId>net.openhft</groupId>
-			<artifactId>koloboke-api-jdk8</artifactId>
-			<!-- <artifactId>koloboke-api-jdk6-7</artifactId> -->
-			<version>0.6.5</version>
-		</dependency>
-								
-		<dependency>
 			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-actor_2.10</artifactId>
-			<version>2.3.6</version>
+			<artifactId>akka-actor_2.11</artifactId>
+			<version>2.3.9</version>
 		</dependency>
-
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -61,7 +46,7 @@
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>1.9</version>
+			<version>1.10</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-configuration</groupId>
@@ -93,18 +78,12 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.9</version>
+			<version>3.11</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.9</version>
-			<exclusions>
-				<exclusion>
-					<groupId>dom4j</groupId>
-					<artifactId>dom4j</artifactId>
-				</exclusion>
-			</exclusions>
+			<version>3.11</version>
 		</dependency>
 
 		<dependency>
@@ -113,55 +92,9 @@
 			<version>${httpcomponents_version}</version>
 		</dependency>
 		<dependency>
-			<groupId>dom4j</groupId>
-			<artifactId>dom4j</artifactId>
-			<!-- <version>20040902.021138</version> -->
-			<version>1.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>jaxen</groupId>
-			<artifactId>jaxen</artifactId>
-			<version>full</version>
-		</dependency>
-		<dependency>
-			<groupId>saxpath</groupId>
-			<artifactId>saxpath</artifactId>
-			<version>1.0-FCS</version>
-		</dependency>
-		<dependency>
-			<groupId>com.luhuiguo</groupId>
-			<artifactId>chinese-utils</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.jodd</groupId>
 			<artifactId>jodd-core</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.jodd</groupId>
-			<artifactId>jodd-mail</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jodd</groupId>
-			<artifactId>jodd-http</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jodd</groupId>
-			<artifactId>jodd-json</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jodd</groupId>
-			<artifactId>jodd-props</artifactId>
-			<version>3.6.1</version>
-		</dependency>
-
-		<!-- 验证码  -->
-		<dependency>
-			<groupId>com.github.axet</groupId>
-			<artifactId>kaptcha</artifactId>
-			<version>0.0.9</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>

@@ -15,7 +15,7 @@ import redis.clients.jedis.Transaction;
 import com.webapp.utils.config.ConfigUtils;
 
 public class RedisUtils {
-	//RedisClient gui
+
 	private static Logger logger = LogManager.getLogger(RedisUtils.class);
 	private static String redisCfg = "redis.properties";
 	private final static Configuration config = ConfigUtils.addConfig(redisCfg);
@@ -23,15 +23,14 @@ public class RedisUtils {
 	private static ThreadLocal<Jedis> jedisLocal = new ThreadLocal<>();
 
 	private static JedisPool getRedisPool() {
-		String ip = config.getString("redis.ip");
-		int port = config.getInt("redis.port");
-		String password = config.getString("redis.password");
-		int timeout = config.getInt("redis.timeout");
 		if (pool == null) {
+			int port = config.getInt("redis.port");
+			int timeout = config.getInt("redis.timeout");
+			String ip = config.getString("redis.ip");
+			String password = config.getString("redis.password");
 			pool = new JedisPool(RedisConfig.getJedisPoolConfig(redisCfg), ip,
 					port, timeout, password);
 		}
-
 		return pool;
 	}
 
