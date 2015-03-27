@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>org.unitils</groupId>
 			<artifactId>unitils-core</artifactId>
-			<version>3.3</version>
+			<version>3.4.2</version>
 		</dependency>
 		<!--
 		unitils-easymock
@@ -49,27 +49,14 @@
 			<!-- http://sourceforge.net/projects/contiperf/files/ -->
 			<groupId>org.databene</groupId>
 			<artifactId>contiperf</artifactId>
-			<version>2.2.0</version>
+			<version>2.3.4</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>junitperf</groupId>
-			<artifactId>junitperf</artifactId>
-			<version>1.8</version>
-			<optional>true</optional>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.8.21</version>
 		</dependency>
-
-		<!-- 负载测试首选
-		<dependency>
-			<groupId>net.sf.grinder</groupId>
-			<artifactId>grinder-core</artifactId>
-			<version>3.11</version>
-		</dependency>
-	    <dependency>
-			<groupId>net.sourceforge.groboutils</groupId>
-			<artifactId>groboutils-core</artifactId>
-			<version>5</version>
-	    </dependency> -->
 
 		<!-- web测试首选 -->
 		<dependency>
@@ -81,7 +68,7 @@
 		<dependency>
 			<groupId>net.sourceforge.jwebunit</groupId>
 			<artifactId>jwebunit-core</artifactId>
-			<version>3.1</version>
+			<version>3.2</version>
 			<optional>true</optional>
 		</dependency>
 

@@ -37,7 +37,7 @@
 		<junit_version>4.12</junit_version>
 		<freemarker_version>2.3.22</freemarker_version>
 		<struts_version>2.3.20</struts_version>
-		<spring_version>4.1.4.RELEASE</spring_version>
+		<spring_version>4.1.5.RELEASE</spring_version>
 		<spring_component>2.0.8</spring_component>
 		<aspectj_version>1.8.5</aspectj_version>
 		<fastjson_version>1.2.4</fastjson_version>
@@ -89,12 +89,11 @@
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>${log4j_version}</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-to-slf4j</artifactId>
 			<version>${log4j_version}</version>
-		</dependency>
-				
+		</dependency> -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
