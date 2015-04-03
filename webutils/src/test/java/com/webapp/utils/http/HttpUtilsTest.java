@@ -9,7 +9,7 @@ public class HttpUtilsTest {
 
 	@Test
     public void testName() throws Exception {
-		String url = "http://ip.blueera.net/api?";
+		String url = "http://www.badiu.com";
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("ip", "www.baidu.com");
 

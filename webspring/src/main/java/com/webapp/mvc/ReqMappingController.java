@@ -72,7 +72,6 @@ public class ReqMappingController {
 		form.add("id", "id");
 		restTemplate.postForLocation(
 				"http://localhost:8080/webspring/para/map6", form);
-
 	}
 	
 }

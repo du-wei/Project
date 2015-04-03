@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class PoolTest {
 
-	private void test(GenericObjectPool<String> pool) throws Exception {
+	public void test(GenericObjectPool<String> pool) throws Exception {
 
 		for (int i = 0; i < 21; i++) {
 			String ok = pool.borrowObject();
@@ -37,7 +37,7 @@ public class PoolTest {
 		// System.out.println("factoryType-->"+pool.getFactoryType());
 	}
 
-	private void test(GenericKeyedObjectPool<String, String> pool)
+	public void test(GenericKeyedObjectPool<String, String> pool)
 	        throws Exception {
 
 		for (int i = 0; i < 2; i++) {

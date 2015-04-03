@@ -56,7 +56,8 @@ public class PoolUtils {
 		return pool;
 	}
 
-	public static <K, V> GenericKeyedObjectPool<K, V> getKeyedPool(
+	@SafeVarargs
+    public static <K, V> GenericKeyedObjectPool<K, V> getKeyedPool(
 	        KeyedPooledObjectFactory<K, V> factory, String config, K... keys) {
 		return getKeyedPool(factory, config, Arrays.asList(keys));
 	}

@@ -23,7 +23,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
 public final class HttpUtils {
-
+	
 	private HttpPost post;
 	private HttpGet get;
 	private static final ThreadLocal<HttpUtils> local = new ThreadLocal<HttpUtils>();

@@ -27,7 +27,7 @@ public class ContiperfUtils {
 	@PerfTest(invocations = 200, threads = 20, timer = RandomTimer.class)
 	@Test
 	public void testName2() throws Exception {
-		System.out.println();
+		System.out.println("xxx");
 	}
 
 }
