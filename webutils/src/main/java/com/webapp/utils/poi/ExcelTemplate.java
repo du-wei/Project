@@ -13,8 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -23,10 +21,12 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExcelTemplate {
 
-	private Logger logger = LogManager.getLogger(ExcelTemplate.class);
+	private static final Logger logger = LoggerFactory.getLogger(ExcelTemplate.class);
 	private final static String DATA_LINE = "data";
 	private final static String DEFAULT_STYLE = "defaultStyle";
 	private final static String STYLES = "styles";

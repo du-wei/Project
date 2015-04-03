@@ -3,8 +3,6 @@ package com.webapp.lucene;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
@@ -17,10 +15,12 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LuceneUtils {
 
-	private static Logger logger = LogManager.getLogger(LuceneUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(LuceneUtils.class);
 	public static final Version VERSION = Version.LUCENE_47;
 
 	public static IndexWriterConfig getWriterConfig(Analyzer analyzer) {

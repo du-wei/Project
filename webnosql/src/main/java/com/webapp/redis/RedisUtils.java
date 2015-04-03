@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.configuration.Configuration;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -16,7 +16,7 @@ import com.webapp.utils.config.ConfigUtils;
 
 public class RedisUtils {
 
-	private static Logger logger = LogManager.getLogger(RedisUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(RedisUtils.class);
 	private static String redisCfg = "redis.properties";
 	private final static Configuration config = ConfigUtils.addConfig(redisCfg);
 	private static JedisPool pool = null;

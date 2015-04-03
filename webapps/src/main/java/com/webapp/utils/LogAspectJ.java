@@ -1,7 +1,5 @@
 package com.webapp.utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -11,6 +9,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /** 日志切面 */
@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LogAspectJ {
 	// 取得日志记录器Logger
-	public Logger logger = LogManager.getLogger(LogAspectJ.class);
-
+	private static final Logger logger = LoggerFactory.getLogger(LogAspectJ.class);
+	
 	/** 使用@Pointcut注解定义一个切入点,切入点的名字为anyMethod(), 切入点正则表达式execution(*
 	 * test.spring.action.UserAction.*(..))
 	 * 的意思是拦截test.spring.action.UserAction类中的所有方法, 不论方法参数有无,也不管返回结果为何类型。 */

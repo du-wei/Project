@@ -3,8 +3,8 @@ package com.webapp.utils;
 import java.util.Iterator;
 import java.util.Properties;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.env.PropertySourcesPropertyResolver;
@@ -14,7 +14,7 @@ import org.springframework.core.env.PropertySourcesPropertyResolver;
 */
 public class WebPropsUtils {
 	
-	private static final Logger logger = LogManager.getLogger(WebPropsUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(WebPropsUtils.class);
 	private static PropertySourcesPropertyResolver resolver = null;
 	private static MutablePropertySources props = null;
 

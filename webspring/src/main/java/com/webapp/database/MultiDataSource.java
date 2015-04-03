@@ -5,15 +5,15 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import com.webapp.utils.WebBeanUtils;
 
 public class MultiDataSource extends AbstractRoutingDataSource {
 
-	private static Logger logger = LogManager.getLogger(MultiDataSource.class);
+	private static final Logger logger = LoggerFactory.getLogger(MultiDataSource.class);
 	private static boolean isCheck = true;
 	private static Object defDataSource = null;
 	private static final ThreadLocal<Object> dataSourceKey = new InheritableThreadLocal<Object>();

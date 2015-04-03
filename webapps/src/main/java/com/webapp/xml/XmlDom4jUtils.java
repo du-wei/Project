@@ -8,8 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -20,12 +18,14 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.webapp.utils.config.PathUtils;
 
 public class XmlDom4jUtils {
 
-	private static Logger logger = LogManager.getLogger(XmlDom4jUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(XmlDom4jUtils.class);
 	private static XmlDom4jUtils instance = null;
 	private Document doc = null;
 	private File file = null;

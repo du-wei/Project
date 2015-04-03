@@ -7,8 +7,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
@@ -24,8 +24,7 @@ public class XmlDomUtils {
 
 	// dom Document Object Model
 	// jaxp
-
-	private static Logger logger = LogManager.getLogger(XmlDomUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(XmlDomUtils.class);
 
 	public static void main(String[] args) throws Exception {
 

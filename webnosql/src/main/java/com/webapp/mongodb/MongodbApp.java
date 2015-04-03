@@ -8,10 +8,10 @@
  */
 package com.webapp.mongodb;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -34,8 +34,8 @@ public class MongodbApp {
 
 	private static MongoClient client;
 	private static DB db;
-	private static Logger logger = LogManager.getLogger(MongodbApp.class);
-
+	private static final Logger logger = LoggerFactory.getLogger(MongodbApp.class);
+	
 	@Before
 	public void before() throws Exception {
 		client = new MongoClient("192.168.26.130", 27017);

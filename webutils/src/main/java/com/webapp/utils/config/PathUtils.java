@@ -8,13 +8,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PathUtils {
 
-	private static Logger logger = LogManager.getLogger(PathUtils.class);
-
+	private static final Logger logger = LoggerFactory.getLogger(PathUtils.class);
+	
 	public static String getCurPath(Class<?> clz) {
 		return encode(clz.getResource("")).toString();
 	}

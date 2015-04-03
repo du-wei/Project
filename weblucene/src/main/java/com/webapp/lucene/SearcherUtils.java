@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.ansj.lucene4.AnsjAnalysis;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queries.BoostingQuery;
@@ -47,7 +45,6 @@ import com.chenlb.mmseg4j.analysis.MMSegAnalyzer;
  * @version V1.0 */
 public class SearcherUtils {
 
-	private static Logger logger = LogManager.getLogger(SearcherUtils.class);
 	public static SearcherManager sm = null;
 	static {
 		try {

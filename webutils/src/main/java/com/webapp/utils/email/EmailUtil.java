@@ -15,8 +15,8 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.MultiPartEmail;
 import org.apache.commons.mail.SimpleEmail;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @ClassName: EmailUtil.java
@@ -28,7 +28,7 @@ import org.apache.logging.log4j.Logger;
  */
 public final class EmailUtil {
 
-	private static Logger log = LogManager.getLogger(EmailUtil.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(EmailUtil.class);	
 	public static final String TEXT_PLAIN = "1";
 	public static final String TEXT_HTML = "2";
 	public static final String ATTACHMENT_PLAIN = "3";
@@ -67,7 +67,7 @@ public final class EmailUtil {
 
 			email.send();
 		} catch (Exception e) {
-			log.error("发送邮件失败。", e);
+			logger.error("发送邮件失败。", e);
 			return false;
 		}
 		return true;

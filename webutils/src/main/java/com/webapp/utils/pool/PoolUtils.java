@@ -12,14 +12,14 @@ import org.apache.commons.pool2.impl.GenericKeyedObjectPool;
 import org.apache.commons.pool2.impl.GenericKeyedObjectPoolConfig;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.webapp.utils.config.ConfigUtils;
 
 public class PoolUtils {
 
-	public static Logger logger = LogManager.getLogger(PoolUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(PoolUtils.class);
 
 	public static <T> GenericObjectPool<T> getPool(PooledObjectFactory<T> factory, String config) {
 		CompositeConfiguration prop = ConfigUtils.addConfig(config);

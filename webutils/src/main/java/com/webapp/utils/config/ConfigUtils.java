@@ -20,12 +20,12 @@ import org.apache.commons.configuration.SystemConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.configuration.plist.PropertyListConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConfigUtils {
 
-	private static Logger logger = LogManager.getLogger(ConfigUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConfigUtils.class);
 	private static CompositeConfiguration composite;
 
 	public static Properties read(String path) {

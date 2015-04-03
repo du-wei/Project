@@ -7,8 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,8 +28,7 @@ import com.webapp.utils.model.Student;
 @RequestMapping(Mapping.RESULT)
 public class ResultController {
 
-	private static Logger logger = LogManager.getLogger(ResultController.class);
-	
+	private static final Logger logger = LoggerFactory.getLogger(ResultController.class);
 	@ResponseBody
 	@RequestMapping("/bool")
 	public boolean bool() throws Exception {

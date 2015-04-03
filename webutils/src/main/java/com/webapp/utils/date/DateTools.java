@@ -6,9 +6,9 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.apache.commons.lang3.time.DateUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
 * @ClassName: DateTools.java
@@ -20,7 +20,7 @@ import org.joda.time.DateTime;
 */
 public final class DateTools {
 
-	private static Logger logger = LogManager.getLogger(DateTools.class);
+	private static final Logger logger = LoggerFactory.getLogger(DateTools.class);
 
 	private DateTime ofDate;
 	private static final ThreadLocal<DateTools> local = new ThreadLocal<DateTools>();

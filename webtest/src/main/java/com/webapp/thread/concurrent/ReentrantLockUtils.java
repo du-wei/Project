@@ -4,17 +4,15 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ReentrantLockUtils<T> {
 
 	// StampedLock jj;
 	// http://developer.51cto.com/art/201405/439149.htm
 
-	private static Logger log = LogManager.getLogger(ReentrantLockUtils.class
-	        .getName());
-
+	private static final Logger logger = LoggerFactory.getLogger(ReentrantLockUtils.class);
 	// 独占锁
 	Lock lock = new ReentrantLock();
 	// ReentrantReadWriteLock jj;
@@ -36,7 +34,7 @@ public class ReentrantLockUtils<T> {
 			}
 			items[put_index] = data;
 			++count;
-			log.info(String.format("take-count-%d-put-%d-%s", count,
+			logger.info(String.format("take-count-%d-put-%d-%s", count,
 			        take_index, data));
 			if (++put_index == items.length) put_index = 0;
 			empty.signal();
@@ -57,7 +55,7 @@ public class ReentrantLockUtils<T> {
 				}
 			}
 			Object data = items[take_index];
-			log.info(String.format("take-count-%d-take-%d-%s", count,
+			logger.info(String.format("take-count-%d-take-%d-%s", count,
 			        take_index, data));
 			if (++take_index == items.length) take_index = 0;
 			--count;

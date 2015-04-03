@@ -10,12 +10,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface ThreadUtils {
 
-	static Logger logger = LogManager.getLogger(ThreadUtils.class);
+	static final Logger logger = LoggerFactory.getLogger(ThreadUtils.class);
 	AtomicInteger threadCount = new AtomicInteger();
 	ExecutorService service = Executors.newCachedThreadPool();
 	CompletionService<Integer> completionService = new ExecutorCompletionService<>(service);

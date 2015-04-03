@@ -6,8 +6,6 @@ import java.util.List;
 import opensource.jpinyin.PinyinFormat;
 import opensource.jpinyin.PinyinHelper;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field.Store;
@@ -24,11 +22,12 @@ import org.apache.lucene.search.suggest.InputIterator;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.CharsRef;
 import org.apache.lucene.util.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IndexUtils {
 
-	private static Logger logger = LogManager.getLogger(IndexUtils.class);
-
+	private static final Logger logger = LoggerFactory.getLogger(IndexUtils.class);
 	public static String paths = "./index";
 
 	private static IndexReader indexReader;
