@@ -62,7 +62,7 @@
 		<rapid_core>4.0.5</rapid_core>
 		<encoding>UTF-8</encoding>
 		<mysql_version>5.1.34</mysql_version>
-		<jedis_version>2.6.2</jedis_version>
+		<jedis_version>2.7.0</jedis_version>
 		<mongodb_version>2.13.0</mongodb_version>
 		<quartz_version>2.2.1</quartz_version>
 		<activemq_verion>5.10.0</activemq_verion>

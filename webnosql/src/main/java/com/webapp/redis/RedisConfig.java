@@ -12,60 +12,64 @@ import redis.clients.jedis.JedisPoolConfig;
 
 import com.webapp.utils.config.ConfigUtils;
 
-/**
- * @ClassName: RedisConfig.java
- * @Package com.webapp.redis
- * @Description: Redis Config
- * @author king king
- * @date 2014年4月5日 下午10:37:59
- * @version V1.0
- */
 public class RedisConfig {
 
 	private static final Logger logger = LoggerFactory.getLogger(RedisConfig.class);
 
-	/**
-	 * @Title: getJedisPoolConfig
-	 * @Description: TODO 方法描述
-	 * @param redis
-	 *            config file
-	 * @return JedisPoolConfig
-	 * @throws
-	 */
 	public static JedisPoolConfig getJedisPoolConfig(String redisCfg) {
 		Configuration config = ConfigUtils.addConfig(redisCfg);
-		JedisPoolConfig jedis = new JedisPoolConfig();
+		JedisPoolConfig jedisCfg = new JedisPoolConfig();
 
 		Map<String, String> cfg = new HashMap<>();
 		config.getKeys().forEachRemaining(m -> {
 			cfg.put(m.toLowerCase(), config.getString(m));
 		});
 
+		logger.info("属性prop --> 设置值set --> 默认值default");
+		logger.info("----------------------------------");
 		Method[] methods = JedisPoolConfig.class.getMethods();
 		for (int i = 0; i < methods.length; i++) {
 			Method method = methods[i];
-			String name = method.getName().replace("set", "").toLowerCase();
-			if (method.getName().startsWith("set") && cfg.containsKey(name)) {
-				logger.info(String.format("%1$s --> %2$s", method.getName(),
-						cfg.get(name)));
-				String type = method.getParameterTypes()[0].getSimpleName();
-				try {
-					if (type.equals(String.class.getSimpleName())) {
-						method.invoke(jedis, String.valueOf(cfg.get(name)));
-					} else if (type.equals(Integer.class.getSimpleName())) {
-						method.invoke(jedis, Integer.parseInt(cfg.get(name)));
-					} else if (type.equals(Long.class.getSimpleName())) {
-						method.invoke(jedis, Long.parseLong(cfg.get(name)));
-					} else if (type.equals(Boolean.class.getSimpleName())) {
-						method.invoke(jedis,
-								Boolean.parseBoolean(cfg.get(name)));
+			String methodName = method.getName();
+
+			if (methodName.startsWith("set")) {
+				String prop = methodName.replaceFirst("set", "").toLowerCase();
+				if (cfg.containsKey(prop)) {
+					String typeName = method.getParameterTypes()[0].getSimpleName();
+					
+					try {
+						Method getMethod = JedisPoolConfig.class.getMethod("get" + methodName.replaceFirst("set", ""));
+						logger.info("{} --> {} --> {}", prop, cfg.get(prop), getMethod.invoke(jedisCfg));
+						
+						if (typeName.equals(String.class.getSimpleName())) {
+							method.invoke(jedisCfg, String.valueOf(cfg.get(prop)));
+						} else if (typeName.equals(Integer.class.getSimpleName())) {
+							method.invoke(jedisCfg, Integer.parseInt(cfg.get(prop)));
+						} else if (typeName.equals(Long.class.getSimpleName())) {
+							method.invoke(jedisCfg, Long.parseLong(cfg.get(prop)));
+						} else if (typeName.equals(Boolean.class.getSimpleName())) {
+							method.invoke(jedisCfg, Boolean.parseBoolean(cfg.get(prop)));
+						}
+					} catch (Exception e) {
+						logger.error("调用redis配置出错", e);
 					}
-				} catch (Exception e) {
-					logger.error("调用redis配置出错", e);
 				}
 			}
 		}
-		return jedis;
+		return jedisCfg;
+	}
+
+	public static void viewJedisPoolConfig() {
+		logger.warn("--> 属性参数忽略大小写");
+
+		Method[] methods = JedisPoolConfig.class.getMethods();
+		for (int i = 0; i < methods.length; i++) {
+			Method method = methods[i];
+			if (method.getName().startsWith("set")) {
+				String name = method.getName().replaceFirst("set", "");
+				logger.info("--> {}", name);
+			}
+		}
 	}
 
 }

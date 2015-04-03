@@ -14,7 +14,6 @@ import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationConverter;
 import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.DefaultConfigurationBuilder;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.SystemConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
@@ -30,47 +29,13 @@ public class ConfigUtils {
 
 	public static Properties read(String path) {
 		Properties p = new Properties();
-		try (InputStream in = new BufferedInputStream(new FileInputStream(
-				PathUtils.getPath(path).toString()))) {
+		try (InputStream in = new BufferedInputStream(new FileInputStream(PathUtils.getPath(path).toString()))) {
 			p.load(in);
 		} catch (IOException e) {
 			logger.error(PathUtils.class.getSimpleName() + " 读取属性文件出错", e);
-			throw new RuntimeException(PathUtils.class.getSimpleName()
-					+ " 读取属性文件出错");
+			throw new RuntimeException(PathUtils.class.getSimpleName() + " 读取属性文件出错");
 		}
 		return p;
-	}
-
-	public static CompositeConfiguration loadDirConfig(String path,
-			String... suffix) {
-		Path dir = Paths.get(path);
-		if (dir.toString().equals("\\") || !Files.isDirectory(dir)) {
-			dir = PathUtils.getPath(path);
-		}
-		return loadDirConfig(dir, suffix);
-	}
-
-	public static CompositeConfiguration loadDirConfig(Path path,
-			String... suffix) {
-		try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
-			for (Path entry : stream) {
-				addConfig(entry.toString());
-			}
-		} catch (IOException e) {
-			logger.error(" 配置目录 ->" + path + " 加载出错!", e);
-		}
-		return composite;
-	}
-
-	public static Configuration loadAllConfig(String file) {
-		DefaultConfigurationBuilder builder = null;
-		try {
-			builder = new DefaultConfigurationBuilder(PathUtils.getPath(file).toString());
-			return builder.getConfiguration(true);
-		} catch (ConfigurationException e) {
-			logger.error(" 配置文件 ->" + file + " 加载出错!", e);
-		}
-		return builder;
 	}
 
 	public static Properties configConverter(Configuration config) {
@@ -80,6 +45,25 @@ public class ConfigUtils {
 	public static CompositeConfiguration getConfig() {
 		if (composite == null) {
 			composite = new CompositeConfiguration();
+		}
+		return composite;
+	}
+
+	public static CompositeConfiguration addDirConfig(String path, String... suffix) {
+		Path dir = Paths.get(path);
+		if (dir.toString().equals("\\") || !Files.isDirectory(dir)) {
+			dir = PathUtils.getPath(path);
+		}
+		return addDirConfig(dir, suffix);
+	}
+
+	public static CompositeConfiguration addDirConfig(Path path, String... suffix) {
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
+			for (Path entry : stream) {
+				addConfig(entry.toString());
+			}
+		} catch (IOException e) {
+			logger.error(" 配置目录 ->" + path + " 加载出错!", e);
 		}
 		return composite;
 	}
@@ -97,8 +81,7 @@ public class ConfigUtils {
 	}
 
 	public static CompositeConfiguration addConfig(Configuration config) {
-		if (composite == null)
-			composite = new CompositeConfiguration();
+		if (composite == null) composite = new CompositeConfiguration();
 		composite.addConfiguration(config);
 		return composite;
 	}
@@ -113,8 +96,7 @@ public class ConfigUtils {
 				path = PathUtils.getPath(path).toString();
 			}
 			if (path.endsWith(".properties")) {
-				PropertiesConfiguration config = new PropertiesConfiguration(
-						path);
+				PropertiesConfiguration config = new PropertiesConfiguration(path);
 				config.setReloadingStrategy(getReloading());
 				return config;
 			} else if (path.endsWith(".xml")) {
@@ -122,8 +104,7 @@ public class ConfigUtils {
 				config.setReloadingStrategy(getReloading());
 				return config;
 			} else if (path.endsWith(".plist")) {
-				PropertyListConfiguration config = new PropertyListConfiguration(
-						path);
+				PropertyListConfiguration config = new PropertyListConfiguration(path);
 				config.setReloadingStrategy(getReloading());
 				return config;
 			}

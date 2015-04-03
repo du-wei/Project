@@ -17,6 +17,7 @@ import com.webapp.utils.config.ConfigUtils;
 public class RedisUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(RedisUtils.class);
+	
 	private static String redisCfg = "redis.properties";
 	private final static Configuration config = ConfigUtils.addConfig(redisCfg);
 	private static JedisPool pool = null;
@@ -53,9 +54,7 @@ public class RedisUtils {
 			result = jedis.get(key);
 		} catch (Exception e) {
 			logger.error("", e);
-			returnBrokenResource(jedis);
 		} finally {
-			returnResource(jedis);
 		}
 		return result;
 	}
@@ -68,9 +67,7 @@ public class RedisUtils {
 			result = jedis.keys(pattern);
 		} catch (Exception e) {
 			logger.error("", e);
-			returnBrokenResource(jedis);
 		} finally {
-			returnResource(jedis);
 		}
 		return result;
 	}
@@ -83,9 +80,7 @@ public class RedisUtils {
 			result = jedis.set(key, val);
 		} catch (Exception e) {
 			logger.error("", e);
-			returnBrokenResource(jedis);
 		} finally {
-			returnResource(jedis);
 		}
 		return result;
 	}
@@ -108,9 +103,7 @@ public class RedisUtils {
 			result = tx.exec();
 		} catch (Exception e) {
 			logger.error("", e);
-			returnBrokenResource(jedisLocal.get());
 		} finally {
-			returnResource(jedisLocal.get());
 		}
 		return result;
 	}
@@ -121,23 +114,9 @@ public class RedisUtils {
 			result = tx.syncAndReturnAll();
 		} catch (Exception e) {
 			logger.error("", e);
-			returnBrokenResource(jedisLocal.get());
 		} finally {
-			returnResource(jedisLocal.get());
 		}
 		return result;
 	}
 
-	private static void returnResource(Jedis jedis) {
-		try {
-			pool.returnResource(jedis);
-		} catch (Exception e) {
-			logger.error("", e);
-			returnBrokenResource(jedis);
-		}
-	}
-
-	private static void returnBrokenResource(Jedis jedis) {
-		pool.returnBrokenResource(jedis);
-	}
 }
