@@ -24,7 +24,7 @@ public class LogAspectJ {
 	 * test.spring.action.UserAction.*(..))
 	 * 的意思是拦截test.spring.action.UserAction类中的所有方法, 不论方法参数有无,也不管返回结果为何类型。
 	 * */
-	@Pointcut("execution(* com.webapp.controller..*.*(..))")
+	@Pointcut("execution(* com.webapp..*.*(..))")
 	private void anyMethod() {
 	}
 

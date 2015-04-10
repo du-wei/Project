@@ -32,12 +32,10 @@ public class ResultController {
 	@ResponseBody
 	@RequestMapping("/bool")
 	public boolean bool() throws Exception {
-		for(int i=0; i<100; i++){
-			logger.debug("debug");
-			logger.info("info");
-			logger.warn("warn");
-			logger.error("error");
-		}
+		logger.debug("debug");
+		logger.info("info");
+		logger.warn("warn");
+		logger.error("error");
 		return true;
 	}
 	

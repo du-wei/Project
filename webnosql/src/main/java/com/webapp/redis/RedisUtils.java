@@ -6,6 +6,7 @@ import java.util.Set;
 import org.apache.commons.configuration.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -14,6 +15,7 @@ import redis.clients.jedis.Transaction;
 
 import com.webapp.utils.config.ConfigUtils;
 
+@Component
 public class RedisUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(RedisUtils.class);
@@ -25,11 +27,11 @@ public class RedisUtils {
 
 	private static JedisPool getRedisPool() {
 		if (pool == null) {
-			int port = config.getInt("redis.port");
-			int timeout = config.getInt("redis.timeout");
 			String ip = config.getString("redis.ip");
-			String password = config.getString("redis.password");
-			pool = new JedisPool(RedisConfig.getJedisPoolConfig(redisCfg), ip,
+			Integer port = config.getInteger("redis.port", null);
+			Integer timeout = config.getInteger("redis.timeout", null);
+			String password = config.getString("redis.password", null);
+			pool = new JedisPool(RedisConfig.getJedisPoolConfig(config), ip,
 					port, timeout, password);
 		}
 		return pool;
@@ -55,6 +57,7 @@ public class RedisUtils {
 		} catch (Exception e) {
 			logger.error("", e);
 		} finally {
+			closeJedis(jedis);
 		}
 		return result;
 	}
@@ -68,6 +71,7 @@ public class RedisUtils {
 		} catch (Exception e) {
 			logger.error("", e);
 		} finally {
+			closeJedis(jedis);
 		}
 		return result;
 	}
@@ -81,6 +85,7 @@ public class RedisUtils {
 		} catch (Exception e) {
 			logger.error("", e);
 		} finally {
+			closeJedis(jedis);
 		}
 		return result;
 	}
@@ -119,4 +124,12 @@ public class RedisUtils {
 		return result;
 	}
 
+	public static void closeJedis(Jedis jedis){
+		if(jedis != null) jedis.close();
+	}
+	public static void returnResource(Jedis jedis) {
+	    if(jedis != null) pool.returnResourceObject(jedis);
+    }
+	
+	
 }

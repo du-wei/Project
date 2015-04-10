@@ -15,14 +15,18 @@ import com.webapp.utils.config.ConfigUtils;
 public class RedisConfig {
 
 	private static final Logger logger = LoggerFactory.getLogger(RedisConfig.class);
-
+	
 	public static JedisPoolConfig getJedisPoolConfig(String redisCfg) {
 		Configuration config = ConfigUtils.addConfig(redisCfg);
+		return getJedisPoolConfig(config);
+    }
+
+	public static JedisPoolConfig getJedisPoolConfig(Configuration redisCfg) {
 		JedisPoolConfig jedisCfg = new JedisPoolConfig();
 
 		Map<String, String> cfg = new HashMap<>();
-		config.getKeys().forEachRemaining(m -> {
-			cfg.put(m.toLowerCase(), config.getString(m));
+		redisCfg.getKeys().forEachRemaining(m -> {
+			cfg.put(m.toLowerCase(), redisCfg.getString(m));
 		});
 
 		logger.info("属性prop --> 设置值set --> 默认值default");

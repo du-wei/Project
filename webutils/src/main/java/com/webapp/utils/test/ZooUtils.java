@@ -1,7 +1,5 @@
 package com.webapp.utils.test;
 
-import static org.junit.Assert.*;
-
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
