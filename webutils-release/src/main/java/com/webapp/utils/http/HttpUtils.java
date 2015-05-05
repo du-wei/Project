@@ -14,6 +14,7 @@ import java.util.Map;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -24,6 +25,8 @@ import org.apache.http.message.BasicNameValuePair;
 
 public final class HttpUtils {
 
+	private static RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(5000).build();
+	
 	private HttpPost post;
 	private HttpGet get;
 	private static final ThreadLocal<HttpUtils> local = new ThreadLocal<HttpUtils>();
@@ -33,7 +36,7 @@ public final class HttpUtils {
 	private HttpUtils(HttpGet get){
 		this.get = get;
 	}
-	
+
 	/** setData **/
     private HttpUtils setData(HttpGet get, HttpPost post) {
 	    this.post = post;
@@ -112,7 +115,7 @@ public final class HttpUtils {
 		Iterator<String> iterator = param.keySet().iterator();
 		while (iterator.hasNext()) {
 			String key = iterator.next();
-			params.add(new BasicNameValuePair(key, param.get(key).toString()));
+			params.add(new BasicNameValuePair(key, param.get(key)));
 		}
 		return params;
 	}
@@ -128,15 +131,35 @@ public final class HttpUtils {
 
 	public HttpResponse getResp() throws Exception {
 		CloseableHttpClient client = HttpClients.createDefault();
-		HttpResponse resp = client.execute(get != null ? get : post);
+		HttpResponse resp = null;
+		if(get != null){
+			get.setConfig(config);
+			resp = client.execute(get);
+		}else {
+			post.setConfig(config);
+			resp = client.execute(post);
+		}
 		return resp;
 	}
 
 	public String getStr() throws Exception {
+		CloseableHttpClient client = HttpClients.createDefault();
+		HttpResponse resp = null;
+		if(get != null){
+			get.setConfig(config);
+			resp = client.execute(get);
+		}else {
+			post.setConfig(config);
+			resp = client.execute(post);
+		}
+		String result = toString(resp);
+		client.close();
+		return result;
+	}
+
+	public static String toString(HttpResponse resp) throws Exception{
 		StringBuffer result = new StringBuffer();
 		InputStream is = null;
-		CloseableHttpClient client = HttpClients.createDefault();
-		HttpResponse resp = client.execute(get != null ? get : post);
 		if (resp.getStatusLine().getStatusCode() == 200) {
 			is = resp.getEntity().getContent();
 		}
@@ -147,8 +170,6 @@ public final class HttpUtils {
 				result.append(line);
 			}
 		}
-		client.close();
 		return result.toString();
-	}
-
+    }
 }
