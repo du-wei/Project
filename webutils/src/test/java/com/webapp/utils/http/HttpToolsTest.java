@@ -13,7 +13,7 @@ public class HttpToolsTest {
 	@PerfTest(invocations=2000, threads = 3, duration = 200)
 	@Test
     public void testName() throws Exception {
-	    String body = HttpTools.get("http://www.badiu.com").getBody();
+	    String body = HttpUtils.get("http://www.badiu.com").getBody();
 	    System.out.println("---" + body.substring(0, 15));
     }
 	

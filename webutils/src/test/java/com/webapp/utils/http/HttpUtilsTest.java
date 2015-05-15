@@ -13,10 +13,10 @@ public class HttpUtilsTest {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("ip", "www.baidu.com");
 
-		System.out.println(HttpUtils.get(url).addParam(param).getStr());
-		System.out.println(HttpUtils.get(url).addParam("ip", "www.baidu.com").getStr());
-		System.out.println(HttpUtils.post(url).addParam(param).getStr());
-		System.out.println(HttpUtils.post(url).addParam("ip", "www.baidu.com").getStr());
+		System.out.println(HttpUtils.get(url).addParam(param).getBody());
+		System.out.println(HttpUtils.get(url).addParam("ip", "www.baidu.com").getBody());
+		System.out.println(HttpUtils.post(url).addParam(param).getBody());
+		System.out.println(HttpUtils.post(url).addParam("ip", "www.baidu.com").getBody());
     }
 
 }
