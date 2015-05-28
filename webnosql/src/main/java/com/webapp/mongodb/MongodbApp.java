@@ -70,7 +70,8 @@ public class MongodbApp {
 	}
 
 	public static boolean auth(String name, String pwd) {
-		return db.authenticate(name, pwd.toCharArray());
+//		return db.authenticate(name, pwd.toCharArray());
+		return false;
 	}
 
 	@Test

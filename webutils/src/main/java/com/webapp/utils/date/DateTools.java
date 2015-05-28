@@ -29,6 +29,7 @@ public final class DateTools {
 		FmtDate.Fmt_DateTime_Z, //
 		FmtDate.Fmt_DateTime_AT, //
 		FmtDate.Fmt_DateTime_TZ, //
+		FmtDate.Fmt_DateTime_TZ_Z, //
 		FmtDate.Fmt_DateTime_T, //
 		FmtDate.Fmt_DateTime, //
 		FmtDate.Fmt_DateTime_NS, //
@@ -51,6 +52,8 @@ public final class DateTools {
 		public static final String Fmt_DateTime_AT = "yyyy.MM.dd G 'at' HH:mm:ss z";
 		/** date --> {@value} */
 		public static final String Fmt_DateTime_TZ = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+		
+		public static final String Fmt_DateTime_TZ_Z = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ";
 		/** date --> {@value} */
 		public static final String Fmt_DateTime_T = "yyyy-MM-dd'T'HH:mm:ss";
 		/** date --> {@value} */

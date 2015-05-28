@@ -3,7 +3,6 @@ package com.webapp.rocketmq;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.commons.codec.binary.StringUtils;
 
@@ -31,10 +30,19 @@ public class Consumer {
 		consumer = new DefaultMQPushConsumer(CONSUMER_GROUP_NAME);
 		consumer.setNamesrvAddr(NAMESRV_ADDR);
 		consumer.setInstanceName("Consumber");
-		
+//		consumer.subscribe("yar", "*");
 		consumer.registerMessageListener(new MessageListenerConcurrently() {
+			@Override
 			public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
-				System.out.println("xxxx");
+				
+				System.out.println(Thread.currentThread().getName()
+			            + " Receive New Messages: " + msgs.size());
+				
+				MessageExt msg = msgs.get(0);
+				
+				String txt = StringUtils.newStringUtf8(msg.getBody());
+				System.out.println(txt);
+				
 				return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
 			}
 		});
@@ -55,23 +63,7 @@ public class Consumer {
     }
 	
 	public static void main(String[] args) throws Exception {
-		Consumer.getConsumer().subscribe("topic", "*");
-		Consumer.getConsumer().registerMessageListener(new MessageListenerConcurrently() {
-			
-			@Override
-			public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
-				
-				System.out.println(Thread.currentThread().getName()
-			            + " Receive New Messages: " + msgs.size());
-				
-				MessageExt msg = msgs.get(0);
-				
-				String txt = StringUtils.newStringUtf8(msg.getBody());
-				System.out.println(txt);
-				
-				return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-			}
-		});
+		Consumer.getConsumer().subscribe("yar", "*");
     }
 	
 	private static final Map<MessageQueue, Long> offseTable = new HashMap<MessageQueue, Long>();

@@ -8,7 +8,7 @@ import com.alibaba.rocketmq.common.message.Message;
 public class Producer {
 
 	private final static String PRODUCER_GROUP_NAME = "ProducerGroupName";
-	private final static String NAMESRV_ADDR = "172.31.33.32:9876";
+	private final static String NAMESRV_ADDR = "10.18.6.168:9876";
 //	private final static String NAMESRV_ADDR = "182.92.193.119:9876";
 	
 	private static DefaultMQProducer producer;
