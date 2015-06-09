@@ -11,7 +11,7 @@ import jodd.util.ThreadUtil;
 import org.junit.Test;
 
 import com.webapp.utils.random.RandomUtils;
-import com.webapp.utils.test.ThreadUtils;
+import com.webapp.utils.wrun.ThreadUtils;
 
 public class SyncUtils {
 

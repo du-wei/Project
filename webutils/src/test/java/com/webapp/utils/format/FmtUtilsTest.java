@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import com.webapp.utils.test.ThreadUtils;
+import com.webapp.utils.wrun.ThreadUtils;
 
 public class FmtUtilsTest {
 

@@ -1,7 +1,5 @@
-package com.webapp.utils.test;
+package com.webapp.utils.wrun;
 
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
 
 public class Java8  {
 
@@ -15,13 +13,13 @@ public class Java8  {
 //		Comparator<Integer> cmp1= (x, y) -> (x < y) ? -1 : 0;
 
 
-		Lambda lambda = (i)->System.out.println("xx");
-		lambda.two(8);
-
-		Consumer<String> c = System.out::println;
-		c.accept("x");
-
-		BiFunction<Long,Long,Integer> bf = Long::compare;
+//		Lambda lambda = (i)->System.out.println("xx");
+//		lambda.two(8);
+//
+//		Consumer<String> c = System.out::println;
+//		c.accept("x");
+//
+//		BiFunction<Long,Long,Integer> bf = Long::compare;
 
 	}
 

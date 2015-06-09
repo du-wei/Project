@@ -1,4 +1,4 @@
-package com.webapp.utils.test;
+package com.webapp.utils.wrun;
 
 
 public class MyTest {

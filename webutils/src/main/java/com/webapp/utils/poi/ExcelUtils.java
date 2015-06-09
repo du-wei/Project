@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -196,6 +197,14 @@ public class ExcelUtils {
 			o = String.valueOf(c.getCellFormula());
 			break;
 		case Cell.CELL_TYPE_NUMERIC:
+			
+//			if (HSSFDateUtil.isCellDateFormatted(cell)) {     
+//		        //  如果是date类型则 ，获取该cell的date值     
+//		        value = HSSFDateUtil.getJavaDate(cell.getNumericCellValue()).toString();     
+//		    } else { // 纯数字     
+//		        value = String.valueOf(cell.getNumericCellValue());    
+			
+//			new DecimalFormat("#").format(c.getNumericCellValue());
 			o = String.valueOf(c.getNumericCellValue());
 			break;
 		case Cell.CELL_TYPE_STRING:
