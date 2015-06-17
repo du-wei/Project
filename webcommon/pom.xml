@@ -503,6 +503,19 @@
 			<url>http://snapshots.maven.codehaus.org/maven2</url>
 			<layout>default</layout>
 		</pluginRepository>
+		<pluginRepository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<url>http://central.maven.org/maven2</url>
+			<layout>default</layout>
+		</pluginRepository>
 	</pluginRepositories>
 
 </project>

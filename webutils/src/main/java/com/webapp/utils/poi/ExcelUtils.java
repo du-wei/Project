@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -186,6 +185,9 @@ public class ExcelUtils {
 
 	private static String getCellValue(Cell c) {
 		String o = null;
+		if(c == null){
+			return "";
+		}
 		switch (c.getCellType()) {
 		case Cell.CELL_TYPE_BLANK:
 			o = "";

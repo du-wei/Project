@@ -16,6 +16,11 @@ $(function(){
 </head>
 <body>
 
+<a href="/coser/drawing/index.html">drawing</a>
+<a href="/coser/fruit/index.html">fruit</a>
+<a href="/coser/rotate/index.html">rotate</a>
+<a href="/mask">mask</a>
+
 </body>
 </html>
 
