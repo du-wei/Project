@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head.vm")
+
+#parse("/common/meta.vm")
+<meta name="keywords" content="json，json校验，josn工具，json解析，工具，格式化，在线json编辑，json格式化，在线json格式化">
+<meta name="description" content="json，json校验，josn工具，json解析，工具，格式化，在线json编辑，json格式化，在线json格式化" />
+
+<link rel="stylesheet" type="text/css" href="/moduel/json/jsoneditor.min.css" />
+<style type="text/css">
+    html, body {
+      font: 10.5pt arial;
+      color: #4d4d4d;
+      line-height: 150%;
+      width: 98%;
+      height: 98%;
+    }
+   
+	#container {  
+        height:100%;  
+    }
+    code {
+      background-color: #f5f5f5;
+    }
+
+    #jsoneditor {
+      width: 95%;
+      height: 92%;
+    }
+  </style>
+</head>
+<body>
+<div id="container">
+	<input type="file" id="upJson" name="upJson" multiple />
+	<input type="button" id="saveJson" value="Save" />
+	<div id="jsoneditor" style="margin-left:50px;"></div>
+</div>
+
+<script type="text/javascript" src="/moduel/json/jsoneditor.min.js"></script>
+<script type="text/javascript" src="/js/filereader.js"></script>
+<script type="text/javascript" src="/js/FileSaver.js"></script>
+<script>
+
+/*
+JSONEditor.collapseAll()
+Collapse all fields. Only applicable for mode 'tree', 'view', and 'form'.
+
+JSONEditor.expandAll()
+Expand all fields. Only applicable for mode 'tree', 'view', and 'form'.
+
+JSONEditor.focus()
+Set focus to the JSONEditor.
+
+JSONEditor.set(json)
+Set JSON data.
+
+
+JSONEditor.setMode(mode)
+Switch mode. Mode code requires the Ace editor.
+Available values: tree, 'view', form, code, text.
+
+JSONEditor.setName(name)
+JSONEditor.setText(jsonString)
+JSONEditor.get()
+JSONEditor.getName()
+JSONEditor.getText()
+*/
+
+var options = {
+	//change : function(){},
+	//editable : function(){},
+	search : true,
+	indentation : 4,
+    mode: "code",
+	modes: ['code', 'form', 'text', 'tree', 'view']
+};
+
+var container = document.getElementById("jsoneditor");
+var editor = new JSONEditor(container, options);
+FileReaderJS.setupInput(document.getElementById('upJson'), {
+	readAsDefault: 'Text',
+    on: {
+      load: function (event, file) {
+        editor.setText(event.target.result);
+      }
+    }
+});
+
+document.getElementById('saveJson').onclick = function () {
+    var blob = new Blob([editor.getText()], {type: 'application/json;charset=utf-8'});
+    saveAs(blob, 'document.json');
+};
+
+</script>
+
+</body>
+</html>

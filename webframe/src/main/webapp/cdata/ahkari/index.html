@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<!--<![endif]-->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>fragmentFly_Demo</title>
+	<style type="text/css">
+	#demoAnime_img{
+		/*必须设为relative*/
+	    position: relative;
+	    /*宽高与被分割的背景图片一致*/
+	    width: 350px;
+	    height:180px;
+	}
+	</style>
+</head>	
+<body>
+<div id="demoAnime_img"></div>
+									
+<script src="jquery.js" type="text/javascript"></script>
+<script src="jquery.fragmentFly.js" type="text/javascript"></script>
+<script>
+$(function(){
+	$("#demoAnime_img").fragmentFly({
+	    image_url:"./img/demoAnime.png",
+	    cut_dir:"x",	////可选"x"或"y"，默认均分x方向
+	    ave_part:10,	//均分cut_dir方向，默认切割成12份
+	    rm_part:[4,7]	//非cut_dir方向上随机切割，默认最小2份，最多3份
+	},{
+	    anime_dir:"right",	//切割子元素动画运行方向，可选"up","down","left","right"，默认为down
+	    path:[500,800],		//切割子元素动画路长，默认路径最短500px，最长800px
+	    time:[1000,1300],	//切割子元素动画时长，默认时长最短1000ms，最长1300ms
+	    opacity:[0.2,1]		//切割子元素透明度变化，默认初始为1，结束为1(即无渐变)
+	});
+});
+
+</script>
+
+</body>
+</html>

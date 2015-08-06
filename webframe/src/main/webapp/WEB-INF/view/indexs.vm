@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+
+<link rel="stylesheet" type="text/css" href="/moduel/index/css/animate.min.css" />
+<link rel="stylesheet" type="text/css" href="/moduel/index/css/index.css" />
+<script src="/js/modernizr.custom.js" type="text/javascript"></script>
+<!-- <script src="/moduel/index/js/buddycloud.js" type="text/javascript"></script> -->
+<script type="text/javascript">
+$(function(){
+	$.getScript("/moduel/index/js/prefixfree.min.js");
+	$.getScript("/moduel/index/js/index.js");
+	
+	$.getScript("/moduel/index/js/rainyday.js");
+	$.getScript("/moduel/index/js/raining.js");
+	
+	$.getScript("/moduel/index/js/buddycloud.js").done(function(){
+		$("#tab-body > div").buddycloud();
+	});
+});
+</script>
+</head>
+
+<body>
+<img id="bg" src="" />
+
+<ul id="menu">
+	<li class="tab1"><a href="#">img</a></li>
+	<li class="tab2"><a href="#">tab2</a></li>
+	<li class="tab3"><a href="#">vm</a></li>
+	<li class="tab4"><a href="#">show</a></li>
+	<li class="tab5"><a href="#">data</a></li>
+</ul>
+
+<div id="tab-body">
+	<div id="tab1-body">
+		<div class="wrapper">
+			<div class="item"><a href="/coser/gallery/index.html">gallery</a></div>
+			<div class="item"><a href="/coser/3dimages/index.html">3dimages</a></div>
+			<div class="item"><a href="/coser/gridimages/index.html">gridimages</a></div>
+			<div class="item"><a href="/coser/person/index.html">person</a></div>
+			<div class="item"><a href="/coser/switch/index.html">switch</a></div>
+			<div class="item"><a href="/coser/photo/index.html">photo</a></div>
+			<div class="item"><a href="/coser/rotate/index.html">rotate</a></div>
+			<div class="item"><a href="/coser/showimg/index.html">showimg</a></div>
+			<div class="item"><a href="/coser/showimg2/index.html">showimg2</a></div>
+			<div class="item"><a href="/coser/blackhole/index.html">blackhole</a></div>
+			<div class="item"><a href="/coser/shading/index.html">shading</a></div>
+			<div class="item"><a href="/coser/css3hover/index.html">css3hover</a></div>
+			<div class="item"><a href="/coser/stackgrid/index.html">stackgrid</a></div>
+			<div class="item"><a href="/coser/ThumbnailsNavigationGallery/index.html">ThumbnailsNavigationGallery</a></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div id="tab2-body">
+		<div class="wrapper">
+			<div class="item"><a href="/algo/index.html">algo</a></div>
+			<div class="item"><a href="/coser/fruit/index.html">fruit</a></div>
+			<div class="item"><a href="/coser/todomvc/index.html">todomvc</a></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div id="tab3-body">
+		<div class="wrapper">
+			<div class="item"><a href="/coser/color/index.html">color</a></div>
+			<div class="item"><a href="/utils/date">date</a></div>
+			<div class="item"><a href="/utils/history">history</a></div>
+			<div class="item"><a href="/utils/pdf">pdf</a></div>
+			<div class="item"><a href="/utils">utils</a></div>
+			<div class="item"><a href="/utils/sister">sister</a></div>
+			<div class="item"><a href="/show/tgirl">tgirl</a></div>
+			<div class="item"><a href="/utils/trans">translate</a></div>
+			<div class="item"><a href="/utils/weixin">weixin</a></div>
+			<div class="item"><a href="/mask">mask</a></div>
+			<div class="item"><a href="/show/input">input</a></div>
+			<div class="item"><a href="/show/tabs">tabs</a></div>
+			<div class="item"><a href="/utils/sou">sou</a></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div id="tab4-body">
+		<div class="wrapper">
+			<div class="item"><a href="/cshow/ballpool/index.html">ballpool</a></div>
+			<div class="item"><a href="/cshow/circleimgs/index.html">circleimgs</a></div>
+			<div class="item"><a href="/cshow/sticky/index.html">sticky</a></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div id="tab5-body">
+		<div class="wrapper">
+			<div class="item"><a href="/cdata/3drotate/index.html">3drotate</a></div>
+			<div class="item"><a href="/cdata/3dflower/index.html">3dflower</a></div>
+			<div class="item"><a href="/cdata/flyoff/index.html">flyoff</a></div>
+			<div class="item"><a href="/cdata/leafdown/index.html">leafdown</a></div>
+			<div class="item"><a href="/cdata/sparkleh/index.html">sparkleh</a></div>
+			<div class="item"><a href="/cdata/water/index.html">water</a></div>
+			<div class="item"><a href="/cdata/bgslip/index.html">bgslip</a></div>
+			<div class="item"><a href="/cdata/ahkari/index.html">ahkari</a></div>
+			<div class="item"><a href="/cdata/pagescroll/index.html">pagescroll</a></div>
+			<div class="item"><a href="/cdata/console/index.html">console</a></div>
+			<div class="item"><a href="/cdata/ItemTransitions/index.html">ItemTransitions</a></div>
+			<div class="item"><a href="/cdata/textillate-master/index.html">textillate-master</a></div>
+			<div class="item"><a href="/cdata/全屏切换效果源代码/index.html">全屏切换效果源代码</a></div>
+			<div class="item"><a href="/cdata/视差滚动案例/index.html">视差滚动案例</a></div>
+			<div class="item"><a href="/cdata/TextStylesHoverEffects/index.html">TextStylesHoverEffects</a></div>
+			<div class="item"><a href="/cdata/Vague.js-master/index.html">Vague.js-master</a></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+
+<link rel="stylesheet" type="text/css" href="/moduel/utils/css/show_content.css" />
+<link rel="stylesheet" type="text/css" href="/moduel/utils/css/input_cover.css" />
+
+<script type="text/javascript" src="/moduel/utils/js/main.js"></script>
+
+</head>
+<body>
+
+<div class="query_nav">
+	<!-- ID <input type="text" id="ID" value=""/>
+	<button id="queryID">Query</button> -->
+	<div class="panel-inner"> 
+		<div class="wrap">
+	    	<input type="text" id="ID" placeholder="Your id here"/>
+	    	<a href="" class="btn" id="queryID">Query</a>
+	  	</div>
+	</div>
+</div>
+<div class="query_resp">
+	<div id="idDiv">
+	</div>
+</div>
+			
+	
+</body>
+</html>

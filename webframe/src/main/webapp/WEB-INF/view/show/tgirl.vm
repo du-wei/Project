@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+
+<link rel="stylesheet" type="text/css" href="/moduel/tgirl/css/show.css">
+<script type="text/javascript" src="/moduel/tgirl/js/show.js"></script>
+
+</head>
+<body>
+<div id="imageFlow">
+	<div class="top"></div>
+	<div class="bank" id="show_img">
+		#foreach($tgirl in $list.contentlist)
+		<a rel="$!{tgirl.avatarUrl}" title="$!{tgirl.realName}" href="/show/girl/list?id=$!{tgirl.userId}&page=$!{page}" target="_blank">
+			城市:$!{tgirl.city}
+			名字:$!{tgirl.realName}
+			身高:$!{tgirl.height}
+			体重:$!{tgirl.weight}
+		</a>
+		#end
+	</div>
+	<div class="text">
+		<div class="title">Loading</div>
+		<div class="legend">Please wait...</div>
+	</div>
+	<div class="scrollbar">
+		<img class="track" src="images/track.jpg" alt="">
+		<img class="arrow-left" src="images/sign_out.png" alt="">
+		<img class="arrow-right" src="images/sign_in.png" alt="">
+		<img class="bar" src="images/bar.jpg" alt=""> 
+	</div>
+</div>
+
+<div style="padding:10px;">
+	<span style="margin:10px 10px;"><a href="/show/tgirl?page=$!{prev}" id="prev">上一页</a></span>
+	<span><a href="/show/tgirl?page=$!{next}" id="next">下一页</a></span>
+</div>
+
+</body>
+</html>

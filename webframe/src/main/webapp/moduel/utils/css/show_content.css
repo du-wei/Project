@@ -1,0 +1,28 @@
+
+/* input[type="button"] {
+    margin: 100px 20px;
+    padding: 10px;
+} */
+
+
+.show_utils .query_nav {
+	margin-top:25px;
+}
+/* .show_utils .query_nav input {
+	margin-top:40px;
+	width: 250px;
+	height:20px; 
+} */
+.show_utils .query_resp {
+}
+.show_utils .query_resp table{
+	margin:20px auto;
+}
+.show_utils .query_resp table .right{
+	text-align: right;
+}
+.show_utils .query_resp table td{
+	padding:5px 20px 5px 0px;
+	width:180px;
+	text-align: left;
+}

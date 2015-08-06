@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+
+<link rel="stylesheet" type="text/css" href="/moduel/tgirl_list/css/default.css">
+<link rel="stylesheet" type="text/css" media="all" href="/moduel/tgirl_list/css/font-awesome.min.css?v=1" />
+<link rel="stylesheet" type="text/css" media="all" href="/moduel/tgirl_list/css/jgallery.min.css?v=1.5.0" />
+<script type="text/javascript" src="/moduel/tgirl_list/js/jgallery.min.js?v=1.5.0"></script>
+<script type="text/javascript" src="/moduel/tgirl_list/js/tinycolor-0.9.16.min.js"></script>
+<script type="text/javascript" src="/moduel/tgirl_list/js/touchswipe.min.js"></script>
+<script type="text/javascript">
+$( function() {
+    $( '#gallery' ).jGallery({ 
+    	/* backgroundColor: 'black',  */
+    	/* textColor: 'white',  */
+    	thumbnailsPosition : "bottom",
+    	thumbType : "image"
+    	/* mode: 'full-screen'  */
+    });
+});
+</script>
+</head>
+<body>
+	<div class="htmleaf-container">
+		<header class="htmleaf-header">
+			<h1>$!{list.realName} <span>  </span></h1>
+		</header>
+		<div class="htmleaf-content bgcolor-3">
+			<div id="gallery">
+			#foreach($tgirl in $list.imgList)
+			    <a href="$!{tgirl}"><img src="$!{tgirl}" alt="" /></a>
+			#end
+			</div>
+			
+			<!-- <div class="album" data-jgallery-album-title="少女时代">
+		        <a href="http://i.imgur.com/WIz5O3m.jpg"><img src="images/thumbs/4.jpg" alt="Photo 4" /></a>
+		        <a href="http://i.imgur.com/JAYA8OQ.jpg"><img src="images/thumbs/5.jpg" alt="Photo 5" /></a>
+		        <a href="http://i.imgur.com/OF8iYbK.jpg"><img src="images/thumbs/6.jpg" alt="Photo 6" /></a>
+		    </div> -->
+		</div>
+	</div>
+</body>
+</html>

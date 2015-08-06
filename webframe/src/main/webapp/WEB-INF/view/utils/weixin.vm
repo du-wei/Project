@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+
+<script type="text/javascript">
+$(function(){
+	$("#queryWX").click(function(){
+    	$.get("/utils/q/wx", {num : $("#num").val()}).done(function(val){
+    		var data = $.parseJSON(val);
+    		var div = $("#wxDiv");
+    		div.show().empty();
+    		$.each(data, function(i, v){
+	    		div.append("<div>" + v.title + "<a href='"+v.url+"'><img src='"
+	    			+ v.picUrl+"' /></a>" + v.description);
+    		});
+    		
+    	});
+	});
+	
+});
+</script>
+</head>
+<body>
+	num<input type="text" id="num" value=""/> 
+	<button id="queryWX">Query</button>
+	<div id="wxDiv" style="display:none;">
+	</div>
+	
+</body>
+</html>

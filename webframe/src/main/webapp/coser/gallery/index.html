@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>漂亮的3D相片展示效果 </title>
+
+<style type="text/css">
+	html {
+		overflow: hidden;
+	}
+	body {
+		position: absolute;
+		margin: 0px;
+		padding: 0px;
+		background: #eee;
+		width: 100%;
+		height: 100%;
+		color: #fff;
+		font-family: arial;
+		font-size: 0.8em;
+	}
+	#screen {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: #000;
+		overflow: hidden;
+	}
+	#screen img, canvas { 
+		position: absolute;
+		left: -9999px;
+		cursor: pointer;
+        image-rendering: optimizeSpeed;
+
+	}
+	#screen .href {
+		border: #FFF dotted 0px;
+	}
+	#screen .fog { 
+		position: absolute;
+		background: #fff;
+		opacity: 0.1;
+		filter: alpha(opacity=10);
+	}
+	#command {
+		position:absolute;
+		left: 1em;
+		top: 1em;
+		width: 130px;
+		z-index: 30000;
+		background:#000;
+		border: #000 solid 1em;
+	}
+	#bar {
+		position:relative;
+		left: 1em;
+		top: 1em;
+		height: 160px;
+	}
+	#bar .button { 
+		position: absolute;
+		background: #222;
+		width: 20px;
+		height: 20px;
+		cursor: pointer;
+	}
+	#bar .loaded { 
+		background: #666;
+	}
+	#bar .viewed { 
+		background: #fff;
+	}
+	#bar .selected { 
+		background: #f00;
+	}
+	#urlInfo {
+		position: absolute;
+		background: url(images/r.gif) no-repeat 0 4px;
+		visibility: hidden;
+		z-index: 30000;
+		padding-left: 12px;
+		cursor: pointer;
+	}
+</style>
+</head>
+
+<body>
+<div id="screen">
+	<div id="command">
+		<div id="bar"></div>
+	</div>
+	<div id="urlInfo"></div>
+</div>
+
+<script type="text/javascript" src="js/3D_Gallery.js"></script>
+<script type="text/javascript">
+document.onkeydown=function(event){
+	var e = event || window.event || arguments.callee.caller.arguments[0];
+	if(e && e.keyCode==32){
+		alert('38=上键，37=左键');
+	}
+}; 
+
+/* ==== start script ==== */
+setTimeout(function() {
+	m3D.init(
+		[ 
+			{ src: '46eae50db6.jpg', url: 'http://www.ixcl.cn', title: 'jump to random script', color: '#fff' },
+			/* 
+			{ src: '661a66329a.jpg', url: 'http://www.ixcl.cn' }, 
+			*/
+			{ src: 'back_1.jpg', url: '/coser/3dflower/index.html' }, 
+			{ src: 'a8008ae7f7.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '69833ed09a.jpg', url: 'http://www.ixcl.cn' },
+			{ src: 'fe00425d0a.jpg', url: 'http://www.ixcl.cn' },
+			{ src: 'b05b0c6962.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '6a884d6ef2.jpg', url: 'http://www.ixcl.cn' },
+			{ src: 'ed57bce8c4.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '94da4fb185.jpg', url: 'http://www.ixcl.cn' },
+			{ src: 'd04505fe96.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '774573728f.jpg', url: 'http://www.ixcl.cn' },
+			{ src: 'b05c9edc7f.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '8fe86226ff.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '7b4cc906b3.jpg', url: 'http://www.ixcl.cn' },
+			{ src: 'f22e53da3a.jpg', url: 'http://www.ixcl.cn' },
+			{ src: 'c136720da3.jpg', url: 'http://www.ixcl.cn' },
+			{ src: 'd57dc05c81.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '65f8787807.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '200ff06c0e.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '5b0b0c8119.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '0e85d4fe6d.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '1ef7ea6559.jpg', url: 'http://www.ixcl.cn' },
+			{ src: 'ed37a0925e.jpg', url: 'http://www.ixcl.cn' },
+			{ src: '73d310387e.jpg', url: 'http://www.ixcl.cn', color: '#fff' }
+		]
+	);
+}, 500);
+</script>
+</body>
+</html>

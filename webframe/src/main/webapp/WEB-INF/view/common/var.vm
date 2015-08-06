@@ -1,0 +1,3 @@
+#set($title="idea 个人站")
+
+#set($static="//static.seeidea.cn")

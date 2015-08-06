@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+	<title>Vague.js</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<figure class="container"></figure>
+	<article>
+		<span href="#" class="btn">Toggle</span>
+		<span href="#" class="btn animate">Animate intensity: <input type="text" value="1" /></span>
+	</article>
+	<script src="/js/jquery-2.1.4.min.js"></script>
+	<script src="Vague.js"></script>
+	<script>
+		var vague = $(".container").Vague({intensity:1});
+		vague.blur();
+		$('.btn:not(.animate)').on('click',$.proxy(vague.toggleblur,vague));
+		$('.btn input').on('keyup blur',function(e){
+			vague.animate(+$(this).val(),{duration:800});
+		});
+	</script>
+</body>
+</html>

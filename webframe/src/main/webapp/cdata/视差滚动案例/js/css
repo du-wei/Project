@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Lobster Two';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lobster Two Bold'), local('LobsterTwo-Bold'), url("http://themes.googleusercontent.com/static/fonts/lobstertwo/v4/bmdxOflBqMqjEC0-kGsIiDqR_3kx9_hJXbbyU8S6IN0.woff") format('woff');
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title></title>
+#parse("/common/head_jquery.vm")
+
+#parse("/common/meta.vm")
+
+<link href="/moduel/tabs/animate.min.css" rel="stylesheet"/>
+<link href="/moduel/tabs/tabs.css" rel="stylesheet"/>
+
+<script src="/moduel/tabs/prefixfree.min.js" type="text/javascript"></script>
+<script src="/moduel/tabs/index.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<svg height="0" width="0" style="position: absolute; margin-left: -100%;">
+  <defs>
+    <filter id='shadow'>
+      <feComponentTransfer in="SourceGraphic">
+        <feFuncR type="discrete" tableValues="0"/>
+        <feFuncG type="discrete" tableValues="0"/>
+        <feFuncB type="discrete" tableValues="0"/>
+      </feComponentTransfer>
+      <feGaussianBlur stdDeviation="1"/>
+       <feComponentTransfer><feFuncA type="linear" slope="0.2"/></feComponentTransfer>
+      <feOffset dx="5" dy="1" result="shadow"/>
+      <feComposite in="SourceGraphic" />
+    </filter>
+
+    <linearGradient id="tab1-bg" x1="0%" y1="0%" x2="0%" y2="65%">
+      <stop offset="0%" style="stop-color: rgba(136, 195, 229, 1.0);" />
+      <stop offset="100%" style="stop-color: rgba(118, 160, 192, 1.0);" />
+    </linearGradient>
+
+    <linearGradient id="tab2-bg" x1="0%" y1="0%" x2="0%" y2="65%">
+      <stop offset="0%" style="stop-color: rgba(149, 190, 233, 1.0);" />
+      <stop offset="100%" style="stop-color: rgba(112, 153, 213, 1.0);" />
+    </linearGradient>
+
+    <linearGradient id="tab3-bg" x1="0%" y1="0%" x2="0%" y2="65%">
+      <stop offset="0%" style="stop-color: rgba(61, 149, 218, 1.0);" />
+      <stop offset="100%" style="stop-color: rgba(43, 130, 197, 1.0);" />
+    </linearGradient>
+
+    <linearGradient id="tab4-bg" x1="0%" y1="0%" x2="0%" y2="65%">
+      <stop offset="0%" style="stop-color: rgba(72, 204, 243, 1.0);" />
+      <stop offset="100%" style="stop-color: rgba(71, 194, 243, 1.0);" />
+    </linearGradient>
+  </defs>
+  <path id="tab-shape" class="tab-shape" d="M116.486,29.036c-23.582-8-14.821-29-42.018-29h-62.4C5.441,0.036,0,5.376,0,12.003v28.033h122v-11H116.486z" >
+</svg>
+
+
+<div id="main">
+	<nav role="navigation" id="main-nav" class="main-nav">
+	  <ul>
+	    <li class="tab1 active" data-bg-color="rgba(118, 160, 192, 1.0)">
+	      <a href="#home">
+	        <span>Home</span>
+	        <svg viewBox="0 0 122 30" style="fill: url(#tab1-bg)">
+	           <use xlink:href="#tab-shape"></use>
+	        </svg>
+	      </a>
+	    </li>
+	    <li class="tab2" data-bg-color="rgba(112, 153, 213, 1.0)">
+	      <a href="#about">
+	        <span>About</span>
+	        <svg viewBox="0 0 122 30" style="fill: url(#tab2-bg)">
+	          <use xlink:href="#tab-shape"></use>
+	        </svg>
+	      </a>
+	    </li>
+	    <li class="tab3" data-bg-color="rgba(43, 130, 197, 1.0)">
+	      <a href="#clients">
+	        <span>Clients</span>
+	        <svg viewBox="0 0 122 30" style="fill: url(#tab3-bg)">
+	          <use xlink:href="#tab-shape"></use>
+	        </svg>
+	      </a>
+	    </li>
+	    <li class="tab4" data-bg-color="rgba(71, 194, 243, 1.0)">
+	      <a href="#contact">
+	        <span>Contact</span>
+	        <svg viewBox="0 0 122 30" style="fill: url(#tab4-bg)">
+	          <use xlink:href="#tab-shape"></use>
+	        </svg>
+	      </a>
+	    </li>
+	  </ul>
+	</nav>
+	
+	<div id="tab-body" class="tab-body">
+		<div class="tab1-body">
+			<div class="content">
+				<div style="text-align:center;clear:both"></div>
+				<p>1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa totam cumque ad repellendus ab ea repellat aperiam accusantium labore officia est culpa fugiat eaque magnam a. Labore molestias ea at maiores inventore veritatis cupiditate cum doloribus quisquam eum et asperiores!</p>
+			</div>
+		</div>
+		<div class="tab2-body">
+			<div class="content">
+				<div style="text-align:center;clear:both"></div>
+				<p>2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa totam cumque ad repellendus ab ea repellat aperiam accusantium labore officia est culpa fugiat eaque magnam a. Labore molestias ea at maiores inventore veritatis cupiditate cum doloribus quisquam eum et asperiores!</p>
+			</div>
+		</div>
+		<div class="tab3-body">
+			<div class="content">
+				<div style="text-align:center;clear:both"></div>
+				<p>3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa totam cumque ad repellendus ab ea repellat aperiam accusantium labore officia est culpa fugiat eaque magnam a. Labore molestias ea at maiores inventore veritatis cupiditate cum doloribus quisquam eum et asperiores!</p>
+			</div>
+		</div>
+		<div class="tab4-body">
+			<div class="content">
+				<div style="text-align:center;clear:both"></div>
+				<p>4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa totam cumque ad repellendus ab ea repellat aperiam accusantium labore officia est culpa fugiat eaque magnam a. Labore molestias ea at maiores inventore veritatis cupiditate cum doloribus quisquam eum et asperiores!</p>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

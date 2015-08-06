@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="lt" lang="lt">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>非常酷的jquery背景动画效果</title>
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/animatedbg.js"></script>
+<script type="text/javascript">
+	
+	jQuery(document).ready(function() {
+		$("body").css("margin", "0px").css("padding", "0px");
+		$("#bg").css({
+			"position": "relative",
+			"width": "100%",
+			"height": "100%",
+			"background": "url('images/8.jpg')",
+			"background-size":"cover"
+		});
+		var options = {
+			parts: 10,
+			animationWidth: 146
+		}
+		$('#bg').animatedBG(options);
+		
+		
+	});
+	
+	</script>
+</head>
+<body id="bg">
+</body>
+</html>

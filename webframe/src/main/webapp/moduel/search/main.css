@@ -1,0 +1,23 @@
+img {
+	width:100px;
+	height:35px;
+	padding:4px;
+	margin-right:10px;
+	border:#0095CC 1px solid;
+	background-color: white;
+}
+input {
+	margin:1px;
+	border:0px;
+	width:571px;
+	height:47px;
+	font-size: 24px;
+	padding:0 8px;
+}
+.query_type {
+	margin:200px auto;
+	text-align: center;
+}
+.query_type a:focus{
+	outline: none;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>历史上的今天</title>
+#parse("/common/head_jquery.vm")
+
+#parse("/common/meta.vm")
+<meta name="keywords" content="历史，历史上的今天，历史发生事件">
+<meta name="description" content="历史，历史上的今天，历史发生事件" />
+
+<link rel="stylesheet" type="text/css" href="/moduel/history/css/style.css" />
+<script type="text/javascript" src="$!{static}/module/js/modernizr.custom.2.8.3.js"></script>
+
+</head>
+<body>
+	<div class="container">				
+		<header class="clearfix">
+		
+			<!-- <h1>Responsive CSS Timeline with 3D Effect <span>(Best viewed in WebKit browsers)</span></h1> -->
+			<h2>Today in history <span><!-- The final battle --><br/></span></h2>
+			<div class="support-note">
+				<span class="note-ie">Sorry, only modern browsers.</span>
+			</div>
+			
+		</header>
+		
+		<section class="main">
+			#foreach($item in $history.list)
+			<ul class="timeline">
+				<li class="event">
+					<input type="radio" name="tl-group" checked/>
+					<label></label>
+					<div class="thumb" style="background:url('$!{item.img}');background-size:100px 100px;"><span>$!{item.year}</span></div>
+					<div class="content-perspective">
+						<div class="content">
+							<div class="content-inner">
+								<h3><a href="http://www.baidu.com/baidu?wd=$!{item.title}" target="_blank">$!{item.title}</a></h3>
+								<p></p>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			#end
+		</section>
+
+	</div><!-- /container -->
+
+</body>
+</html>

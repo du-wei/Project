@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+
+<script type="text/javascript">
+$(function(){
+	
+	$("#queryDate").click(function(){
+		var param = {
+			date : $("#date").val(),
+			pattern : $("#pattern").val()
+		};
+		
+    	$.get("/utils/q/date", param).done(function(val){
+    		var data = $.parseJSON(val);
+    		var div = $("#dateDiv");
+    		div.show().empty();
+    		$.each(data, function(i, v){
+	    		div.append("<div>" + v.val + " " + v.pattern + "</div>");
+	    	});
+	    		
+    	});
+	});
+});
+</script>
+</head>
+<body>
+	date<input type="text" id="date" value="$!{now}"/> 
+	<select id="pattern">
+		<option value="-1">all pattern</option>
+		#foreach($pt in $pattern)
+		<option value="$velocityCount">$!{pt}</option>
+		#end
+	</select>
+	<button id="queryDate">Query</button>
+	<div id="dateDiv" style="display:none;">
+	</div>
+	
+</body>
+</html>

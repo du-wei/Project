@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>idea-搜索引擎大全</title>
+#parse("/common/head_jquery.vm")
+
+#parse("/common/meta.vm")
+<meta name="keywords" content="搜索，搜索引擎，全搜，搜索大全，搜索引擎大全，百度搜索，谷歌搜索，必应搜索，中搜搜索，有道搜索，狗狗搜索，雅虎搜索，好搜搜索">
+<meta name="description" content="该站集热门搜索引擎为一体，方便用户搜索，包括百度搜索，谷歌搜索，必应搜索，中搜搜索，有道搜索，狗狗搜索，雅虎搜索，好搜搜索" />
+
+<link rel="stylesheet" type="text/css" href="/moduel/search/flowborder.css" />
+<link rel="stylesheet" type="text/css" href="/moduel/search/main.css" />
+
+<script type="text/javascript" src="/moduel/search/main.js"></script>
+</head>
+<body>
+<div class="flow_border"><input type="text" id="query_wd" value=""/></div>
+<div>
+	<div class="query_type">
+		<a id="baidu" href="#"><img src="/moduel/search/img/baidu.png" /></a>
+		<a id="sogou" href="#"><img src="/moduel/search/img/sogou.png" /></a>
+		<a id="haosou" href="#"><img src="/moduel/search/img/haosou.png" /></a>
+		<a id="yahoo" href="#"><img src="/moduel/search/img/yahoo.png" /></a>
+		<a id="google" href="#"><img src="/moduel/search/img/google.png" /></a>
+		<a id="bing" href="#"><img src="/moduel/search/img/bing.png" /></a>
+		<a id="chinaso" href="#"><img src="/moduel/search/img/chinaso.png" /></a>
+		<a id="youdao" href="#"><img src="/moduel/search/img/youdao.png" /></a>
+	</div>
+</div>
+</body>
+</html>

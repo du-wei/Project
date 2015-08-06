@@ -1,0 +1,51 @@
+#circle_nav {
+	/* display: none; */
+}
+
+#circle_nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0 auto;
+	width: 36em;
+	height: 26em;
+}
+#circle_nav li {
+	height: 8em;
+	width: 8em;
+	background-color: #fff;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid #bbb;
+	-webkit-border-radius: 4em;
+	-moz-border-radius: 4em;
+	-ms-border-radius: 4em;
+	-o-border-radius: 4em;
+	border-radius: 4em;
+}
+#circle_nav li.roundabout-in-focus {
+	cursor: default;
+	/* background-color: red; */
+}
+.roundabout-moveable-item {
+	background-color:#FF6B6B;
+}
+
+.roundabout-holder {
+	/* background-color:#90C9D1; */
+}
+#circle_nav li span {
+	display: block;
+	padding-top: 3.5em;
+}
+#circle_nav .monolith {
+	background-color: #222;
+	color: #fff;
+	text-align: center;
+	width: 300px;
+	height: 400px;
+	position: absolute;
+	z-index: 260;
+	left: 135px;
+	border-color: #222;
+	opacity: 0.92;
+}

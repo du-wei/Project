@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+
+<script type="text/javascript">
+$(function(){
+	//type=10 图片	type=29 段子	type=31 声音	type=41 视频
+	$("#querySister").click(function(){
+		var param = {
+			page : $("#page").val(),
+			type : $("#type").val()
+		};
+    	$.get("/utils/q/sister", param).done(function(val){
+    		var data = $.parseJSON(val);
+    		var div = $("#sisterlDiv");
+    		div.show().empty();
+    		$.each(data.contentlist, function(i, v){
+	    		div.append("<div>is_gif -> " + v.is_gif +
+	    		"<br/>create_time -> " + v.create_time +
+	    		"<br/>height -> " + v.height +
+	    		"<br/>width -> " + v.width +
+	    		"<br/>type -> " + v.type +
+	    		"<br/><img src='" + v.image0+"' />" +
+	    		"<br/><img src='" + v.image1+"' />" +
+	    		
+	    		"<br/>videotime -> " + v.videotime +
+	    		"<br/>videouri -> " + v.videouri +
+	    		"<br/>voicelength -> " + v.voicelength +
+	    		"<br/>voicetime -> " + v.voicetime +
+	    		"<br/>voiceuri -> " + v.voiceuri +
+	    		
+	    		"<br/>text-> " + v.text + "</div>");
+    		});
+    		
+    	});
+	});
+	
+});
+</script>
+</head>
+<body>
+	page<input type="text" id="page" value=""/> 
+	type
+	<select id="type">
+		<option value="10">图片</option>
+		<option value="29">段子</option>
+		<option value="31">声音</option>
+		<option value="41">视频</option>	
+	</select>
+	<button id="querySister">Query</button>
+	<div id="sisterlDiv" style="display:none;">
+	</div>
+	
+</body>
+</html>
