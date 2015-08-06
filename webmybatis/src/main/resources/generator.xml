@@ -9,7 +9,7 @@
 		
 		<!--数据库连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/webapp"
+			connectionURL="jdbc:mysql://10.18.6.91:3306/credit_test"
 			userId="root" password="root">
 		</jdbcConnection>
 		

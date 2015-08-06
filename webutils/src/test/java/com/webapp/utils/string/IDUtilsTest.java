@@ -7,7 +7,7 @@ package com.webapp.utils.string;
 public class IDUtilsTest {
 
 	public static void main(String[] args) {
-		String num = "13082519880524101X";
+		String num = "342502198702183814";
 		IDUtils checker = IDUtils.of(num);
 		System.out.println("出生年月日  : " + checker.getBirth());
 		System.out.println("性别  ：" + checker.getSex());

@@ -19,7 +19,8 @@
 	<!-- Mysql
 	<entry key="jdbc_url">jdbc:mysql://10.18.6.91:3306/meng800_show?useUnicode=true&amp;characterEncoding=UTF-8</entry>
 	 -->
-	<entry key="jdbc_url">jdbc:mysql://localhost:3306/webapp?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+	<!-- <entry key="jdbc_url">jdbc:mysql://localhost:3306/webapp?useUnicode=true&amp;characterEncoding=UTF-8</entry> -->
+	<entry key="jdbc_url">jdbc:mysql://10.18.6.91:3306/credit_test?useUnicode=true&amp;characterEncoding=UTF-8</entry>
 	<entry key="jdbc_driver">com.mysql.jdbc.Driver</entry>
 	<entry key="jdbc_username">root</entry>
 	<entry key="jdbc_password">root</entry>

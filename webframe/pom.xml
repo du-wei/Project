@@ -17,7 +17,7 @@
 		<dependency>
 			<groupId>org.sitemesh</groupId>
 			<artifactId>sitemesh</artifactId>
-			<version>3.0.0</version>
+			<version>3.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
@@ -86,8 +86,9 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.2</version>
+				<version>2.6</version>
 				<configuration>
+					<warSourceExcludes>/moduel/**/*.js,/moduel/**/*.css</warSourceExcludes>
 					<webResources>
 						<resource>  
 	                        <directory>src/main/webapp</directory>  
@@ -99,6 +100,52 @@
 					</webResources>
 				</configuration>
 			</plugin>
+			<plugin>
+	          <groupId>net.alchim31.maven</groupId>
+	          <artifactId>yuicompressor-maven-plugin</artifactId>
+	          <version>1.5.1</version>
+	          <executions>  
+	            <execution>  
+	            	<phase>prepare-package</phase>
+                  <goals>  
+                  	<goal>compress</goal>  
+                  </goals>  
+	            </execution>  
+		      </executions> 
+	          <configuration>
+	            <!-- 读取js,css文件采用UTF-8编码 -->
+	            <encoding>UTF-8</encoding>
+	            <!-- 不显示js可能的错误 -->
+	            <jswarn>false</jswarn>
+	            <!-- 若存在已压缩的文件，会先对比源文件是否有改动。有改动便压缩，无改动就不压缩 -->
+	            <force>false</force>
+	            <!-- 在指定的列号后插入新行 -->
+	            <linebreakpos>-1</linebreakpos>
+	            <!-- 压缩之前先执行聚合文件操作 -->
+	            <preProcessAggregates>true</preProcessAggregates>
+	            <!-- 压缩后保存文件后缀 -->
+	            <!-- <suffix>.min</suffix> -->
+	            <nosuffix>true</nosuffix>  
+	            <!-- 源目录，即需压缩的根目录 -->
+	            <sourceDirectory>${basedir}/moduel,${basedir}/WEB-INF/view</sourceDirectory>
+	            <!-- 压缩js和css文件 -->
+	            <includes>
+	              <include>moduel/**/*.js</include>
+	              <include>moduel/**/*.css</include>
+	              <include>WEB-INF/**/*.vm</include>
+	            </includes>
+	            <!-- 以下目录和文件不会被压缩 -->
+	            <excludes>
+	              <exclude>coser/**/*.css</exclude>
+	              <exclude>coser/**/*.js</exclude>
+	              <exclude>moduel/**/jsoneditor.js</exclude>
+	              <exclude>moduel/**/pdf.js</exclude>
+	              <exclude>moduel/**/pdf.worker.js</exclude>
+	              <exclude>moduel/**/viewer.js</exclude>
+	            </excludes>
+	          </configuration>
+	        </plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -120,13 +167,14 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.2.11.v20150529</version>
+				<version>9.3.0.v20150612</version>
 				<configuration>
 					<connectors>
                         <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
                             <port>80</port>
                         </connector>
                 	</connectors>
+                	<!-- <jettyXml>src/main/resources/jetty.xml</jettyXml> -->
 					<scanIntervalSeconds>2</scanIntervalSeconds>
 					<webAppConfig>
 						<contextPath>/</contextPath>

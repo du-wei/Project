@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+
 <style>
 body{
-	background-image:url(/images/bg_dark.jpg)
+	background:url(/images/1.jpg) top / cover;
 }
 
 canvas{
@@ -14,7 +17,6 @@ canvas{
 }
 
 </style>
-<script src="/js/jquery-1.10.2.js"></script>
 <script>
 (function () {
   window.navigator.userAgent.match(/Macintosh/);

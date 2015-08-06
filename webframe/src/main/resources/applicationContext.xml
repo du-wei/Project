@@ -15,6 +15,10 @@
 
 	<!-- 到指定的包内扫描组件 -->
 	<context:component-scan base-package="com.webapp" />
+	
+	<mvc:interceptors>
+		<bean class="com.webapp.filter.CommonFilter" />
+	</mvc:interceptors>
 
 	<aop:aspectj-autoproxy/>
 	<bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
@@ -39,6 +43,22 @@
         <property name="contentType" value="text/html;charset=UTF-8" />  
     </bean>
     
+    <!-- 开启mvc annotation注解 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>  
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="utf-8" index="0" />
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+						<value>application/xml;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+        </mvc:message-converters>
+	</mvc:annotation-driven>
     <mvc:annotation-driven />
     <mvc:default-servlet-handler/>
     <mvc:view-controller path="/mask" view-name="/mask"/>

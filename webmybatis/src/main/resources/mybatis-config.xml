@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 	
 <configuration>
-	<properties resource="build_dev.properties"/>
+	<properties resource="build_pub.properties"/>
 	<typeAliases>
 		<package name="com.webapp.model"/>
 	</typeAliases>

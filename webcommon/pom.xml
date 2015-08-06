@@ -69,6 +69,7 @@
 		<activemq_core_verion>5.7.0</activemq_core_verion>
 		<thrift_version>0.9.2</thrift_version>
 		<web_version>0.0.1-SNAPSHOT</web_version>
+		<utils_version>1.0.0</utils_version>
 		<!--
 			${env.PATH}
 			${project.PATH}
@@ -193,7 +194,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.6</version>
+					<version>2.7</version>
 					<executions>
 						<execution>
 	                        <phase>compile</phase>
@@ -224,8 +225,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<extensions>false</extensions>
 	        		<inherited>true</inherited>
-					<!-- <version>3.2</version> -->
-					<version>2.5.1</version>
+					<version>3.3</version>
+					<!-- <version>2.5.1</version> -->
 					<configuration>
 						<source>${jdk_version}</source>
 						<target>${jdk_version}</target>
@@ -237,7 +238,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.9</version>
+					<version>2.10</version>
 					<executions>
 						<execution>
 							<id>copy</id>
@@ -304,7 +305,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>2.7</version>
+					<version>2.10.3</version>
 					<executions>
 						<execution>
 							<id>attach-javadocs</id>

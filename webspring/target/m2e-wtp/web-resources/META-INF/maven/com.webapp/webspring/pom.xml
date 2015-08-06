@@ -153,6 +153,11 @@
 			<artifactId>webutils</artifactId>
 			<version>${web_version}</version>
 		</dependency>
+		<dependency>
+  			<groupId>com.webapp</groupId>
+  			<artifactId>utils-common</artifactId>
+  			<version>${utils_version}</version>
+  		</dependency>
 	</dependencies>
 	
 	<build>

@@ -24,7 +24,12 @@ public class GenerateMain {
 
 	@Test
 	public void main() throws Exception {
-		GenerateMain.createModel("user", "com.ok", TmpEnum.model_simple);
+		GenerateMain.createModel("basic", "com.ok", TmpEnum.model_simple);
+		GenerateMain.createModel("branch", "com.ok", TmpEnum.model_simple);
+		GenerateMain.createModel("changerecord", "com.ok", TmpEnum.model_simple);
+		GenerateMain.createModel("crawlinfo", "com.ok", TmpEnum.model_simple);
+		GenerateMain.createModel("person", "com.ok", TmpEnum.model_simple);
+		GenerateMain.createModel("shareholder", "com.ok", TmpEnum.model_simple);
 	}
 
 

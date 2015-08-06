@@ -1,28 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Examples</title>
-<style type="text/css">
-body { 
-	background:url(http://static.ixcl.cn:8081/img/back.jpg) top center no-repeat; 
-	background-size:cover; 
-}	
-</style>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+
+#parse("/common/meta.vm")
+<meta name="keywords" content="个人小站，seeidea，在线工具，轻松一刻，个人工具集，Java在线工具，站长工具，图片欣赏，页面特效">
+<meta name="description" content="本站为个人小站，提供常用的在线工具及其他娱乐元素，本站会不定期更新，欢迎访问并提出建议" />
+
+<link rel="stylesheet" type="text/css" href="/moduel/index/css/animate.min.css" />
+<link rel="stylesheet" type="text/css" href="/moduel/index/css/index.css" />
+<link rel="stylesheet" type="text/css" href="/moduel/index/css/linkstyles.css" />
+<script src="/js/modernizr.custom.js" type="text/javascript"></script>
+
+<script src="/js/rgb.js" type="text/javascript"></script>
+<!-- <script src="/moduel/index/js/buddycloud.js" type="text/javascript"></script> -->
 <script type="text/javascript">
 $(function(){
+	$.getScript("/moduel/index/js/prefixfree.min.js");
+	$.getScript("/moduel/index/js/index.js");
+	
+	$.getScript("/moduel/index/js/rainyday.js");
+	$.getScript("/moduel/index/js/raining.js");
+	
+	/**
+	$.getScript("/moduel/index/js/buddycloud.js").done(function(){
+		$("#tab-body > div").buddycloud();
+	});
+	
+	$(".item").rgb();
+	
+	$(".item-icon").rgb(true);
+	**/
 });
 </script>
 </head>
+
 <body>
+<img id="bg" src="" />
 
-<a href="/coser/drawing/index.html">drawing</a>
-<a href="/coser/fruit/index.html">fruit</a>
-<a href="/coser/rotate/index.html">rotate</a>
-<a href="/mask">mask</a>
+<ul id="menu">
+	<li class="tab1"><a href="#">在线工具</a></li>
+	<li class="tab2"><a href="#">轻松一刻</a></li>
+</ul>
 
+<div id="tab-body">
+	<div id="tab1-body">
+		<div class="wrapper">
+			<div class="item">
+				<span class="item-icon">
+					<a class="link link--yaku" target="_blank" href="/utils/color">
+						<span>R</span><span>G</span><span>B</span>					
+					</a>
+				</span>
+				<span class="item-desc">
+					<span class="link link--kukuri" data-letters="在线RGB颜色选择器">在线RGB颜色选择器</span>
+				</span>
+				<span class="item-go">
+					<a class="" target="_blank" href="/utils/color"></a>
+				</span>
+			</div>
+			<div class="item">
+				<div class="item-icon">
+					<a class="link link--yaku" target="_blank" href="/utils/pdf">
+						<span>P</span><span>D</span><span>F</span>				
+					</a>
+				</div>
+				<span class="item-desc">
+					<span class="link link--kukuri" data-letters="在线PDF阅读">在线PDF阅读</span>
+				</span>
+				<span class="item-go">
+					<a class="" target="_blank" href="/utils/pdf"></a>
+				</span>
+			</div>
+			<div class="item">
+				<div class="item-icon">
+					<a class="link link--yaku" target="_blank" href="/utils/sou">
+						<span>搜</span>		
+					</a>
+				</div>
+				<span class="item-desc">
+					<span class="link link--kukuri" data-letters="在线搜索引擎大全">在线搜索引擎大全</span>
+				</span>
+				<span class="item-go">
+					<a class="" target="_blank" href="/utils/sou"></a>
+				</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div id="tab2-body">
+		<div class="wrapper">
+			<div class="item">
+				<div class="item-icon">
+					<a class="link link--yaku" target="_blank" href="/show/history">
+						<span>历</span><span>史</span>				
+					</a>
+				</div>
+				<span class="item-desc">
+					<span class="link link--kukuri" data-letters="历史上的今天">历史上的今天</span>
+				</span>
+				<span class="item-go">
+					<a class="" target="_blank" href="/show/history"></a>
+				</span>
+			</div>
+		</div>
+	</div>
+	
+</div>
 </body>
 </html>
-
-
-
