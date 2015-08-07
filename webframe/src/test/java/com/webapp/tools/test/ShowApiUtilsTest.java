@@ -21,7 +21,7 @@ public class ShowApiUtilsTest {
 	}
 	@Test
     public void queryCard() throws Exception {
-		JSONObject query = ShowApiUtils.queryCard("532329198104305142");
+		JSONObject query = ShowApiUtils.queryCard("13082519880524101X");
 	    System.out.println(JSON.toJSONString(query, true));
 	}
 	@Test

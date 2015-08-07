@@ -40,7 +40,6 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 public class CodeUtils {
 
-//	http://snowolf.iteye.com/blog/379860
 //	 如基本的单向加密算法：
 //	    BASE64 严格地说，属于编码格式，而非加密算法
 //	    MD5(Message Digest algorithm 5，信息摘要算法)

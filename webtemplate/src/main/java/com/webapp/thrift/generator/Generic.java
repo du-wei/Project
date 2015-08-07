@@ -10,9 +10,7 @@ import java.util.List;
 
 /**
  * 泛型描述类,是一个树形的结构,每个Generic都有可能有多个types
- * @author hongliuliao
  *
- * createTime:2012-11-28 上午9:45:20
  */
 public class Generic extends ThriftType {
 	

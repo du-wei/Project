@@ -5,11 +5,6 @@ package com.webapp.thrift.generator;
 
 import java.util.List;
 
-/**
- * @author hongliuliao
- *
- * createTime:2012-11-23 上午11:49:16
- */
 public class ThriftStruct {
 	
 	private String name;

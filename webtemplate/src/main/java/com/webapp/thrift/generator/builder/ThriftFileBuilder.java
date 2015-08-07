@@ -19,11 +19,6 @@ import com.webapp.thrift.generator.utils.CommonUtils;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
-/**
- * @author hongliuliao
- *
- * createTime:2012-11-23 上午11:33:35
- */
 public class ThriftFileBuilder {
 	
 	public String getPackageName(Class<?> commonServiceClass) {

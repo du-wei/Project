@@ -5,11 +5,6 @@ package com.webapp.thrift.generator;
 
 import java.lang.reflect.Type;
 
-/**
- * @author hongliuliao
- *
- * createTime:2012-11-23 下午2:45:25
- */
 public class ThriftMethodArg {
 	
 	private Generic genericType;

@@ -5,6 +5,8 @@ import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+import com.webapp.utils.string.Utils.Charsets;
+
 /**
  * @ClassName: EncodeUtils.java
  * @Package com.webapp.nio
@@ -24,12 +26,12 @@ public class EncodeUtils {
 	}
 
 	public static String decode(ByteBuffer buffer) {
-		return decode(buffer, "UTF-8");
+		return decode(buffer, Charsets.uft8);
 	}
 
 	// String to String by charsetName
 	public static String decode(String str) {
-		return decode(str, "UTF-8");
+		return decode(str, Charsets.uft8);
 	}
 
 	public static String decode(String str, String charsetName) {
@@ -38,7 +40,7 @@ public class EncodeUtils {
 
 	// CharBuffer to String by charsetName
 	public static String decode(CharBuffer buffer) {
-		return decode(buffer, "UTF-8");
+		return decode(buffer, Charsets.uft8);
 	}
 
 	public static String decode(CharBuffer buffer, String charsetName) {
@@ -47,7 +49,7 @@ public class EncodeUtils {
 
 	// CharBuffer to String by charsetName
 	public static String decode(byte[] byteArray) {
-		return decode(ByteBuffer.wrap(byteArray), "UTF-8");
+		return decode(ByteBuffer.wrap(byteArray), Charsets.uft8);
 	}
 
 	public static String decode(byte[] byteArray, String charsetName) {
@@ -58,7 +60,7 @@ public class EncodeUtils {
 
 	// String to ByteBuffer by charsetName
 	public static ByteBuffer encode(String str) {
-		return encode(str, "UTF-8");
+		return encode(str, Charsets.uft8);
 	}
 
 	public static ByteBuffer encode(String str, String charsetName) {
@@ -73,7 +75,7 @@ public class EncodeUtils {
 	 * @return ByteBuffer of by UTF-8 encode
 	 */
 	public static ByteBuffer encode(CharBuffer buffer) {
-		return encode(buffer, "UTF-8");
+		return encode(buffer, Charsets.uft8);
 	}
 
 	/**

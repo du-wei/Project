@@ -18,12 +18,6 @@ import com.webapp.thrift.generator.ThriftType;
 import com.webapp.thrift.generator.utils.CommonUtils;
 import com.webapp.thrift.generator.utils.ParameterNameDiscoverer;
 
-/**
- * 
- * @author liaohongliu
- *
- * 创建日期:2013-4-27 下午10:08:14
- */
 public class ThriftServiceBuilder {
 	
 	private static final ParameterNameDiscoverer parameterNameDiscoverer = new ParameterNameDiscoverer();

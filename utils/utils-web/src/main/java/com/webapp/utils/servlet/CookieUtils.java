@@ -1,4 +1,4 @@
-package com.webapp.tools;
+package com.webapp.utils.servlet;
 
 import java.util.HashMap;
 import java.util.Map;

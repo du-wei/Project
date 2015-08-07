@@ -3,12 +3,6 @@
  */
 package com.webapp.thrift.generator;
 
-
-/**
- * @author hongliuliao
- *
- * createTime:2012-11-23 上午11:58:02
- */
 public class ThriftField {
 	
 	private Generic genericType;

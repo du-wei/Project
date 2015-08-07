@@ -5,11 +5,6 @@ package com.webapp.thrift.generator;
 
 import java.util.List;
 
-/**
- * @author hongliuliao
- *
- * createTime:2012-11-30 下午12:18:39
- */
 public class ThriftEnum {
 
 	private String name;

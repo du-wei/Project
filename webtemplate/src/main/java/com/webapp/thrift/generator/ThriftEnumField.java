@@ -3,11 +3,6 @@
  */
 package com.webapp.thrift.generator;
 
-/**
- * @author hongliuliao
- *
- * createTime:2012-11-30 下午12:58:01
- */
 public class ThriftEnumField {
 	private String name;
 	private Integer value;

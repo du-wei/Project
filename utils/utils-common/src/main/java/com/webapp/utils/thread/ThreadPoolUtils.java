@@ -14,17 +14,12 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ThreadPoolUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(ThreadPoolUtils.class);
-	@Test
-	public void testName() throws Exception {
-
-	}
 
 	public <T> List<FutureTask<T>> execute(ExecutorService executor,
 			Callable<T> callable, int loopSize) {

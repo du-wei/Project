@@ -1,5 +1,6 @@
 package com.webapp.utils.string;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -22,6 +23,12 @@ import com.webapp.utils.regex.RegexConst;
 public final class Utils {
 
 	private Utils(){}
+	
+	public static interface Charsets {
+		public static final String uft8 = StandardCharsets.UTF_8.name();
+		public static final String gbk = "gbk";
+		public static final String iso = StandardCharsets.ISO_8859_1.name();
+	}
 
 	public static interface Symbol{
 

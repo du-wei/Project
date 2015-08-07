@@ -10,24 +10,31 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.webapp.utils.string.Utils.Charsets;
 
 public class HttpUtils {
 	
@@ -97,6 +104,7 @@ public class HttpUtils {
 	public static abstract class Builder {
 		
 		CloseableHttpResponse resp;
+		CookieStore cookieStore;
 		String url;
 		Map<String, String> param = new HashMap<String, String>();
 		Map<String, String> header = new HashMap<String, String>();
@@ -131,24 +139,19 @@ public class HttpUtils {
 	        return resp;
         }
 		
-		public Header[] getCookies() {
-			Header[] headers = resp.getHeaders("Set-Cookie");
-			return headers;
+		public List<Cookie> getCookies() {
+			return cookieStore.getCookies();
         }
 		
-		public String getCookie(String name) {
-			Header[] headers = resp.getHeaders("Set-Cookie");
-			for(Header header : headers){
-				String value = header.getValue();
-				if(StringUtils.isNotEmpty(value)){
-					String[] ck = value.split(";")[0].split("=");
-					if(ck[0].equals(name)){
-						return ck[1];
-					}
+		public Cookie getCookie(String name){
+			List<Cookie> cookies = getCookies();
+			for(Cookie cookie : cookies){
+				if(cookie.getName().equals(name)){
+					return cookie;
 				}
 			}
 			return null;
-        }
+		}
 		
 		public Header[] getHeaders(String name) {
 	        return resp.getHeaders(name);
@@ -169,7 +172,7 @@ public class HttpUtils {
 			if(resp == null) return null;
 			HttpEntity entity = resp.getEntity();
 			try {
-				return EntityUtils.toString(entity, "utf-8");
+				return EntityUtils.toString(entity, Charsets.uft8);
 			} catch (IOException e) {
 				logger.error(e.getMessage(), e);
 			}
@@ -193,6 +196,13 @@ public class HttpUtils {
 				request.addHeader(key, header.get(key));
 			}
 		}
+ 		
+ 		protected HttpContext getContext(){
+ 			cookieStore = new BasicCookieStore();
+ 			HttpContext context = new BasicHttpContext();
+    		context.setAttribute(HttpClientContext.COOKIE_STORE, cookieStore);
+    		return context;
+ 		}
 	}
 
 	public static class BuilderPost extends Builder {
@@ -205,8 +215,8 @@ public class HttpUtils {
 			HttpPost post = new HttpPost(url);
 			setHeader(post);
 			try {
-				post.setEntity(new UrlEncodedFormEntity(getParams(param), "utf-8"));
-				resp = getClient().execute(post);
+				post.setEntity(new UrlEncodedFormEntity(getParams(param), Charsets.uft8));
+				resp = getClient().execute(post, getContext());
 			} catch (Exception e) {
 				logger.error(e.getMessage(), e);
 			}
@@ -225,7 +235,7 @@ public class HttpUtils {
 				uri.addParameters(getParams(param));
 				HttpGet get = new HttpGet(uri.build());
 				setHeader(get);
-				resp = getClient().execute(get);
+				resp = getClient().execute(get, getContext());
 			} catch (Exception e) {
 				logger.error(e.getMessage(), e);
 			}

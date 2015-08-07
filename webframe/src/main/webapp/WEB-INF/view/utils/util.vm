@@ -2,12 +2,24 @@
 <html>
 <head>
 #parse("/common/var.vm")
-<title>$!{title}</title>
+<title>在线#if($type=="tel")手机号码#elseif($type=="ip")IP地址#elseif($type=="domain")域名#elseif($type=="id")身份证#end查询</title>
 #parse("/common/head_jquery.vm")
 
 <link rel="stylesheet" type="text/css" href="/moduel/utils/css/show_content.css" />
 <link rel="stylesheet" type="text/css" href="/moduel/utils/css/input_cover.css" />
 <script type="text/javascript" src="/moduel/utils/js/main.js"></script>
+
+<style type="text/css">
+.query_resp table{
+	margin:40px auto;
+	border-collapse: collapse;
+}
+.query_resp table td{
+	width:200px;
+	padding: 5px 20px;
+	border: 1px solid #D5AC80;
+}
+</style>
 </head>
 <body>
 
@@ -22,12 +34,12 @@
 </div>
 <div class="query_resp">
 	<table id="telDiv" style="display:none;">
-		<tr><td class="right">号段</td><td id="num"></td></tr>
-		<tr><td class="right">省</td><td id="prov"></td></tr>
-		<tr><td class="right">市</td><td id="city"></td></tr>
-		<tr><td class="right">运营商</td><td id="name"></td></tr>
-		<tr><td class="right">邮政编码</td><td id="postCode"></td></tr>
-		<tr><td class="right">省别编码</td><td id="provCode"></td></tr>
+		<tr><td class="right">号段</td><td id="num">1</td></tr>
+		<tr><td class="right">省</td><td id="prov">1</td></tr>
+		<tr><td class="right">市</td><td id="city">1</td></tr>
+		<tr><td class="right">运营商</td><td id="name">1</td></tr>
+		<tr><td class="right">邮政编码</td><td id="postCode">1</td></tr>
+		<tr><td class="right">省别编码</td><td id="provCode">1</td></tr>
 	</table>
 </div>
 #elseif($type == "ip")
@@ -73,8 +85,11 @@
 	</div>
 </div>
 <div class="query_resp">
-	<div id="idDiv">
-	</div>
+	<table id="idDiv" style="display:none;">
+		<tr><td>生日</td><td id="birthday"></td></tr>
+		<tr><td>出生地</td><td id="address"></td></tr>
+		<tr><td>性别</td><td id="sex"></td></tr>
+	</table>
 </div>
 #end
 </body>

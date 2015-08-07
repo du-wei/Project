@@ -1,5 +1,10 @@
 $(function(){
 	
+	$(document).on("keydown", function(e){
+		if(e.keyCode === 13){
+			$("a[id^='query']").trigger("click");
+		}
+	});
 	$("#queryTel").click(function(){
     	$.get("/utils/q/tel", {tel : $("#tel").val()}).done(function(val){
     		var data = $.parseJSON(val);
@@ -44,8 +49,12 @@ $(function(){
 	
 	$("#queryID").click(function(){
     	$.get("/utils/q/id", {id : $("#ID").val()}).done(function(val){
+    		var data = $.parseJSON(val);
     		var div = $("#idDiv");
-    		div.text(val);
+    		div.show();
+    		div.find("#birthday").text(data.retData.birthday);
+    		div.find("#address").text(data.retData.address);
+    		div.find("#sex").text(data.retData.sex == "F" ? "女" : "男");
     	});
     	return false;
 	});

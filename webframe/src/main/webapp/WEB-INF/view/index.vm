@@ -87,6 +87,45 @@ $(function(){
 					<a class="" target="_blank" href="/utils/sou"></a>
 				</span>
 			</div>
+			<div class="item">
+				<div class="item-icon">
+					<a class="link link--yaku" target="_blank" href="/utils/tel">
+						<span>TEL</span>		
+					</a>
+				</div>
+				<span class="item-desc">
+					<span class="link link--kukuri" data-letters="在线手机号码查询">在线手机号码查询</span>
+				</span>
+				<span class="item-go">
+					<a class="" target="_blank" href="/utils/tel"></a>
+				</span>
+			</div>
+			<div class="item">
+				<div class="item-icon">
+					<a class="link link--yaku" target="_blank" href="/utils/ip">
+						<span>IP</span>		
+					</a>
+				</div>
+				<span class="item-desc">
+					<span class="link link--kukuri" data-letters="在线IP地址查询">在线IP地址查询</span>
+				</span>
+				<span class="item-go">
+					<a class="" target="_blank" href="/utils/ip"></a>
+				</span>
+			</div>
+			<div class="item">
+				<div class="item-icon">
+					<a class="link link--yaku" target="_blank" href="/utils/id">
+						<span>ID</span>		
+					</a>
+				</div>
+				<span class="item-desc">
+					<span class="link link--kukuri" data-letters="在线身份证查询">在线身份证查询</span>
+				</span>
+				<span class="item-go">
+					<a class="" target="_blank" href="/utils/id"></a>
+				</span>
+			</div>
 			<div class="clear"></div>
 		</div>
 	</div>

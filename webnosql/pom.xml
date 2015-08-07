@@ -88,10 +88,10 @@
 			<version>${spring_redis}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.webapp</groupId>
-			<artifactId>webutils</artifactId>
-			<version>${web_version}</version>
-		</dependency>
+  			<groupId>com.webapp</groupId>
+  			<artifactId>utils-common</artifactId>
+  			<version>${utils_version}</version>
+  		</dependency>
 	</dependencies>
 
 </project>

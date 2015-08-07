@@ -131,7 +131,7 @@ public class ShowApiUtils {
 			
 		
 		String url = "http://route.showapi.com/126-2";
-		Map<String, String> param = addPara("order", "time_up");	//排序
+		Map<String, String> param = addPara("order", "time_down");	//排序
 		param.put("page", page);	//页数
 		param.put("type", "");		//风格
 		param.put("count", "1");		//风格

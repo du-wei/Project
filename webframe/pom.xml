@@ -75,10 +75,10 @@
 			<version>2.2.2</version>
 		</dependency>
 		<dependency>
-			<groupId>com.webapp</groupId>
-			<artifactId>webutils</artifactId>
-			<version>${web_version}</version>
-		</dependency>
+  			<groupId>com.webapp</groupId>
+  			<artifactId>utils-web</artifactId>
+  			<version>${utils_version}</version>
+  		</dependency>
 	</dependencies>
 	
 	<build>

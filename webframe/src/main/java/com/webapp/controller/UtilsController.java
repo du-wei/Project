@@ -84,7 +84,8 @@ public class UtilsController {
 	@RequestMapping(Q + "/id")
 	public String queryID(HttpServletRequest req){
 		String id = req.getParameter("id");
-		JSONObject result = ApiStoreUtils.queryCard(id);
+//		JSONObject result = ApiStoreUtils.queryCard(id);
+		JSONObject result = ShowApiUtils.queryCard(id);
 		return result.toJSONString();
 	}
 	

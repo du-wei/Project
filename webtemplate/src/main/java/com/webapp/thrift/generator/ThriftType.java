@@ -13,11 +13,6 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.thrift.protocol.TType;
 
-/**
- * @author hongliuliao
- *
- * createTime:2012-11-23 上午11:49:53
- */
 public class ThriftType implements Cloneable {
 	
 	public static final int BASIC_TYPE = 1;

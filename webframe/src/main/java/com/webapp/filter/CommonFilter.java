@@ -9,7 +9,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.webapp.tools.CookieUtils;
+import com.webapp.utils.servlet.CookieUtils;
 
 @WebFilter
 public class CommonFilter implements HandlerInterceptor  {
