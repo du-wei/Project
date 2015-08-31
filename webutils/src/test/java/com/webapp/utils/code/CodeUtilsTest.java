@@ -2,7 +2,7 @@ package com.webapp.utils.code;
 
 import org.junit.Test;
 
-import com.webapp.template.utils.CodeUtils;
+import com.webapp.template.utils.MybatisGenerator;
 
 public class CodeUtilsTest {
 	
@@ -12,7 +12,7 @@ public class CodeUtilsTest {
 		
 //		CodeUtils.buildByTable("build_dev.properties", new String[]{"test_table"});
 		
-		CodeUtils.buildByTable("build_dev.properties", "com", "user");
+		MybatisGenerator.buildByTable("build_dev.properties", "com", "user");
     }
 	
 }

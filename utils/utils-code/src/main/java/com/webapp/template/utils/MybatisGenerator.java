@@ -11,8 +11,8 @@ import cn.org.rapid_framework.generator.GeneratorControl;
 import cn.org.rapid_framework.generator.GeneratorFacade;
 import cn.org.rapid_framework.generator.GeneratorProperties;
 
-public class CodeUtils {
-
+public class MybatisGenerator {
+	
 	public enum TemplatType {
 		simple("classpath:/template/simple"),
 		View("classpath:/template/view");
@@ -99,7 +99,7 @@ public class CodeUtils {
 		gc.setOverride(true);
 
 		GeneratorFacade gf = new GeneratorFacade();
-		gf.getGenerator().addTemplateRootDir(CodeUtils.class.getResource(TemplatType.simple.getTemplate()).toString());
+		gf.getGenerator().addTemplateRootDir(MybatisGenerator.class.getResource(TemplatType.simple.getTemplate()).toString());
 		try {
 			gf.deleteOutRootDir();
 			gf.generateByAllTable();
@@ -110,7 +110,7 @@ public class CodeUtils {
 	
 	private static void setCfg(String jdbcCfg){
 		GeneratorProperties.setProperty("outRoot", System.getProperty("user.dir") + "/codes/");
-		String path = CodeUtils.class.getResource("/").getPath();
+		String path = MybatisGenerator.class.getResource("/").getPath();
 		
 		Properties jdbc = new Properties();
 		try {
