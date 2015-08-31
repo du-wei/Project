@@ -13,14 +13,20 @@
 	<!-- <mime-type>text/html</mime-type> -->
 	
 	<!-- 默认装饰器，当下面的路径都不匹配时，启用该装饰器进行装饰 -->
-	<mapping decorator="/WEB-INF/sitemesh/main.vm"/>
+	<mapping decorator="/WEB-INF/sitemesh/utils.vm"/>
 	
-	<!-- 对不同的路径，启用不同的装饰器 -->
-	<mapping path="**/color" decorator="/WEB-INF/sitemesh/main.vm"/>
-	<mapping path="**/ip" decorator="/WEB-INF/sitemesh/main.vm"/>
-	<mapping path="**/id" decorator="/WEB-INF/sitemesh/main.vm"/>
-	<mapping path="**/domain" decorator="/WEB-INF/sitemesh/main.vm"/>
-	<mapping path="**/tel" decorator="/WEB-INF/sitemesh/main.vm"/>
+	<mapping>
+		<path>**/color</path>
+		<path>**/ip</path>
+		<path>**/id</path>
+		<path>**/domain</path>
+		<path>**/tel</path>
+		<decorator>/WEB-INF/sitemesh/main.vm</decorator>
+	</mapping>
+	<mapping>
+		<path>**/velocity</path>
+		<decorator>/WEB-INF/sitemesh/main.vm</decorator>
+	</mapping>
 	
 	<!-- 对同一路径，启用多个装饰器 
 	<mapping>

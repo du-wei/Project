@@ -17,6 +17,7 @@ $(function(){
 		};
 		image.crossOrigin = 'anonymous';
 		image.src = '/moduel/index/img/2.jpg';
+//		image.src = '/images/A4.jpg';
 	}
 	run();
 });

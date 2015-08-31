@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>全屏输入特效</title>
+#parse("/common/head_jquery.vm")
+
+<link rel="stylesheet" href="/moduel/input/css/show_input.css" media="screen" type="text/css" />
+
+<link rel="stylesheet" href="/moduel/3dnav/css/circle_nav.css" type="text/css" />
+<script src="/js/jquery.roundabout.js" type="text/javascript"></script>
+<script src="/js/jquery.bpopup-0.11.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/moduel/input/js/main.js"></script>
+</head>
+
+<body>
+<!-- <div id="circle_nav" style="display: none; margin-top: 50px;">
+	<ul>
+	  <li class="monolith"><span>Other Things</span></li>
+	  <li class="mover"><span><a target="_blank" href="/utils">Util</a></span></li>
+	  <li class="mover"><span><a target="_blank" href="/show/tgirl">Tao</a></span></li>
+	  
+	  <li class="mover"><span><a target="_blank" href="/utils/history">History</a></span></li>
+	  <li class="mover"><span><a target="_blank" href="/utils/json">JSON</a></span></li>
+	  <li class="mover"><span><a target="_blank" href="/utils/pdf">PDF</a></span></li>
+	  <li class="mover"><span><a target="_blank" href="/show/date">DATE</a></span></li>
+	  <li class="mover"><span><a target="_blank" href="/coser/todomvc/index.html">TODO</a></span></li>
+	  
+	  <li class="mover"><span><a target="_blank" href="/algo/index.html">Algo</a></span></li>
+	</ul>
+</div> -->
+	
+<div style="text-align:center;clear:both;position:absolute;top:0;left:260px"></div>
+<canvas class="canvas"></canvas>
+<div class="help">?</div> 
+
+<div class="ui">
+	<input class="ui-input" type="text" />
+  	<span class="ui-return">↵</span>
+</div>
+
+<div class="overlay">
+  	<div class="tabs">
+    	<div class="tabs-labels"><span class="tabs-label">Commands</span></div>
+
+	    <div class="tabs-panels">
+	      <ul class="tabs-panel commands">
+	        <li class="commands-item"><span class="commands-item-title">Text</span><span class="commands-item-info" data-demo="Hello :)">Type anything</span><span class="commands-item-action">Demo</span></li>
+	        <li class="commands-item"><span class="commands-item-title">Countdown</span><span class="commands-item-info" data-demo="#countdown 10">#countdown<span class="commands-item-mode">number</span></span><span class="commands-item-action">Demo</span></li>
+	        <li class="commands-item"><span class="commands-item-title">Time</span><span class="commands-item-info" data-demo="#time">#time</span><span class="commands-item-action">Demo</span></li>
+	        <li class="commands-item"><span class="commands-item-title">Rectangle</span><span class="commands-item-info" data-demo="#rectangle 30x15">#rectangle<span class="commands-item-mode">width x height</span></span><span class="commands-item-action">Demo</span></li>
+	        <li class="commands-item"><span class="commands-item-title">Circle</span><span class="commands-item-info" data-demo="#circle 25">#circle<span class="commands-item-mode">diameter</span></span><span class="commands-item-action">Demo</span></li>
+	
+	        <li class="commands-item commands-item--gap"><span class="commands-item-title">Animate</span><span class="commands-item-info" data-demo="The time is|#time|#countdown 3|#icon thumbs-up"><span class="commands-item-mode">command1</span>&nbsp;|<span class="commands-item-mode">command2</span></span><span class="commands-item-action">Demo</span></li>
+	      </ul>
+	
+	    </div>
+  	</div>
+</div> <!-- -->
+
+<script src="/moduel/input/js/show_input.js"></script>
+
+</body>
+</html>

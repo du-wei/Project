@@ -4,7 +4,7 @@
 	xmlns:jaxws="http://cxf.apache.org/jaxws" 
 	xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
 
 	<bean id="rmiSpringService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean" >  

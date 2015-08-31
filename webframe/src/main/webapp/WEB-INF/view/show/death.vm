@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>死亡倒计时</title>
+#parse("/common/head_jquery.vm")
+
+#parse("/common/meta.vm")
+<meta name="keywords" content="死亡倒计时，死亡时钟，生命倒计时">
+<meta name="description" content="死亡倒计时，死亡时钟，生命倒计时" />
+
+<script type="text/javascript" src="/js/date/WdatePicker.js"></script>
+<script type="text/javascript" src="/moduel/death/death.js"></script>
+
+<style type="text/css">
+body {
+	background-image: url("/moduel/death/death.jpg");
+	background-size:cover;
+}
+body *{
+	font-size:16px;
+	margin:0 auto;
+}
+.main {
+	text-align:center;
+	width:100%;
+}
+.main > table{
+	box-shadow: 0px 0px 50px 2px #454042;
+	background-color:rgba(252, 242, 245, 0.6);
+	width:40%;
+	margin:40px auto;
+	border-collapse: collapse;
+}
+.main > table td{
+	padding: 5px 20px;
+	border: 1px solid #D5AC80;
+	/* text-align: left; */
+}
+#timeline {
+	width:100%;
+	border-collapse: collapse;
+}
+#timeline td{
+	padding: 5px 20px;
+	border:0px;
+}
+
+.left {
+	text-align: left;
+}
+	
+</style>
+</head>
+<body>
+<div id="main" class="main">
+	<span style="font-size: 36px;">死亡倒计时</span>
+	
+	<table>
+		<tr>
+			<td width="16%">出生日期</td>
+			<td>
+				<input class="Wdate" id="bdate" type="text" onClick="WdatePicker()" style="width:80%;">
+			</td>
+			<td rowspan="2"><input type="button" value="死亡倒计时" id="query" style="width:80%;"/></td>
+		</tr>
+		<tr>
+			<td>活多少岁</td>
+			<td>
+				<input id="age" type="text" style="width:80%;">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="padding:0px;">
+				<table id="timeline" class="timeline">
+					<tr><td id="birthday">&nbsp;</td><td id="now"></td><td id="death"></td></tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="left">
+				<div style="border:1px solid #D5AC80;" id="progress">&nbsp;</div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td width="42%">过去</td>
+			<td>将来</td>
+		</tr>
+		<tr><td>时间</td><td id="pdDatetime" class="left"></td><td id="dDatetime" class="left"></td></tr>
+		<tr><td>月数</td><td id="ptMonths" class="left"></td><td id="tMonths" class="left"></td></tr>
+		<tr><td>周数</td><td id="ptWeeks" class="left"></td><td id="tWeeks" class="left"></td></tr>
+		<tr><td>天数</td><td id="ptDays" class="left"></td><td id="tDays" class="left"></td></tr>
+		<tr><td>时数</td><td id="ptHours" class="left"></td><td id="tHours" class="left"></td></tr>
+		<tr><td>分数</td><td id="ptMinutes" class="left"></td><td id="tMinutes" class="left"></td></tr>
+		<tr><td>秒数</td><td id="ptSeconds" class="left"></td><td id="tSeconds" class="left"></td></tr>
+	</table>
+</div>
+</body>
+</html>

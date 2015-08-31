@@ -1,9 +1,12 @@
 package com.webapp.utils.poi;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -149,13 +152,22 @@ public class ExcelUtils {
 
 	public static <T> List<T> readExcelByPath(String path, Class<T> clz,
 			int readLine, int tailLine) {
+		try {
+	        return readExcelByPath(new FileInputStream(path), clz, readLine, tailLine);
+        } catch (FileNotFoundException e) {
+        	logger.error("通过模版创建Excel失败", e);
+        }
+		return null;
+	}
+	
+	public static <T> List<T> readExcelByPath(InputStream is, Class<T> clz,
+			int readLine, int tailLine) {
 		Workbook wb = null;
 		try {
-			POIFSFileSystem fileSystem = new POIFSFileSystem(
-					new FileInputStream(path));
-			wb = WorkbookFactory.create(fileSystem);
+//			POIFSFileSystem fileSystem = new POIFSFileSystem(is);
+			wb = WorkbookFactory.create(is);
 			return handlerExcel2Objs(wb, clz, readLine, tailLine);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			logger.error("通过模版创建Excel失败", e);
 		}
 		return null;
@@ -174,6 +186,19 @@ public class ExcelUtils {
 		}
 		return null;
 	}
+	
+	public static List<String[]> readExcelByPath(InputStream is, int readLine,
+			int tailLine) {
+		Workbook wb = null;
+		try {
+			//POIFSFileSystem fileSystem = new POIFSFileSystem(is);
+			wb = WorkbookFactory.create(is);
+			return handlerExcel2Objs(wb, readLine, tailLine);
+		} catch (Exception e) {
+			logger.error("通过模版创建Excel失败", e);
+		}
+		return null;
+	}
 
 	public static <T> List<T> readExcelByClasspath(String path, Class<T> clz) {
 		return readExcelByClasspath(path, clz, 0, 0);
@@ -181,6 +206,10 @@ public class ExcelUtils {
 
 	public static <T> List<T> readExcelByPath(String path, Class<T> clz) {
 		return readExcelByPath(path, clz, 0, 0);
+	}
+	
+	public static <T> List<T> readExcelByPath(InputStream is, Class<T> clz) {
+		return readExcelByPath(is, clz, 0, 0);
 	}
 
 	private static String getCellValue(Cell c) {
@@ -207,7 +236,8 @@ public class ExcelUtils {
 //		        value = String.valueOf(cell.getNumericCellValue());    
 			
 //			new DecimalFormat("#").format(c.getNumericCellValue());
-			o = String.valueOf(c.getNumericCellValue());
+			//o = String.valueOf(c.getNumericCellValue());
+			o = new DecimalFormat("#").format(c.getNumericCellValue());
 			break;
 		case Cell.CELL_TYPE_STRING:
 			o = c.getStringCellValue();
@@ -255,6 +285,7 @@ public class ExcelUtils {
 
 			for (int i = readLine + 1; i <= sheet.getLastRowNum() - tailLine; i++) {
 				row = sheet.getRow(i);
+				if(null == row) continue;
 				String[] rowData = new String[row.getLastCellNum()];
 				for (int j = 0; j < row.getLastCellNum(); j++) {
 					Cell c = row.getCell(j);

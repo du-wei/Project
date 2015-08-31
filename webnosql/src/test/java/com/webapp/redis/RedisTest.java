@@ -2,10 +2,6 @@ package com.webapp.redis;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.databene.contiperf.timer.RandomTimer;
-import org.junit.Rule;
 import org.junit.Test;
 
 public class RedisTest extends RunnerWeb {

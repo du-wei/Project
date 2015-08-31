@@ -18,26 +18,51 @@ $(function(){
     		var data = $.parseJSON(val);
     		var div = $("#dateDiv");
     		div.show().empty();
+    		
+    		var tmp = "<table>";
     		$.each(data, function(i, v){
-	    		div.append("<div>" + v.val + " " + v.pattern + "</div>");
+	    		tmp += "<tr><td>" + v.pattern + "</td><td>" + v.val + "</td></tr>";
 	    	});
-	    		
+	    	tmp += "</table>";
+	    	div.append(tmp);
     	});
 	});
 });
 </script>
+<style type="text/css">
+body *{
+	margin:0 auto;
+}
+#main {
+	text-align:center;
+	width:80%;
+}
+#dateDiv table{
+	margin:40px auto;
+	border-collapse: collapse;
+}
+#dateDiv table td{
+	width:280px;
+	padding: 5px 20px;
+	border: 1px solid #D5AC80;
+	text-align: left;
+}
+	
+</style>
 </head>
 <body>
+<div id="main">
 	date<input type="text" id="date" value="$!{now}"/> 
+	<button id="queryDate">转换</button>
 	<select id="pattern">
 		<option value="-1">all pattern</option>
 		#foreach($pt in $pattern)
 		<option value="$velocityCount">$!{pt}</option>
 		#end
 	</select>
-	<button id="queryDate">Query</button>
+	
 	<div id="dateDiv" style="display:none;">
 	</div>
-	
+</div>
 </body>
 </html>

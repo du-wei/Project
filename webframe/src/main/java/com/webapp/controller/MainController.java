@@ -6,15 +6,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
-
+	
 	@RequestMapping(value={"/", "/index"})
 	public ModelAndView admin(ModelAndView mav){
 		mav.setViewName("/index");
 		return mav;
 	}
-	@RequestMapping("/indexs")
+	@RequestMapping("/index_test")
 	public ModelAndView indexs(ModelAndView mav){
-		mav.setViewName("/indexs");
+		mav.setViewName("/index_test");
 		return mav;
 	}
 	

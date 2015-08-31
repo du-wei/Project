@@ -2,7 +2,7 @@
 <html>
 <head>
 #parse("/common/var.vm")
-<title>idea-搜索引擎大全</title>
+<title>搜索引擎大全</title>
 #parse("/common/head_jquery.vm")
 
 #parse("/common/meta.vm")

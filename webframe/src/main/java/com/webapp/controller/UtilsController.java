@@ -1,5 +1,13 @@
 package com.webapp.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -7,7 +15,9 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
@@ -18,6 +28,7 @@ import com.webapp.tools.ApiStoreUtils;
 import com.webapp.tools.MyOpenUtils;
 import com.webapp.tools.ShowApiUtils;
 import com.webapp.utils.date.DateTools;
+import com.webapp.utils.poi.ExcelUtils;
 
 @Controller
 @RequestMapping(value={"", "/utils", "/tools"})
@@ -31,7 +42,7 @@ public class UtilsController {
 	private static final String VIEW_PREFIX = "/utils";
 	
 	@RequestMapping(V + "/{type}")
-	public ModelAndView color(ModelAndView mav, @PathVariable("type")String type){
+	public ModelAndView type(ModelAndView mav, @PathVariable("type")String type) {
 		/** color
 		 * 	json
 		 * 	pdf
@@ -42,9 +53,9 @@ public class UtilsController {
 		 * 	ip
 		 * 	tel
 		 * 	domain
+		 *  excel
 		 */
 		
-		System.out.println("---" + type);
 		mav.setViewName(VIEW_PREFIX + "/" + type);
 		if (type.equals("ip") || type.equals("domain") || type.equals("tel") || type.equals("id")){
 			mav.setViewName(VIEW_PREFIX + "/util");
@@ -62,6 +73,60 @@ public class UtilsController {
 		mav.addObject("pattern", JSON.parseArray(JSON.toJSONString(patterns)));
 		mav.addObject("now", DateTools.now().format());
 		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(Q + "/excel")
+	public String excel(HttpServletRequest req, @RequestParam("file")MultipartFile file){
+		String pattern = req.getParameter("pattern");
+		String spilt = req.getParameter("spilt");
+		boolean isEnter = Boolean.parseBoolean(req.getParameter("enter"));
+		boolean show = Boolean.parseBoolean(req.getParameter("show"));
+		
+		InputStream inputStream = null;
+		try {
+			inputStream = file.getInputStream();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		List<String[]> data = null;
+				
+		if(show){
+			data = ExcelUtils.readExcelByPath(inputStream, -1, 0);
+			if(data.size() >= 1){
+				String[] heads = data.get(0);
+				for(int i=0; i<heads.length; i++){
+					heads[i] = heads[i] + "($" + (i+1) + ")";
+				}
+			}
+			return JSON.toJSONString(data);
+		}else {
+			data = ExcelUtils.readExcelByPath(inputStream, 0, 0);
+			
+			Map<Integer, String> cols = new HashMap<Integer, String>();
+			Set<Integer> keySet = cols.keySet();
+			if(data.size() >= 1){
+				String[] row = data.get(0);
+				for(int i=0; i<row.length; i++){
+					String ptn = "$" + (i + 1);
+					if(pattern.contains(ptn)) cols.put(i, ptn);
+				}
+			}
+			
+			StringBuffer result = new StringBuffer();
+			for(String[] row : data){
+				String col = pattern;
+				Iterator<Integer> iterator = keySet.iterator();
+				for(;iterator.hasNext();){
+					int next = iterator.next();
+					col = col.replace(cols.get(next), row[next]);
+				}
+				result.append(col + spilt);
+				if(isEnter) result.append("\n");
+			}
+			
+			return StringUtils.removeEnd(result.toString(), spilt + (isEnter ? "\n" : ""));
+		}
 	}
 	
 	@ResponseBody

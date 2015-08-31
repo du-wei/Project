@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+
+#parse("/common/meta.vm")
+<meta name="keywords" content="excel，excel在线工具，excel处理，excel分析，excel解析">
+<meta name="description" content="excel，excel在线工具，excel处理，excel分析，excel解析" />
+
+<link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css" />
+<script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
+<script src="/js/jquery.form.js" type="text/javascript"></script>
+<script src="/js/jquery.zclip.min.js" type="text/javascript"></script>
+
+<script type="application/javascript">
+$(function(){
+	$("#resolve, #show").click(function(e){
+		var param = {show : true};
+		if(!$(this).is("#show")){
+			param.pattern = $("#pattern").val();
+			param.spilt = $("#spilt").val();
+			param.enter = $("#enter").is(":checked");
+			param.show = false;
+		}
+		$("#excel").ajaxSubmit({
+			data:param,
+	        type:'post',
+	        url:'/utils/q/excel',
+	        success:function(data){
+				if(!!param.show){
+    	        	var json = $.parseJSON(data);
+    	        	var buf = "<table>";
+    	        	$.each(json, function(irow, row){
+    	        		buf += "<tr>";
+    	        		buf += "<td>" + irow + "</td>";
+    	        		$.each(row, function(icell, cell){
+    	        			buf += "<td>" + cell + "</td>";
+    	        		});
+    	        		buf += "</tr>";
+    	        	});
+    	        	buf += "</table>";
+    	        	
+    	        	$("#show_data").html(buf);
+				}else{
+					$("#resolve_data").html(data);
+				}
+	        },
+	        error:function(e){
+	        	alert("error");
+	        }
+        });
+	});
+	
+	$('#pattern').textbox({
+		buttonText:'规则',
+		width: 250,
+		height: 30
+	});
+	$('#spilt').textbox({
+		buttonText:'分隔符',
+		width:100,
+		height:30
+	});
+	$('#file').filebox({    
+	    buttonText: ' Excel ', 
+	    buttonAlign: 'right',
+	    prompt:"",
+	    width:400,
+	    height:30
+	});
+	$('#show').linkbutton({
+		width:80,
+	    height:30
+	});
+	$('#resolve').linkbutton({
+		width:80,
+	    height:30
+	});
+	$('#hidden_copy').linkbutton({
+		width:80,
+	    height:30
+	});
+	$("#hidden_copy").zclip({
+		path:"/js/ZeroClipboard.swf",
+		afterCopy : function(){},
+		copy:function(){ return $("#resolve_data").text();}
+	});
+	$("#resolve_data").dblclick(function(){
+		$("#hidden_copy").trigger("click");
+	});
+});
+</script>
+<style type="text/css">
+#excel_main {
+	width:60%;
+	margin:0px auto;
+}
+
+#excel_tab {
+	width:60%;
+	margin:0px auto;
+}
+#resolve_data {
+	border: 1px solid #D5AC80;
+	height:120px;
+	overflow:auto;
+}
+table{
+	width:100%;
+	margin:40px auto;
+	border-collapse: collapse;
+	text-align: center;
+}
+table td{
+	padding: 2px 2px;
+	border: 1px solid #D5AC80;
+}
+</style>
+</style>
+</head>
+<body>
+<div id="excel_main">
+	<div id="excel_tab">
+		<form action="/utils/q/execl" method="post" id="excel" enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td colspan="3"><input id="file" name="file" /></td>
+					<td><input type="button" id="show" value="展示"/></td>
+				</tr>
+				<tr>
+					<td><input type="text" id="pattern"></td>
+					<td><input type="text" id="spilt"></td>
+					<td><span style="font-size: 12px;color: #444;">换行</span><input type="checkbox" id="enter"></td>
+					<td><input type="button" id="resolve" value="解析"/></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<input type="button" id="hidden_copy" value="复制"/>
+	<pre id="resolve_data"></pre>
+	<div id="show_data">
+	</div>
+</div>
+</body>
+</html>

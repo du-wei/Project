@@ -1,4 +1,4 @@
-;(function($){
+/*;(function($){
 	$("body").on("click",".b-modal", function(){
 		  $('#circle_nav').bPopup().close();
 	});
@@ -16,7 +16,7 @@
 		  }
 		  return false;
 	});
-})(jQuery);
+})(jQuery);*/
 
 window.callback = function(val){
 }

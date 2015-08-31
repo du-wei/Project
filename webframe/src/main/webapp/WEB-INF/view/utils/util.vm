@@ -3,94 +3,95 @@
 <head>
 #parse("/common/var.vm")
 <title>在线#if($type=="tel")手机号码#elseif($type=="ip")IP地址#elseif($type=="domain")域名#elseif($type=="id")身份证#end查询</title>
-#parse("/common/head_jquery.vm")
+#parse("/common/head.vm")
+
+#parse("/common/meta.vm")
+<meta name="keywords" content="IP查询，身份证查询，手机号查询">
+<meta name="description" content="IP查询，身份证查询，手机号查询" />
 
 <link rel="stylesheet" type="text/css" href="/moduel/utils/css/show_content.css" />
 <link rel="stylesheet" type="text/css" href="/moduel/utils/css/input_cover.css" />
 <script type="text/javascript" src="/moduel/utils/js/main.js"></script>
 
-<style type="text/css">
-.query_resp table{
-	margin:40px auto;
-	border-collapse: collapse;
-}
-.query_resp table td{
-	width:200px;
-	padding: 5px 20px;
-	border: 1px solid #D5AC80;
-}
-</style>
 </head>
 <body>
+<div id="body_back">
+    <div id="body_menu"><span></span></div>
+    <div id="body_main">
+    	<div style="display: block;">
+   
+			#if($type == "tel")
+			<div class="query_nav">
+				<div class="panel-inner"> 
+					<div class="wrap">
+				    	<input type="text" id="tel" placeholder="Your Tel here"/>
+				    	<a href="" class="btn" id="queryTel">Query</a>
+				  	</div>
+				</div>
+			</div>
+			<div class="query_resp">
+				<table id="telDiv" style="display:none;">
+					<tr><td class="right">号段</td><td id="num"></td></tr>
+					<tr><td class="right">省</td><td id="prov"></td></tr>
+					<tr><td class="right">市</td><td id="city"></td></tr>
+					<tr><td class="right">运营商</td><td id="name"></td></tr>
+					<tr><td class="right">邮政编码</td><td id="postCode"></td></tr>
+					<tr><td class="right">省别编码</td><td id="provCode"></td></tr>
+				</table>
+			</div>
+			#elseif($type == "ip")
+			<div class="query_nav">
+				<div class="panel-inner"> 
+					<div class="wrap">
+				    	<input type="text" id="ip" placeholder="Your ip here"/>
+				    	<a href="" class="btn" id="queryIP">Query</a>
+				  	</div>
+				</div>
+			</div>
+			<div class="query_resp">
+				<table id="ipDiv" style="display:none;">
+					<tr><td>IP</td><td id="ip"></td></tr>
+					<tr><td>运营商</td><td id="isp"></td></tr>
+					<tr><td>国家</td><td id="country"></td></tr>
+					<tr><td>市级 </td><td id="city"></td></tr>
+					<tr><td>县级</td><td id="county"></td></tr>
+					<tr><td>省级</td><td id="region"></td></tr>
+				</table>
+			</div>
+			#elseif($type == "domain")
+			<div class="query_nav">
+				<div class="panel-inner"> 
+					<div class="wrap">
+				    	<input type="text" id="domain" placeholder="Your domain here"/>
+				    	<a href="" class="btn" id="queryDomain">Query</a>
+				  	</div>
+				</div>
+			</div>
+			<div class="query_resp">
+				<div id="domainDiv">
+				</div>
+			</div>
+			
+			#elseif($type == "id")
+			<div class="query_nav">
+				<div class="panel-inner"> 
+					<div class="wrap">
+				    	<input type="text" id="ID" placeholder="Your id here"/>
+				    	<a href="" class="btn" id="queryID">Query</a>
+				  	</div>
+				</div>
+			</div>
+			<div class="query_resp">
+				<table id="idDiv" style="display:none;">
+					<tr><td>生日</td><td id="birthday"></td></tr>
+					<tr><td>出生地</td><td id="address"></td></tr>
+					<tr><td>性别</td><td id="sex"></td></tr>
+				</table>
+			</div>
+			#end
 
-#if($type == "tel")
-<div class="query_nav">
-	<div class="panel-inner"> 
-		<div class="wrap">
-	    	<input type="text" id="tel" placeholder="Your Tel here"/>
-	    	<a href="" class="btn" id="queryTel">Query</a>
-	  	</div>
-	</div>
+ 		</div>
+    </div>
 </div>
-<div class="query_resp">
-	<table id="telDiv" style="display:none;">
-		<tr><td class="right">号段</td><td id="num">1</td></tr>
-		<tr><td class="right">省</td><td id="prov">1</td></tr>
-		<tr><td class="right">市</td><td id="city">1</td></tr>
-		<tr><td class="right">运营商</td><td id="name">1</td></tr>
-		<tr><td class="right">邮政编码</td><td id="postCode">1</td></tr>
-		<tr><td class="right">省别编码</td><td id="provCode">1</td></tr>
-	</table>
-</div>
-#elseif($type == "ip")
-<div class="query_nav">
-	<div class="panel-inner"> 
-		<div class="wrap">
-	    	<input type="text" id="ip" placeholder="Your ip here"/>
-	    	<a href="" class="btn" id="queryIP">Query</a>
-	  	</div>
-	</div>
-</div>
-<div class="query_resp">
-	<table id="ipDiv" style="display:none;">
-		<tr><td>IP</td><td id="ip"></td></tr>
-		<tr><td>运营商</td><td id="isp"></td></tr>
-		<tr><td>国家</td><td id="country"></td></tr>
-		<tr><td>市级 </td><td id="city"></td></tr>
-		<tr><td>县级</td><td id="county"></td></tr>
-		<tr><td>省级</td><td id="region"></td></tr>
-	</table>
-</div>
-#elseif($type == "domain")
-<div class="query_nav">
-	<div class="panel-inner"> 
-		<div class="wrap">
-	    	<input type="text" id="domain" placeholder="Your domain here"/>
-	    	<a href="" class="btn" id="queryDomain">Query</a>
-	  	</div>
-	</div>
-</div>
-<div class="query_resp">
-	<div id="domainDiv">
-	</div>
-</div>
-
-#elseif($type == "id")
-<div class="query_nav">
-	<div class="panel-inner"> 
-		<div class="wrap">
-	    	<input type="text" id="ID" placeholder="Your id here"/>
-	    	<a href="" class="btn" id="queryID">Query</a>
-	  	</div>
-	</div>
-</div>
-<div class="query_resp">
-	<table id="idDiv" style="display:none;">
-		<tr><td>生日</td><td id="birthday"></td></tr>
-		<tr><td>出生地</td><td id="address"></td></tr>
-		<tr><td>性别</td><td id="sex"></td></tr>
-	</table>
-</div>
-#end
 </body>
 </html>

@@ -13,7 +13,7 @@ public class HttpSpringUtils {
 	private static String appName;
 
 	// 不可用
-	private static <T> void pubHttpService(Class<T> serviceApi, T serviceImpl,
+	public static <T> void pubHttpService(Class<T> serviceApi, T serviceImpl,
 			String serviceUrl) {
 		HttpInvokerServiceExporter httpService = new HttpInvokerServiceExporter();
 		httpService.setServiceInterface(serviceApi);

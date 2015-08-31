@@ -31,7 +31,7 @@ $( function() {
 		<div class="htmleaf-content bgcolor-3">
 			<div id="gallery">
 			#foreach($tgirl in $list.imgList)
-			    <a href="$!{tgirl}"><img src="$!{tgirl}" alt="" /></a>
+			    <a href="$!{tgirl}"><img src="$!{tgirl}" alt="" />$tgirl.indexOf('.jpg')</a>
 			#end
 			</div>
 			

@@ -14,14 +14,17 @@
 	<packaging>jar</packaging>
 	<name>webutils</name>
 
-	<properties>
-	</properties>
-
 	<dependencies>
 		<dependency>
   			<groupId>com.webapp</groupId>
   			<artifactId>utils-common</artifactId>
-  			<version>1.0.0</version>
+  			<version>${utils_version}</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.webapp</groupId>
+  			<artifactId>utils-code</artifactId>
+  			<version>${utils_version}</version>
+  			<scope>test</scope>
   		</dependency>
 		<!-- <dependency>
 			<groupId>org.databene</groupId>
@@ -29,21 +32,11 @@
 			<version>2.3.4</version>
 			<optional>true</optional>
 		</dependency> -->
-		<!-- <dependency>
-			<groupId>co.paralleluniverse</groupId>
-			<artifactId>quasar-core</artifactId>
-			<version>0.6.2</version>
-		</dependency>
 		<dependency>
-		    <groupId>co.paralleluniverse</groupId>
-		    <artifactId>quasar-actors</artifactId>
-		    <version>0.6.2</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>${commons_email}</version>
 		</dependency>
-		<dependency>
-		    <groupId>co.paralleluniverse</groupId>
-		    <artifactId>quasar-galaxy</artifactId>
-		    <version>0.6.2</version>
-		</dependency> -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>fluent-hc</artifactId>
@@ -75,86 +68,14 @@
 			<version>2.9.0</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${servlet_version}</version>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd-core</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-email</artifactId>
-			<version>${commons_email}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.10</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>${commons_configuration}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-math3</artifactId>
-			<version>${commons_math3}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-pool2</artifactId>
 			<version>${commons_pool2}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>${commons_lang3}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<version>${commons_beanutils}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.11</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.11</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>${httpcomponents_version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jodd</groupId>
-			<artifactId>jodd-core</artifactId>
-		</dependency>
 	</dependencies>
-
-	<build>
-		<defaultGoal>install</defaultGoal>
-		<finalName>${project.artifactId}-${project.version}</finalName>
-		<outputDirectory>target/classes</outputDirectory>
-		<directory>${basedir}/target</directory>
-		<plugins>
-	        <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<skipTests>false</skipTests>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
-	
-
 
 </project>

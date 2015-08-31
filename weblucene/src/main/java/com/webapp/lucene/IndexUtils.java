@@ -3,9 +3,6 @@ package com.webapp.lucene;
 import java.io.IOException;
 import java.util.List;
 
-import opensource.jpinyin.PinyinFormat;
-import opensource.jpinyin.PinyinHelper;
-
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field.Store;
@@ -24,6 +21,9 @@ import org.apache.lucene.util.CharsRef;
 import org.apache.lucene.util.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.webapp.utils.jpinyin.PinyinFormat;
+import com.webapp.utils.jpinyin.PinyinHelper;
 
 public class IndexUtils {
 

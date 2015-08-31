@@ -40,113 +40,70 @@ $(function(){
 <body>
 <img id="bg" src="" />
 
-<ul id="menu">
-	<li class="tab1"><a href="#">在线工具</a></li>
-	<li class="tab2"><a href="#">轻松一刻</a></li>
-</ul>
+#macro(show_item, $item_url, $item_desc, $item_title)
+<div class="item">
+	<span class="item-icon">
+		<a class="link link--yaku" target="_blank" href="$item_url">
+			#if($item_title.length() > 3)
+			<span>$item_title</span>
+			#else
+				#foreach($word in $item_title.split(''))<span>$word</span>#end
+			#end
+		</a>
+	</span>
+	<span class="item-desc">
+		<span class="link link--kukuri" data-letters="$item_desc">$item_desc</span>
+	</span>
+	<span class="item-go">
+		<a class="" target="_blank" href="$item_url"></a>
+	</span>
+</div>
+#end
 
-<div id="tab-body">
-	<div id="tab1-body">
-		<div class="wrapper">
-			<div class="item">
-				<span class="item-icon">
-					<a class="link link--yaku" target="_blank" href="/utils/color">
-						<span>R</span><span>G</span><span>B</span>					
-					</a>
-				</span>
-				<span class="item-desc">
-					<span class="link link--kukuri" data-letters="在线RGB颜色选择器">在线RGB颜色选择器</span>
-				</span>
-				<span class="item-go">
-					<a class="" target="_blank" href="/utils/color"></a>
-				</span>
+<div id="body_back">
+	<ul id="body_menu">
+		<li class="tab1"><a href="#">在线工具</a></li>
+		<li class="tab2"><a href="#">码农工具</a></li>
+		<li class="tab3"><a href="#">轻松一刻</a></li>
+		<li class="tab4"><a href="#">特效收藏</a></li>
+	</ul>
+	<div id="body_main">
+		<div id="tab1-body">
+			<div class="wrapper">
+				#show_item('/utils/color', '在线RGB颜色选择器', 'RGB')
+				#show_item('/utils/pdf', '在线PDF阅读', 'PDF')
+				#show_item('/utils/sou', '在线搜索引擎大全', '搜')
+				#show_item('/utils/tel', '在线手机号码查询', 'TEL')
+				#show_item('/utils/ip', '在线IP地址查询', 'IP')
+				#show_item('/utils/id', '在线身份证查询', 'ID')
+				#show_item('/utils/json', '在线JSON格式化', 'JSON')
+				#show_item('/show/velocity', '在线velocity工具使用查看', 'VM')
+				#show_item('/utils/excel', '在线Excel解析', 'XLS')
+				<div class="clear"></div>
 			</div>
-			<div class="item">
-				<div class="item-icon">
-					<a class="link link--yaku" target="_blank" href="/utils/pdf">
-						<span>P</span><span>D</span><span>F</span>				
-					</a>
-				</div>
-				<span class="item-desc">
-					<span class="link link--kukuri" data-letters="在线PDF阅读">在线PDF阅读</span>
-				</span>
-				<span class="item-go">
-					<a class="" target="_blank" href="/utils/pdf"></a>
-				</span>
-			</div>
-			<div class="item">
-				<div class="item-icon">
-					<a class="link link--yaku" target="_blank" href="/utils/sou">
-						<span>搜</span>		
-					</a>
-				</div>
-				<span class="item-desc">
-					<span class="link link--kukuri" data-letters="在线搜索引擎大全">在线搜索引擎大全</span>
-				</span>
-				<span class="item-go">
-					<a class="" target="_blank" href="/utils/sou"></a>
-				</span>
-			</div>
-			<div class="item">
-				<div class="item-icon">
-					<a class="link link--yaku" target="_blank" href="/utils/tel">
-						<span>TEL</span>		
-					</a>
-				</div>
-				<span class="item-desc">
-					<span class="link link--kukuri" data-letters="在线手机号码查询">在线手机号码查询</span>
-				</span>
-				<span class="item-go">
-					<a class="" target="_blank" href="/utils/tel"></a>
-				</span>
-			</div>
-			<div class="item">
-				<div class="item-icon">
-					<a class="link link--yaku" target="_blank" href="/utils/ip">
-						<span>IP</span>		
-					</a>
-				</div>
-				<span class="item-desc">
-					<span class="link link--kukuri" data-letters="在线IP地址查询">在线IP地址查询</span>
-				</span>
-				<span class="item-go">
-					<a class="" target="_blank" href="/utils/ip"></a>
-				</span>
-			</div>
-			<div class="item">
-				<div class="item-icon">
-					<a class="link link--yaku" target="_blank" href="/utils/id">
-						<span>ID</span>		
-					</a>
-				</div>
-				<span class="item-desc">
-					<span class="link link--kukuri" data-letters="在线身份证查询">在线身份证查询</span>
-				</span>
-				<span class="item-go">
-					<a class="" target="_blank" href="/utils/id"></a>
-				</span>
-			</div>
-			<div class="clear"></div>
 		</div>
-	</div>
-	<div id="tab2-body">
-		<div class="wrapper">
-			<div class="item">
-				<div class="item-icon">
-					<a class="link link--yaku" target="_blank" href="/show/history">
-						<span>历</span><span>史</span>				
-					</a>
-				</div>
-				<span class="item-desc">
-					<span class="link link--kukuri" data-letters="历史上的今天">历史上的今天</span>
-				</span>
-				<span class="item-go">
-					<a class="" target="_blank" href="/show/history"></a>
-				</span>
+		<div id="tab2-body">
+			<div class="wrapper">
+				#show_item('/algo/index.html', '在线数据结构和算法', '算')
+				#show_item('/coser/todomvc/index.html', '在线任务列表', 'do')
+			</div>
+		</div>
+		<div id="tab3-body">
+			<div class="wrapper">
+				#show_item('/show/history', '历史上的今天', '历史')
+				#show_item('/show/death', '死亡倒计时', '死')
+			</div>
+		</div>
+		<div id="tab4-body">
+			<div class="wrapper">
+				#show_item('/cshow/sticky/index.html', '好玩的粘性靠垫', '@@')
+				#show_item('/show/input', '全屏特效', '@@')
+				#show_item('/coser/3dimages/index.html', '3D画廊', '@@')
+				#show_item('/cshow/ballpool/index.html', '重力效果', '@@')
 			</div>
 		</div>
 	</div>
-	
+
 </div>
 </body>
 </html>

@@ -6,7 +6,13 @@ $(function(){
 		}
 	});
 	$("#queryTel").click(function(){
-    	$.get("/utils/q/tel", {tel : $("#tel").val()}).done(function(val){
+		var tel = $("#tel").val();
+		var reg = /^13[0-9]{9}|15[012356789][0-9]{8}|18[0256789][0-9]{8}|147[0-9]{8}$/;
+		if(!reg.test(tel)){
+			alert("请输入正确的手机号");
+			return false;
+		}
+    	$.get("/utils/q/tel", {tel : tel}).done(function(val){
     		var data = $.parseJSON(val);
     		var div = $("#telDiv");
     		div.show();
@@ -20,7 +26,13 @@ $(function(){
     	return false;
 	});
 	$("#queryIP").click(function(){
-    	$.get("/utils/q/ip", {ip : $("#ip").val()}).done(function(val){
+		var ip = $("#ip").val();
+		var reg = /^(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)$/;
+		if(!reg.test(ip)){
+			alert("请输入正确的IP地址");
+			return false;
+		}
+    	$.get("/utils/q/ip", {ip : ip}).done(function(val){
     		var data = $.parseJSON(val);
     		var div = $("#ipDiv");
     		div.show();
@@ -48,7 +60,13 @@ $(function(){
 	});
 	
 	$("#queryID").click(function(){
-    	$.get("/utils/q/id", {id : $("#ID").val()}).done(function(val){
+		var id = $("#ID").val();
+		var reg = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+		if(!reg.test(id)){
+			alert("请输入正确的身份证");
+			return false;
+		}
+    	$.get("/utils/q/id", {id : id}).done(function(val){
     		var data = $.parseJSON(val);
     		var div = $("#idDiv");
     		div.show();

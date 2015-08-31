@@ -14,12 +14,14 @@
 	<div class="top"></div>
 	<div class="bank" id="show_img">
 		#foreach($tgirl in $list.contentlist)
-		<a rel="$!{tgirl.avatarUrl}" title="$!{tgirl.realName}" href="/show/girl/list?id=$!{tgirl.userId}&page=$!{page}" target="_blank">
-			城市:$!{tgirl.city}
-			名字:$!{tgirl.realName}
-			身高:$!{tgirl.height}
-			体重:$!{tgirl.weight}
-		</a>
+			#if($tgirl.avatarUrl.endsWith('.jpg'))
+			<a rel="$!{tgirl.avatarUrl}" title="$!{tgirl.realName}" href="/show/girl/list?id=$!{tgirl.userId}&page=$!{page}" target="_blank">
+				城市:$!{tgirl.city}
+				名字:$!{tgirl.realName}
+				身高:$!{tgirl.height}
+				体重:$!{tgirl.weight}
+			</a>
+			#end
 		#end
 	</div>
 	<div class="text">

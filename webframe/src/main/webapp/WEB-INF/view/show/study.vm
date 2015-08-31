@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>$!{title}</title>
+#parse("/common/head_jquery.vm")
+<script type="text/javascript">
+$(function(){
+	$(".view").click(function(e){
+		window.open($(this).attr("href"));
+		return false;
+	});
+});
+</script>
+<style>
+table{
+	margin:40px auto;
+	border-collapse: collapse;
+}
+table td{
+	padding: 5px 20px;
+	border: 1px solid #D5AC80;
+	text-align: left;
+}
+</style>
+</head>
+<body>
+
+<div id="main">
+	<table>
+	#foreach($path in $paths)
+		<tr>
+			<td>$velocityCount</td>
+			<td>
+				#if($path.key.endsWith('.pdf'))
+				<a class="view" href="//static.seeidea.cn/$!{path.val}" target="_blank">$path.key</a><br/>
+				#else
+				<a href="/show/study?path=$!{path.val}">$path.key</a><br/>
+				#end
+			</td>
+		</tr>
+	#end
+	</table>
+</div>
+</body>
+</html>

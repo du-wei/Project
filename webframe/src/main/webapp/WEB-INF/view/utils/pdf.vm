@@ -9,7 +9,7 @@
 <meta name="keywords" content="pdf，在线pdf，在线pdf浏览，pdf阅读器，在线pdf阅读器">
 <meta name="description" content="本页提供在线pdf阅读" />
 
-
+<script>var DEFAULT_URL = '$!{path}';</script>
 <link rel="stylesheet" href="/moduel/pdf/viewer.css"/>
 <script src="/moduel/pdf/compatibility.js"></script>
 

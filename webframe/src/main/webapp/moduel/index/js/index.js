@@ -17,7 +17,7 @@ $(function(){
                'hinge','rollOut',
                'zoomOut','zoomOutDown','zoomOutLeft','zoomOutRight','zoomOutUp'];
 	
-	var menuItems = $('#menu li');
+	var menuItems = $('#body_menu li, #show_menu li');
 	var active = "active";
 	menuItems.on("click", function(event) {
 		menuItems.removeClass(active);
@@ -26,7 +26,7 @@ $(function(){
 		var tab = $this.attr("class");
 		var main = tab + "-body";
 		
-		var $tabbody = $("#tab-body");
+		var $tabbody = $("#body_main");
 		$tabbody.children("div").hide();
 		//$tabbody.css({"background": $this.data("bg-color")});
 		$this.addClass(active);

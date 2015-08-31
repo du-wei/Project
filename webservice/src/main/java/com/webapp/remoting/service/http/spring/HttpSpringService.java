@@ -4,7 +4,7 @@ public class HttpSpringService {
 
 	public static void main(String[] args) {
 		String url = "httpService";
-		// HttpSpringUtils.pubHttpService(IHttp.class, new HttpImpl(), url);
+		HttpSpringUtils.pubHttpService(IHttp.class, new HttpImpl(), url);
 	}
 
 }

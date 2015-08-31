@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.webapp</groupId>
+		<artifactId>utils-base</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../utils-base/pom.xml</relativePath>
+	</parent>
+	<artifactId>utils-code</artifactId>
+	<packaging>jar</packaging>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker_version}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql_version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.rapid-framework</groupId>
+			<artifactId>rapid-core</artifactId>
+			<version>${rapid_core}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.rapid-framework</groupId>
+			<artifactId>rapid-generator</artifactId>
+			<version>${rapid_version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.rapid-framework</groupId>
+			<artifactId>rapid-generator-ext</artifactId>
+			<version>${rapid_version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.rapid-framework</groupId>
+			<artifactId>rapid-generator-template</artifactId>
+			<version>${rapid_version}</version>
+		</dependency>
+	</dependencies>
+	
+</project>
