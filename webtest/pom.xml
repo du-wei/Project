@@ -16,6 +16,17 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.multithreadedtc</groupId>
+			<artifactId>multithreadedtc</artifactId>
+			<version>1.01</version>
+		</dependency>
+				
+		<dependency>
   			<groupId>com.webapp</groupId>
   			<artifactId>webutils</artifactId>
   			<version>${web_version}</version>

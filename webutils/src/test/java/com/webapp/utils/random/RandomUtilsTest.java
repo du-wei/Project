@@ -2,6 +2,9 @@ package com.webapp.utils.random;
 
 import static org.junit.Assert.assertThat;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
@@ -11,6 +14,12 @@ public class RandomUtilsTest {
 
 	@Test
     public void testName() throws Exception {
+		
+		System.out.println("xx");
+		String[] strArray = RandomUtils.strArray(10);
+		System.out.println("xxe");
+		Arrays.stream(strArray).forEach(System.out::println);
+		
 	    int result = RandomUtils.nextInt();
 	    System.out.printf(format ,"", result, "nextInt()");
 

@@ -7,11 +7,10 @@
 	<parent>
 		<groupId>com.webapp</groupId>
 		<artifactId>webbase</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 		<relativePath>../../webbase/pom.xml</relativePath>
 	</parent>
 	<artifactId>utils-base</artifactId>
-	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	
 	<modules>
@@ -29,6 +28,15 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-source-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk_utils}</source>
+					<target>${jdk_utils}</target>
+					<showWarnings>true</showWarnings>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

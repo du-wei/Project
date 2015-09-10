@@ -7,9 +7,10 @@
 	<parent>
 		<groupId>com.webapp</groupId>
 		<artifactId>webbase</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 		<relativePath>../webbase/pom.xml</relativePath>
 	</parent>
+	<version>0.0.1-SNAPSHOT</version>
 	<artifactId>webcommon</artifactId>
 	<packaging>pom</packaging>
 	<name>webcommon</name>
