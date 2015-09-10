@@ -6,13 +6,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.webapp</groupId>
 	<artifactId>webbase</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	
 	<properties>
 		<encoding>UTF-8</encoding>
 		<jdk_version>1.8</jdk_version>
-		<jdk_utils>1.7</jdk_utils>
+		<jdk_utils>1.8</jdk_utils>
 		<utils_version>1.0.0</utils_version>
 		<web_version>0.0.1-SNAPSHOT</web_version>
 		
@@ -51,11 +51,6 @@
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>${log4j_version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j_version}</version>
-		</dependency> -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>

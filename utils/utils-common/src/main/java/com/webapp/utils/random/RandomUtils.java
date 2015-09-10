@@ -7,10 +7,8 @@ import java.util.LinkedList;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListMap;
-import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -106,11 +104,7 @@ public final class RandomUtils {
 	}
 
 	public static String[] strArray(int size) {
-		String[] result = new String[size];
-		for (int i = 0; i < size; i++) {
-			result[i] = str(nextInt(5, 10));
-		}
-		return result;
+		return Stream.generate(()->str(nextInt(5, 10))).limit(size).toArray(String[]::new);
 	}
 
 	public static int[] intArray(int size, int limit) {
@@ -177,14 +171,6 @@ public final class RandomUtils {
 		return set;
 	}
 
-	public static ConcurrentSkipListSet<String> curSkipListSet(int size) {
-		ConcurrentSkipListSet<String> set = new ConcurrentSkipListSet<>();
-		for (int i = 0; i < size; i++) {
-			set.add(str(nextInt(5, 10)));
-		}
-		return set;
-	}
-
 	public static SortedMap<Integer, String> treeMap(int size) {
 		SortedMap<Integer, String> map = new TreeMap<>();
 		for (int i = 0; i < size; i++) {
@@ -193,25 +179,8 @@ public final class RandomUtils {
 		return map;
 	}
 
-	public static ConcurrentSkipListMap<Integer, String> curSkipListMap(
-			int size) {
-		ConcurrentSkipListMap<Integer, String> map = new ConcurrentSkipListMap<>();
-		for (int i = 0; i < size; i++) {
-			map.put(size - i, str(nextInt(5, 10)));
-		}
-		return map;
-	}
-
 	public static HashMap<Integer, String> hashMap(int size) {
 		HashMap<Integer, String> map = new HashMap<>();
-		for (int i = 0; i < size; i++) {
-			map.put(i, str(nextInt(5, 10)));
-		}
-		return map;
-	}
-
-	public static ConcurrentHashMap<Integer, String> curHashMap(int size) {
-		ConcurrentHashMap<Integer, String> map = new ConcurrentHashMap<>();
 		for (int i = 0; i < size; i++) {
 			map.put(i, str(nextInt(5, 10)));
 		}

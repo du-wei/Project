@@ -92,11 +92,11 @@ public class ThreadPoolUtils {
 		executor.setThreadFactory(Executors.defaultThreadFactory());
 
 		/*
-		 * 被拒绝的任务处理策略 1.AbortPolicy -> 默认处理程序遭到拒绝将抛出运行时
-		 * RejectedExecutionException。 2.CallerRunsPolicy -> 线程调用运行该任务的
-		 * execute本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。 3.DiscardPolicy ->
-		 * 不能执行的任务将被删除。 4.DiscardOldestPolicy ->
-		 * 如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）。
+		 * 被拒绝的任务处理策略 
+		 * 1.AbortPolicy -> 默认处理程序遭到拒绝将抛出运行时RejectedExecutionException。 
+		 * 2.CallerRunsPolicy -> 线程调用运行该任务的execute本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。
+		 * 3.DiscardPolicy -> 不能执行的任务将被删除。 
+		 * 4.DiscardOldestPolicy -> 如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）。
 		 */
 		executor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());
 		return executor;
