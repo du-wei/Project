@@ -29,6 +29,9 @@
 		<module>../webnosql</module>
 		<module>../webtest</module>
 		<module>../webtemplate</module>
+		<module>../webspider</module>
+		<module>../webframe</module>
+		<module>../webml</module>
 	</modules>
 
 	<properties>
@@ -51,7 +54,7 @@
 		<quartz_version>2.2.1</quartz_version>
 		<activemq_verion>5.10.0</activemq_verion>
 		<activemq_core_verion>5.7.0</activemq_core_verion>
-		
+
 		<cglib_version>3.1</cglib_version>
 		<struts_version>2.3.24</struts_version>
 		<hibernate_version>4.3.6.Final</hibernate_version>
