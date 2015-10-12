@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+		http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:application*Service.xml
+		</param-value>
+	</context-param>
+	<!-- 
+	<servlet>
+		<servlet-name>Spring_Hessian</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Spring_Hessian</servlet-name>
+		<url-pattern>/springHessian/*</url-pattern>
+	</servlet-mapping> 
+	 -->
+	 
+	<!-- Hessian Server配置-->
+	<servlet>
+		<servlet-name>Hessian</servlet-name>
+		<servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>
+		<init-param>
+			<param-name>home-class</param-name>
+			<param-value>com.webapp.remoting.service.hessian.HessianImpl</param-value>
+		</init-param>
+		<init-param>
+			<param-name>home-api</param-name>
+			<param-value>com.webapp.remoting.service.hessian.IHessian</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Hessian</servlet-name>
+		<url-pattern>/hessian</url-pattern>
+	</servlet-mapping>
+	 
+	<!-- Http Spring Server配置 
+	<servlet>
+		<servlet-name>httpServiceReq</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>httpServiceReq</servlet-name>
+		<url-pattern>/https/*</url-pattern>
+	</servlet-mapping>-->
+	
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!--
+	<servlet>
+		<servlet-name>cxf</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cxf</servlet-name>
+		<url-pattern>/ws/*</url-pattern>
+	</servlet-mapping>
+	-->
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+
+</web-app>

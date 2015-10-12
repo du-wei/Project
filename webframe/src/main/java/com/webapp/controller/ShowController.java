@@ -57,7 +57,7 @@ public class ShowController {
 	public ModelAndView study(ModelAndView mav, HttpServletRequest req){
 		mav.setViewName(VIEW_PREFIX + "/study");
 		
-		String base = "/apps/pdf/";
+		String base = "/data/pdf/";
 		if(System.getProperties().getProperty("os.name").startsWith("Win")){
 			base = "V:\\360cloud\\GoogleAdmin\\";
 		}

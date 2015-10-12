@@ -26,8 +26,8 @@ public class Domains {
 
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.firefox.bin", "D:\\Program\\Mozilla Firefox\\firefox.exe");
-//		System.setProperty("webdriver.firefox.bin", "C:\\Programs\\Mozilla Firefox\\firefox.exe");
+//		System.setProperty("webdriver.firefox.bin", "D:\\Program\\Mozilla Firefox\\firefox.exe");
+		System.setProperty("webdriver.firefox.bin", "C:\\Programs\\Mozilla Firefox\\firefox.exe");
 		driver = new FirefoxDriver();
 		baseUrl = "http://www.chinaz.com/";
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -37,11 +37,10 @@ public class Domains {
 	public void testHee() throws Exception {
 		String[] dates = new String[]{
 //			"2015-08-01",
-				"2015-08-14",
-				"2015-08-15",
-				"2015-08-16",
-			"2015-08-17",
-			"2015-08-18"
+			"2015-09-17",
+			"2015-09-18",
+			"2015-09-19",
+			"2015-09-20"
 		};
 		String[] key = new String[]{"top", "5"};
 		boolean flag = false;
