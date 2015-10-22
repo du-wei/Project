@@ -28,10 +28,10 @@
 		<module>../webutils</module>
 		<module>../webnosql</module>
 		<module>../webtest</module>
-		<module>../webtemplate</module>
 		<module>../webspider</module>
 		<module>../webframe</module>
 		<module>../webml</module>
+		<module>../webspark</module>
 	</modules>
 
 	<properties>

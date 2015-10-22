@@ -5,8 +5,8 @@ import org.apache.spark.api.java.JavaSparkContext;
 
 public class SparkUtils {
 
-	public static void ifArgs(String[] args, String tips) {
-		if (args.length < 1) {
+	public static void ifArgs(String[] args, int num, String tips) {
+		if (args.length < num) {
 			System.err.println(tips);
 			System.exit(1);
 		}

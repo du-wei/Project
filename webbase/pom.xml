@@ -10,7 +10,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>../webcommon</module>
+		<!-- <module>../webcommon</module> -->
 		<module>../utils/utils-base</module>
 	</modules>
 

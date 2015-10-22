@@ -25,9 +25,7 @@ import com.webapp.tools.ShowApiUtils;
 @Controller
 @RequestMapping("/show")
 public class ShowController {
-	public static void main(String[] args) {
-	    System.out.println(System.getProperties().getProperty("os.name"));
-    }
+	
 	//view
 	private static final String V = "";
 	//query

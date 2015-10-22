@@ -7,8 +7,7 @@ import com.webapp.utils.jpinyin.ChineseHelper;
 import com.webapp.utils.jpinyin.PinyinHelper;
 
 public class MyOpenUtils {
-	public static void main(String[] args) {
-    }
+	
 	public static String queryChinese(String data, String type) {
 		// 0  汉语->拼音 
 		// 1 简体->繁体

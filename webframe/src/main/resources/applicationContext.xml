@@ -15,7 +15,7 @@
 
 	<!-- 到指定的包内扫描组件 -->
 	<context:component-scan base-package="com.webapp" />
-	
+
 	<mvc:interceptors>
 		<bean class="com.webapp.filter.CommonFilter" />
 	</mvc:interceptors>
@@ -30,27 +30,45 @@
         <property name="ignoreResourceNotFound" value="true" />
         <property name="fileEncoding" value="utf-8"/>
     </bean>
-    
-    <!-- velocity环境配置  视图解析器-->  
-    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">  
-        <property name="configLocation" value="classpath:velocity.properties"/>  
-        <property name="resourceLoaderPath" value="/WEB-INF/view/"/>  
-    </bean>  
-    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">  
-        <property name="cache" value="false"/>  
-        <property name="prefix" value=""/>  
-        <property name="suffix" value=".vm"/>  
-        <property name="contentType" value="text/html;charset=UTF-8" />  
-        <!-- <property name="exposeRequestAttributes" value="true"/>
-        <property name="exposeSessionAttributes" value="true"/>
-        <property name="dateToolAttribute" value="dateTool"/> -->
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<property name="maxIdle" value="30" />
+		<property name="maxWaitMillis" value="2000" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="validationQuery" value="select 1" />
+		<property name="defaultAutoCommit" value="true" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.webapp" />
+	</bean>
+
+    <!-- velocity环境配置  视图解析器-->
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="configLocation" value="classpath:velocity.properties"/>
+        <property name="resourceLoaderPath" value="/WEB-INF/view/"/>
+    </bean>
+    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="cache" value="false"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".vm"/>
+        <property name="contentType" value="text/html;charset=UTF-8" />
         <property name="viewClass" value="com.webapp.velocity.VelocityToolboxViewNew"/>
         <property name="toolboxConfigLocation" value="/WEB-INF/classes/tools.xml"/>
     </bean>
-    
+
     <!-- 开启mvc annotation注解 -->
 	<mvc:annotation-driven>
-		<mvc:message-converters>  
+		<mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<constructor-arg value="utf-8" index="0" />
 				<property name="supportedMediaTypes">
@@ -66,12 +84,12 @@
 	</mvc:annotation-driven>
     <mvc:default-servlet-handler/>
    <!--  <mvc:view-controller path="/mask" view-name="/mask"/> -->
-    
+
     <mvc:resources mapping="/js/**" location="/js/" cache-period="31556926"/>
     <mvc:resources mapping="/css/**" location="/css/" cache-period="31556926"/>
     <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>
     <mvc:resources mapping="/moduel/**" location="/moduel/" cache-period="31556926"/>
-    
+
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="maxUploadSize" value="1024000" />

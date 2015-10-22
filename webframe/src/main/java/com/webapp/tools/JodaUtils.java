@@ -12,10 +12,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 public class JodaUtils {
-	public static void main(String[] args) {
-	    JSONObject death = death(new Date(), 20);
-	    System.out.println(JSON.toJSONString(death, true));
-    }
+	
 	public static JSONObject death(Date date, int age) {
 		JSONObject result = new JSONObject();
 		

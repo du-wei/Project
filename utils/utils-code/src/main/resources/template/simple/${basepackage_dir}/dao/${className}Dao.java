@@ -14,6 +14,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.webapp.model.Linux;
+
 /**
  * @description: The automatically generated ${className}Dao
  * @Package  ${basepackage}.dao
@@ -35,25 +37,28 @@ public interface ${className}Dao {
 	@Select("select count(1) from ${table.sqlName}")
 	public Integer count();
 	
+	@Select("select " + selCols + " from ${table.sqlName}")
+	public List<${className}> getAll();
+	
 	@Select("select " + selCols + " from ${table.sqlName} where <@pkwhere/>")
-	public ${className} select(<@pkparam/>);
+	public ${className} getById(<@pkparam/>);
 	
 	@Select("select " + selCols + " from ${table.sqlName} where <@mapperEl 'key'/>=<@mapperEl 'val'/>")
-	public List<${className}> select(@Param("key")Enum${className} key, @Param("val")Object val);
+	public List<${className}> getByKV(@Param("key")Enum${className} key, @Param("val")Object val);
 	
 	@Update("update ${table.sqlName} " + updCols + " where <@pkwhere/>")
-	public boolean update(${className} ${classNameLower});
+	public boolean updById(${className} ${classNameLower});
 	
 	@Insert("insert into ${table.sqlName} (" + insCols + ") values(" + insVals + ")")
-    public Integer insert(${className} ${classNameLower});
+    public Integer add(${className} ${classNameLower});
 	
 	@Insert("<script>insert into ${table.sqlName} (" + insCols + ") values "
             + "<foreach item='it' collection='list' separator=','>(" + insMulVals + ")</foreach></script>")
-	public boolean insert(@Param("list")List<${className}> list);
+	public boolean adds(@Param("list")List<${className}> list);
 	
 	@Delete("delete from ${table.sqlName} where <@pkwhere/>")
-    public boolean delete(<@pkparam/>);
+    public boolean delById(<@pkparam/>);
 	
 	@Delete("delete from ${table.sqlName} where <@mapperEl 'key'/>=<@mapperEl 'val'/>")
-    public boolean delete(@Param("key")Enum${className} key, @Param("val")Object val);
+    public boolean delByKV(@Param("key")Enum${className} key, @Param("val")Object val);
 }

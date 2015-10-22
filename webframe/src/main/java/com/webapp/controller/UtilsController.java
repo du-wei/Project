@@ -31,7 +31,7 @@ import com.webapp.utils.date.DateTools;
 import com.webapp.utils.poi.ExcelUtils;
 
 @Controller
-@RequestMapping(value={"", "/utils", "/tools"})
+@RequestMapping(value={"/util", "/utils", "tool", "/tools"})
 public class UtilsController {
 	
 	//view
