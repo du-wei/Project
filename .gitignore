@@ -8,3 +8,4 @@ mem.*
 .settings
 target/*
 logs/*
+.idea/*
