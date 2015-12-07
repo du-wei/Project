@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../utils/utils-code" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../utils/utils-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../utils/utils-poi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../utils/utils-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webactivemq" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webapps" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webclient" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webframe" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webhadoop" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webnosql" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webquartz" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webservice" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webspider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webspring" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webstruts" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webtest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../webutils" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

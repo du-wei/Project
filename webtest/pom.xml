@@ -25,7 +25,7 @@
 			<artifactId>multithreadedtc</artifactId>
 			<version>1.01</version>
 		</dependency>
-				
+
 		<dependency>
   			<groupId>com.webapp</groupId>
   			<artifactId>webutils</artifactId>
@@ -34,7 +34,6 @@
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
-			<version>${hamcrest_version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

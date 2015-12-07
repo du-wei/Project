@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @WebFilter
 public class CommonFilter implements HandlerInterceptor  {
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp,
 			Object handler) throws Exception {
@@ -19,7 +19,7 @@ public class CommonFilter implements HandlerInterceptor  {
 
 	@Override
 	public void postHandle(HttpServletRequest req, HttpServletResponse resp,
-			Object handler, ModelAndView modelAndView) throws Exception {
+			Object handler, ModelAndView mav) throws Exception {
 //		if(!CookieUtils.hasCookie(req, "token") && !req.getServletPath().matches("js|css|png|jpg|gif")){
 //			Cookie cookie = new Cookie("token", DigestUtils.sha256Hex("token"));
 //			resp.addCookie(cookie);
@@ -33,5 +33,5 @@ public class CommonFilter implements HandlerInterceptor  {
 			throws Exception {
 //		System.out.println(req.getServletPath() + " -> afterCompletion");
 	}
-	
+
 }

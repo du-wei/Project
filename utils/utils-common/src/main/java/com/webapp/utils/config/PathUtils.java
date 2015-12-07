@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 public class PathUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(PathUtils.class);
-	
+
 	public static String getCurPath(Class<?> clz) {
 		return encode(clz.getResource("")).toString();
 	}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../utils/utils-base/utils-base.iml" filepath="$PROJECT_DIR$/../utils/utils-base/utils-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../utils/utils-code/utils-code.iml" filepath="$PROJECT_DIR$/../utils/utils-code/utils-code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../utils/utils-common/utils-common.iml" filepath="$PROJECT_DIR$/../utils/utils-common/utils-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../utils/utils-poi/utils-poi.iml" filepath="$PROJECT_DIR$/../utils/utils-poi/utils-poi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../utils/utils-web/utils-web.iml" filepath="$PROJECT_DIR$/../utils/utils-web/utils-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webactivemq/webactivemq.iml" filepath="$PROJECT_DIR$/../webactivemq/webactivemq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webapps/webapps.iml" filepath="$PROJECT_DIR$/../webapps/webapps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webbase.iml" filepath="$PROJECT_DIR$/webbase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webclient/webclient.iml" filepath="$PROJECT_DIR$/../webclient/webclient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webcommon/webcommon.iml" filepath="$PROJECT_DIR$/../webcommon/webcommon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webframe/webframe.iml" filepath="$PROJECT_DIR$/../webframe/webframe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webhadoop/webhadoop.iml" filepath="$PROJECT_DIR$/../webhadoop/webhadoop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webml/webml.iml" filepath="$PROJECT_DIR$/../webml/webml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webnosql/webnosql.iml" filepath="$PROJECT_DIR$/../webnosql/webnosql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webquartz/webquartz.iml" filepath="$PROJECT_DIR$/../webquartz/webquartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webservice/webservice.iml" filepath="$PROJECT_DIR$/../webservice/webservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webspark/webspark.iml" filepath="$PROJECT_DIR$/../webspark/webspark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webspider/webspider.iml" filepath="$PROJECT_DIR$/../webspider/webspider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webspring/webspring.iml" filepath="$PROJECT_DIR$/../webspring/webspring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webstruts/webstruts.iml" filepath="$PROJECT_DIR$/../webstruts/webstruts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webtest/webtest.iml" filepath="$PROJECT_DIR$/../webtest/webtest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../webutils/webutils.iml" filepath="$PROJECT_DIR$/../webutils/webutils.iml" />
+    </modules>
+  </component>
+</project>

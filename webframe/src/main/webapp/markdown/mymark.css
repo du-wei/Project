@@ -1,0 +1,85 @@
+body{
+  padding:0;
+  margin:0;
+  overflow-y: hidden;
+}
+.mymark-left, .mymark-right{
+    width:50%;
+    height:100%;
+}
+.mymark-right{
+    width:50%;
+    margin-left:50%;
+}
+.mymark-preview{
+    height:100%;
+    width:100%;
+    border:none;
+}
+.mymark-toolbar, .mymark-donate-detail{
+    position:absolute;
+    top:0;
+    right:5px;
+    background:rgba(0,0,0,0.8);
+    color:#FFF;
+    padding:5px;
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px;
+}
+.mymark-toolbar td{
+    text-align:right;
+    padding:2px 0;
+}
+.mymark-toolbar td a{
+    color:#FFF;
+    font-size:0.8em;
+}
+.mymark-toolbar td + td{
+    text-align:left;
+}
+.mymark-topbar{
+    position:absolute;
+    margin:0px;
+    top:0;
+    right:5px;
+    height:32px;
+    padding:5px;
+}
+.mymark-topbar li{
+  width:32px;
+  height:32px;
+  display:inline-block;
+  *zoom:1;
+  *display:inline;
+}
+.mymark-config{
+    background:url('./settings.png') no-repeat;
+}
+.mymark-donate{
+    background:url('./donate.png') no-repeat;
+}
+.mymark-session{
+    background:url('./session.png') no-repeat;
+}
+.mymark-donate-detail td{
+    text-align:right;
+}
+.mymark-spliter{
+   width:3px;
+   position:absolute;
+   left:50%;
+   height:100%;
+   z-index:10000;
+   border:2px dashed #CCC;
+   cursor:ew-resize;
+}
+.mymark-docanme{
+   position:absolute;
+   padding:5px;
+   left:50%;
+   background:rgba(0,0,0,0.8);
+   color:#fff;
+   border-bottom-right-radius:5px;
+   border-bottom-left-radius:5px;
+   z-index:99999;
+}

@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
-	
+
 	@RequestMapping(value={"/", "/index"})
 	public ModelAndView admin(ModelAndView mav){
 		mav.setViewName("/index");
@@ -17,5 +17,5 @@ public class MainController {
 		mav.setViewName("/index_test");
 		return mav;
 	}
-	
+
 }

@@ -20,17 +20,17 @@
 $(function(){
 	$.getScript("/moduel/index/js/prefixfree.min.js");
 	$.getScript("/moduel/index/js/index.js");
-	
+
 	$.getScript("/moduel/index/js/rainyday.js");
 	$.getScript("/moduel/index/js/raining.js");
-	
+
 	/**
 	$.getScript("/moduel/index/js/buddycloud.js").done(function(){
 		$("#tab-body > div").buddycloud();
 	});
-	
+
 	$(".item").rgb();
-	
+
 	$(".item-icon").rgb(true);
 	**/
 });
@@ -38,7 +38,7 @@ $(function(){
 </head>
 
 <body>
-<img id="bg" src="" />
+<img id="bg" src=""/>
 
 #macro(show_item, $item_url, $item_desc, $item_title)
 <div class="item">
@@ -105,5 +105,6 @@ $(function(){
 	</div>
 
 </div>
+
 </body>
 </html>

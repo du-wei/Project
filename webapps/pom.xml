@@ -20,8 +20,9 @@
 		<dependency>
 			<groupId>org.jodd</groupId>
 			<artifactId>jodd-core</artifactId>
+			<version>${jodd_version}</version>
 		</dependency>
-		
+
 		<!--javax.servlet-->
 		<dependency>
 			<groupId>javax.servlet</groupId>

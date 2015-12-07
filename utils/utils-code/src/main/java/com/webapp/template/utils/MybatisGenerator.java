@@ -1,6 +1,5 @@
 package com.webapp.template.utils;
 
-import java.io.FileInputStream;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +11,7 @@ import cn.org.rapid_framework.generator.GeneratorFacade;
 import cn.org.rapid_framework.generator.GeneratorProperties;
 
 public class MybatisGenerator {
-	
+
 	public enum TemplatType {
 		simple("classpath:/template/simple"),
 		View("classpath:/template/view");
@@ -25,35 +24,35 @@ public class MybatisGenerator {
 		}
 
 	}
-	
+
 	public static void viewProp(String jdbcCfg) {
 		setCfg(jdbcCfg);
 		Properties props = GeneratorProperties.getProperties();
-		
+
 		TreeMap<String, String> map = new TreeMap<String, String>();
 		Enumeration<Object> keys = props.keys();
 		while(keys.hasMoreElements()){
 			Object next = keys.nextElement();
 			map.put(next.toString(), props.getProperty(next.toString()));
 		}
-		
+
 		Iterator<String> iterator = map.keySet().iterator();
 		while(iterator.hasNext()){
 			String next = iterator.next();
 			System.out.println(next + " --> " + map.get(next));
 		}
-		
+
 	}
-	
-	
+
+
 	public static void buildByTable(String jdbcCfg, String table) {
 		buildByTable(jdbcCfg, null, table);
     }
-	
+
 	public static void buildByTable(String jdbcCfg, List<String> tables) {
 		buildByTable(jdbcCfg, null, tables);
     }
-	
+
 	public static void buildByTable(String jdbcCfg, String basePkg, List<String> tables) {
 		setCfg(jdbcCfg);
 		if(basePkg != null) GeneratorProperties.setProperty("basepackage", basePkg);
@@ -62,7 +61,7 @@ public class MybatisGenerator {
 
 		GeneratorFacade gf = new GeneratorFacade();
 		gf.getGenerator().addTemplateRootDir(TemplatType.simple.getTemplate());
-		
+
 		try {
 			gf.deleteOutRootDir();
 			gf.generateByTable(tables.toArray(new String[]{}));
@@ -70,7 +69,7 @@ public class MybatisGenerator {
 	        e.printStackTrace();
         }
     }
-	
+
 	public static void buildByTable(String jdbcCfg, String basePkg, String table) {
 		setCfg(jdbcCfg);
 		if(basePkg != null) GeneratorProperties.setProperty("basepackage", basePkg);
@@ -79,7 +78,7 @@ public class MybatisGenerator {
 
 		GeneratorFacade gf = new GeneratorFacade();
 		gf.getGenerator().addTemplateRootDir(TemplatType.simple.getTemplate());
-		
+
 		try {
 			gf.deleteOutRootDir();
 			gf.generateByTable(table);
@@ -87,11 +86,11 @@ public class MybatisGenerator {
 	        e.printStackTrace();
         }
     }
-	
+
 	public static void buildAll(String jdbcCfg) {
 		buildAll(jdbcCfg, null);
     }
-	
+
 	public static void buildAll(String jdbcCfg, String basePkg) {
 		setCfg(jdbcCfg);
 		if(basePkg != null) GeneratorProperties.setProperty("basepackage", basePkg);
@@ -107,18 +106,17 @@ public class MybatisGenerator {
 	        e.printStackTrace();
         }
     }
-	
+
 	private static void setCfg(String jdbcCfg){
 		GeneratorProperties.setProperty("outRoot", System.getProperty("user.dir") + "/codes/");
-		String path = MybatisGenerator.class.getResource("/").getPath();
-		
+
 		Properties jdbc = new Properties();
 		try {
-	        jdbc.load(new FileInputStream(path + "/" + jdbcCfg));
+	        jdbc.load(MybatisGenerator.class.getResourceAsStream("/" + jdbcCfg));
         } catch (Exception e) {
 	        e.printStackTrace();
         }
-		
+
 		if(jdbc.containsKey("jdbc_url")){
 			GeneratorProperties.setProperty("jdbc_url", jdbc.getProperty("jdbc_url"));
 		}else if (jdbc.containsKey("url")) {
@@ -126,7 +124,7 @@ public class MybatisGenerator {
 		}else {
 			System.err.println("Must contain jdbc_url or url configuration");
 		}
-		
+
 		if(jdbc.containsKey("jdbc_driver")){
 			GeneratorProperties.setProperty("jdbc_driver", jdbc.getProperty("jdbc_driver"));
 		}else if (jdbc.containsKey("driver")) {
@@ -134,7 +132,7 @@ public class MybatisGenerator {
 		}else {
 			System.err.println("Must contain jdbc_driver or driver configuration");
 		}
-		
+
 		if(jdbc.containsKey("jdbc_username")){
 			GeneratorProperties.setProperty("jdbc_username", jdbc.getProperty("jdbc_username"));
 		}else if (jdbc.containsKey("username")) {

@@ -12,8 +12,30 @@
 	</parent>
 	<artifactId>webframe</artifactId>
 	<packaging>war</packaging>
-	
+
 	<dependencies>
+		<!--
+		<dependency>
+			<groupId>org.python</groupId>
+			<artifactId>jython-standalone</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.pegdown</groupId>
+			<artifactId>pegdown</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.parboiled</groupId>
+			<artifactId>parboiled_2.11</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		-->
+		<dependency>
+			<groupId>com.github.rjeschke</groupId>
+			<artifactId>txtmark</artifactId>
+			<version>0.13</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -134,7 +156,7 @@
 			<version>${mybatis_spring}</version>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<finalName>web</finalName>
 		<plugins>
@@ -142,15 +164,16 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
+					<encoding>${encoding}</encoding>
 					<warSourceExcludes>/moduel/**/*.js,/moduel/**/*.css</warSourceExcludes>
 					<webResources>
-						<resource>  
-	                        <directory>src/main/webapp</directory>  
-	                        <includes>  
-	                            <include>**/*.vm</include>  
-	                        </includes>  
-	                        <filtering>true</filtering>  
-	                    </resource>  
+						<resource>
+	                        <directory>src/main/webapp</directory>
+	                        <includes>
+	                            <include>**/*.vm</include>
+	                        </includes>
+	                        <filtering>true</filtering>
+	                    </resource>
 					</webResources>
 				</configuration>
 			</plugin>
@@ -158,14 +181,14 @@
 	          <groupId>net.alchim31.maven</groupId>
 	          <artifactId>yuicompressor-maven-plugin</artifactId>
 	          <version>1.5.1</version>
-	          <executions>  
-	            <execution>  
+	          <executions>
+	            <execution>
 	            	<phase>prepare-package</phase>
-                  <goals>  
-                  	<goal>compress</goal>  
-                  </goals>  
-	            </execution>  
-		      </executions> 
+                  <goals>
+                  	<goal>compress</goal>
+                  </goals>
+	            </execution>
+		      </executions>
 	          <configuration>
 	            <!-- 读取js,css文件采用UTF-8编码 -->
 	            <encoding>UTF-8</encoding>
@@ -179,7 +202,7 @@
 	            <preProcessAggregates>true</preProcessAggregates>
 	            <!-- 压缩后保存文件后缀 -->
 	            <!-- <suffix>.min</suffix> -->
-	            <nosuffix>true</nosuffix>  
+	            <nosuffix>true</nosuffix>
 	            <!-- 源目录，即需压缩的根目录 -->
 	            <sourceDirectory>${basedir}/moduel,${basedir}/WEB-INF/view</sourceDirectory>
 	            <!-- 压缩js和css文件 -->
@@ -196,10 +219,11 @@
 	              <exclude>moduel/**/pdf.js</exclude>
 	              <exclude>moduel/**/pdf.worker.js</exclude>
 	              <exclude>moduel/**/viewer.js</exclude>
+	              <exclude>markdown/all.js</exclude>
 	            </excludes>
 	          </configuration>
 	        </plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -222,14 +246,15 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.3.0.v20150612</version>
+				<!--<connectors>-->
+					<!--<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">-->
+						<!--<port>80</port>-->
+					<!--</connector>-->
+				<!--</connectors>-->
 				<configuration>
-					<connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>80</port>
-                        </connector>
-                	</connectors>
                 	<!-- <jettyXml>src/main/resources/jetty.xml</jettyXml> -->
 					<scanIntervalSeconds>2</scanIntervalSeconds>
+					<httpConnector><port>80</port></httpConnector>
 					<webAppConfig>
 						<contextPath>/</contextPath>
 					</webAppConfig>
@@ -237,5 +262,5 @@
 			</plugin>
 		</plugins>
 	</build>
-		
+
 </project>

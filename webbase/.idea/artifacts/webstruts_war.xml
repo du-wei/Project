@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="webstruts:war">
+    <output-path>$PROJECT_DIR$/../webstruts/target</output-path>
+    <root id="archive" name="webstruts.war">
+      <element id="artifact" artifact-name="webstruts:war exploded" />
+    </root>
+  </artifact>
+</component>

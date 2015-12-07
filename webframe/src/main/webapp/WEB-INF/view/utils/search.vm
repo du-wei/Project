@@ -17,15 +17,22 @@
 <body>
 <div class="flow_border"><input type="text" id="query_wd" value=""/></div>
 <div>
-	<div class="query_type">
-		<a id="baidu" href="#"><img src="/moduel/search/img/baidu.png" /></a>
-		<a id="sogou" href="#"><img src="/moduel/search/img/sogou.png" /></a>
-		<a id="haosou" href="#"><img src="/moduel/search/img/haosou.png" /></a>
-		<a id="yahoo" href="#"><img src="/moduel/search/img/yahoo.png" /></a>
-		<a id="google" href="#"><img src="/moduel/search/img/google.png" /></a>
-		<a id="bing" href="#"><img src="/moduel/search/img/bing.png" /></a>
-		<a id="chinaso" href="#"><img src="/moduel/search/img/chinaso.png" /></a>
-		<a id="youdao" href="#"><img src="/moduel/search/img/youdao.png" /></a>
+	<div class="query_type" id="query_type">
+		<a id="baidu" href="https://www.baidu.com/s?wd="><img src="/moduel/search/img/baidu.png" /></a>
+		<a id="sogou" href="http://www.sogou.com/sogou?query="><img src="/moduel/search/img/sogou.png" /></a>
+		<a id="haosou" href="http://www.haosou.com/s?q="><img src="/moduel/search/img/haosou.png" /></a>
+		<a id="yahoo" href="https://sg.search.yahoo.com/search?p="><img src="/moduel/search/img/yahoo.png" /></a>
+		<a id="bing" href="http://cn.bing.com/search?q="><img src="/moduel/search/img/bing.png" /></a>
+		<a id="chinaso" href="http://www.chinaso.com/search/pagesearch.htm?q="><img src="/moduel/search/img/chinaso.png" /></a>
+		<a id="youdao" href="http://www.youdao.com/search?q="><img src="/moduel/search/img/youdao.png" /></a>
+
+		<a id="google1" href="http://g.muyexi.im/#q="><img src="/moduel/search/img/google.png" /></a>
+		<a id="google2" href="https://www.guge119.com/search?q="><img src="/moduel/search/img/google.png" /></a>
+		<a id="google3" href="https://s.bt.gg?q="><img src="/moduel/search/img/google.png" /></a>
+		<a id="google4" href="http://www.guge.link/#q="><img src="/moduel/search/img/google.png" /></a>
+		<a id="google5" href="http://www.googto.com/?q="><img src="/moduel/search/img/google.png" /></a>
+		<a id="google6" href="https://www.ppx.pw/webhp?q="><img src="/moduel/search/img/google.png" /></a>
+		<a id="google" href="http://www.google.com.hk/?q="><img src="/moduel/search/img/google.png" /></a>
 	</div>
 </div>
 </body>

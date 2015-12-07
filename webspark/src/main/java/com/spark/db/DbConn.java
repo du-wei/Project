@@ -17,41 +17,26 @@ public class DbConn extends AbstractFunction0<Connection> implements Serializabl
 
 	private static final Logger logger = LoggerFactory.getLogger(DbConn.class);
 
-    private String driver;
-    private String url;
-    private String username;
-    private String password;
-
-    public DbConn(String url, String userName, String password) {
-        this("com.mysql.jdbc.Driver", url, userName, password);
-    }
-
-    public DbConn(String driver, String url, String userName, String password) {
-        this.driver = driver;
-        this.url = url;
-        this.username = userName;
-        this.password = password;
-    }
-
     @Override
     public Connection apply() {
         try {
-            Class.forName(driver);
+            Class.forName(DBProp.getDb().getDriver());
         } catch (ClassNotFoundException e) {
             logger.error("Failed to load driver class", e);
         }
 
         Properties props = new Properties();
-        props.setProperty("user", username);
-        props.setProperty("password", password);
+        props.setProperty("user", DBProp.getDb().getUsername());
+        props.setProperty("password", DBProp.getDb().getPassword());
 
         Connection conn = null;
         try {
-        	conn = DriverManager.getConnection(url, props);
+        	conn = DriverManager.getConnection(DBProp.getDb().getUrl(), props);
         } catch (SQLException e) {
             logger.error("Connection failed", e);
         }
 
         return conn;
     }
+
 }

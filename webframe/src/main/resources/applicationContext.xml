@@ -19,12 +19,12 @@
 	<mvc:interceptors>
 		<bean class="com.webapp.filter.CommonFilter" />
 	</mvc:interceptors>
-
+ 
 	<!-- <aop:aspectj-autoproxy/> -->
 	<bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">
            <list>
-              <value>classpath*:build_pub.properties</value>
+              <value>classpath*:build_dev.properties</value>
             </list>
         </property>
         <property name="ignoreResourceNotFound" value="true" />

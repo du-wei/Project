@@ -1,8 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 		http://maven.apache.org/xsd/maven-4.0.0.xsd">
-		
+
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.webapp</groupId>
@@ -12,17 +12,14 @@
 	</parent>
 	<artifactId>utils-base</artifactId>
 	<packaging>pom</packaging>
-	
+
 	<modules>
 		<module>../utils-common</module>
 		<module>../utils-web</module>
 		<module>../utils-poi</module>
 		<module>../utils-code</module>
 	</modules>
-	
-	<dependencies>
-	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -40,5 +37,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>
