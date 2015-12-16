@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<link rel="icon" href="$!{static}/common/img/icon.gif" type="image/gif" />
+<link rel="icon" href="$!{static}/img/icon.gif" type="image/gif" />
 <link rel="stylesheet" type="text/css" href="/css/font.css" />
 
 <script src="/moduel/console/dom-animator.js" type="text/javascript"></script>

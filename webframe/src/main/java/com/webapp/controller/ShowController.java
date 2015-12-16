@@ -25,46 +25,46 @@ import com.webapp.tools.ShowApiUtils;
 @Controller
 @RequestMapping("/show")
 public class ShowController {
-	
+
 	//view
 	private static final String V = "";
 	//query
 	private static final String Q = "/q";
 
 	private static final String VIEW_PREFIX = "/show";
-	
+
 	@RequestMapping("/{type}")
 	public ModelAndView tabs(ModelAndView mav, @PathVariable("type")String type){
 		/*
 		 * velocity
-		 * tabs  
-		 * date 
+		 * tabs
+		 * date
 		 * death
 		 * input
 		 */
-		
+
 		mav.setViewName(VIEW_PREFIX + "/" + type);
 		return mav;
 	}
-	
+
 	public static String shortPath(Path path, String base) {
 	    return path.toString().replace(base, "").replace("\\", "/");
     }
-	
+
 	@RequestMapping("/study")
 	public ModelAndView study(ModelAndView mav, HttpServletRequest req){
 		mav.setViewName(VIEW_PREFIX + "/study");
-		
+
 		String base = "/data/pdf/";
 		if(System.getProperties().getProperty("os.name").startsWith("Win")){
 			base = "V:\\360cloud\\GoogleAdmin\\";
 		}
-		
+
 		String path_s = req.getParameter("path");
 		if(StringUtils.isEmpty(path_s)) path_s = "";
-		
+
 		Path path_p = Paths.get(base + path_s);
-		
+
 		JSONArray result = new JSONArray();
 	    DirectoryStream<Path> stream = null;
         try {
@@ -81,14 +81,14 @@ public class ShowController {
 	    mav.addObject("paths", result);
 		return mav;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/death")
 	public String death(HttpServletRequest req){
 		String date = req.getParameter("date");
 		Integer age = Integer.parseInt(req.getParameter("age"));
 		DateTime parse = DateTime.parse(date);
-		
+
 		JSONObject death = new JSONObject();
 		if(!parse.isBeforeNow()){
 			death.put("msg", "您可能还没有出生吧!!!");
@@ -101,14 +101,14 @@ public class ShowController {
 		death = JodaUtils.death(parse.toDate(), age);
 		return death.toJSONString();
 	}
-	
+
 	@RequestMapping(V + "/history")
 	public ModelAndView history(ModelAndView mav){
 		mav.setViewName(VIEW_PREFIX + "/history");
 		mav.addObject("history", ShowApiUtils.queryHistory());
 		return mav;
 	}
-	
+
 	@RequestMapping(V + "/tgirl")
 	public ModelAndView tgirl(ModelAndView mav, HttpServletRequest req){
 		mav.setViewName(VIEW_PREFIX + "/tgirl");
@@ -116,14 +116,14 @@ public class ShowController {
 		if(StringUtils.isEmpty(page) || page.equals("0")) page = "1";
 		JSONObject result = ShowApiUtils.queryTGirl(page);
 		mav.addObject("list", result);
-		
+
 		int intpage = Integer.parseInt(page);
 		mav.addObject("page", intpage);
 		mav.addObject("prev", intpage <= 1 ? intpage : intpage-1);
 		mav.addObject("next", intpage >= 1 ? intpage+1 : intpage);
 		return mav;
 	}
-	
+
 	@RequestMapping(V + "/girl/list")
 	public ModelAndView tgirl_list(ModelAndView mav, HttpServletRequest req){
 		mav.setViewName(VIEW_PREFIX + "/tgirl_list");
@@ -131,7 +131,7 @@ public class ShowController {
 		String page = req.getParameter("page");
 		JSONObject result = ShowApiUtils.queryTGirl(page);
 		JSONArray list = result.getJSONArray("contentlist");
-		System.out.println(list);
+
 		for(int i=0; i<list.size(); i++){
 			JSONObject item = list.getJSONObject(i);
 			String id = item.getString("userId");
@@ -142,15 +142,14 @@ public class ShowController {
 		}
 		return mav;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/tgirl")
 	public String queryTGirl(HttpServletRequest req){
 		String page = req.getParameter("page");
 		JSONObject result = ShowApiUtils.queryTGirl(page);
-		
-		System.out.println(JSON.toJSONString(result, true));
+
 		return result.toJSONString();
 	}
-	
+
 }

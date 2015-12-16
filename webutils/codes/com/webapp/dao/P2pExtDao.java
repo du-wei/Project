@@ -16,7 +16,7 @@ import com.webapp.model.Linux;
 /**
  * @description: The automatically generated P2pExtDao
  * @Package  com.webapp.dao
- * @Date	 2015-12-04 12:00:54
+ * @Date	 2015-12-11 17:45:21
  * @version  V1.0
  */
 public interface P2pExtDao {

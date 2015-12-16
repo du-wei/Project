@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.rjeschke.txtmark.Processor;
 import com.webapp.dao.LinuxDao;
 import com.webapp.model.Linux;
 
@@ -31,15 +30,6 @@ import com.webapp.model.Linux;
 @RequestMapping(value = { "/linux", "/help" })
 public class LinuxHelp {
 	private static final Logger logger = LoggerFactory.getLogger(LinuxHelp.class);
-
-	public static void main(String[] args) {
-//		PegDownProcessor pegDown = new PegDownProcessor(Extensions.ALL & ~Extensions.HARDWRAPS);
-//		String markdownToHtml = pegDown.markdownToHtml("##hello");
-
-//        System.out.println(markdownToHtml);
-		 String process = Processor.process("##hello");
-		 System.out.println(process);
-	}
 
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleException(Exception ex) {

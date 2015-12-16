@@ -33,14 +33,14 @@ import com.webapp.utils.poi.ExcelUtils;
 @Controller
 @RequestMapping(value={"/util", "/utils", "tool", "/tools"})
 public class UtilsController {
-	
+
 	//view
 	private static final String V = "";
 	//query
 	private static final String Q = "/q";
-	
+
 	private static final String VIEW_PREFIX = "/utils";
-	
+
 	@RequestMapping(V + "/{type}")
 	public ModelAndView type(ModelAndView mav, @PathVariable("type")String type) {
 		/** color
@@ -55,7 +55,7 @@ public class UtilsController {
 		 * 	domain
 		 *  excel
 		 */
-		
+
 		mav.setViewName(VIEW_PREFIX + "/" + type);
 		if (type.equals("ip") || type.equals("domain") || type.equals("tel") || type.equals("id")){
 			mav.setViewName(VIEW_PREFIX + "/util");
@@ -65,7 +65,7 @@ public class UtilsController {
 		}
 		return mav;
 	}
-	
+
 	@RequestMapping(V + "/date")
 	public ModelAndView date(ModelAndView mav){
 		mav.setViewName(VIEW_PREFIX + "/date");
@@ -74,7 +74,7 @@ public class UtilsController {
 		mav.addObject("now", DateTools.now().format());
 		return mav;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/excel")
 	public String excel(HttpServletRequest req, @RequestParam("file")MultipartFile file){
@@ -82,7 +82,7 @@ public class UtilsController {
 		String spilt = req.getParameter("spilt");
 		boolean isEnter = Boolean.parseBoolean(req.getParameter("enter"));
 		boolean show = Boolean.parseBoolean(req.getParameter("show"));
-		
+
 		InputStream inputStream = null;
 		try {
 			inputStream = file.getInputStream();
@@ -90,7 +90,7 @@ public class UtilsController {
 			e.printStackTrace();
 		}
 		List<String[]> data = null;
-				
+
 		if(show){
 			data = ExcelUtils.readExcelByPath(inputStream, -1, 0);
 			if(data.size() >= 1){
@@ -102,7 +102,7 @@ public class UtilsController {
 			return JSON.toJSONString(data);
 		}else {
 			data = ExcelUtils.readExcelByPath(inputStream, 0, 0);
-			
+
 			Map<Integer, String> cols = new HashMap<Integer, String>();
 			Set<Integer> keySet = cols.keySet();
 			if(data.size() >= 1){
@@ -112,7 +112,7 @@ public class UtilsController {
 					if(pattern.contains(ptn)) cols.put(i, ptn);
 				}
 			}
-			
+
 			StringBuffer result = new StringBuffer();
 			for(String[] row : data){
 				String col = pattern;
@@ -124,11 +124,11 @@ public class UtilsController {
 				result.append(col + spilt);
 				if(isEnter) result.append("\n");
 			}
-			
+
 			return StringUtils.removeEnd(result.toString(), spilt + (isEnter ? "\n" : ""));
 		}
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/tel")
 	public String queryPhone(HttpServletRequest req){
@@ -136,7 +136,7 @@ public class UtilsController {
 		JSONObject result = ShowApiUtils.queryPhone(phone);
 		return result.toJSONString();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/ip")
 	public String queryIP(HttpServletRequest req){
@@ -144,7 +144,7 @@ public class UtilsController {
 		JSONObject result = ShowApiUtils.queryIP(ip);
 		return result.toJSONString();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/id")
 	public String queryID(HttpServletRequest req){
@@ -153,7 +153,7 @@ public class UtilsController {
 		JSONObject result = ShowApiUtils.queryCard(id);
 		return result.toJSONString();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/domain")
 	public String queryDomain(HttpServletRequest req){
@@ -163,7 +163,7 @@ public class UtilsController {
 		JSONObject result = ApiStoreUtils.queryDomain(domain, suffix);
 		return result.toJSONString();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/wx")
 	public String queryWX(HttpServletRequest req){
@@ -177,14 +177,14 @@ public class UtilsController {
 		System.out.println(JSON.toJSONString(result, true));
 		return result.toJSONString();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/guess")
 	public String queryGuess(HttpServletRequest req){
 		JSONObject result = ShowApiUtils.queryGuess();
 		return result.toJSONString();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/sister")
 	public String querySister(HttpServletRequest req){
@@ -195,7 +195,7 @@ public class UtilsController {
 		System.out.println(JSON.toJSONString(result, true));
 		return result.toJSONString();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/history")
 	public String queryHistory(HttpServletRequest req){
@@ -203,7 +203,7 @@ public class UtilsController {
 		System.out.println(JSON.toJSONString(result, true));
 		return result.toJSONString();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/trans")
 	public String queryTrans(HttpServletRequest req){
@@ -220,7 +220,7 @@ public class UtilsController {
 		return JSON.toJSONString(result, true);
 //		return result.toJSONString();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/chinese")
 	public String queryChinese(HttpServletRequest req){
@@ -228,7 +228,7 @@ public class UtilsController {
 		String type = req.getParameter("type");
 		return MyOpenUtils.queryChinese(data, type);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(Q + "/date")
 	public String queryDate(HttpServletRequest req){
@@ -237,7 +237,7 @@ public class UtilsController {
 		if(!NumberUtils.isNumber(pattern)){
 			pattern = "-1";
 		}
-		
+
 		JSONArray result = MyOpenUtils.queryDate(date, Integer.parseInt(pattern));
 		return result.toJSONString();
 	}

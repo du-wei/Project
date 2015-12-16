@@ -42,6 +42,17 @@ public final class MybatisUtils {
         return Utils.delTail(columns.toString());
     }
 
+    public static <T> String sql_update_cols(Class<T> clz) {
+        StringBuffer columns = new StringBuffer();
+        Field[] fields = clz.getDeclaredFields();
+        for(Field field : fields){
+            String col = field.getName();
+            String consts = Utils.toUnderline(col);
+            columns.append(consts + "=#{" + col + "},");
+        }
+        return Utils.delTail(columns.toString());
+    }
+
     public static <T> String const_cols(Class<T> clz){
         StringBuffer columns = new StringBuffer();
         Field[] fields = clz.getDeclaredFields();

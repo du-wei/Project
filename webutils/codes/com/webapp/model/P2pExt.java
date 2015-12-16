@@ -6,7 +6,7 @@ import java.util.Date;
  * @description: The automatically generated P2pExt
  * @table p2p_ext   
  * @Package  com.webapp.model
- * @Date	 2015-12-04 12:00:55
+ * @Date	 2015-12-11 17:45:21
  * @version  V1.0
  */
 public class P2pExt {
