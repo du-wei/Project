@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.webapp.tools.ApiStoreUtils;
 import com.webapp.tools.JodaUtils;
 import com.webapp.tools.ShowApiUtils;
+import com.webapp.utils.servlet.ServletUtils;
 
 @Controller
 @RequestMapping("/show")
@@ -50,6 +51,14 @@ public class ShowController {
 	public static String shortPath(Path path, String base) {
 	    return path.toString().replace(base, "").replace("\\", "/");
     }
+
+	@RequestMapping("/ip")
+	public ModelAndView myip(ModelAndView mav, HttpServletRequest req){
+		mav.setViewName(VIEW_PREFIX + "/myip");
+		String ipAddr = ServletUtils.getIpAddr(req);
+		mav.addObject("ip", ipAddr);
+		return mav;
+	}
 
 	@RequestMapping("/study")
 	public ModelAndView study(ModelAndView mav, HttpServletRequest req){

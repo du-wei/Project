@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/common/var.vm")
+<title>我的IP</title>
+#parse("/common/head.vm")
+
+#parse("/common/meta.vm")
+<meta name="keywords" content="">
+<meta name="description" content="" />
+
+</head>
+<body>
+<div id="body_back">
+    <div id="body_menu"><span></span></div>
+    <div id="body_main">
+		<div style="display: block;">
+			我的IP: $!{ip}
+		</div>
+    </div>
+</div>
+</body>
+</html>

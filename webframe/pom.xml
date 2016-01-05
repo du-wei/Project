@@ -148,7 +148,10 @@
 				<version>2.6</version>
 				<configuration>
 					<encoding>${encoding}</encoding>
-					<warSourceExcludes>/moduel/**/*.js,/moduel/**/*.css</warSourceExcludes>
+					<warSourceExcludes>
+						%regex[moduel/(?!json|pdf|chess).+\.js],
+						moduel/**/*.css
+					</warSourceExcludes>
 					<webResources>
 						<resource>
 	                        <directory>src/main/webapp</directory>
@@ -166,7 +169,8 @@
 	          <version>1.5.1</version>
 	          <executions>
 	            <execution>
-	            	<phase>prepare-package</phase>
+	            	<!-- <phase>process-resources</phase> -->
+ 	            	<phase>prepare-package</phase>
                   <goals>
                   	<goal>compress</goal>
                   </goals>
@@ -196,13 +200,12 @@
 	            </includes>
 	            <!-- 以下目录和文件不会被压缩 -->
 	            <excludes>
-	              <exclude>coser/**/*.css</exclude>
+	              <!-- <exclude>coser/**/*.css</exclude>
 	              <exclude>coser/**/*.js</exclude>
-	              <exclude>moduel/**/jsoneditor.js</exclude>
-	              <exclude>moduel/**/pdf.js</exclude>
-	              <exclude>moduel/**/pdf.worker.js</exclude>
-	              <exclude>moduel/**/viewer.js</exclude>
-	              <exclude>markdown/all.js</exclude>
+	              <exclude>markdown/all.js</exclude> -->
+	              <exclude>moduel/json/*.js</exclude>
+	              <exclude>moduel/pdf/**/*.js</exclude>
+	              <exclude>moduel/chess/**/*.js</exclude>
 	            </excludes>
 	          </configuration>
 	        </plugin>
@@ -229,11 +232,6 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.3.0.v20150612</version>
-				<!--<connectors>-->
-					<!--<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">-->
-						<!--<port>80</port>-->
-					<!--</connector>-->
-				<!--</connectors>-->
 				<configuration>
                 	<!-- <jettyXml>src/main/resources/jetty.xml</jettyXml> -->
 					<scanIntervalSeconds>2</scanIntervalSeconds>

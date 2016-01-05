@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.webapp.tools.ApiOpenUtils;
 import com.webapp.tools.ApiStoreUtils;
 import com.webapp.tools.MyOpenUtils;
 import com.webapp.tools.ShowApiUtils;
@@ -204,22 +203,22 @@ public class UtilsController {
 		return result.toJSONString();
 	}
 
-	@ResponseBody
-	@RequestMapping(Q + "/trans")
-	public String queryTrans(HttpServletRequest req){
-		String from = req.getParameter("from");
-		String to = req.getParameter("to");
-		String q = req.getParameter("q");
-		JSONObject result = new JSONObject();
-		if(q.contains(" ")){
-			result = ApiOpenUtils.queryTrans(from, to, q);
-		}else {
-			result = ApiOpenUtils.queryDicts(from, to, q);
-		}
-		System.out.println(JSON.toJSONString(result, true));
-		return JSON.toJSONString(result, true);
-//		return result.toJSONString();
-	}
+//	@ResponseBody
+//	@RequestMapping(Q + "/trans")
+//	public String queryTrans(HttpServletRequest req){
+//		String from = req.getParameter("from");
+//		String to = req.getParameter("to");
+//		String q = req.getParameter("q");
+//		JSONObject result = new JSONObject();
+//		if(q.contains(" ")){
+//			result = ApiOpenUtils.queryTrans(from, to, q);
+//		}else {
+//			result = ApiOpenUtils.queryDicts(from, to, q);
+//		}
+//		System.out.println(JSON.toJSONString(result, true));
+//		return JSON.toJSONString(result, true);
+////		return result.toJSONString();
+//	}
 
 	@ResponseBody
 	@RequestMapping(Q + "/chinese")

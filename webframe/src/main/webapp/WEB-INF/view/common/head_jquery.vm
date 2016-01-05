@@ -3,5 +3,8 @@
 <link rel="stylesheet" type="text/css" href="/css/font.css" />
 
 <script src="$!{static}/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+<!--
 <script src="/moduel/console/dom-animator.js" type="text/javascript"></script>
 <script src="/js/run.js" type="text/javascript"></script>
+-->

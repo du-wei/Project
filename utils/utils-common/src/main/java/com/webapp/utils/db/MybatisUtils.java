@@ -9,6 +9,19 @@ public final class MybatisUtils {
 
 	private MybatisUtils(){}
 
+	public static <T> String setModel(Class<T> clz) {
+		StringBuffer columns = new StringBuffer();
+		String name = clz.getSimpleName();
+		String camel = Utils.toCamel(name);
+		columns.append(name + " " + camel + " = new " + name + "();\n");
+        Field[] fields = clz.getDeclaredFields();
+        for(Field field : fields){
+            String col = field.getName();
+            columns.append(camel + ".set" + Utils.toPascal(col) + "();\n");
+        }
+        return Utils.delTail(columns.toString());
+	}
+
     public static <T> String sql_insert_cols(Class<T> clz) {
     	 return sql_insert(clz, false);
     }

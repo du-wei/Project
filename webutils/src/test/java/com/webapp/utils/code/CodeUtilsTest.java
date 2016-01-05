@@ -16,6 +16,7 @@ public class CodeUtilsTest {
 
 		MybatisGenerator.buildByTable("build_dev.properties", Arrays.asList("p2p_ext"));
 //		MybatisGenerator.buildByTable("build_dev.properties", "linux");
+
     }
 
 }

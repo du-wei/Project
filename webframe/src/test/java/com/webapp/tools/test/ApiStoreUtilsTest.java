@@ -7,7 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.webapp.tools.ApiStoreUtils;
 
 public class ApiStoreUtilsTest {
-	
+
 	@Test
     public void queryIP() throws Exception {
 		JSONObject body = ApiStoreUtils.queryIP("182.92.193.119");
@@ -28,5 +28,6 @@ public class ApiStoreUtilsTest {
 		JSONObject body = ApiStoreUtils.queryDomain("seeidea", "com");
 	    System.out.println(JSON.toJSONString(body, true));
     }
-	
+
+
 }

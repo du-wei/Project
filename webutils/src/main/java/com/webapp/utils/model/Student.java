@@ -2,10 +2,13 @@ package com.webapp.utils.model;
 
 import java.util.Date;
 
+import org.nutz.dao.entity.annotation.Table;
+
 
 /**
  *	学生表
  */
+@Table("student")
 public class Student {
 
 	private int id;

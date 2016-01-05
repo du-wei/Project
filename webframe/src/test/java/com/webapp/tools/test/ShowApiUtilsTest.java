@@ -8,7 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.webapp.tools.ShowApiUtils;
 
 public class ShowApiUtilsTest {
-	
+
 	@Test
     public void queryPhone() throws Exception {
 	    JSONObject query = ShowApiUtils.queryPhone("13621186235");
@@ -42,11 +42,6 @@ public class ShowApiUtilsTest {
 	@Test
     public void querySister() throws Exception {
 		JSONObject query = ShowApiUtils.querySister("10", "", "1");
-	    System.out.println(JSON.toJSONString(query, true));
-	}
-	@Test
-    public void queryWeather() throws Exception {
-		JSONObject query = ShowApiUtils.queryWeather("182.92.193.119");
 	    System.out.println(JSON.toJSONString(query, true));
 	}
 	@Test

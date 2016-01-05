@@ -21,12 +21,12 @@
 		<utils_version>1.0.0</utils_version>
 		<web_version>0.0.1-SNAPSHOT</web_version>
 
-		<log4j_version>2.4.1</log4j_version>
-		<slf4j_version>1.7.12</slf4j_version>
+		<log4j_version>2.5</log4j_version>
+		<slf4j_version>1.7.13</slf4j_version>
 		<junit_version>4.12</junit_version>
 		<fastjson_version>1.2.7</fastjson_version>
-		<jodd_version>3.6.6</jodd_version>
-		<joda-time_version>2.9</joda-time_version>
+		<jodd_version>3.6.7</jodd_version>
+		<joda-time_version>2.9.1</joda-time_version>
 		<poi_version>3.13</poi_version>
 		<commons_codec>1.10</commons_codec>
 		<commons_lang3>3.4</commons_lang3>
@@ -39,7 +39,7 @@
 		<freemarker_version>2.3.23</freemarker_version>
 		<rapid_version>4.0.6</rapid_version>
 		<rapid_core>4.0.5</rapid_core>
-		<mysql_version>5.1.37</mysql_version>
+		<mysql_version>5.1.38</mysql_version>
 		<mybatis_version>3.3.0</mybatis_version>
 		<mybatis_spring>1.2.3</mybatis_spring>
 		<thrift_version>0.9.3</thrift_version>
@@ -136,7 +136,7 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!-- 源代码打包插件 -->
+				<!-- 源代码打包插件
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 				    <artifactId>maven-source-plugin</artifactId>
@@ -152,7 +152,7 @@
 				            </goals>
 				        </execution>
 				    </executions>
-				</plugin>
+				</plugin> -->
 				<!-- javadoc插件 -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

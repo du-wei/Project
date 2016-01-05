@@ -15,7 +15,7 @@ public class EmailUtilsTest {
 		Mail mail = new Mail();
 		mail.setHost("smtp.163.com");
 		mail.setSenderMail("googlecosplay@163.com");
-		mail.setSmtpPwd("329852101xin");
+		mail.setSmtpPwd("");
 
 		mail.setSmtpName("googlecosplay");
 		mail.setSenderName("name");

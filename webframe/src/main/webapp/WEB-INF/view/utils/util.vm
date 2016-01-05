@@ -17,12 +17,12 @@
 <body>
 <div id="body_back">
     <div id="body_menu"><span></span></div>
-    <div id="body_main">
+    <div id="body_main" class="show_utils">
     	<div style="display: block;">
-   
+
 			#if($type == "tel")
 			<div class="query_nav">
-				<div class="panel-inner"> 
+				<div class="panel-inner">
 					<div class="wrap">
 				    	<input type="text" id="tel" placeholder="Your Tel here"/>
 				    	<a href="" class="btn" id="queryTel">Query</a>
@@ -41,7 +41,7 @@
 			</div>
 			#elseif($type == "ip")
 			<div class="query_nav">
-				<div class="panel-inner"> 
+				<div class="panel-inner">
 					<div class="wrap">
 				    	<input type="text" id="ip" placeholder="Your ip here"/>
 				    	<a href="" class="btn" id="queryIP">Query</a>
@@ -60,7 +60,7 @@
 			</div>
 			#elseif($type == "domain")
 			<div class="query_nav">
-				<div class="panel-inner"> 
+				<div class="panel-inner">
 					<div class="wrap">
 				    	<input type="text" id="domain" placeholder="Your domain here"/>
 				    	<a href="" class="btn" id="queryDomain">Query</a>
@@ -71,10 +71,10 @@
 				<div id="domainDiv">
 				</div>
 			</div>
-			
+
 			#elseif($type == "id")
 			<div class="query_nav">
-				<div class="panel-inner"> 
+				<div class="panel-inner">
 					<div class="wrap">
 				    	<input type="text" id="ID" placeholder="Your id here"/>
 				    	<a href="" class="btn" id="queryID">Query</a>
