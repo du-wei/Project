@@ -98,7 +98,7 @@ public class MybatisGenerator {
 		gc.setOverride(true);
 
 		GeneratorFacade gf = new GeneratorFacade();
-		gf.getGenerator().addTemplateRootDir(MybatisGenerator.class.getResource(TemplatType.simple.getTemplate()).toString());
+		gf.getGenerator().addTemplateRootDir(TemplatType.simple.getTemplate());
 		try {
 			gf.deleteOutRootDir();
 			gf.generateByAllTable();

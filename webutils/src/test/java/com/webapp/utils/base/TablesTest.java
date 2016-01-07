@@ -21,10 +21,13 @@ public class TablesTest {
 		ds.setUsername("root");
 		ds.setPassword("1q2w3e4r");
 
-
 		Dao dao = new NutDao(ds);
 		Daos.createTablesInPackage(dao, Student.class, true);
 
+
+		//ModelUtils.of(Student.class).key("id")
 	}
+
+
 
 }

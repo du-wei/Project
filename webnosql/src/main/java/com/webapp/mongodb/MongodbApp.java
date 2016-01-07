@@ -8,63 +8,69 @@
  */
 package com.webapp.mongodb;
 
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
+
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
+import com.alibaba.fastjson.JSON;
 import com.mongodb.MongoClient;
-import com.mongodb.WriteConcern;
-import com.mongodb.WriteResult;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.DeleteResult;
 
 /**
  * @ClassName: MongodbApp.java
  * @Package com.webapp.mongodb
  * @Description: TODO 类型描述
- * @author king chenglong@coweibo.cn
- * @date 2013-4-15 下午2:11:55
+ * @author king
+ * @date 2015-4-15 下午2:11:55
  * @version V1.0
  */
 public class MongodbApp {
 
 	private static MongoClient client;
-	private static DB db;
+	private static MongoDatabase db;
 	private static final Logger logger = LoggerFactory.getLogger(MongodbApp.class);
-	
-	@Before
-	public void before() throws Exception {
-		client = new MongoClient("192.168.26.130", 27017);
-		db = client.getDB("king");
+
+	static {
+//		client = new MongoClient("192.168.26.130", 27017);
+		client = new MongoClient("10.20.78.91", 27017);
+		db = client.getDatabase("out");
 	}
 
-	public static boolean insert(String coll, DBObject object) {
-		DBCollection dbColl = db.getCollection(coll);
-		WriteResult result = dbColl.insert(object);
-		if (result.getN() > 0) {
-			logger.info(" insert success ");
-			return true;
-		}
-		return false;
+	public static MongoCollection<Document> getColl(String coll) {
+		MongoCollection<Document> clt = db.getCollection(coll);
+		return clt;
 	}
 
-	public static void find(String coll, DBObject object) {
-		DBCollection dbColl = db.getCollection(coll);
-		DBCursor cursor = dbColl.find(object);
-		while (cursor.hasNext()) {
-			logger.info(cursor.next().toString());
-		}
+	public static void insertOne(String coll, Document doc) {
+		MongoCollection<Document> clt = getColl(coll);
+		clt.insertOne(doc);
+	}
+	public static void insertMany(String coll, List<Document> docs) {
+		MongoCollection<Document> clt = getColl(coll);
+		clt.insertMany(docs);
+	}
+	public static long count(String coll) {
+		return getColl(coll).count();
 	}
 
-	public static boolean delete(String coll, DBObject object) {
-		DBCollection dbColl = db.getCollection(coll);
-		WriteResult result = dbColl.remove(object);
-		if (result.getN() > 0) {
+	public static FindIterable<Document> find(String coll, Bson bson) {
+		MongoCollection<Document> clt = getColl(coll);
+		FindIterable<Document> docs = clt.find(bson);
+		return docs;
+	}
+
+	public static boolean delete(String coll, Bson bson) {
+		MongoCollection<Document> clt  = getColl(coll);
+		DeleteResult result = clt.deleteOne(bson);
+		if (result.getDeletedCount() > 0) {
 			logger.info(" delete success ");
+			return true;
 		}
 		return false;
 	}
@@ -74,20 +80,14 @@ public class MongodbApp {
 		return false;
 	}
 
-	@Test
-	public void testMongodb() throws Exception {
-		System.out.println("auth --> " + auth("king", "king"));
+	public static void main(String[] args) {
+//		client.setWriteConcern(WriteConcern.JOURNALED);
+		MongoCollection<Document> coll = getColl("AIC");
+		FindIterable<Document> find = coll.find();
 
-		client.setWriteConcern(WriteConcern.JOURNALED);
+		Document first = find.first();
 
-		BasicDBObject object = new BasicDBObject();
-		object.append("name", "mongodb").append("type", "db").append("age", 12);
-
-		insert("users", object);
-
-		find("users", object);
-		// delete("users", object);
-
+		System.out.println(JSON.toJSONString(JSON.parseObject(first.toJson()), true));
 	}
 
 }
