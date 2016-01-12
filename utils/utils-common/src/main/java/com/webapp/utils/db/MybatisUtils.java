@@ -38,7 +38,7 @@ public final class MybatisUtils {
             if(isProp){
                 columns.append("#{" + col + "},");
             }else {
-                columns.append(Utils.toUnderline(col) + ',');
+                columns.append(Utils.toSnake(col) + ',');
             }
         }
         return Utils.delTail(columns.toString());
@@ -49,7 +49,7 @@ public final class MybatisUtils {
         Field[] fields = clz.getDeclaredFields();
         for(Field field : fields){
             String col = field.getName();
-            String consts = Utils.toUnderline(col);
+            String consts = Utils.toSnake(col);
             columns.append(consts + (consts.contains(Symbol.Underline) ? " " + col : "") + ",");
         }
         return Utils.delTail(columns.toString());
@@ -60,7 +60,7 @@ public final class MybatisUtils {
         Field[] fields = clz.getDeclaredFields();
         for(Field field : fields){
             String col = field.getName();
-            String consts = Utils.toUnderline(col);
+            String consts = Utils.toSnake(col);
             columns.append(consts + "=#{" + col + "},");
         }
         return Utils.delTail(columns.toString());
@@ -73,7 +73,7 @@ public final class MybatisUtils {
             String col = field.getName();
             columns.append("public final static String ");
 
-            String consts = Utils.toUnderline(col);
+            String consts = Utils.toSnake(col);
             columns.append(consts.toUpperCase() + " = \"" + consts.toLowerCase() + "\";\n");
         }
         return columns.toString();

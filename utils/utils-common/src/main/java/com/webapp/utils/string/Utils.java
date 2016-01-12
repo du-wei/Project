@@ -109,7 +109,7 @@ public final class Utils {
 	 * @param str
 	 * @return Underline
 	 */
-	public static String toUnderline(String str) {
+	public static String toSnake(String str) {
 		if (str == null) return null;
 
 		StringBuilder sb = new StringBuilder();

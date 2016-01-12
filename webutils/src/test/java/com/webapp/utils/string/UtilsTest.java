@@ -71,9 +71,9 @@ public class UtilsTest {
 		System.out.printf(format ,data3, Utils.toPascal(data3), "toPascal(data)");
 
 		System.out.println("-------------------------------------->");
-		System.out.printf(format ,data1, Utils.toUnderline(data1), "toUnderline(data)");
-		System.out.printf(format ,data2, Utils.toUnderline(data2), "toUnderline(data)");
-		System.out.printf(format ,data3, Utils.toUnderline(data3), "toUnderline(data)");
+		System.out.printf(format ,data1, Utils.toSnake(data1), "toUnderline(data)");
+		System.out.printf(format ,data2, Utils.toSnake(data2), "toUnderline(data)");
+		System.out.printf(format ,data3, Utils.toSnake(data3), "toUnderline(data)");
     }
 
 	@Test

@@ -32,7 +32,7 @@ public class JdbcHandler {
         DataFrame data = sqlCtx.createDataFrame(rdd, clz);
 
         data.write().mode(SaveMode.Append).jdbc(
-                DBProp.getDb().getUrl(), Utils.toUnderline(clz.getSimpleName()), prop);
+                DBProp.getDb().getUrl(), Utils.toSnake(clz.getSimpleName()), prop);
     }
 
     public static DataFrame select(JavaSparkContext sc, String sql, String tempTable){

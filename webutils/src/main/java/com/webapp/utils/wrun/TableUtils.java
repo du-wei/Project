@@ -27,6 +27,7 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
+import com.webapp.utils.model.Student;
 import com.webapp.utils.string.Utils;
 
 import javassist.CannotCompileException;
@@ -40,21 +41,82 @@ import net.sf.cglib.proxy.Enhancer;
 
 public class TableUtils<T> {
 
-	private enum Table {
-		def_str_width,
-		def_int_width,
+	private static class TableRule {
+		private String tableName;
+		private String pkg;
+		private int defStrWidth;
+		private int defIntWidth;
+		private String tableId;
+		private boolean snakeMap;
+		private List<String> uniqueCol = new ArrayList<>();
+		private Map<String, Integer> colWidth = new HashMap<>();
+		private boolean hasGetSet;
 
-		table_name,
-		id_col,
-		unique_col,
-		map_type,
-		width
+		public String getTableName() {
+			return tableName;
+		}
+		public void setTableName(String tableName) {
+			this.tableName = tableName;
+		}
+		public String getPkg() {
+			return pkg;
+		}
+		public void setPkg(String pkg) {
+			this.pkg = pkg;
+		}
+		public int getDefStrWidth() {
+			return defStrWidth;
+		}
+		public void setDefStrWidth(int defStrWidth) {
+			this.defStrWidth = defStrWidth;
+		}
+		public int getDefIntWidth() {
+			return defIntWidth;
+		}
+		public void setDefIntWidth(int defIntWidth) {
+			this.defIntWidth = defIntWidth;
+		}
+		public String getTableId() {
+			return tableId;
+		}
+		public void setTableId(String tableId) {
+			this.tableId = tableId;
+		}
+		public List<String> getUniqueCol() {
+			return uniqueCol;
+		}
+		public void setUniqueCol(List<String> uniqueCol) {
+			this.uniqueCol = uniqueCol;
+		}
+		public boolean isSnakeMap() {
+			return snakeMap;
+		}
+		public void setSnakeMap(boolean snakeMap) {
+			this.snakeMap = snakeMap;
+		}
+		public Map<String, Integer> getColWidth() {
+			return colWidth;
+		}
+		public void setColWidth(Map<String, Integer> colWidth) {
+			this.colWidth = colWidth;
+		}
+		public boolean isHasGetSet() {
+			return hasGetSet;
+		}
+		public void setHasGetSet(boolean hasGetSet) {
+			this.hasGetSet = hasGetSet;
+		}
+
+
+		public void addColWidth(String col, int width) {
+			this.colWidth.put(col, width);
+		}
 	}
 
+	private final static String tab = "\t";
+	private final static String enter = "\n";
 	private Class<T> clz;
-	private Map<String, String> prop = new HashMap<>();
-
-	private static String pkg = "com.webapp.table";
+	private TableRule tableRule;
 	private static SimpleDataSource ds;
 	public static void setDataSource(Map<String, String> map) {
         ds = new SimpleDataSource();
@@ -69,8 +131,13 @@ public class TableUtils<T> {
 	}
 
 	private TableUtils(Class<T> clz){
-		prop.put(Table.def_str_width.name(), "255");
-		prop.put(Table.def_int_width.name(), "11");
+		tableRule = new TableRule();
+		tableRule.setDefIntWidth(11);
+		tableRule.setDefStrWidth(255);
+		tableRule.setSnakeMap(true);
+		tableRule.setHasGetSet(false);
+		tableRule.setPkg("com.webapp.table");
+		tableRule.setTableName(Utils.toSnake(clz.getSimpleName()));
 		this.clz = clz;
 	}
 
@@ -79,28 +146,32 @@ public class TableUtils<T> {
 	}
 
 	public TableUtils<T> table(String table){
-		prop.put(Table.table_name.name(), table);
+		tableRule.setTableName(table);
 		return this;
 	}
 	public TableUtils<T> id(String col){
-		prop.put(Table.id_col.name(), col);
+		tableRule.setTableId(col);
 		return this;
 	}
 	public TableUtils<T> unique(String ...col) {
-		prop.put(Table.unique_col.name(), Utils.split(Arrays.asList(col), "-"));
+		tableRule.setUniqueCol(Arrays.asList(col));
 		return this;
 	}
 
 	public TableUtils<T> camel() {
-		prop.put(Table.map_type.name(), "camel");
+		tableRule.setSnakeMap(false);
 		return this;
 	}
-	public TableUtils<T> underline() {
-		prop.put(Table.map_type.name(), "underline");
+	public TableUtils<T> snake() {
+		tableRule.setSnakeMap(true);
 		return this;
 	}
 	public TableUtils<T> width(String col, int width) {
-		prop.put(Table.width + col, String.valueOf(width));
+		tableRule.addColWidth(col, width);
+		return this;
+	}
+	public TableUtils<T> width(Map<String, Integer> cloWidth) {
+		tableRule.setColWidth(cloWidth);
 		return this;
 	}
 
@@ -108,21 +179,13 @@ public class TableUtils<T> {
 		StringBuffer columns = new StringBuffer();
 		StringBuffer getset = new StringBuffer();
 		List<Field> fieldList = new ArrayList<>();
-		List<String> uniques = new ArrayList<>();
 
 		String name = clz.getSimpleName();
 
-		columns.append("package " + pkg + ";\n");
-		columns.append("import org.nutz.dao.entity.annotation.*;\n");
-		if(prop.containsKey(Table.table_name.name())){
-			columns.append("@Table(\"" + prop.get(Table.table_name.name()) + "\")\n");
-		}
-
-		if(prop.containsKey(Table.unique_col.name())){
-        	String unique = prop.get(Table.unique_col.name());
-        	uniques = Arrays.asList(unique.split("-"));
-        }
-		columns.append("public class " + name + "{\n");
+		columns.append("package " + tableRule.getPkg() + ";").append(enter);
+		columns.append("import org.nutz.dao.entity.annotation.*;").append(enter);
+		columns.append("@Table(\"" + tableRule.getTableName() + "\")").append(enter);
+		columns.append("public class " + name + "{").append(enter);
 
 		Class<? super T> superclz = clz.getSuperclass();
 		if(superclz != null){
@@ -135,43 +198,42 @@ public class TableUtils<T> {
             String col = field.getName();
             String type = field.getType().getSimpleName();
 
-            if(col.equals(prop.get(Table.id_col.name()))){
-            	columns.append("\t@Id\n");
+            if(col.equals(tableRule.getTableId())){
+            	columns.append(tab).append("@Id").append(enter);
             }
-            if(prop.get(Table.map_type.name()).equals("underline")){
-            	columns.append("\t@Column(hump = true)\n");
+            if(tableRule.getUniqueCol().contains(col)){
+            	columns.append(tab).append("@Name").append(enter);
+            }
+            if(tableRule.isSnakeMap()){
+            	columns.append(tab).append("@Column(hump = true)").append(enter);
             }
 
-            if(prop.containsKey(Table.width.name() + col)){
-            	columns.append("\t@ColDefine(width=" + prop.get(Table.width.name() + col) + ")\n");
+            if(tableRule.getColWidth().containsKey(col)){
+            	columns.append(tab).append("@ColDefine(width=" + tableRule.getColWidth().get(col) + ")").append(enter);
             }else{
             	if(type.equals(String.class.getSimpleName())){
-            		columns.append("\t@ColDefine(width=" + prop.get(Table.def_str_width.name()) + ")\n");
+            		columns.append(tab).append("@ColDefine(width=" + tableRule.getDefStrWidth() + ")").append(enter);
             	}
             }
+            columns.append(tab).append("private " + type + " " + col + ";").append(enter);
 
-//            if(type.equals(Integer.class.getSimpleName()) || type.equals("int")){
-//            	columns.append("\t@ColDefine(width=11)\n");
-//            }
+            getset.append(tab).append("public " + type + " get" + Utils.toPascal(col) + "(){").append(enter);
+            getset.append(tab).append("\treturn " + col + ";").append(enter);
+            getset.append(tab).append("}").append(enter);
 
-            if(uniques.contains(col)){
-            	columns.append("\t@Name\n");
-            }
-
-            columns.append("\tprivate " + type + " " + col + ";\n");
-
-            getset.append("\tpublic " + type + " get" + Utils.toPascal(col) + "(){ \n"
-            			+ "\t\treturn " + col + ";"
-            			+ "\n\t}\n");
-
-            getset.append("\tpublic void set" + Utils.toPascal(col) + "(" + type + " " + col + "){ \n"
-            			+ "\t\tthis." + col + " = " + col + ";"
-            			+ "\n\t}\n");
+            getset.append(tab).append("public void set" + Utils.toPascal(col) + "(" + type + " " + col + "){").append(enter);
+            getset.append(tab).append("\tthis." + col + " = " + col + ";").append(enter);
+            getset.append(tab).append("}").append(enter);
         }
-        columns.append(getset);
+        if(tableRule.isHasGetSet()) columns.append(getset);
         columns.append("}");
 
-        Class<?> compile = compile(pkg + "." + name ,columns.toString(), "");
+        System.out.println(columns.toString());
+        createTable(columns, name);
+	}
+
+	private void createTable(StringBuffer columns, String name) {
+		Class<?> compile = compile(tableRule.getPkg() + "." + name ,columns.toString(), "");
 		Dao dao = new NutDao(ds);
 		dao.create(compile, true);
 	}
@@ -189,7 +251,7 @@ public class TableUtils<T> {
 		return outDir;
 	}
 
-    private final static Class<?> compile(String name, String content, String outDir) {
+    private static Class<?> compile(String name, String content, String outDir) {
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, Locale.SIMPLIFIED_CHINESE, Charset.defaultCharset());
 
@@ -219,6 +281,8 @@ public class TableUtils<T> {
     }
 
     public static void main(String[] args) throws Exception {
+
+    	TableUtils.of(Student.class).id("id").unique("stuNo").snake().done();
 
 //    	cglib();
 //

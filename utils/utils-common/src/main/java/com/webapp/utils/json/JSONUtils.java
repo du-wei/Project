@@ -103,7 +103,7 @@ public class JSONUtils {
 	public String toUnderlineKey() {
 		jsonSerializer.getNameFilters().add(new NameFilter() {
 			public String process(Object object, String name, Object value) {
-				return Utils.toUnderline(name);
+				return Utils.toSnake(name);
 			}
 		});
 		return toString();
