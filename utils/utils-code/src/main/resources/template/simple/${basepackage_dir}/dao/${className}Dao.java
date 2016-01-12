@@ -26,7 +26,7 @@ import org.apache.ibatis.jdbc.SQL;
  */
 public interface ${className}Dao {
 
-	public enum ${className}Enum{
+	public enum Enum${className}{
 		<#list table.columns as column>${column}<#if column_has_next>,</#if></#list>
 	}
 
