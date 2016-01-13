@@ -50,12 +50,12 @@ import com.webapp.utils.codec.CodecUtils.AlgoBuilder.AlgoSymBuild;
 import com.webapp.utils.codec.CodecUtils.AlgoSymEnum.AlgoSym;
 import com.webapp.utils.codec.CodecUtils.AlgoSymEnum.AlgoSymMode;
 import com.webapp.utils.codec.CodecUtils.AlgoSymEnum.AlgoSymPadding;
+import com.webapp.utils.string.Utils;
 
 public class CodecUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(CodecUtils.class);
 	private static final String UNICODE = "unicode";
-	private static final String UTF8 = "utf-8";
 	private static final String FIXED = "fixed_key";
 
 	public static String bytesToString(byte[] data) {
@@ -264,7 +264,7 @@ public class CodecUtils {
 		public static String encodeUTF8(byte[] data) {
 			String result = null;
 	        try {
-	            result = new String(data, UTF8);
+	            result = new String(data, Utils.Charsets.uft8);
             } catch (UnsupportedEncodingException e) {
 	            e.printStackTrace();
             }

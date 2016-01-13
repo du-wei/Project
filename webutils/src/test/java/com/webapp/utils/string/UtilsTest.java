@@ -56,7 +56,7 @@ public class UtilsTest {
     }
 
 	@Test
-    public void toCamel() throws Exception {
+    public void toCamel_Snake_Pascal() throws Exception {
 		String data1 = "Jk_King";
 		String data2 = "JkKingISO";
 		String data3 = "ISOJkKing";
@@ -71,13 +71,13 @@ public class UtilsTest {
 		System.out.printf(format ,data3, Utils.toPascal(data3), "toPascal(data)");
 
 		System.out.println("-------------------------------------->");
-		System.out.printf(format ,data1, Utils.toSnake(data1), "toUnderline(data)");
-		System.out.printf(format ,data2, Utils.toSnake(data2), "toUnderline(data)");
-		System.out.printf(format ,data3, Utils.toSnake(data3), "toUnderline(data)");
+		System.out.printf(format ,data1, Utils.toSnake(data1), "toSnake(data)");
+		System.out.printf(format ,data2, Utils.toSnake(data2), "toSnake(data)");
+		System.out.printf(format ,data3, Utils.toSnake(data3), "toSnake(data)");
     }
 
 	@Test
-    public void pinyin() throws Exception {
+    public void pinyinAll() throws Exception {
 		String data1 = "中国";
 
 		System.out.printf(format ,data1, Utils.toPinyin(data1), "toPinyin(data)");
@@ -95,7 +95,7 @@ public class UtilsTest {
     }
 
 	@Test
-    public void regex() throws Exception {
+    public void regexAll() throws Exception {
 		String idcard = "130825200001011011";
 		String email = "jk_king@163.com";
 		String mobile = "13621186235";

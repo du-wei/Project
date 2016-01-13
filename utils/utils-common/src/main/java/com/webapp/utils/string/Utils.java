@@ -23,7 +23,7 @@ import com.webapp.utils.regex.RegexConst;
 public final class Utils {
 
 	private Utils(){}
-	
+
 	public static interface Charsets {
 		public static final String uft8 = StandardCharsets.UTF_8.name();
 		public static final String gbk = "gbk";
@@ -32,6 +32,10 @@ public final class Utils {
 
 	public static interface Symbol{
 
+		/** Enter --> {@value} */
+		public static final String Enter = "\n";
+		/** Tab --> {@value} */
+		public static final String Tab = "\t";
 		/** Empty --> {@value} */
 		public static final String Empty = "";
 		/** Space --> {@value} */
@@ -42,10 +46,12 @@ public final class Utils {
 		public static final String Comma = ",";
 		/** Colon --> {@value} */
 		public static final String Colon = ":";
+		/** Semicolon --> {@value} */
+		public static final String Semicolon = ";";
 		/** LineThrough --> {@value} */
 		public static final String LineThrough = "-";
 		/** Underline --> {@value} */
-		public static final String Underline = "_";
+		public static final String LineUnder = "_";
 		/** Pound --> {@value} */
 		public static final String Pound = "#";
 		/** Question --> {@value} */
@@ -58,6 +64,10 @@ public final class Utils {
 		public static final String Percent = "%";
 		/** At --> {@value} */
 		public static final String At = "@";
+		/** Slash --> {@value} */
+		public static final String Slash = "/";
+		/** Backslash --> {@value} */
+		public static final String Backslash = "\\";
 		/** LParen --> {@value} */
 		public static final String LParen = "(";
 		/** RParen --> {@value} */
@@ -121,8 +131,8 @@ public final class Utils {
 			curUpper = (i == 0) ? Character.isUpperCase(s) : nextUpper;
 			nextUpper = (i < str.length() - 1 ? Character.isUpperCase(str.charAt(i + 1)) : true);
 
-			if(String.valueOf(s).equals(Symbol.Underline)) continue;
-			if(i > 0 && curUpper && !(nextUpper && prevUpper)) sb.append(Symbol.Underline);
+			if(String.valueOf(s).equals(Symbol.LineUnder)) continue;
+			if(i > 0 && curUpper && !(nextUpper && prevUpper)) sb.append(Symbol.LineUnder);
 
 			sb.append(Character.toLowerCase(s));
 		}
@@ -138,13 +148,13 @@ public final class Utils {
     public static String toCamel(String str) {
     	if (str == null) return null;
 
-    	if(str.contains(Symbol.Underline)) str = str.toLowerCase();
+    	if(str.contains(Symbol.LineUnder)) str = str.toLowerCase();
         StringBuilder sb = new StringBuilder(str.length());
         boolean upperCase = false;
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
 
-            if(String.valueOf(c).equals(Symbol.Underline)){
+            if(String.valueOf(c).equals(Symbol.LineUnder)){
             	upperCase = true;
             }else {
 				if(upperCase){
@@ -178,15 +188,6 @@ public final class Utils {
 	public static String toEmail(String email) {
 		return StringUtils.isEmpty(email) ? null :
 			email.contains("@gmail") ? "https://accounts.google.com" : "http://mail."+email.split("@")[1];
-	}
-
-	/**
-	 * Verify the name
-	 * @param name
-	 * @return boolean
-	 */
-	public static boolean validName(String name, int least, int most){
-		return StringUtils.isNotEmpty(name) && name.matches("^[a-zA-Z0-9\\.\\-_]{4,20}$");
 	}
 
 	/**

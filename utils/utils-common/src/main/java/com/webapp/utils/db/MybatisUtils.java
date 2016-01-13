@@ -50,7 +50,7 @@ public final class MybatisUtils {
         for(Field field : fields){
             String col = field.getName();
             String consts = Utils.toSnake(col);
-            columns.append(consts + (consts.contains(Symbol.Underline) ? " " + col : "") + ",");
+            columns.append(consts + (consts.contains(Symbol.LineUnder) ? " " + col : "") + ",");
         }
         return Utils.delTail(columns.toString());
     }
