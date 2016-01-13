@@ -2,14 +2,19 @@ package com.webapp.utils.model;
 
 import java.util.Date;
 
+import org.nutz.dao.entity.annotation.ColDefine;
+import org.nutz.dao.entity.annotation.Column;
+import org.nutz.dao.entity.annotation.Default;
+import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Table;
 
 
 /**
  *	学生表
  */
-public class Student {
+public class StudentType {
 
+	@Id
 	private int id;
 	private String stuNo;
 	private String name;
@@ -20,6 +25,8 @@ public class Student {
 	private double weight;
 	private double height;
 	private float money;
+	@Column(hump = true, value = "ok")
+	@ColDefine(notNull=true)
 	private String address;
 	private String nation;
 	private String politic;
