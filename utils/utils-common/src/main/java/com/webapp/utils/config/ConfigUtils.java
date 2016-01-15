@@ -32,8 +32,8 @@ public class ConfigUtils {
 		try (InputStream in = new BufferedInputStream(new FileInputStream(PathUtils.getPath(path).toString()))) {
 			p.load(in);
 		} catch (IOException e) {
-			logger.error(PathUtils.class.getSimpleName() + " 读取属性文件出错", e);
-			throw new RuntimeException(PathUtils.class.getSimpleName() + " 读取属性文件出错");
+			logger.error(ConfigUtils.class.getSimpleName() + " 读取属性文件出错", e);
+			throw new RuntimeException(ConfigUtils.class.getSimpleName() + " 读取属性文件出错");
 		}
 		return p;
 	}

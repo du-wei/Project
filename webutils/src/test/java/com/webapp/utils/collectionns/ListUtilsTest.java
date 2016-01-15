@@ -22,11 +22,4 @@ public class ListUtilsTest {
 		assertThat(ListUtils.unique(list).size(), Matchers.is(1));
     }
 
-	@Test
-    public void asList() throws Exception {
-	    List<String> asList = ListUtils.asList("a", "b");
-		asList.remove(0);
-		System.out.println(asList);
-		assertThat(asList.size(), Matchers.is(1));
-    }
 }
