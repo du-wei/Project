@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.webapp.builder.TableBuilder;
 import com.webapp.utils.string.Utils;
 import com.webapp.utils.string.Utils.Symbol;
 
@@ -22,15 +23,10 @@ public class ClassBuilder<T> {
 	private Class<T> clz;
 	private TableRule tableRule;
 
-	private ClassBuilder(Class<T> clz){
+	public ClassBuilder(Class<T> clz){
 		tableRule = new TableRule(clz);
 		this.clz = clz;
 	}
-
-	public static <T> ClassBuilder<T> of(Class<T> clz) {
-		return new ClassBuilder<T>(clz);
-	}
-
 	public ClassBuilder<T> table(String table){
 		tableRule.setTableName(table);
 		return this;

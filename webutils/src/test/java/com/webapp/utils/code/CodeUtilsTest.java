@@ -5,8 +5,8 @@ import org.nutz.dao.Dao;
 import org.nutz.dao.impl.NutDao;
 import org.nutz.dao.impl.SimpleDataSource;
 
-import com.webapp.template.utils.ClassBuilder;
-import com.webapp.template.utils.MybatisBuilder;
+import com.webapp.builder.MybatisBuilder;
+import com.webapp.builder.TableBuilder;
 import com.webapp.utils.model.StudentType;
 
 public class CodeUtilsTest {
@@ -26,7 +26,7 @@ public class CodeUtilsTest {
 	@Test
 	public void buildTable() {
 //		ClassBuilder.of(Student.class).snake().done(TableBuilder.build(jdbcCfg));
-		ClassBuilder.of(StudentType.class).snake()
+		TableBuilder.of(StudentType.class).snake()
 			.notNull("address")
 			.width("address", 260)
 			.defVal("address", "111").view();

@@ -88,6 +88,11 @@
 			<version>${spring_redis}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<dependency>
   			<groupId>com.webapp</groupId>
   			<artifactId>utils-common</artifactId>
   			<version>${utils_version}</version>

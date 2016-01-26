@@ -1,4 +1,4 @@
-package com.webapp.template.utils;
+package com.webapp.builder;
 
 import java.util.Properties;
 
@@ -8,10 +8,17 @@ import org.nutz.dao.impl.SimpleDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.webapp.template.utils.ClassBuilder;
+import com.webapp.template.utils.ClassCompiler;
+
 public class TableBuilder<T> {
 
 	private static final Logger logger = LoggerFactory.getLogger(TableBuilder.class);
 	private SimpleDataSource ds;
+	public static <T> ClassBuilder<T> of(Class<T> clz) {
+		return new ClassBuilder<T>(clz);
+	}
+
 	public TableBuilder(String jdbcCfg) {
 
 		Properties jdbc = new Properties();

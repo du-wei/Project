@@ -1,4 +1,4 @@
-package com.webapp.template.utils;
+package com.webapp.builder;
 
 import com.webapp.thrift.generator.builder.ThriftFileBuilder;
 
