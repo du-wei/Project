@@ -1,0 +1,57 @@
+#!/bin/bash
+
+zk="--zookeeper localhost:2181"
+server="localhost:9092"
+base="/apps/work/kafka/bin"
+
+# all cmd
+kafka=('start' 'stop' 'restart' 'zkstart' 'zkstop' 'zkrestart' 'startall' 'stopall' 'list' 'descall' 'desc' 'del' 'create' 'producer' 'consumer')
+# server cmd
+kafka_server=('start' 'stop' 'restart' 'zkstart' 'zkstop' 'zkrestart' 'startall' 'stopall' 'list' 'descall')
+# topic cmd
+kafka_manage=('desc' 'del' 'create' 'producer' 'consumer')
+
+if [ $# == 0 ]; then
+        echo 'please input param'
+        echo "-- ${kafka_server[@]}"
+        exit
+elif [ $# == 1 ]; then
+        if [[ "${kafka_manage[@]/$1/}" != "${kafka_manage[@]}" ]]; then
+                echo "missing param topic"
+                exit
+        elif [[ ! "${kafka_server[@]/$1/}" != "${kafka_server[@]}" ]]; then
+                echo 'please input param'
+                echo "-- ${kafka_server[@]}"
+                exit
+        fi
+elif [ $# -ge 2 ]; then
+        if [[ ! "${kafka[@]/$1/}" != "${kafka[@]}" ]]; then
+                echo "param should be"
+                echo "-- ${kafka_manage[@]}"
+                exit
+        fi
+fi
+
+declare zkstart="$base/zookeeper-server-start.sh config/zookeeper.properties"
+declare zkstop="$base/zookeeper-server-stop.sh"
+declare start="$base/kafka-server-start.sh config/server.properties >> logs/start.log 2>&1 &"
+declare stop="$base/kafka-server-stop.sh"
+
+declare restart="$stop && $start"
+declare zkrestart="$zkstop && $zkstart"
+startall="$zkstart && $start"
+stopall="$stop && $zkstop"
+
+list="$base/kafka-topics.sh --list $zk"
+descAll="$base/kafka-topics.sh --describe $zk"
+desc="$base/kafka-topics.sh --describe $zk --topic $2"
+del="$base/kafka-topics.sh --delete --topic $2 $zk"
+create="$base/kafka-topics.sh --create $zk --replication-factor 1 --partitions 1 --topic $2"
+producer="$base/kafka-console-producer.sh --broker-list $server --topic $2"
+consumer="$base/kafka-console-consumer.sh $zk --bootstrap-server $server --topic $2 --from-beginning"
+
+echo "param -> $*"
+eval echo '$'"$1"
+if ! [[ $# == 2 && $2 = "show" ]]; then
+        bash -c '$'"$1"
+fi

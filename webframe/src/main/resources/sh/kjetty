@@ -1,0 +1,15 @@
+#!/bin/bash
+
+base="/apps/webserver/jetty"
+fname=$(basename $0)
+usage="usage: $fname [port] [start|stop|restart]"
+if [ "$#" -lt 2 ]; then
+	echo $usage
+	exit
+fi
+
+cmd="$base/bin/jetty_$1.sh"
+
+echo "Run "$jetty_cmd
+
+sh $jetty_cmd $2

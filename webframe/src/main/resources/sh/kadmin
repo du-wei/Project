@@ -1,0 +1,27 @@
+#!/bin/bash
+
+fname=$(basename $0)
+usage="usage: $fname [cpu|sys|welcome]"
+if [ "$#" -lt 1 ]; then
+	echo $usage
+	exit
+fi
+
+if [ $1 == "cpu" ]; then
+	cpus=`cat /proc/cpuinfo | grep "physical id" | sort | uniq | wc -l`
+	cores=`cat /proc/cpuinfo | grep "cpu cores" | wc -l`
+	procs=`cat /proc/cpuinfo | grep "processor" | wc -l`
+	echo "physical cpu count -> $cpus" 
+	echo "cpu cores -> $cores"
+	echo "processor count -> $procs"
+elif [ $1 == "sys" ]; then
+	sys=`cat /etc/redhat-release`
+	sys1=`cat /etc/issue`
+	sys2=`uname -a`
+	echo "$sys"
+elif [ $1 == "welcome" ]; then
+	wel=`cowsay -f "$(ls /usr/share/cowsay | sort -R | head -1)" "$(fortune -s)"`
+	echo "$wel" > /etc/motd
+	cat /etc/motd
+fi
+

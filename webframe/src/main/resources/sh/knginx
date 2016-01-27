@@ -1,0 +1,63 @@
+#!/bin/bash
+
+name="nginx"
+base="/usr/local/$name"
+log="$base/logs/access.log"
+logs="$base/logs/access.log $base/logs/error.log"
+error="$base/logs/error.log"
+cmd="$base/sbin/nginx"
+fname=$(basename $0)
+usage="usage: $fname [start|stop|quit|reload|-t/test|view|log|logs|error]"
+
+if [ "$#" -lt 1 ]; then
+	echo $usage
+	exit
+fi
+
+pid=`pgrep -o $name |grep -v "$$"`
+ntest="$cmd -t"
+nload="$cmd -s reload"
+nstop="$cmd -9 $pid"
+nquit="$cmd -QUIT $pid"
+
+case $1 in
+"start")
+	echo "start -> $cmd"
+	$cmd
+	;;
+"stop")
+	echo "stop -> $pid"
+	[ ! -z "$pid" ] && $nstop
+	;;
+"quit")
+	echo "quit -> $pid"
+	[ ! -z "$pid" ] && $nquit
+	;;
+"reload")
+	echo "reload -> $cmd"
+	[ ! -z "$pid" ] && $nload
+	;;	
+"-t|test")
+	echo "test -> $cmd"
+	[ ! -z "$pid" ] && $ntest
+	;;	
+"view")
+	echo "ps -ef |grep $name"
+	ps -ef |grep $name |grep -v "$$"	
+	;;
+"log")
+	echo "tail -f $log"
+	tail -f $log
+	;;
+"logs")
+	echo "tail -f $logs"
+	tail -f $logs
+	;;
+"error")
+	echo "tail -f $error"
+	tail -f $error
+	;;
+*)
+	echo $usage;;
+esac
+

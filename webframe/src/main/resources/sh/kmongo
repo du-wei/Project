@@ -1,0 +1,46 @@
+#!/bin/bash
+
+name="mongod"
+base="/apps/work/$name"
+logs="$base/logs/$name.log"
+cmd="$base/bin/mongod -f $base/mongod.conf &"
+fname=$(basename $0)
+usage="usage: $fname [start|stop|restart|view|log]"
+
+if [ "$#" -lt 1 ]; then
+	echo $usage
+	exit
+fi
+
+pid=`pgrep -o $name |grep -v "$$"`
+mstop="kill -9 $pid"
+
+#./bin/mongod -port 27017 --fork --dbpath data/ --logpath log/mongodb.log &
+
+case $1 in
+"start")
+	echo "start -> $cmd"
+	bash -c $cmd
+	;;
+"stop")
+	echo "stop -> $mstop"
+	[ ! -z "$pid" ] && $mstop
+	;;
+"restart")
+	echo "stop -> $mstop"
+	[ ! -z "$pid" ] && $mstop
+	echo "start -> $cmd"
+	bash -c $cmd
+	;;	
+"view")
+	echo "ps -ef |grep $name"
+	ps -ef |grep $name |grep -v "$$"	
+	;;
+"log")
+	echo "tail -f $logs"
+	tail -f $logs
+	;;
+*)
+	echo $usage;;
+esac
+
