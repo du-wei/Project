@@ -45,7 +45,7 @@ public final class DateTools {
 	public static String[] getPatterns(){
 		return parsePatterns;
 	}
-	
+
 	public static interface FmtDate{
 
 		/** date --> {@value} */
@@ -56,7 +56,7 @@ public final class DateTools {
 		public static final String Fmt_DateTime_AT = "yyyy.MM.dd G 'at' HH:mm:ss z";
 		/** date --> {@value} */
 		public static final String Fmt_DateTime_TZ = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-		
+
 		public static final String Fmt_DateTime_TZ_Z = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ";
 		/** date --> {@value} */
 		public static final String Fmt_DateTime_T = "yyyy-MM-dd'T'HH:mm:ss";
@@ -80,11 +80,11 @@ public final class DateTools {
 		public static final String Fmt_Time_M = "h:mm a";
 
 	}
-	
+
 	private DateTools(DateTime date){
 		this.ofDate = date;
 	}
-	
+
 	/** setData **/
     private DateTools setData(DateTime ofDate) {
 	    this.ofDate = ofDate;
@@ -195,7 +195,7 @@ public final class DateTools {
 		try {
 			if(date.matches("\\d{13}")){
 				dateTime = dateTime.withMillis(Long.parseLong(date));
-			}else if(date.matches("\\w{3} \\w{3} \\d{2} \\d{2}:\\d{2}:\\d{2} [\\+]?\\w{3,4} \\d{4}")){
+			}else if(isLocalEn(date)){
 				dateTime = dateTime.withMillis(DateUtils.parseDate(date, Locale.ENGLISH, parsePattern).getTime());
 			}else {
 				dateTime = dateTime.withMillis(DateUtils.parseDate(date, parsePattern).getTime());
@@ -207,5 +207,8 @@ public final class DateTools {
 		}
 	}
 
+	private static boolean isLocalEn(String date){
+		return date.matches("\\w{3} \\w{3} \\d{2} \\d{2}:\\d{2}:\\d{2} [\\+]?\\w{3,4} \\d{4}");
+	}
 
 }

@@ -9,7 +9,7 @@ public final class MybatisUtils {
 
 	private MybatisUtils(){}
 
-	public static <T> String setModel(Class<T> clz) {
+	public static <T> void propSet(Class<T> clz) {
 		StringBuffer columns = new StringBuffer();
 		String name = clz.getSimpleName();
 		String camel = Utils.toCamel(name);
@@ -19,18 +19,19 @@ public final class MybatisUtils {
             String col = field.getName();
             columns.append(camel + ".set" + Utils.toPascal(col) + "();\n");
         }
-        return Utils.delTail(columns.toString());
+        String result = Utils.delTail(columns.toString());
+        System.out.println(result);
 	}
 
-    public static <T> String sql_insert_cols(Class<T> clz) {
-    	 return sql_insert(clz, false);
+    public static <T> void insertCols(Class<T> clz) {
+    	 sql_insert(clz, false);
     }
 
-    public static <T> String sql_insert_vals(Class<T> clz) {
-        return sql_insert(clz, true);
+    public static <T> void insertVals(Class<T> clz) {
+        sql_insert(clz, true);
     }
 
-    private static <T> String sql_insert(Class<T> clz, boolean isProp) {
+    private static <T> void sql_insert(Class<T> clz, boolean isProp) {
         StringBuffer columns = new StringBuffer();
         Field[] fields = clz.getDeclaredFields();
         for(Field field : fields){
@@ -41,10 +42,11 @@ public final class MybatisUtils {
                 columns.append(Utils.toSnake(col) + ',');
             }
         }
-        return Utils.delTail(columns.toString());
+        String result = Utils.delTail(columns.toString());
+        System.out.println(result);
     }
 
-    public static <T> String sql_select_cols(Class<T> clz) {
+    public static <T> void searchCols(Class<T> clz) {
         StringBuffer columns = new StringBuffer();
         Field[] fields = clz.getDeclaredFields();
         for(Field field : fields){
@@ -52,10 +54,11 @@ public final class MybatisUtils {
             String consts = Utils.toSnake(col);
             columns.append(consts + (consts.contains(Symbol.LineUnder) ? " " + col : "") + ",");
         }
-        return Utils.delTail(columns.toString());
+        String result = Utils.delTail(columns.toString());
+        System.out.println(result);
     }
 
-    public static <T> String sql_update_cols(Class<T> clz) {
+    public static <T> void updateCols(Class<T> clz) {
         StringBuffer columns = new StringBuffer();
         Field[] fields = clz.getDeclaredFields();
         for(Field field : fields){
@@ -63,10 +66,11 @@ public final class MybatisUtils {
             String consts = Utils.toSnake(col);
             columns.append(consts + "=#{" + col + "},");
         }
-        return Utils.delTail(columns.toString());
+        String result = Utils.delTail(columns.toString());
+        System.out.println(result);
     }
 
-    public static <T> String const_cols(Class<T> clz){
+    public static <T> void propConst(Class<T> clz){
         StringBuffer columns = new StringBuffer();
         Field[] fields = clz.getDeclaredFields();
         for(Field field : fields){
@@ -76,6 +80,7 @@ public final class MybatisUtils {
             String consts = Utils.toSnake(col);
             columns.append(consts.toUpperCase() + " = \"" + consts.toLowerCase() + "\";\n");
         }
-        return columns.toString();
+        String result = Utils.delTail(columns.toString());
+        System.out.println(result);
     }
 }

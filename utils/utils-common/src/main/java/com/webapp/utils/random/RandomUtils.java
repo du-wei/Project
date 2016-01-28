@@ -25,6 +25,9 @@ import com.webapp.utils.format.FmtUtils;
 public final class RandomUtils {
 
 	private RandomUtils(){}
+	public static void jj(){
+//		SecureRandom.getInstanceStrong();
+	}
 
 	public static int nextInt() {
 		return ThreadLocalRandom.current().nextInt();

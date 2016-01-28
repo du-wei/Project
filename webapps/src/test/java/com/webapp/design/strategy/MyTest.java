@@ -15,16 +15,9 @@ public class MyTest {
 		Cat[] cats =
 		{ new Cat(8, 8), new Cat(5, 2), new Cat(4, 3), new Cat(2, 4) };
 
-		Arrays.sort(cats);
-		Double double1;
-		Float float1;
-		Integer integer;
-		Long long1;
-		Short short1;
-		Byte byte1;
+//		Arrays.sort(cats);
 
-		Character character;
-
+		Arrays.parallelSort(cats);
 		// Arrays.sort(cats, new CatHeightComparator());
 
 		for (int i = 0; i < cats.length; i++) {

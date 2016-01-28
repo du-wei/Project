@@ -171,6 +171,7 @@ public class LinuxHelp {
 		final StringBuffer result = new StringBuffer();
 		result.append(fmt(0, "type[-:]key[i][.@]", "", "desc"));
 
+//		LongAdder adder = new LongAdder();
 		AtomicInteger count = new AtomicInteger(1);
 		if(StringUtils.isNotEmpty(type)){
 			helpList.stream().filter(x->x.getType().equals(type))

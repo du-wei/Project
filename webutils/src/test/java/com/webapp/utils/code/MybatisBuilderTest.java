@@ -1,5 +1,8 @@
 package com.webapp.utils.code;
 
+import java.util.Arrays;
+import java.util.Properties;
+
 import org.junit.Test;
 import org.nutz.dao.Dao;
 import org.nutz.dao.impl.NutDao;
@@ -7,9 +10,10 @@ import org.nutz.dao.impl.SimpleDataSource;
 
 import com.webapp.builder.MybatisBuilder;
 import com.webapp.builder.TableBuilder;
+import com.webapp.utils.model.Student;
 import com.webapp.utils.model.StudentType;
 
-public class CodeUtilsTest {
+public class MybatisBuilderTest {
 
 	private static final String jdbcCfg = "build_dev.properties";
 
@@ -20,12 +24,12 @@ public class CodeUtilsTest {
 
 	@Test
 	public void buildModel() {
-//		MybatisBuilder.buildByTable("build_dev.properties", Arrays.asList("aic_data"));
+		MybatisBuilder.buildByTable(jdbcCfg, Arrays.asList("linux"));
 	}
 
 	@Test
 	public void buildTable() {
-//		ClassBuilder.of(Student.class).snake().done(TableBuilder.build(jdbcCfg));
+		TableBuilder.of(Student.class).snake().done(TableBuilder.build(jdbcCfg));
 		TableBuilder.of(StudentType.class).snake()
 			.notNull("address")
 			.width("address", 260)
@@ -34,15 +38,17 @@ public class CodeUtilsTest {
 	@Test
 	public void buildOrg() {
 
+		Properties jdbc = new Properties();
 		SimpleDataSource ds = new SimpleDataSource();
 		try {
-			ds.setDriverClassName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
+			ds.setDriverClassName(jdbc.getProperty("driver"));
+			jdbc.load(MybatisBuilder.class.getResourceAsStream("/" + jdbcCfg));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ds.setJdbcUrl("jdbc:mysql://10.20.69.225:3306/ictest?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&autoReconnect=true");
-		ds.setUsername("root");
-		ds.setPassword("1q2w3e4r");
+		ds.setJdbcUrl(jdbc.getProperty("jdbc"));
+		ds.setUsername(jdbc.getProperty("username"));
+		ds.setPassword(jdbc.getProperty("password"));
 		Dao dao = new NutDao(ds);
 		dao.create(StudentType.class, true);
 	}
