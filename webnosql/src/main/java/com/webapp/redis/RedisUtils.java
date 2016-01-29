@@ -1,25 +1,26 @@
 package com.webapp.redis;
 
 import java.util.List;
-import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.apache.commons.configuration.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.webapp.utils.config.ConfigUtils;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Pipeline;
 import redis.clients.jedis.Transaction;
 
-import com.webapp.utils.config.ConfigUtils;
-
 @Component
 public class RedisUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(RedisUtils.class);
-	
+
 	private static String redisCfg = "redis.properties";
 	private final static Configuration config = ConfigUtils.addConfig(redisCfg);
 	private static JedisPool pool = null;
@@ -48,46 +49,27 @@ public class RedisUtils {
 		return jedis;
 	}
 
-	public static String get(String key) {
-		Jedis jedis = null;
-		String result = "";
+	public static void exe(Consumer<Jedis> consumer) {
+		Jedis jedis = getJedis();
 		try {
-			jedis = getJedis();
-			result = jedis.get(key);
+			consumer.accept(jedis);
 		} catch (Exception e) {
 			logger.error("", e);
 		} finally {
 			closeJedis(jedis);
 		}
-		return result;
 	}
-
-	public static Set<String> keys(String pattern) {
-		Jedis jedis = null;
-		Set<String> result = null;
+	public static <R> R exe1(Function<Jedis, R> function) {
+		R apply = null;
+		Jedis jedis = getJedis();
 		try {
-			jedis = getJedis();
-			result = jedis.keys(pattern);
+			apply = function.apply(getJedis());
 		} catch (Exception e) {
 			logger.error("", e);
 		} finally {
 			closeJedis(jedis);
 		}
-		return result;
-	}
-
-	public static String set(String key, String val) {
-		Jedis jedis = null;
-		String result = "";
-		try {
-			jedis = getJedis();
-			result = jedis.set(key, val);
-		} catch (Exception e) {
-			logger.error("", e);
-		} finally {
-			closeJedis(jedis);
-		}
-		return result;
+		return apply;
 	}
 
 	public static Transaction ByTrans() {
@@ -127,9 +109,5 @@ public class RedisUtils {
 	public static void closeJedis(Jedis jedis){
 		if(jedis != null) jedis.close();
 	}
-	public static void returnResource(Jedis jedis) {
-	    if(jedis != null) pool.returnResourceObject(jedis);
-    }
-	
-	
+
 }

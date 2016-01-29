@@ -39,6 +39,9 @@
 		<freemarker_version>2.3.23</freemarker_version>
 		<rapid_version>4.0.6</rapid_version>
 		<rapid_core>4.0.5</rapid_core>
+
+		<spring_version>4.2.4.RELEASE</spring_version>
+
 		<mysql_version>5.1.38</mysql_version>
 		<mybatis_version>3.3.0</mybatis_version>
 		<mybatis_spring>1.2.3</mybatis_spring>

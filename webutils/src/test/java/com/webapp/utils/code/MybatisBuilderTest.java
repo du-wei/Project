@@ -8,8 +8,8 @@ import org.nutz.dao.Dao;
 import org.nutz.dao.impl.NutDao;
 import org.nutz.dao.impl.SimpleDataSource;
 
-import com.webapp.builder.MybatisBuilder;
-import com.webapp.builder.TableBuilder;
+import com.webapp.utils.builder.MybatisBuilder;
+import com.webapp.utils.builder.TableBuilder;
 import com.webapp.utils.model.Student;
 import com.webapp.utils.model.StudentType;
 
