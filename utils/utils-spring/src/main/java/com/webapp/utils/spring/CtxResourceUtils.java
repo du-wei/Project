@@ -12,7 +12,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.ResourceUtils;
 
-public class SpResourceUtils {
+public class CtxResourceUtils {
 
 	public static File getFile(String cfg){
 		File file = null;

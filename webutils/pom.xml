@@ -41,7 +41,11 @@
 	        <version>2.2.3</version>
 	    </dependency>
 
-
+		<dependency>
+  			<groupId>com.webapp</groupId>
+  			<artifactId>utils-spring</artifactId>
+  			<version>${utils_version}</version>
+  		</dependency>
 		<dependency>
   			<groupId>com.webapp</groupId>
   			<artifactId>utils-common</artifactId>
@@ -104,11 +108,6 @@
 			<artifactId>commons-pool2</artifactId>
 			<version>${commons_pool2}</version>
 		</dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.9</version>
-        </dependency>
         <dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>

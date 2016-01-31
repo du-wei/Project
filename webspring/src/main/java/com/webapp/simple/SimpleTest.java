@@ -16,5 +16,5 @@ public class SimpleTest {
 	public Student get(User user){
 		return ModelUtils.getStu();
 	}
-	
+
 }

@@ -1,4 +1,4 @@
-package com.webapp.utils;
+package com.webapp.utils.spring;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -17,7 +17,7 @@ import org.springframework.core.env.PropertySourcesPropertyResolver;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.core.io.support.PropertiesLoaderSupport;
 
-public class WebPropsResolver {
+public class CtxPropsResolver {
 	
 	protected static MutablePropertySources initPropertySources(boolean hasEnv) {
 		if(hasEnv){
@@ -65,7 +65,7 @@ public class WebPropsResolver {
 	protected static void inject(ApplicationContext ctx, MutablePropertySources mps) throws Exception {
 		PropertySourcesPropertyResolver resolver = new PropertySourcesPropertyResolver(mps);
 
-        Field[] fields = WebPropsUtils.class.getDeclaredFields();
+        Field[] fields = CtxPropsUtils.class.getDeclaredFields();
 		for(Field field : fields){
 			if(field.getType().isAssignableFrom(PropertySourcesPropertyResolver.class)){
 				field.setAccessible(true);
