@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import com.webapp.utils.mybatis.ClassBuilder;
 import com.webapp.utils.mybatis.ClassCompiler;
 
-public class TableBuilder<T> {
+public final class TableBuilder<T> {
 
 	private static final Logger logger = LoggerFactory.getLogger(TableBuilder.class);
 	private SimpleDataSource ds;

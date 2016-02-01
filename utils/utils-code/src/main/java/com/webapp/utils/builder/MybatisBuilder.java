@@ -13,7 +13,7 @@ import cn.org.rapid_framework.generator.GeneratorControl;
 import cn.org.rapid_framework.generator.GeneratorFacade;
 import cn.org.rapid_framework.generator.GeneratorProperties;
 
-public class MybatisBuilder {
+public final class MybatisBuilder {
 
 	private static final Logger logger = LoggerFactory.getLogger(MybatisBuilder.class);
 	private static final String PASSWORD = "password";

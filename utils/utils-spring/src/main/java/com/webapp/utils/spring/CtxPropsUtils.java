@@ -15,7 +15,7 @@ import com.alibaba.fastjson.JSON;
 * @Description: spring容器初始化时 CtxPropsUtils会收集所有配置到该类中
 * CtxBeanUtils
 */
-public class CtxPropsUtils {
+public final class CtxPropsUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(CtxPropsUtils.class);
 	private static PropertySourcesPropertyResolver resolver = null;

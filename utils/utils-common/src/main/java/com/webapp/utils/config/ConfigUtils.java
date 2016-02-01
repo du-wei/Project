@@ -22,7 +22,7 @@ import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ConfigUtils {
+public final class ConfigUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(ConfigUtils.class);
 	private static CompositeConfiguration composite;

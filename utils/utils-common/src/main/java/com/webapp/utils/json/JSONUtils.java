@@ -29,7 +29,7 @@ import com.webapp.utils.string.Utils;
 * @date 2014年10月13日 下午9:41:36
 * @version V1.0
 */
-public class JSONUtils {
+public final class JSONUtils {
 
     private Object jsonObj;
     private JSONSerializer jsonSerializer;

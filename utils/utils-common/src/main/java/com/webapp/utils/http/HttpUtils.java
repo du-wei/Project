@@ -36,8 +36,8 @@ import org.slf4j.LoggerFactory;
 
 import com.webapp.utils.string.Utils.Charsets;
 
-public class HttpUtils {
-	
+public final class HttpUtils {
+
 	private static final Logger logger = LoggerFactory.getLogger(HttpUtils.class);
 
 	private static CloseableHttpClient client;
@@ -51,26 +51,26 @@ public class HttpUtils {
         } catch (IOException e) {
 	        e.printStackTrace();
         }
-		
+
 		if(Boolean.valueOf(prop.getProperty("httpPool"))){
 			logger.info("启用Http连接池");
 			Integer maxTotal = Integer.valueOf(prop.getProperty("maxTotal", "500"));
 			Integer reqTimeout = Integer.valueOf(prop.getProperty("requestTimeout", "30000"));
 			Integer conTimeout = Integer.valueOf(prop.getProperty("connectTimeout", "30000"));
 			Integer socketTimeout = Integer.valueOf(prop.getProperty("socketTimeout", "30000"));
-			
+
 			cm = new PoolingHttpClientConnectionManager();
 			cm.setMaxTotal(maxTotal);
 			cm.setDefaultMaxPerRoute(cm.getMaxTotal());
 			RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(reqTimeout).setConnectTimeout(conTimeout)
 					.setSocketTimeout(socketTimeout).build();
-			
+
 			client = HttpClients.custom().setConnectionManager(cm).setDefaultRequestConfig(config).build();
 		}else {
 			logger.info("未启用Http连接池");
 		}
 	}
-	
+
 	private static CloseableHttpClient getClient(){
 		if(client == null){
 			return HttpClients.createDefault();
@@ -79,7 +79,7 @@ public class HttpUtils {
 		cm.closeIdleConnections(30, TimeUnit.MINUTES);
 		return client;
 	}
-	
+
 	public static BuilderGet get(String url) {
 		return new BuilderGet(url);
 	}
@@ -102,7 +102,7 @@ public class HttpUtils {
 	}
 
 	public static abstract class Builder {
-		
+
 		CloseableHttpResponse resp;
 		CookieStore cookieStore;
 		String url;
@@ -134,15 +134,15 @@ public class HttpUtils {
 		}
 
 		public abstract Builder send();
-		
+
 		public CloseableHttpResponse response() {
 	        return resp;
         }
-		
+
 		public List<Cookie> getCookies() {
 			return cookieStore.getCookies();
         }
-		
+
 		public Cookie getCookie(String name){
 			List<Cookie> cookies = getCookies();
 			for(Cookie cookie : cookies){
@@ -152,11 +152,11 @@ public class HttpUtils {
 			}
 			return null;
 		}
-		
+
 		public Header[] getHeaders(String name) {
 	        return resp.getHeaders(name);
         }
-		
+
 		public Header getHeader(String name) {
 	        Header[] headers = resp.getHeaders(name);
 	        for(Header header : headers){
@@ -178,7 +178,7 @@ public class HttpUtils {
 			}
 			return null;
 		}
-		
+
 		public void close(){
 			if(resp != null && client == null){
 				try {
@@ -196,7 +196,7 @@ public class HttpUtils {
 				request.addHeader(key, header.get(key));
 			}
 		}
- 		
+
  		protected HttpContext getContext(){
  			cookieStore = new BasicCookieStore();
  			HttpContext context = new BasicHttpContext();

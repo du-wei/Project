@@ -15,7 +15,7 @@ import com.webapp.utils.string.Utils.Charsets;
  * @date 2013-1-16 上午11:32:57
  * @version V1.0
  */
-public class EncodeUtils {
+public final class EncodeUtils {
 
 	/* --------------------- decode ---------------------- */
 
@@ -69,7 +69,7 @@ public class EncodeUtils {
 
 	/**
 	 * CharBuffer to ByteBuffer by UTF-8 encode
-	 * 
+	 *
 	 * @param buffer
 	 *            CharBuffer type
 	 * @return ByteBuffer of by UTF-8 encode
@@ -80,7 +80,7 @@ public class EncodeUtils {
 
 	/**
 	 * CharBuffer to ByteBuffer by charsetName encode
-	 * 
+	 *
 	 * @param buffer
 	 *            CharBuffer type
 	 * @param charsetName
@@ -94,7 +94,7 @@ public class EncodeUtils {
 
 	/**
 	 * byte[] to ByteBuffer by UTF-8 encode
-	 * 
+	 *
 	 * @param byteArray
 	 *            byte[] type
 	 * @param charsetName

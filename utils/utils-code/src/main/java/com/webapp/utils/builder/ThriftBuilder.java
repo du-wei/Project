@@ -2,8 +2,8 @@ package com.webapp.utils.builder;
 
 import com.webapp.utils.thrift.builder.ThriftFileBuilder;
 
-public class ThriftBuilder {
-	
+public final class ThriftBuilder {
+
 	public static void build(Class<?> clzInterface) {
 		ThriftFileBuilder fileBuilder = new ThriftFileBuilder();
 		try {
@@ -12,5 +12,5 @@ public class ThriftBuilder {
 	        e.printStackTrace();
         }
     }
-	
+
 }

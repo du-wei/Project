@@ -52,7 +52,7 @@ import com.webapp.utils.codec.CodecUtils.AlgoSymEnum.AlgoSymMode;
 import com.webapp.utils.codec.CodecUtils.AlgoSymEnum.AlgoSymPadding;
 import com.webapp.utils.string.Utils;
 
-public class CodecUtils {
+public final class CodecUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(CodecUtils.class);
 	private static final String UNICODE = "unicode";

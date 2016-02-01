@@ -15,7 +15,7 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.List;
 
-public class FilesUtils {
+public final class FilesUtils {
 
 	public static void replaceLine() {
 

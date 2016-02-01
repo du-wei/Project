@@ -11,14 +11,14 @@ import java.util.List;
 /**
  * 身份证检验类
  */
-public class IDUtils {
-	
+public final class IDUtils {
+
 	//校验加权因子数组
 	private static final int[] checkCodes = new int[]{7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
 	private ID id;		//身份证号码
 	private List<String> errorMsgs = new ArrayList<>();	//非法信息集合
 	private String addr = "";		//地址信息
-	
+
 	public static IDUtils of(String num) {
 	    return new IDUtils(num);
     }
@@ -29,15 +29,15 @@ public class IDUtils {
 	private IDUtils(String num) {
 		this.id = new ID(num.length() >= 18 ? num : "0000000000000000000");
 	}
-	
+
 	/**
 	 * 获取中文格式的出生年月日
-	 * @return 
+	 * @return
 	 */
 	public String getBirth(){
 		return id.getBirth().substring(0, 4) + "年" + id.getBirth().substring(4,6) + "月" + id.getBirth().substring(6,8) + "日";
 	}
-	
+
 	/**
 	 * 获取性别
 	 * @return 男  女
@@ -45,7 +45,7 @@ public class IDUtils {
 	public String getSex() {
 		return id.getSeq().charAt(2)%2 == 0 ? "女" : "男";
 	}
-	
+
 	/**
 	 * 获得地址
 	 * @return
@@ -56,7 +56,7 @@ public class IDUtils {
 		}
 		return addr;
 	}
-	
+
 	/**
 	 * 总的身份证验证
 	 * 验证顺序：长度 -> 生日 -> 最后一位校验码 -> 地址
@@ -69,7 +69,7 @@ public class IDUtils {
 		}
 		return checkBirth() & checkCode() & checkAddr() ? true : false;
 	}
-	
+
 	/**
 	 * 检查身份证长度是否正确
 	 * @return 长度为18则返回true，否则返回false
@@ -82,7 +82,7 @@ public class IDUtils {
 		errorMsgs.add("身份证长度不正确");
 		return false;
 	}
-	
+
 	/**
 	 * 验证身份证出生年月日是否合法
 	 * @return 合法返回true,否则返回false
@@ -104,7 +104,7 @@ public class IDUtils {
 		errorMsgs.add("身份证生日码不正确！");
 		return false;
 	}
-	
+
 	/**
 	 * 验证地址码是否存在
 	 * @return 存在返回true，不存在返回false
@@ -131,7 +131,7 @@ public class IDUtils {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * 取得错误信息
 	 * @return
@@ -139,7 +139,7 @@ public class IDUtils {
 	public String getErrorMsg(){
 		return errorMsgs.size() > 0 ? errorMsgs.get(0) : "";
 	}
-	
+
 	/**
 	 * 取得错误信息集合
 	 * @return
@@ -147,7 +147,7 @@ public class IDUtils {
 	public List<String> getErrorMsgs() {
 		return errorMsgs;
 	}
-	
+
 	/**
 	 * 分离身份证号码
 	 * @return 整型数组，最后一位若是'X'，则返回10
@@ -162,10 +162,10 @@ public class IDUtils {
 		ins[i] = "X".equals(last) ? 10 : Integer.valueOf(last);
 		return ins;
 	}
-	
+
 	/**
 	 * 计算校验位
-	 * @return 
+	 * @return
 	 */
 	private static final String caculateCheckCode(String num){
 		int total = 0;		//校验值和
@@ -179,7 +179,7 @@ public class IDUtils {
 			return null;
 		}
 		int modResult = total % 11;
-		
+
 		String result = null;
 		//校验码对应值: 1 0 X 9 8 7 6 5 4 3 2
 		switch (modResult) {
@@ -221,7 +221,7 @@ public class IDUtils {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 读取地址码
 	 * @param addrNum
@@ -236,7 +236,7 @@ public class IDUtils {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 读取地址码是否存在
 	 * @param filePath 文件路径
@@ -257,8 +257,8 @@ public class IDUtils {
 					break;
 				}
 			}
-			buffReader.close(); 
-			
+			buffReader.close();
+
 		} catch (FileNotFoundException e) {
 			System.err.println("找到不地址码文件");
 			e.printStackTrace();
@@ -268,9 +268,9 @@ public class IDUtils {
 		}
 		return addr;
 	}
-	
+
 	private class ID {
-		
+
 		private String num;		//全长身份证号码
 		private String addr;	//地址
 		private String birth;	//生日
@@ -284,7 +284,7 @@ public class IDUtils {
 			this.seq = num.substring(14,17);
 			this.check = num.substring(17,18);
 		}
-		
+
 		public String getAddr() {
 			return addr;
 		}
@@ -301,5 +301,5 @@ public class IDUtils {
 			return num;
 		}
 	}
-	
+
 }

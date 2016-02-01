@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-public class CookieUtils {
-	
+public final class CookieUtils {
+
 	public static String getCookieByName(HttpServletRequest request, String name) {
 		Map<String, Cookie> cookieMap = readCookieMap(request);
 		if (cookieMap.containsKey(name)) {
@@ -17,7 +17,7 @@ public class CookieUtils {
 			return null;
 		}
 	}
-	
+
 	public static boolean hasCookie(HttpServletRequest request, String name) {
 		Map<String, Cookie> cookieMap = readCookieMap(request);
 		return cookieMap.containsKey(name);

@@ -13,7 +13,7 @@ import org.springframework.core.env.MutablePropertySources;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CtxBeanUtils implements ApplicationContextAware {
+public final class CtxBeanUtils implements ApplicationContextAware {
 
 	private static final Logger logger = LoggerFactory.getLogger(CtxBeanUtils.class);
 	private static ApplicationContext ctx = null;

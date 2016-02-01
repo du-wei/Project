@@ -7,12 +7,12 @@ import java.lang.reflect.Method;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class ClzUtils {
-	
+public final class ClzUtils {
+
 	public static boolean hasAnno(Class<?> clz, Class<? extends Annotation> anno) {
 		return clz.isAnnotationPresent(anno);
     }
-	
+
 	public static boolean hasAnno(Method method, Class<? extends Annotation> anno) {
 		return method.isAnnotationPresent(anno);
     }
@@ -20,11 +20,11 @@ public class ClzUtils {
 	public static <T extends Annotation> T getAnno(Method method, Class<T> anno) {
 		return method.getAnnotation(anno);
     }
-	
+
 	public static <T extends Annotation> T getAnno(Class<T> clz, Class<T> anno) {
 		return clz.getAnnotation(anno);
     }
-	
+
 	public static <T extends Annotation> T getAnnoIfClz(Class<T> clz, Method method, Class<T> anno) {
 		T tAnno = null;
 		if(clz.isAnnotationPresent(anno)){
@@ -34,7 +34,7 @@ public class ClzUtils {
 		}
 		return tAnno;
     }
-	
+
 	public static <T extends Annotation> T getAnnoIfMethod(Class<T> clz, Method method, Class<T> anno) {
 		T tAnno = null;
 		if(method.isAnnotationPresent(anno)){
@@ -54,13 +54,13 @@ public class ClzUtils {
         }
 		return method;
 	}
-	
+
 	public static Method getGetMethod(Class<?> clz, String prop) {
 		String get = "get" + StringUtils.capitalize(prop);
 		return getMethod(clz, get);
-		
+
     }
-	
+
 	@SuppressWarnings("unchecked")
     public static <T> T invoke(Method method, Object instance, Class<T> returnClz) {
 		Object result = null;
@@ -85,7 +85,7 @@ public class ClzUtils {
         }
 		return field;
 	}
-	
+
 	public static Object getFieldVal(Field field, Object instance) {
 		Object result = null;
 	    try {
@@ -95,7 +95,7 @@ public class ClzUtils {
 	        e.printStackTrace();
         }
 	    return result;
-	    
+
     }
-	
+
 }

@@ -7,7 +7,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.deserializer.ExtraProcessor;
 import com.webapp.utils.string.Utils;
 
-public class JSONBeanUtils<T> {
+public final class JSONBeanUtils<T> {
 
 	private String json;
 	private Class<T> clz;

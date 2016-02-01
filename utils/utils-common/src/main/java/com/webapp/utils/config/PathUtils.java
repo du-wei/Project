@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PathUtils {
+public final class PathUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(PathUtils.class);
 
