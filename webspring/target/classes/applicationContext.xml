@@ -56,7 +56,7 @@
 		<property name="password" value="${password_new}" />
 	</bean>
 
-	<bean id="multiDataSource" class="com.webapp.database.MultiDataSource">
+	<bean id="multiDataSource" class="com.webapp.utils.datasource.MultiDataSource">
         <property name="defaultTargetDataSource" ref="dataSource"/>
         <property name="targetDataSources">
             <map>

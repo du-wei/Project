@@ -60,7 +60,7 @@ public final class CtxPropsUtils {
 		return resolver.containsProperty(key);
 	}
 
-	public static void viewProp(){
+	public static void showProp(){
 		Iterator<PropertySource<?>> iterator = props.iterator();
 		for(;iterator.hasNext();){
 			PropertySource<?> next = iterator.next();

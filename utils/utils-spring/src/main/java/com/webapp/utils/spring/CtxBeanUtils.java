@@ -18,8 +18,7 @@ public final class CtxBeanUtils implements ApplicationContextAware {
 	private static final Logger logger = LoggerFactory.getLogger(CtxBeanUtils.class);
 	private static ApplicationContext ctx = null;
 
-    public void setApplicationContext(ApplicationContext context)
-            throws BeansException {
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
 		ctx = context;
 
 	    try {
@@ -34,17 +33,17 @@ public final class CtxBeanUtils implements ApplicationContextAware {
     }
 
 	public static <T> T getBean(Class<T> clz) {
-		checkAppContext();
+		checkAppCtx();
 		return ctx.getBean(clz);
     }
 
 	public static Object getBean(String name) {
-		checkAppContext();
+		checkAppCtx();
 		return ctx.getBean(name);
     }
 
-	public static void viewBean() {
-		checkAppContext();
+	public static void showBean() {
+		checkAppCtx();
 		String[] beans = ctx.getBeanDefinitionNames();
 		Arrays.parallelSort(beans);
 
@@ -64,16 +63,17 @@ public final class CtxBeanUtils implements ApplicationContextAware {
 			System.out.println("\t|--" + ctx.getBean(bean).getClass());
 		}
 	}
-	public static ApplicationContext getApplicationContext() {
-		checkAppContext();
+
+	public static ApplicationContext getAppCtx() {
+		checkAppCtx();
 		return ctx;
 	}
 
-	public static void cleanApplicationContext() {
+	public static void cleanAppCtx() {
 		ctx = null;
 	}
 
-	private static void checkAppContext() {
+	private static void checkAppCtx() {
 		if (ctx == null) {
 			throw new IllegalStateException("applicaitonContext is null");
 		}

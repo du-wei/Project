@@ -49,7 +49,7 @@ public class RunnerWeb {
 //		}
 
 //		SpBeanUtils.viewBean();
-		CtxPropsUtils.viewProp();
+		CtxPropsUtils.showProp();
 	}
 
 }

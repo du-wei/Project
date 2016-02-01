@@ -7,7 +7,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.webapp.utils.spring.CtxBeanUtils;
-import com.webapp.utils.spring.CtxPropsUtils;
 
 public class MyTest {
 
@@ -19,8 +18,7 @@ public class MyTest {
 	public void testName() throws Exception {
     	ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
 
-//    	SpPropsUtils.viewProp();
-    	CtxBeanUtils.viewBean();
+    	CtxBeanUtils.showBean();
 
 //		ApplicationContext ctx = null;
 //		ConfigurableApplicationContext cactx = (ConfigurableApplicationContext) ctx;

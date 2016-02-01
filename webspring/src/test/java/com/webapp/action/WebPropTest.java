@@ -23,6 +23,6 @@ public class WebPropTest extends RunnerWeb {
 
 	@Test
 	public void viewProp() throws Exception {
-		CtxPropsUtils.viewProp();
+		CtxPropsUtils.showProp();
     }
 }

@@ -163,6 +163,11 @@
   			<artifactId>utils-spring</artifactId>
   			<version>${utils_version}</version>
   		</dependency>
+  		<dependency>
+  			<groupId>com.webapp</groupId>
+  			<artifactId>utils-datasource</artifactId>
+  			<version>${utils_version}</version>
+  		</dependency>
 	</dependencies>
 
 	<build>

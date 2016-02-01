@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.MessageSourceResourceBundle;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -14,12 +16,13 @@ import org.springframework.util.ResourceUtils;
 
 public final class CtxResourceUtils {
 
+	private static final Logger logger = LoggerFactory.getLogger(CtxResourceUtils.class);
 	public static File getFile(String cfg){
 		File file = null;
 		try {
 			file = ResourceUtils.getFile(cfg);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return file;
 	}
@@ -33,7 +36,7 @@ public final class CtxResourceUtils {
 		try {
 			props = PropertiesLoaderUtils.loadProperties(getResource(cfg));
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("", e);
 		}
 		return props;
 	}

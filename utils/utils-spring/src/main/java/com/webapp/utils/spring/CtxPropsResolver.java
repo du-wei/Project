@@ -18,14 +18,15 @@ import org.springframework.core.env.StandardEnvironment;
 import org.springframework.core.io.support.PropertiesLoaderSupport;
 
 public class CtxPropsResolver {
-	
+
+//	private static final Logger logger = LoggerFactory.getLogger(CtxPropsResolver.class);
 	protected static MutablePropertySources initPropertySources(boolean hasEnv) {
 		if(hasEnv){
 			return new MutablePropertySources((new StandardEnvironment()).getPropertySources());
 		}
 		return new MutablePropertySources();
 	}
-	
+
 	protected static void resolverPropertySourcesPlaceholder(ApplicationContext ctx, MutablePropertySources mps) {
 		//获取以PropertySourcesPlaceholderConfigurer配置的属性
         Map<String, PropertySourcesPlaceholderConfigurer> propSource = ctx.getBeansOfType(PropertySourcesPlaceholderConfigurer.class);
@@ -41,7 +42,7 @@ public class CtxPropsResolver {
         	}
         }
 	}
-	
+
 	protected static void resolverPropertyPlaceholder(ApplicationContext ctx, MutablePropertySources mps) throws Exception {
 		 //获取以PropertyPlaceholderConfigurer配置的属性
         Method mergeProperties = PropertiesLoaderSupport.class.getDeclaredMethod("mergeProperties");
@@ -52,7 +53,7 @@ public class CtxPropsResolver {
         	mps.addFirst(new PropertiesPropertySource(prop, addProp));
         }
 	}
-	
+
 	protected static void resolverPropertyFactory(ApplicationContext ctx, MutablePropertySources mps) throws Exception {
 		//获取PropertiesFactoryBean类型的配置  utils
         Map<String, PropertiesFactoryBean> propMap = ctx.getBeansOfType(PropertiesFactoryBean.class);
@@ -61,7 +62,7 @@ public class CtxPropsResolver {
         	mps.addFirst(new PropertiesPropertySource(propId.substring(1), propMap.get(propId).getObject()));
         }
 	}
-	
+
 	protected static void inject(ApplicationContext ctx, MutablePropertySources mps) throws Exception {
 		PropertySourcesPropertyResolver resolver = new PropertySourcesPropertyResolver(mps);
 
@@ -76,5 +77,5 @@ public class CtxPropsResolver {
 			}
 		}
 	}
-	
+
 }
