@@ -17,6 +17,8 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+
 public class FilesUtils {
 
 	public static void main(String[] args) throws Exception {
@@ -38,7 +40,6 @@ public class FilesUtils {
 			System.out.println(s);
 		}
 		reader.close();
-
 	}
 
 	public static void replaceLine() {

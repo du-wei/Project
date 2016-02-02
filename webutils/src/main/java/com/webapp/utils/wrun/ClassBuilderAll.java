@@ -2,18 +2,16 @@ package com.webapp.utils.wrun;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
+import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Opcodes;
 
-import com.webapp.utils.string.Utils;
+import com.webapp.utils.config.PathUtils;
+import com.webapp.utils.file.CmdUtils;
 
 import javassist.CannotCompileException;
 import javassist.ClassPool;
@@ -65,26 +63,38 @@ public class ClassBuilderAll<T> {
 			e.printStackTrace();
 		}
 	}
-
+	public static void main(String[] args) throws Exception {
+		asm();
+	}
 	private static void asm() throws Exception {
-		ClassWriter classWriter = new ClassWriter(0);
-        // 通过visit方法确定类的头部信息
-        classWriter.visit(Opcodes.V1_8,// java版本
-                Opcodes.ACC_PUBLIC,// 类修饰符
-                "Programmer", // 类的全限定名
-                null, "java/lang/Object", null);
+		String clz = "Hello";
 
-        // 定义code方法
-        MethodVisitor methodVisitor = classWriter.visitMethod(Opcodes.ACC_PUBLIC, "code", "()V",
-                null, null);
-        classWriter.visitEnd();
-        // 使classWriter类已经完成
-        // 将classWriter转换成字节数组写到文件里面去
-        byte[] data = classWriter.toByteArray();
-        File file = new File("D://xxxx.class");
-        FileOutputStream fout = new FileOutputStream(file);
-        fout.write(data);
-        fout.close();
+		ClassWriter cw = new ClassWriter(0);
+        //1-版本 2-修饰符 3-全限定名 4-泛型 5-父类全限定名 6-实现的接口
+        cw.visit(Opcodes.V1_8, Opcodes.ACC_PUBLIC, clz, null, "java/lang/Object", null);
+
+        //1-修饰符 2-字段名 3-字段描述符 4-泛型 5-字段的值
+        FieldVisitor fv = cw.visitField(Opcodes.ACC_PUBLIC, "name", "LString;", null, null);
+        AnnotationVisitor av = fv.visitAnnotation("LNotNull;", true);
+        av.visit("value", "abc");
+        av.visitEnd();
+        fv.visitEnd();
+
+        //1-修饰符 2-方法名 3-方法描述符 4-泛型 5-异常声明
+//        MethodVisitor md = cw.visitMethod(Opcodes.ACC_PUBLIC, "code", "()V", null, null);
+
+        File file = new File(PathUtils.getCurPath(ClassBuilderAll.class) + "/"+clz+".class");
+        IOUtils.write(cw.toByteArray(), new FileOutputStream(file));
+
+//        Class<?> clazz = ClassBuilderAll.class.getClassLoader().loadClass(file.getAbsolutePath());
+//        String nameString = (String) clazz.getField("name").get(clazz.newInstance());
+//        System.out.println("filed value : " + nameString);
+//
+//        String annoVal = clazz.getField("name").getAnnotation(NotNull.class).toString();
+//        System.out.println("annotation value: " + annoVal);
+
+        String exec = CmdUtils.javap(file.getAbsolutePath(), "gbk");
+        System.out.println(exec);
 
 	}
 

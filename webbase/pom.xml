@@ -28,6 +28,7 @@
 		<jodd_version>3.6.7</jodd_version>
 		<joda-time_version>2.9.1</joda-time_version>
 		<poi_version>3.13</poi_version>
+		<commons_io>2.4</commons_io>
 		<commons_codec>1.10</commons_codec>
 		<commons_lang3>3.4</commons_lang3>
 		<commons_email>1.4</commons_email>

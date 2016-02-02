@@ -43,7 +43,7 @@ public class JSONUtilsTest {
 		System.out.printf(format, result, "toPascalKey()");
 		assertThat(result, Matchers.containsString("JkBool"));
 
-		result = JSONUtils.of(jsonType).toUnderlineKey();
+		result = JSONUtils.of(jsonType).toSnakeKey();
 		System.out.printf(format, result, "toUnderlineKey()");
 		assertThat(result, Matchers.containsString("jk_bool"));
 

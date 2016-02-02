@@ -8,14 +8,14 @@ import org.apache.commons.configuration.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import redis.clients.jedis.JedisPoolConfig;
-
 import com.webapp.utils.config.ConfigUtils;
+
+import redis.clients.jedis.JedisPoolConfig;
 
 public class RedisConfig {
 
 	private static final Logger logger = LoggerFactory.getLogger(RedisConfig.class);
-	
+
 	public static JedisPoolConfig getJedisPoolConfig(String redisCfg) {
 		Configuration config = ConfigUtils.addConfig(redisCfg);
 		return getJedisPoolConfig(config);
@@ -40,11 +40,11 @@ public class RedisConfig {
 				String prop = methodName.replaceFirst("set", "").toLowerCase();
 				if (cfg.containsKey(prop)) {
 					String typeName = method.getParameterTypes()[0].getSimpleName();
-					
+
 					try {
 						Method getMethod = JedisPoolConfig.class.getMethod("get" + methodName.replaceFirst("set", ""));
 						logger.info("{} --> {} --> {}", prop, cfg.get(prop), getMethod.invoke(jedisCfg));
-						
+
 						if (typeName.equals(String.class.getSimpleName())) {
 							method.invoke(jedisCfg, String.valueOf(cfg.get(prop)));
 						} else if (typeName.equals(Integer.class.getSimpleName())) {
@@ -63,7 +63,7 @@ public class RedisConfig {
 		return jedisCfg;
 	}
 
-	public static void viewJedisPoolConfig() {
+	public static void showJedisPoolConfig() {
 		logger.warn("--> 属性参数忽略大小写");
 
 		Method[] methods = JedisPoolConfig.class.getMethods();

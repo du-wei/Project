@@ -97,10 +97,10 @@ public final class JSONUtils {
 	 * For example
      * <pre>
      * Obj class {int userId=1;}
-     * JSONUtils.of(new Obj()).toUnderlineKey() -> {user_id:1}   </pre>
+     * JSONUtils.of(new Obj()).toSnakeKey() -> {user_id:1}   </pre>
 	 * @return Change after the json string
 	 */
-	public String toUnderlineKey() {
+	public String toSnakeKey() {
 		jsonSerializer.getNameFilters().add(new NameFilter() {
 			public String process(Object object, String name, Object value) {
 				return Utils.toSnake(name);

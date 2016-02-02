@@ -1,14 +1,11 @@
 package com.webapp.thread;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinPool.ForkJoinWorkerThreadFactory;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.ForkJoinWorkerThread;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 import java.util.concurrent.RecursiveTask;
 
 import org.junit.Test;
@@ -16,8 +13,8 @@ import org.junit.Test;
 public class ThreadCase {
 
 	/** Future模式 Master-Worker模式
-	 * 
-	 * 
+	 *
+	 *
 	 * jppf hama akka */
 
 	private static ExecutorService executor = Executors
@@ -32,67 +29,6 @@ public class ThreadCase {
 
 		forkjoin();
 	}
-
-	public static void thread() {
-		Thread thread = new MyThread();
-		thread.start();
-	}
-
-	public static void runnable() throws Exception {
-		Runnable run = new Runnable() {
-			@Override
-			public void run() {
-				System.out.println("Runnable");
-			}
-		};
-		// Thread thread = new Thread(run);
-		// thread.start();
-
-		Callable<String> callable = Executors.callable(run, "result");
-		Future<String> submit = executor.submit(callable);
-		System.out.println(submit.get());
-	}
-
-	public static void callable() throws Exception {
-		Callable<String> call = new Callable<String>() {
-			@Override
-			public String call() throws Exception {
-				Thread.sleep(5000);
-				return "Callable";
-			}
-		};
-		Future<String> submit = executor.submit(call);
-		System.out.println("future");
-
-		// ..........
-
-		System.out.println(submit.get());
-		System.out.println("finish");
-	}
-
-	public static void futureTask() throws Exception {
-		Callable<String> call = new Callable<String>() {
-			@Override
-			public String call() throws Exception {
-				return "Callable";
-			}
-		};
-		Runnable run = new Runnable() {
-			@Override
-			public void run() {
-				System.out.println("Runnable");
-			}
-		};
-		FutureTask<String> task = new FutureTask<String>(call);
-		// FutureTask<String> task = new FutureTask<String>(run, "task");
-
-		// Thread thread = new Thread(task);
-		// thread.start();
-
-		Future<?> submit = executor.submit(task);
-		System.out.println(task.get());
-	}
-
 	public static void forkjoin() throws Exception {
 		@SuppressWarnings("unused")
 		class FJWorkThread extends ForkJoinWorkerThread {
@@ -198,9 +134,3 @@ class Calculator extends RecursiveTask<Integer> {
 
 }
 
-class MyThread extends Thread {
-	@Override
-	public void run() {
-		System.out.println("thread");
-	}
-}

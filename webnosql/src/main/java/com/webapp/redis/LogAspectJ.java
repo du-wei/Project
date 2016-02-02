@@ -17,7 +17,7 @@ public class LogAspectJ {//redis.clients.jedis.Jedis
 				+ "类的" + joinpoint.getSignature().getName();
 		System.out.println("前置通知:" + classAndMethod + "方法开始执行！");
 	}
-	
+
 	@Around("execution(* com.webapp.redis..*(..))")
 	public Object myAroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
 		long begintime = System.currentTimeMillis();// 记下开始时间

@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import com.webapp.utils.wrun.ThreadUtils;
+import com.webapp.utils.thread.ThreadUtils;
 
 public class FmtUtilsTest {
 
@@ -22,28 +22,28 @@ public class FmtUtilsTest {
 	@Test
 	public void fmtNum() {
 	    String data = "2.65145";
-	    
+
 	    double result = FmtUtils.of(data).endZero(true).toDouble(2);
 		System.out.printf(format , data, result, "string\ttoDouble(2)");
 		assertThat(result, Matchers.is(2.65));
-		
+
 		result = FmtUtils.of(data1).endZero(false).toDouble(2);
 		System.out.printf(format , data1, result, "int\ttoDouble(2)");
 		assertThat(result, Matchers.is(1000.0));
-		
+
 		result = FmtUtils.of(data2).endZero(false).toDouble(2);
 		System.out.printf(format , data2, result, "float\ttoDouble(2)");
 		assertThat(result, Matchers.is(2000.0));
-		
+
 		result = FmtUtils.of(data3).endZero(true).toDouble(2);
 		System.out.printf(format , data3, result, "double\ttoDouble(2)");
 		assertThat(result, Matchers.is(3000.0));
-		
+
 		result = FmtUtils.of(data4).endZero(true).toDouble(2);
 		System.out.printf(format , data4, result, "string\ttoDouble(2)");
 		assertThat(result, Matchers.is(4000.0));
     }
-	
+
 	@Test
     public void fmtScale() throws Exception {
 
@@ -96,7 +96,7 @@ public class FmtUtilsTest {
 		result = FmtUtils.of(data5).fmt(fmt);
 		System.out.printf(format , data5, result, "long\tfmt("+fmt+")");
 		assertThat(result, Matchers.is("5000.0000"));
-		
+
 		result = FmtUtils.of(data6).fmt(fmt);
 		System.out.printf(format , data6, result, "long\tfmt("+fmt+")");
 		assertThat(result, Matchers.is("0.0000"));
@@ -127,7 +127,7 @@ public class FmtUtilsTest {
 		result = FmtUtils.of(data5).fmt(fmt);
 		System.out.printf(format , data5, result, "long\tfmt("+fmt+")");
 		assertThat(result, Matchers.is("$5000.0000"));
-		
+
 		result = FmtUtils.of(data6).fmt(fmt);
 		System.out.printf(format , data6, result, "long\tfmt("+fmt+")");
 		assertThat(result, Matchers.is("$0.0000"));
@@ -191,7 +191,7 @@ public class FmtUtilsTest {
 		assertThat(result, Matchers.is("$0.00"));
 		System.out.println("-------------------------------------->");
     }
-	
+
 	@Test
     public void fmtPercent() throws Exception {
 
@@ -222,7 +222,7 @@ public class FmtUtilsTest {
     }
 
 
-//	@Test
+	@Test
     public void muiltFmt() throws Exception {
 		int data1 = 1000;
 
@@ -233,9 +233,9 @@ public class FmtUtilsTest {
 		};
 
 
-		ThreadUtils.testMultiCase(run, 200);
+		ThreadUtils.testMultiCase(run, 2);
 
-		ThreadUtils.testSimpleCase(()->{System.out.println(FmtUtils.of(data1).fmt("#.0000"));}, 20000);
+//		ThreadUtils.testSimpleCase(()->{System.out.println(FmtUtils.of(data1).fmt("#.0000"));}, 20000);
     }
 
 }

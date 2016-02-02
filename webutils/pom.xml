@@ -35,11 +35,25 @@
 			<artifactId>mybatis-freemarker</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		<!-- Wrap your database into Java 8 -->
 		<dependency>
 	        <groupId>com.speedment</groupId>
 	        <artifactId>speedment</artifactId>
 	        <version>2.2.3</version>
 	    </dependency>
+
+	    <!-- 分布式系统配置管理 -->
+	    <dependency>
+		    <groupId>com.baidu.disconf</groupId>
+		    <artifactId>disconf-client</artifactId>
+		    <version>2.6.31</version>
+		</dependency>
+		<!-- HTTP(S)/SSH/TCP/Ping 客户端的Java库 -->
+	    <dependency>
+		    <groupId>io.parallec</groupId>
+		    <artifactId>parallec-core</artifactId>
+		    <version>0.9.2</version>
+		</dependency>
 
 		<dependency>
   			<groupId>com.webapp</groupId>

@@ -7,6 +7,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
+import com.webapp.utils.config.ConfigUtils;
+import com.webapp.utils.config.PathUtils;
+
 import pl.kernelpanic.dbmonster.DBMonster;
 import pl.kernelpanic.dbmonster.Launcher;
 import pl.kernelpanic.dbmonster.ProgressMonitor;
@@ -15,9 +18,6 @@ import pl.kernelpanic.dbmonster.connection.ConnectionProvider;
 import pl.kernelpanic.dbmonster.connection.SimpleConnectionProvider;
 import pl.kernelpanic.dbmonster.schema.Schema;
 import pl.kernelpanic.dbmonster.schema.SchemaUtil;
-
-import com.webapp.utils.config.ConfigUtils;
-import com.webapp.utils.config.PathUtils;
 
 public class DbmonsterUtils {
 

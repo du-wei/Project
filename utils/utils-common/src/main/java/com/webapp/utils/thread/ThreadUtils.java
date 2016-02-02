@@ -1,4 +1,4 @@
-package com.webapp.utils.wrun;
+package com.webapp.utils.thread;
 
 import java.util.concurrent.CompletionService;
 import java.util.concurrent.CyclicBarrier;
@@ -26,7 +26,6 @@ public interface ThreadUtils {
 
 		for(int i=0; i<count; i++){
 			T t = run.get();
-//			Thread thread = new Thread(t, "Thread-" + i);
 			completionService.submit(t, i);
 		}
 
@@ -45,11 +44,8 @@ public interface ThreadUtils {
 		long startTime = isNanoTime ? System.nanoTime() : System.currentTimeMillis();
 
 		for(int i=0; i<count; i++){
-//			Thread thread = new Thread(run, "Thread-" + i);
-//			System.out.printf("Object-%s -> thread id[%s] name[%s]", run.hashCode(), thread.getId(), thread.getName());
 			completionService.submit(run, i);
 		}
-
 		for(int i=0; i<count; i++){
 			try {
 				completionService.take().get();
@@ -67,7 +63,7 @@ public interface ThreadUtils {
 		testSimpleCase(run, count, false);
 	}
 
-	
+
 	public static void testCAP(Consumer<Integer> cap, int loop, String name) {
 		System.out.println(name);
     	long startTime = System.nanoTime();
@@ -76,13 +72,13 @@ public interface ThreadUtils {
     	}
     	ThreadUtils.computeTime(startTime, true);
     }
-	
+
 	public static void testSimpleCAP(Consumer<Integer> cap, int loop) {
     	long startTime = System.nanoTime();
     	cap.accept(loop);
     	ThreadUtils.computeTime(startTime, true);
     }
-	
+
 	public static void computeTime(long startTime, boolean isNanoTime){
 		if(isNanoTime && String.valueOf(startTime).length() <= 13){
 			System.out.println(startTime + "不是正确的纳秒数");
@@ -91,12 +87,11 @@ public interface ThreadUtils {
 		long endTime = isNanoTime ? System.nanoTime() : System.currentTimeMillis();
 		long total = endTime-startTime;
 		if(isNanoTime){
-//			System.out.printf("\ntotal time = %s纳秒\t", total);
 			System.out.printf("total time = %s微秒\t", total/1000L);
 			System.out.printf("\ntotal time = %s毫秒\t", total/1000_000L);
 			System.out.printf("\ntotal time = %s秒\t", total/1000_000_000L);
 			System.out.printf("\ntotal time = %s分\t", total/(1000_000_000L * 60));
-		}else {                
+		}else {
 			System.out.printf("total time = %s毫秒\t", total);
 			System.out.printf("\ntotal time = %s秒\t", total/1000);
 			System.out.printf("\ntotal time = %s分\t", total/1000/60);
@@ -127,9 +122,5 @@ public interface ThreadUtils {
 	public static void logRelease(Semaphore sp) {
 		sp.release();
 		System.out.printf("线程 %s离开，当前有%d个并发\t", Thread.currentThread().getName(), threadCount.decrementAndGet());
-	}
-
-	public static void practice(){
-		
 	}
 }

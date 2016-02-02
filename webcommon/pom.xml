@@ -44,7 +44,6 @@
 		<aspectj_version>1.8.7</aspectj_version>
 		<jackson_version>2.6.4</jackson_version>
 		<guava_version>19.0</guava_version>
-		<commons_io>2.4</commons_io>
 		<commons_math3>3.5</commons_math3>
 		<commons_pool2>2.4.2</commons_pool2>
 		<commons_dbcp2>2.1.1</commons_dbcp2>

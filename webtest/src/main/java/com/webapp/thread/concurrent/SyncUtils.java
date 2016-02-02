@@ -6,12 +6,12 @@ import java.util.concurrent.Exchanger;
 import java.util.concurrent.Phaser;
 import java.util.concurrent.Semaphore;
 
-import jodd.util.ThreadUtil;
-
 import org.junit.Test;
 
 import com.webapp.utils.random.RandomUtils;
-import com.webapp.utils.wrun.ThreadUtils;
+import com.webapp.utils.thread.ThreadUtils;
+
+import jodd.util.ThreadUtil;
 
 public class SyncUtils {
 

@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.Test;
 
-public class RedisTest extends RunnerWeb {
+public class RedisTest {
 
 	@Test
 	public void test() {
@@ -45,7 +45,7 @@ public class RedisTest extends RunnerWeb {
 
 	@Test
 	public void viewConfig(){
-		RedisConfig.viewJedisPoolConfig();
+		RedisConfig.showJedisPoolConfig();
 	}
 
 }
